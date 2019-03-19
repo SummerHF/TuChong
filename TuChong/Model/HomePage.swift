@@ -105,3 +105,21 @@ struct HomePage_Attention_Model: HandyJSON {
     var result: String = ""
     var activity_list: [HomePage_ActivityList_Model] = []
 }
+
+struct HomePage_Recommend_FeedList_Model: HandyJSON {
+    var type: String = ""
+    var is_marked: Bool = false
+    var entry: HomePage_Entry_Model = HomePage_Entry_Model()
+}
+
+// MARK: - 首页, 推荐
+
+/// 首页推荐模型
+struct HomePage_Recommend_Model: HandyJSON {
+    var is_history: Bool = false
+    var counts: Int = 0
+    var feedList: [HomePage_Recommend_FeedList_Model] = []
+    var message: String = ""
+    var result: String = ""
+    var more: Bool = false
+}

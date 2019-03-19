@@ -27,6 +27,7 @@
 
 import Foundation
 import Moya
+import SwiftyJSON
 
 // MARK: - Type
 
@@ -87,13 +88,14 @@ struct Network {
     
     static let service = MoyaProvider<TuChong>()
     
-    static func request(target: TuChong, success successCallback: @escaping (Data) -> Void, error errorCallback: @escaping (_ statusCode: Int) -> Void, failure failureCallback: @escaping (MoyaError) ->Void) {
+    static func request(target: TuChong, success successCallback: @escaping ([String: Any]) -> Void, error errorCallback: @escaping (_ statusCode: Int) -> Void, failure failureCallback: @escaping (MoyaError) ->Void) {
         service.request(target) { result in
             switch result {
             case let .success(response):
                 do {
-                    try _ = response.filterSuccessfulStatusCodes()
-                    successCallback(response.data)
+                    _ = try response.filterSuccessfulStatusCodes()
+                    guard let value = JSON(response.data).dictionaryObject else { return errorCallback(response.statusCode)}
+                    successCallback(value)
                 } catch {
                     errorCallback(response.statusCode)
                 }

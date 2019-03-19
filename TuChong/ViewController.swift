@@ -16,8 +16,9 @@ class ViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        Network.request(target: .homepage_recommend(page: 1, type: .refresh), success: { (data) in
-            
+        Network.request(target: .homepage_recommend(page: 1, type: .refresh), success: { (result) in
+            guard let model = HomePage_Recommend_Model.deserialize(from: result) else { return }
+            print(model.message)
         }, error: { (code) in
             print(code)
         }) { (error) in
