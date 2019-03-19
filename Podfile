@@ -12,6 +12,5 @@ pod 'Moya/RxSwift', '~> 12.0', :inhibit_warnings => true
 
 # Json解析
 pod 'HandyJSON', '~> 4.2.0'
-pod 'SwiftyJSON'
-
+pod 'SwiftyJSON', '~> 4.0'
 end
