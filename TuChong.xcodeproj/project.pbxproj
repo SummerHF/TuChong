@@ -15,8 +15,9 @@
 		C4AD3C37224097CB0095BC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C35224097CB0095BC97 /* LaunchScreen.storyboard */; };
 		C4AD3C40224098B40095BC97 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C3F224098B40095BC97 /* String+Extension.swift */; };
 		C4AD3C45224098BE0095BC97 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C42224098BD0095BC97 /* Service.swift */; };
-		C4AD3C46224098BE0095BC97 /* Discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C44224098BD0095BC97 /* Discovery.swift */; };
+		C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C44224098BD0095BC97 /* HomePage.swift */; };
 		C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C482240993A0095BC97 /* SwiftLintRule */; };
+		C4AD3C4B2240AEFE0095BC97 /* API in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C4A2240AEFE0095BC97 /* API */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +33,9 @@
 		C4AD3C38224097CB0095BC97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4AD3C3F224098B40095BC97 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		C4AD3C42224098BD0095BC97 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		C4AD3C44224098BD0095BC97 /* Discovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discovery.swift; sourceTree = "<group>"; };
+		C4AD3C44224098BD0095BC97 /* HomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		C4AD3C482240993A0095BC97 /* SwiftLintRule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftLintRule; sourceTree = "<group>"; };
+		C4AD3C4A2240AEFE0095BC97 /* API */ = {isa = PBXFileReference; lastKnownFileType = text; path = API; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				C4AD3C35224097CB0095BC97 /* LaunchScreen.storyboard */,
 				C4AD3C38224097CB0095BC97 /* Info.plist */,
 				C4AD3C482240993A0095BC97 /* SwiftLintRule */,
+				C4AD3C4A2240AEFE0095BC97 /* API */,
 			);
 			path = TuChong;
 			sourceTree = "<group>";
@@ -119,7 +122,7 @@
 		C4AD3C43224098BD0095BC97 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C4AD3C44224098BD0095BC97 /* Discovery.swift */,
+				C4AD3C44224098BD0095BC97 /* HomePage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				C4AD3C37224097CB0095BC97 /* LaunchScreen.storyboard in Resources */,
 				C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */,
 				C4AD3C34224097CB0095BC97 /* Assets.xcassets in Resources */,
+				C4AD3C4B2240AEFE0095BC97 /* API in Resources */,
 				C4AD3C32224097CB0095BC97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AD3C2F224097CB0095BC97 /* ViewController.swift in Sources */,
-				C4AD3C46224098BE0095BC97 /* Discovery.swift in Sources */,
+				C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */,
 				C4AD3C45224098BE0095BC97 /* Service.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* String+Extension.swift in Sources */,
 				C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */,

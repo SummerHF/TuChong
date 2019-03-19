@@ -28,38 +28,54 @@
 import Foundation
 import Moya
 
-// MARK: - API
+// MARK: - Type
 
-enum PX {
-    case homepage
+enum RequestType {
+    case refresh
+    case loadmore
 }
 
-extension PX: TargetType {
+// MARK: - API
+
+enum TuChong {
+    /// 首页关注
+    case homepage_attention(page: Int, before_timestamp: Int?)
+    /// 首页推荐
+    case homepage_recommend(page: Int, type: RequestType)
+}
+
+extension TuChong: TargetType {
     var headers: [String : String]? {
         return ["Content-type": "application/json"]
     }
-    var baseURL: URL { return URL(string: "https://500px.me")! }
+    var baseURL: URL { return URL(string: "https://api.tuchong.com")! }
     var path: String {
         switch self {
-        case .homepage:
-            return "/community/discover/recommendContests"
+        case .homepage_attention:
+            return "/4/users/self/activities"
+        case .homepage_recommend:
+            return "/2/feed-app"
         }
     }
     var method: Moya.Method {
         switch self {
-        case .homepage:
+        case .homepage_attention, .homepage_recommend:
             return .get
         }
     }
     var task: Task {
         switch self {
-        case .homepage:
+        case .homepage_attention:
             return .requestPlain
+        case .homepage_recommend(page: let page, type: let type):
+            let type = type == .refresh ? "refresh" : "loadmore"
+            return .requestParameters(parameters: ["page": page, "type": type], encoding: URLEncoding.default)
         }
     }
+   
     var sampleData: Data {
         switch self {
-        case .homepage:
+        case .homepage_attention, .homepage_recommend:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         }
     }
@@ -68,10 +84,22 @@ extension PX: TargetType {
 // MARK: - Network
 
 struct Network {
-    static let Service = MoyaProvider<PX>()
     
+    static let service = MoyaProvider<TuChong>()
     
-//    static func request(target: TargetType, success successCallback: (JSON) -> Void) {
-//        
-//    }
+    static func request(target: TuChong, success successCallback: @escaping (Data) -> Void, error errorCallback: @escaping (_ statusCode: Int) -> Void, failure failureCallback: @escaping (MoyaError) ->Void) {
+        service.request(target) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    try _ = response.filterSuccessfulStatusCodes()
+                    successCallback(response.data)
+                } catch {
+                    errorCallback(response.statusCode)
+                }
+            case let .failure(error):
+                failureCallback(error)
+            }
+        }
+    }
 }
