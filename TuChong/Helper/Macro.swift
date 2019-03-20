@@ -43,6 +43,11 @@ struct Macro {
         return navigationBarHeight + statusBarHeight
     }
     
+    /// homenavHeight
+    var homenavHeight: CGFloat {
+        return 40
+    }
+    
     var screenWidth: CGFloat {
         return UIScreen.main.bounds.width
     }

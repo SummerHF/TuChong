@@ -35,17 +35,18 @@ import AsyncDisplayKit
     @objc optional func createCustomeNavigationBar() -> BaseNavigationBar?
     /// 隐藏/显示
     @objc optional func hiddenTopBar(isHidden: Bool)
+    /// 初识时刻是否隐藏
+    @objc optional func initialHidden() -> Bool
 }
 
 /// 基类导航条
-open class BaseNavigationBar: ASDisplayNode {}
-
-/// 全局公用导航条
-open class CommenNavigationBar: BaseNavigationBar {
-    
+open class BaseNavigationBar: ASDisplayNode {
     override init() {
         super.init()
         self.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.topHeight)
-        self.backgroundColor = UIColor.yellow
+        self.backgroundColor = UIColor.red
     }
 }
+
+/// 全局公用导航条
+open class CommenNavigationBar: BaseNavigationBar {}

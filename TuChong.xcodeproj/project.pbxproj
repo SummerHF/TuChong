@@ -24,6 +24,7 @@
 		C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C482240993A0095BC97 /* SwiftLintRule */; };
 		C4AD3C4B2240AEFE0095BC97 /* API in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C4A2240AEFE0095BC97 /* API */; };
 		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
+		C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		C4AD3C482240993A0095BC97 /* SwiftLintRule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftLintRule; sourceTree = "<group>"; };
 		C4AD3C4A2240AEFE0095BC97 /* API */ = {isa = PBXFileReference; lastKnownFileType = text; path = API; sourceTree = "<group>"; };
 		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
+		C4B9825C2242172900F65C0E /* HomeNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavView.swift; sourceTree = "<group>"; };
+		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,7 @@
 			children = (
 				53679354224132DE00C93C76 /* AppDelegate+Extension.swift */,
 				C4AD3C2C224097CB0095BC97 /* AppDelegate.swift */,
+				C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */,
 			);
 			path = APP;
 			sourceTree = "<group>";
@@ -100,8 +104,9 @@
 		C4AC63CD2241BB4100324C23 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
+				C4B9825C2242172900F65C0E /* HomeNavView.swift */,
 				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
+				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -293,6 +299,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCategories.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -328,6 +335,7 @@
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* String+Extension.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
+				C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */,
 				C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */,
 				53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */,
 			);
@@ -477,8 +485,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Summer.TuChong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TuChong/App/TuChong-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Debug;
 		};
@@ -496,8 +506,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Summer.TuChong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TuChong/App/TuChong-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Release;
 		};

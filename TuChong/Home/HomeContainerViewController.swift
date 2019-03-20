@@ -30,6 +30,14 @@ import AsyncDisplayKit
 
 class HomeContainerViewController: BaseViewControlle {
     
+    var navArray: [HomePageNav_Data_Model] = []
+    /// 头部的导航视图
+    var navView: HomeNavView? {
+        didSet {
+            self.node.addSubnode(navView!)
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -41,18 +49,22 @@ class HomeContainerViewController: BaseViewControlle {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.red
+        initContainer()
+    }
+}
+
+extension HomeContainerViewController {
+    
+    /// 初始化容器视图
+    func initContainer() {
         Network.request(target: .home_nav, success: { (response) in
             guard let model = HomePage_Nav.deserialize(from: response) else { return }
-            print(model.result)
+            self.navArray = model.data
+            self.navView = HomeNavView(data: model.data)
         }, error: { (error) in
             
         }) { (moyaError) in
             
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchesBegan")
     }
 }

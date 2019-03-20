@@ -37,6 +37,10 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        /// 是否隐藏导航条
+        guard !initialHidden() else { return }
+        /// 是否使用自定义导航条
         if let navigationBar = self.createCustomeNavigationBar() {
             self.node.addSubnode(navigationBar)
         }
@@ -53,6 +57,11 @@ extension BaseViewControlle: NavigationBarManagerMent {
     
     func hiddenTopBar(isHidden: Bool) {
         self.navigationBar.isHidden = isHidden
+    }
+    
+    func initialHidden() -> Bool {
+        /// default false, subclass to override
+        return false
     }
 }
 
