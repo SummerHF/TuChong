@@ -95,6 +95,39 @@ struct HomePage_ActivityList_Model: HandyJSON {
     var entry: HomePage_Entry_Model = HomePage_Entry_Model()
 }
 
+struct HomePageNav_Data_Entry_Data_Tab_Model: HandyJSON {
+    var name: String = ""
+    var site_ids: String = ""
+    var total: Int = 0
+}
+
+struct HomePageNav_Data_Entry_Data_Model: HandyJSON {
+    var tabs: [HomePageNav_Data_Entry_Data_Tab_Model] = []
+}
+
+struct HomePageNav_Data_Entry_Model: HandyJSON {
+    var id: Int = 0
+    var url: String = ""
+    var module: String = ""
+    var channel: String = ""
+    var data: HomePageNav_Data_Entry_Data_Model = HomePageNav_Data_Entry_Data_Model()
+    var category: String = ""
+}
+
+struct HomePageNav_Data_Model: HandyJSON {
+    var name: String = ""
+    var type: String = ""
+    var entry: HomePageNav_Data_Entry_Model = HomePageNav_Data_Entry_Model()
+    var `default`: Bool = false
+}
+
+// MARK: - 首页, 导航
+
+struct HomePage_Nav: HandyJSON {
+    var result: String = ""
+    var data: [HomePageNav_Data_Model] = []
+}
+
 // MARK: - 首页, 关注
 
 struct HomePage_Attention_Model: HandyJSON {

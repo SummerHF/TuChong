@@ -39,6 +39,8 @@ enum RequestType {
 // MARK: - API
 
 enum TuChong {
+    /// 首页
+    case home_nav
     /// 首页关注
     case homepage_attention(page: Int, before_timestamp: Int?)
     /// 首页推荐
@@ -52,6 +54,8 @@ extension TuChong: TargetType {
     var baseURL: URL { return URL(string: "https://api.tuchong.com")! }
     var path: String {
         switch self {
+        case .home_nav:
+            return "/4/app-nav"
         case .homepage_attention:
             return "/4/users/self/activities"
         case .homepage_recommend:
@@ -60,13 +64,13 @@ extension TuChong: TargetType {
     }
     var method: Moya.Method {
         switch self {
-        case .homepage_attention, .homepage_recommend:
+        case .home_nav, .homepage_attention, .homepage_recommend:
             return .get
         }
     }
     var task: Task {
         switch self {
-        case .homepage_attention:
+        case .home_nav, .homepage_attention:
             return .requestPlain
         case .homepage_recommend(page: let page, type: let type):
             let type = type == .refresh ? "refresh" : "loadmore"
@@ -76,7 +80,7 @@ extension TuChong: TargetType {
    
     var sampleData: Data {
         switch self {
-        case .homepage_attention, .homepage_recommend:
+        case .home_nav, .homepage_attention, .homepage_recommend:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         }
     }
@@ -88,6 +92,16 @@ struct Network {
     
     static let service = MoyaProvider<TuChong>()
     
+    /**
+     Sending request with parameters.
+     
+     - parameter target: target
+     - parameter successCallback: success call back
+     - parameter errorCallback: error call back.
+     - parameter failureCallback: failure call back.
+
+     - returns: The created JSON
+     */
     static func request(target: TuChong, success successCallback: @escaping ([String: Any]) -> Void, error errorCallback: @escaping (_ statusCode: Int) -> Void, failure failureCallback: @escaping (MoyaError) ->Void) {
         service.request(target) { result in
             switch result {

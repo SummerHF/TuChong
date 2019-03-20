@@ -1,7 +1,7 @@
-//  BaseViewController.swift
+//  HomeContainerViewController.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/3/18.
+//  Created by SummerHF on 2019/3/20.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -28,4 +28,31 @@
 import UIKit
 import AsyncDisplayKit
 
-class BaseViewControlle: ASViewController<ASDisplayNode> { }
+class HomeContainerViewController: BaseViewControlle {
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    init() {
+        let node = ASDisplayNode()
+        super.init(node: node)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.red
+        Network.request(target: .home_nav, success: { (response) in
+            guard let model = HomePage_Nav.deserialize(from: response) else { return }
+            print(model.result)
+        }, error: { (error) in
+            
+        }) { (moyaError) in
+            
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touchesBegan")
+    }
+}

@@ -1,2 +1,6 @@
 //开屏广告
-//https://api.tuchong.com/2/welcome-images?height=750&width=1334
+https://api.tuchong.com/2/welcome-images?height=750&width=1334
+//版本更新
+https://api.tuchong.com/app-version
+//首页元素个数
+https://api.tuchong.com/4/app-nav

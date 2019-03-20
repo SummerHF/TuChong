@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0F3232510304A995F6B6037D /* Pods_TuChong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827E6D5469BAD6EADF9335D1 /* Pods_TuChong.framework */; };
-		53173220224130F600B6C10B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317321F224130F600B6C10B /* BaseViewController.swift */; };
+		53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317321F224130F600B6C10B /* BaseContainerViewController.swift */; };
 		53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53679354224132DE00C93C76 /* AppDelegate+Extension.swift */; };
+		C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */; };
+		C4AC63D12241BEF400324C23 /* Reference in Resources */ = {isa = PBXBuildFile; fileRef = C4AC63D02241BEF400324C23 /* Reference */; };
+		C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63D22241D3CE00324C23 /* Logger.swift */; };
+		C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63D42241E53700324C23 /* ASDKNavigationBar.swift */; };
 		C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C2C224097CB0095BC97 /* AppDelegate.swift */; };
 		C4AD3C2F224097CB0095BC97 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */; };
 		C4AD3C34224097CB0095BC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C33224097CB0095BC97 /* Assets.xcassets */; };
@@ -19,14 +23,19 @@
 		C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C44224098BD0095BC97 /* HomePage.swift */; };
 		C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C482240993A0095BC97 /* SwiftLintRule */; };
 		C4AD3C4B2240AEFE0095BC97 /* API in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C4A2240AEFE0095BC97 /* API */; };
+		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5317321F224130F600B6C10B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5317321F224130F600B6C10B /* BaseContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseContainerViewController.swift; sourceTree = "<group>"; };
 		53679354224132DE00C93C76 /* AppDelegate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extension.swift"; sourceTree = "<group>"; };
 		827E6D5469BAD6EADF9335D1 /* Pods_TuChong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuChong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E197914226118C536E28EC /* Pods-TuChong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuChong.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuChong/Pods-TuChong.release.xcconfig"; sourceTree = "<group>"; };
 		A9932FE1DB24369678F50635 /* Pods-TuChong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuChong.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuChong/Pods-TuChong.debug.xcconfig"; sourceTree = "<group>"; };
+		C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
+		C4AC63D02241BEF400324C23 /* Reference */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reference; sourceTree = "<group>"; };
+		C4AC63D22241D3CE00324C23 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		C4AC63D42241E53700324C23 /* ASDKNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASDKNavigationBar.swift; sourceTree = "<group>"; };
 		C4AD3C29224097CB0095BC97 /* TuChong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuChong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AD3C2C224097CB0095BC97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +47,7 @@
 		C4AD3C44224098BD0095BC97 /* HomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		C4AD3C482240993A0095BC97 /* SwiftLintRule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftLintRule; sourceTree = "<group>"; };
 		C4AD3C4A2240AEFE0095BC97 /* API */ = {isa = PBXFileReference; lastKnownFileType = text; path = API; sourceTree = "<group>"; };
+		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +82,28 @@
 		5317321E224130B000B6C10B /* ASDK */ = {
 			isa = PBXGroup;
 			children = (
-				5317321F224130F600B6C10B /* BaseViewController.swift */,
+				5317321F224130F600B6C10B /* BaseContainerViewController.swift */,
+				C4AC63D42241E53700324C23 /* ASDKNavigationBar.swift */,
 			);
 			path = ASDK;
+			sourceTree = "<group>";
+		};
+		C4AC63CC2241B80100324C23 /* APP */ = {
+			isa = PBXGroup;
+			children = (
+				53679354224132DE00C93C76 /* AppDelegate+Extension.swift */,
+				C4AD3C2C224097CB0095BC97 /* AppDelegate.swift */,
+			);
+			path = APP;
+			sourceTree = "<group>";
+		};
+		C4AC63CD2241BB4100324C23 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
+				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		C4AD3C20224097CB0095BC97 = {
@@ -98,17 +127,18 @@
 		C4AD3C2B224097CB0095BC97 /* TuChong */ = {
 			isa = PBXGroup;
 			children = (
+				C4AC63CC2241B80100324C23 /* APP */,
 				5317321E224130B000B6C10B /* ASDK */,
 				C4AD3C43224098BD0095BC97 /* Model */,
 				C4AD3C41224098BD0095BC97 /* Service */,
 				C4AD3C3E224098B40095BC97 /* Helper */,
-				C4AD3C2C224097CB0095BC97 /* AppDelegate.swift */,
-				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
+				C4AC63CD2241BB4100324C23 /* Home */,
 				C4AD3C33224097CB0095BC97 /* Assets.xcassets */,
 				C4AD3C35224097CB0095BC97 /* LaunchScreen.storyboard */,
 				C4AD3C38224097CB0095BC97 /* Info.plist */,
 				C4AD3C482240993A0095BC97 /* SwiftLintRule */,
 				C4AD3C4A2240AEFE0095BC97 /* API */,
+				C4AC63D02241BEF400324C23 /* Reference */,
 			);
 			path = TuChong;
 			sourceTree = "<group>";
@@ -116,8 +146,9 @@
 		C4AD3C3E224098B40095BC97 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				53679354224132DE00C93C76 /* AppDelegate+Extension.swift */,
+				C4AC63D22241D3CE00324C23 /* Logger.swift */,
 				C4AD3C3F224098B40095BC97 /* String+Extension.swift */,
+				C4B9825A2241EE8400F65C0E /* Macro.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -200,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AD3C37224097CB0095BC97 /* LaunchScreen.storyboard in Resources */,
+				C4AC63D12241BEF400324C23 /* Reference in Resources */,
 				C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */,
 				C4AD3C34224097CB0095BC97 /* Assets.xcassets in Resources */,
 				C4AD3C4B2240AEFE0095BC97 /* API in Resources */,
@@ -233,8 +265,9 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TuChong/Pods-TuChong-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-TuChong/Pods-TuChong-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
@@ -249,6 +282,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
@@ -262,7 +296,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TuChong/Pods-TuChong-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TuChong/Pods-TuChong-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C4AD3C47224098F50095BC97 /* ShellScript */ = {
@@ -270,11 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
@@ -292,10 +322,14 @@
 				C4AD3C2F224097CB0095BC97 /* HomepageViewController.swift in Sources */,
 				C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */,
 				C4AD3C45224098BE0095BC97 /* Service.swift in Sources */,
+				C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */,
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
+				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
+				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* String+Extension.swift in Sources */,
+				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
 				C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */,
-				53173220224130F600B6C10B /* BaseViewController.swift in Sources */,
+				53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

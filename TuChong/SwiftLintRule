@@ -5,6 +5,15 @@ https://www.jianshu.com/p/219b197a230a
 
 Texture文档: http://texturegroup.org/docs/resources.html
 
+自定义TabBarHeight:
+
+override public func sizeThatFits(size: CGSize) -> CGSize {
+super.sizeThatFits(size)
+var sizeThatFits = super.sizeThatFits(size)
+sizeThatFits.height = 71
+return sizeThatFits
+}
+
 disabled_rules: # 执行时排除掉的规则
 - colon
 - comma
