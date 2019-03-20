@@ -41,21 +41,14 @@ class HomeNavView: ASDisplayNode {
         return node
     }()
     
-    init(frame: CGRect, data: [HomePageNav_Data_Model]) {
-        self.dataArray = data
+    init(data: [HomePageNav_Data_Model]) {
         super.init()
         self.backgroundColor = UIColor.yellow
-        self.frame = frame
-    }
-    
-    convenience init(data: [HomePageNav_Data_Model]) {
-        let frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
-        self.init(frame: frame, data: data)
+        self.dataArray = data
         self.addNavItems()
     }
     
     private func addNavItems() {
-        scrollNode.view.contentSize = CGSize(width: buttonWidth * CGFloat(dataArray.count), height: self.view.height)
         self.addSubnode(scrollNode)
     }
 }

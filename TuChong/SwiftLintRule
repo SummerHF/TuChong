@@ -4,7 +4,7 @@ Moya基本用法: https://github.com/Moya/Moya/tree/master/docs_CN/Examples
 https://www.jianshu.com/p/219b197a230a
 
 Texture文档: http://texturegroup.org/docs/resources.html
-
+Texture中文文档: https://juejin.im/post/5a16acf56fb9a04509092ce5#heading-5
 自定义TabBarHeight:
 
 override public func sizeThatFits(size: CGSize) -> CGSize {

@@ -43,6 +43,9 @@ import AsyncDisplayKit
 open class BaseNavigationBar: ASDisplayNode {
     override init() {
         super.init()
+    }
+    
+    open override func didLoad() {
         self.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.topHeight)
         self.backgroundColor = UIColor.red
     }
