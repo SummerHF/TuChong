@@ -1,7 +1,7 @@
-//  HomeContainerViewController.swift
+//  LaunchManager.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/3/20.
+//  Created by SummerHF on 2019/3/18.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -26,54 +26,59 @@
 //
 
 import UIKit
-import AsyncDisplayKit
+import HandyJSON
 
-class HomeContainerViewController: BaseViewControlle {
-    
-    var navArray: [HomePageNav_Data_Model] = []
-    /// 头部的导航视图
-    var navView: HomeNavView? {
-        didSet {
-            navView?.delegate = self
-            self.node.addSubnode(navView!)
-        }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+// MARK: - 启动广告模型
 
-    override init() {
-        let node = ASDisplayNode()
-        super.init(node: node)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        initContainer()
-    }
+struct LaunchAd_App: HandyJSON {
+    var id: String = ""
+    var title: String = ""
+    var author_name: String = ""
+    var image_url: String = ""
+    var tuchong_url: String = ""
 }
 
-extension HomeContainerViewController {
+struct LaunchAd: HandyJSON {
+    var app: [LaunchAd_App] = []
+}
+
+// MARK: - 启动广告协议
+/// 关联类型协议
+protocol LaunchMangerProtocol {
+    associatedtype T
+//    func write() -> T
+    func read() -> T
+    func update() -> T
+    func show() -> T
+}
+
+class LaunchManager: LaunchMangerProtocol {
     
-    /// 初始化容器视图
-    func initContainer() {
-        Network.request(target: .home_nav, success: { (response) in
-            guard let model = HomePage_Nav.deserialize(from: response) else { return }
-            self.navArray = model.data
-            self.navView = HomeNavView(data: model.data)
+    typealias T = LaunchManager
+    /// use this singleton to manager l
+    static let manager = LaunchManager()
+    
+    @discardableResult
+    func read() -> LaunchManager {
+        print(NSHomeDirectory())
+        return .manager
+    }
+    
+    @discardableResult
+    func update() -> LaunchManager {
+        Network.request(target: .launch_ad, success: { (response) in
+            guard let data = LaunchAd.deserialize(from: response) else { return }
+            print(data.app.count)
         }, error: { (error) in
             print(error)
         }) { (moyaError) in
             print(moyaError)
         }
+        return .manager
     }
-}
-
-extension HomeContainerViewController: HomeNavViewDlegate {
     
-    func homeNavViewMoreBtnEvent() {
-        let testVC = TestViewController()
-        self.navigationController?.pushViewController(testVC, animated: true)
+    @discardableResult
+    func show() -> LaunchManager {
+        return .manager
     }
 }

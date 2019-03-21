@@ -121,20 +121,6 @@ struct HomePageNav_Data_Model: HandyJSON {
     var `default`: Bool = false
 }
 
-// MARK: - 启动广告
-
-struct LaunchAd_App: HandyJSON {
-    var id: String = ""
-    var title: String = ""
-    var author_name: String = ""
-    var image_url: String = ""
-    var tuchong_url: String = ""
-}
-
-struct LaunchAd: HandyJSON {
-    var app: [LaunchAd_App] = []
-}
-
 // MARK: - 首页, 导航
 
 struct HomePage_Nav: HandyJSON {
