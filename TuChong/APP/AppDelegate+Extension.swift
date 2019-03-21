@@ -33,9 +33,24 @@ extension AppDelegate {
     func setKeyWindow() {
         let tabBarController = BaseTabBarController()
         let homeNavgationController = BaseNavigationController(rootViewController: HomeContainerViewController())
+        homeNavgationController.tabBarItem.title = "哈哈" 
         tabBarController.viewControllers = [homeNavgationController]
         self.window?.backgroundColor = UIColor.white
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
+    }
+    
+    /// 设置开机广告
+    func setLaunchAdvertiseMent() {
+        
+        /// 首页检查本地有没有
+        Network.request(target: .launch_ad, success: { (response) in
+            guard let data = LaunchAd.deserialize(from: response) else { return }
+            print(data.app.count)
+        }, error: { (error) in
+            
+        }) { (moyaError) in
+            
+        }
     }
 }

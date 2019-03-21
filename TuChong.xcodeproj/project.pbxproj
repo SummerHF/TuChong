@@ -25,6 +25,7 @@
 		C4AD3C4B2240AEFE0095BC97 /* API in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C4A2240AEFE0095BC97 /* API */; };
 		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
 		C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavView.swift */; };
+		C4FD497922431F8600142247 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD497822431F8600142247 /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		C4B9825C2242172900F65C0E /* HomeNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavView.swift; sourceTree = "<group>"; };
 		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
+		C4FD497822431F8600142247 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				C4B9825C2242172900F65C0E /* HomeNavView.swift */,
 				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
 				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
+				C4FD497822431F8600142247 /* TestViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 		C4AD3C2B224097CB0095BC97 /* TuChong */ = {
 			isa = PBXGroup;
 			children = (
+				C4FD49982243762400142247 /* Launch */,
 				C4AC63CC2241B80100324C23 /* APP */,
 				5317321E224130B000B6C10B /* ASDK */,
 				C4AD3C43224098BD0095BC97 /* Model */,
@@ -172,6 +176,13 @@
 				C4AD3C44224098BD0095BC97 /* HomePage.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C4FD49982243762400142247 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Launch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +342,7 @@
 				C4AD3C45224098BE0095BC97 /* Service.swift in Sources */,
 				C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */,
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
+				C4FD497922431F8600142247 /* TestViewController.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* String+Extension.swift in Sources */,

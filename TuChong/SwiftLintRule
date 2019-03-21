@@ -5,6 +5,19 @@ https://www.jianshu.com/p/219b197a230a
 
 Texture文档: http://texturegroup.org/docs/resources.html
 Texture中文文档: https://juejin.im/post/5a16acf56fb9a04509092ce5#heading-5
+FDFullscreenPopGesture
+侧滑相关: https://www.jianshu.com/p/f6f91ffdb139
+https://www.jianshu.com/p/e7c5e2400935
+动画库: https://github.com/IBAnimatable/IBAnimatable
+
+启动页相关:
+https://juejin.im/post/5b06f29751882538af1d7f57
+https://github.com/jihongboo/LaunchADView
+https://www.jianshu.com/p/55c0fa4988b6
+
+沙盒相关:
+https://www.jianshu.com/p/a8251c8c0298
+https://blog.csdn.net/xiangriikui/article/details/78171502
 自定义TabBarHeight:
 
 override public func sizeThatFits(size: CGSize) -> CGSize {
