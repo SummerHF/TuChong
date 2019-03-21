@@ -37,12 +37,18 @@ class HomeNavView: ASDisplayNode {
     /// scrollNode
     lazy var scrollNode: ASScrollNode = {
         let node = ASScrollNode()
-        node.frame = self.bounds
         return node
+    }()
+    
+    /// moreBtnNode
+    lazy var moreBtnNode: ASButtonNode = {
+        let button = ASButtonNode()
+        return button
     }()
     
     init(data: [HomePageNav_Data_Model]) {
         super.init()
+        self.frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
         self.backgroundColor = UIColor.yellow
         self.dataArray = data
         self.addNavItems()
@@ -50,5 +56,11 @@ class HomeNavView: ASDisplayNode {
     
     private func addNavItems() {
         self.addSubnode(scrollNode)
+        self.addSubnode(moreBtnNode)
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        scrollNode.style.preferredSize = CGSize(width: macro.screenWidth, height: macro.homenavHeight)
+        return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: scrollNode)
     }
 }
