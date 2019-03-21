@@ -39,6 +39,8 @@ enum RequestType {
 // MARK: - API
 
 enum TuChong {
+    /// 启动广告
+    case launch_ad
     /// 首页
     case home_nav
     /// 首页关注
@@ -49,11 +51,17 @@ enum TuChong {
 
 extension TuChong: TargetType {
     var headers: [String : String]? {
-        return ["Content-type": "application/json"]
+        /// 请求头处内容写死
+        return ["content-type": "application/json",
+                "platform": "ios",
+                "version": "4.15.0"
+        ]
     }
     var baseURL: URL { return URL(string: "https://api.tuchong.com")! }
     var path: String {
         switch self {
+        case .launch_ad:
+            return "/2/welcome-images"
         case .home_nav:
             return "/4/app-nav"
         case .homepage_attention:
@@ -62,16 +70,21 @@ extension TuChong: TargetType {
             return "/2/feed-app"
         }
     }
+    
     var method: Moya.Method {
         switch self {
-        case .home_nav, .homepage_attention, .homepage_recommend:
+        case .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
             return .get
         }
     }
+    
     var task: Task {
         switch self {
         case .home_nav, .homepage_attention:
             return .requestPlain
+        case .launch_ad:
+            /// 此处宽高写死
+            return .requestParameters(parameters: ["height": "750", "width": "1334"], encoding: URLEncoding.default)
         case .homepage_recommend(page: let page, type: let type):
             let type = type == .refresh ? "refresh" : "loadmore"
             return .requestParameters(parameters: ["page": page, "type": type], encoding: URLEncoding.default)
@@ -80,7 +93,7 @@ extension TuChong: TargetType {
    
     var sampleData: Data {
         switch self {
-        case .home_nav, .homepage_attention, .homepage_recommend:
+        case .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         }
     }

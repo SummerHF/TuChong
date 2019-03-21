@@ -55,6 +55,11 @@ struct Macro {
     var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
     }
+    
+    /// 侧划返回的触发距离
+    var sideslipDistance: CGFloat {
+        return 40
+    }
 }
 
 let macro = Macro()

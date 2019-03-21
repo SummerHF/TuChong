@@ -34,6 +34,7 @@ class HomeContainerViewController: BaseViewControlle {
     /// 头部的导航视图
     var navView: HomeNavView? {
         didSet {
+            navView?.delegate = self
             self.node.addSubnode(navView!)
         }
     }
@@ -42,14 +43,14 @@ class HomeContainerViewController: BaseViewControlle {
         super.init(coder: aDecoder)
     }
 
-    init() {
+    override init() {
         let node = ASDisplayNode()
         super.init(node: node)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initContainer()
+//        initContainer()
     }
 }
 
@@ -66,5 +67,13 @@ extension HomeContainerViewController {
         }) { (moyaError) in
             
         }
+    }
+}
+
+extension HomeContainerViewController: HomeNavViewDlegate {
+    
+    func homeNavViewMoreBtnEvent() {
+        let testVC = TestViewController()
+        self.navigationController?.pushViewController(testVC, animated: true)
     }
 }

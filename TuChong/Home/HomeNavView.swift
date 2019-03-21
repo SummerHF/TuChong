@@ -28,11 +28,17 @@
 import UIKit
 import AsyncDisplayKit
 
+// MARK: - HomeNavViewDlegatee
+
+@objc protocol HomeNavViewDlegate: class {
+    @objc optional func homeNavViewMoreBtnEvent()
+}
+
 class HomeNavView: ASDisplayNode {
     
     let buttonWidth: CGFloat = 40
-    
     var dataArray: [HomePageNav_Data_Model] = []
+    weak var delegate: HomeNavViewDlegate?
     
     /// scrollNode
     lazy var scrollNode: ASScrollNode = {
@@ -42,13 +48,14 @@ class HomeNavView: ASDisplayNode {
     
     /// moreBtnNode
     lazy var moreBtnNode: ASButtonNode = {
-        let button = ASButtonNode()
-        return button
+        let node = ASButtonNode()
+        node.backgroundColor = UIColor.purple
+        node.addTarget(self, action: #selector(moreBtnEvent), forControlEvents: .touchUpInside)
+        return node
     }()
     
     init(data: [HomePageNav_Data_Model]) {
         super.init()
-        self.frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
         self.backgroundColor = UIColor.yellow
         self.dataArray = data
         self.addNavItems()
@@ -59,8 +66,13 @@ class HomeNavView: ASDisplayNode {
         self.addSubnode(moreBtnNode)
     }
     
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        scrollNode.style.preferredSize = CGSize(width: macro.screenWidth, height: macro.homenavHeight)
-        return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: scrollNode)
+    override func didLoad() {
+        self.frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
+        self.scrollNode.frame = CGRect(x: 0, y: 0, width: self.view.width - buttonWidth, height: self.view.height)
+        self.moreBtnNode.frame = CGRect(x: self.view.width - buttonWidth, y: 0, width: buttonWidth, height: self.view.height)
+    }
+    
+    @objc func moreBtnEvent() {
+        self.delegate?.homeNavViewMoreBtnEvent?()
     }
 }
