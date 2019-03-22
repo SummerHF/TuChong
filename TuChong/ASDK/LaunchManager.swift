@@ -28,6 +28,7 @@
 import UIKit
 import HandyJSON
 import SwiftyJSON
+import AsyncDisplayKit
 
 // MARK: - 启动广告模型
 
@@ -102,7 +103,21 @@ class LaunchManager: LaunchMangerProtocol {
     let session = URLSession(configuration: URLSessionConfiguration.default)
     var admodels: LaunchAd?
     
+    /// 容器视图
+    lazy var containerNode: ASDisplayNode = {
+        let node = ASDisplayNode()
+        node.frame = UIScreen.main.bounds
+        return node
+    }()
+    
+    lazy var imageNode: ASImageNode = {
+        let image = ASImageNode()
+        image.frame = UIScreen.main.bounds
+        return image
+    }()
+    
     /// 创建目录
+    @discardableResult
     func createDocument() -> Bool {
         /// init UnsafeMutablePointer
         /// ObjCBool(false)
@@ -170,6 +185,8 @@ class LaunchManager: LaunchMangerProtocol {
     /// 显示已经缓存的数据
     @discardableResult
     func show() -> LaunchManager {
+        /// 创建目录
+        self.createDocument()
         /// 读取本地
         self.read()
         /// 展示
@@ -182,10 +199,18 @@ class LaunchManager: LaunchMangerProtocol {
             /// 随机展示一张
             let random = Int.randomIntValue(upper: temp.count)
             let willShow = model.app[random]
-            
+            self.showAdvertisementWith(model: willShow)
         }
         /// 更新
         self.update()
         return self
+    }
+    
+    func showAdvertisementWith(model: LaunchAd_App) {
+        guard let window = macro.keyWindow else { return }
+        containerNode.addSubnode(imageNode)
+        window.addSubnode(containerNode)
+        guard let data = try? Data(contentsOf: model.localPathUrl!) else { return }
+        imageNode.image = UIImage.init(data: data)
     }
 }
