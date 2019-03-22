@@ -42,6 +42,6 @@ extension AppDelegate {
     
     /// 设置开机广告
     func setLaunchAdvertiseMent() {
-        LaunchManager.manager.read()
+        LaunchManager.manager.show()
     }
 }

@@ -13,11 +13,21 @@ https://www.jianshu.com/p/e7c5e2400935
 启动页相关:
 https://juejin.im/post/5b06f29751882538af1d7f57
 https://www.jianshu.com/p/55c0fa4988b6
+https://github.com/jihongboo/LaunchADView
 
 沙盒相关:
 https://www.jianshu.com/p/a8251c8c0298
 https://blog.csdn.net/xiangriikui/article/details/78171502
+https://www.raywenderlich.com/5371-grand-central-dispatch-tutorial-for-swift-4-part-2-2
 自定义TabBarHeight:
+
+OperationQueue DispatchGroup
+https://www.jianshu.com/p/4b1d77054b35
+https://www.jianshu.com/p/e93fd15d93d3
+https://www.jianshu.com/p/7ee4a38c9e27
+
+协议相关:
+https://www.jianshu.com/p/87bcd8694d38
 
 override public func sizeThatFits(size: CGSize) -> CGSize {
 super.sizeThatFits(size)

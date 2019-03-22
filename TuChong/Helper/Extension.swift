@@ -37,3 +37,20 @@ public extension String {
         return data(using: .utf8)!
     }
 }
+
+public extension URLResponse {
+    
+    /// 是图片
+//    var isPicture {
+//        return 
+//    }
+}
+
+public extension Int {
+    
+    /// 产生随机数
+    /// [0, upper)
+    static func randomIntValue(upper: Int) -> Int {
+        return Int(arc4random_uniform(UInt32(upper)))
+    }
+}

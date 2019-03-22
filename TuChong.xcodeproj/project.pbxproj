@@ -19,7 +19,7 @@
 		C4AD3C2F224097CB0095BC97 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */; };
 		C4AD3C34224097CB0095BC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C33224097CB0095BC97 /* Assets.xcassets */; };
 		C4AD3C37224097CB0095BC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C35224097CB0095BC97 /* LaunchScreen.storyboard */; };
-		C4AD3C40224098B40095BC97 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C3F224098B40095BC97 /* String+Extension.swift */; };
+		C4AD3C40224098B40095BC97 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C3F224098B40095BC97 /* Extension.swift */; };
 		C4AD3C45224098BE0095BC97 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C42224098BD0095BC97 /* Service.swift */; };
 		C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C44224098BD0095BC97 /* HomePage.swift */; };
 		C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C482240993A0095BC97 /* SwiftLintRule */; };
@@ -46,7 +46,7 @@
 		C4AD3C33224097CB0095BC97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4AD3C36224097CB0095BC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C4AD3C38224097CB0095BC97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C4AD3C3F224098B40095BC97 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C4AD3C3F224098B40095BC97 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		C4AD3C42224098BD0095BC97 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		C4AD3C44224098BD0095BC97 /* HomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		C4AD3C482240993A0095BC97 /* SwiftLintRule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftLintRule; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				C4AC63D22241D3CE00324C23 /* Logger.swift */,
-				C4AD3C3F224098B40095BC97 /* String+Extension.swift */,
+				C4AD3C3F224098B40095BC97 /* Extension.swift */,
 				C4B9825A2241EE8400F65C0E /* Macro.swift */,
 			);
 			path = Helper;
@@ -349,7 +349,7 @@
 				C4FD497922431F8600142247 /* TestViewController.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
-				C4AD3C40224098B40095BC97 /* String+Extension.swift in Sources */,
+				C4AD3C40224098B40095BC97 /* Extension.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
 				C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */,
 				C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */,

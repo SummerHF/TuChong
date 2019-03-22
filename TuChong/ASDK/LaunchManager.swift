@@ -27,6 +27,7 @@
 
 import UIKit
 import HandyJSON
+import SwiftyJSON
 
 // MARK: - 启动广告模型
 
@@ -36,6 +37,30 @@ struct LaunchAd_App: HandyJSON {
     var author_name: String = ""
     var image_url: String = ""
     var tuchong_url: String = ""
+    /// image_name
+    var image_name: String? {
+        if let url = URL(string: image_url), url.lastPathComponent.count != 0 {
+            return url.lastPathComponent
+        }
+        return nil
+    }
+    /// 本地存储路径--String
+    var localPathStr: String? {
+        guard let image = image_name else { return nil }
+        return LaunchManager.filePath + "/\(image)"
+    }
+    
+    /// 本地存储路径--URL
+    var localPathUrl: URL? {
+        guard let pathStr = localPathStr else { return nil }
+        return URL(fileURLWithPath: pathStr)
+    }
+    
+    /// 广告是否已经存在
+    var isExist: Bool {
+        guard let path = localPathStr  else { return false }
+        return FileManager.default.fileExists(atPath: path, isDirectory: nil)
+    }
 }
 
 struct LaunchAd: HandyJSON {
@@ -43,42 +68,124 @@ struct LaunchAd: HandyJSON {
 }
 
 // MARK: - 启动广告协议
-/// 关联类型协议
+/// 关联类型
 protocol LaunchMangerProtocol {
     associatedtype T
-//    func write() -> T
     func read() -> T
     func update() -> T
     func show() -> T
+    /// 创建本地存储目录
+    func createDocument() -> Bool
+    /// 存储路径
+    static var filePath: String { get }
 }
+
+// MARK: - 管理类
 
 class LaunchManager: LaunchMangerProtocol {
     
     typealias T = LaunchManager
-    /// use this singleton to manager l
-    static let manager = LaunchManager()
-    
-    @discardableResult
-    func read() -> LaunchManager {
-        print(NSHomeDirectory())
-        return .manager
+
+    /// 目录路径
+    static var filePath: String {
+        let filePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!
+        return filePath + "/LaunchAdvertisement"
     }
     
+    /// 偏好存储名称
+    static var keyPathName = "LaunchAdvertisementData"
+    
+    /// use this singleton to manager l
+    static let manager = LaunchManager()
+    let group = DispatchGroup()
+    let queue = DispatchQueue(label: "launch_advertisement_queue", qos: DispatchQoS.background)
+    let session = URLSession(configuration: URLSessionConfiguration.default)
+    var admodels: LaunchAd?
+    
+    /// 创建目录
+    func createDocument() -> Bool {
+        /// init UnsafeMutablePointer
+        /// ObjCBool(false)
+        var pointer: ObjCBool = false
+        let created = FileManager.default.fileExists(atPath: LaunchManager.filePath, isDirectory: &pointer)
+        if !(created && pointer.boolValue) {
+            do {
+                try FileManager.default.createDirectory(at: URL(fileURLWithPath: LaunchManager.filePath), withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                logger.log("create Launch document failure")
+            }
+        }
+        return true
+    }
+    
+    /// 每次启动读取本地已缓存的资源
+    @discardableResult
+    func read() -> LaunchManager {
+        if let localData = UserDefaults.standard.value(forKey: LaunchManager.keyPathName) as? [String: Any] {
+            logger.log("read success, wait to handle")
+            self.admodels = LaunchAd.deserialize(from: localData)
+        }
+        return self
+    }
+    
+    /// 每次启动更新启动图相关数据
     @discardableResult
     func update() -> LaunchManager {
         Network.request(target: .launch_ad, success: { (response) in
             guard let data = LaunchAd.deserialize(from: response) else { return }
-            print(data.app.count)
-        }, error: { (error) in
-            print(error)
-        }) { (moyaError) in
-            print(moyaError)
+            self.queue.async {
+                for ad in data.app {
+                    if !ad.isExist {
+                        self.group.enter()
+                        let task = self.session.dataTask(with: URL(string: ad.image_url)!, completionHandler: { (response, urlResopnse, error) in
+                            /// download success, save to local
+                            if let result = response, let path = ad.localPathStr, error == nil {
+                                do {
+                                    try result.write(to: URL(fileURLWithPath: path), options: Data.WritingOptions.atomic)
+                                    logger.log("write data to path success")
+                                } catch {
+                                    logger.log("write data to path failed")
+                                }
+                            } else {
+                                logger.log("download failed")
+                            }
+                        })
+                        task.resume()
+                        self.group.leave()
+                    } else {
+                        logger.log("has download")
+                    }
+                }
+            }
+            /// save data to local
+            self.group.notify(queue: self.queue, execute: {
+                UserDefaults.standard.setValue(response, forKey: LaunchManager.keyPathName)
+            })
+        }, error: { _ in
+        }) { _ in
         }
-        return .manager
+        return self
     }
     
+    /// 显示已经缓存的数据
     @discardableResult
     func show() -> LaunchManager {
-        return .manager
+        /// 读取本地
+        self.read()
+        /// 展示
+        if let model = self.admodels {
+            var temp: [LaunchAd_App] = []
+            /// 此处防止有些图片未下载成功
+            for data in model.app where data.isExist {
+                    temp.append(data)
+            }
+            /// 随机展示一张
+            let random = Int.randomIntValue(upper: temp.count)
+            let willShow = model.app[random]
+            
+        }
+        /// 更新
+        self.update()
+        return self
     }
 }
