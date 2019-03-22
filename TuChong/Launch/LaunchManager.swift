@@ -152,7 +152,7 @@ class LaunchManager: LaunchMangerProtocol {
                 for ad in data.app {
                     if !ad.isExist {
                         self.group.enter()
-                        let task = self.session.dataTask(with: URL(string: ad.image_url)!, completionHandler: { (response, urlResopnse, error) in
+                        let task = self.session.dataTask(with: URL(string: ad.image_url)!, completionHandler: { (response, _, error) in
                             /// download success, save to local
                             if let result = response, let path = ad.localPathStr, error == nil {
                                 do {
