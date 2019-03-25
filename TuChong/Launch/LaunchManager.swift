@@ -194,6 +194,8 @@ class LaunchManager: LaunchMangerProtocol {
             let random = Int.randomIntValue(upper: temp.count)
             let willShow = model.app[random]
             self.showAdvertisementWith(model: willShow)
+            /// 隐藏状态栏
+            UIApplication.shared.isStatusBarHidden = true
         }
         /// 更新
         self.update()
@@ -221,6 +223,7 @@ class LaunchAdView: ASDisplayNode {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         btn.setTitle("跳过", for: .normal)
         btn.backgroundColor = UIColor.gray
+        btn.addTarget(self, action: #selector(dismissLaunchAdview), for: .touchUpInside)
         return btn
     }()
     
@@ -283,5 +286,9 @@ class LaunchAdView: ASDisplayNode {
             make.top.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
         }
+    }
+    
+    @objc private func dismissLaunchAdview() {
+        self.removeFromSupernode()
     }
 }

@@ -73,7 +73,8 @@ extension HomeContainerViewController {
 extension HomeContainerViewController: HomeNavViewDlegate {
     
     func homeNavViewMoreBtnEvent() {
-        let testVC = TestViewController()
-        self.navigationController?.pushViewController(testVC, animated: true)
+        /// 标签页
+        let tagVC = TagViewController()
+        self.navigationController?.pushViewController(tagVC, animated: true)
     }
 }

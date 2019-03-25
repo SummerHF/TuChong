@@ -156,3 +156,48 @@ struct HomePage_Recommend_Model: HandyJSON {
     var result: String = ""
     var more: Bool = false
 }
+
+// MARK: - 首页，更多
+
+struct HomePage_More_Image_Model: HandyJSON {
+    var img_id: Int = 0
+    var user_id: String = ""
+    var title: String = ""
+    var description: String = ""
+    var originalwidth: String = ""
+    var originalheight: String = ""
+    var created_at: String = ""
+    var deleted_by: String = ""
+    var camera_id: String = ""
+    var md5: String = ""
+    var lens_id: String = ""
+}
+
+struct HomePage_More_Item_Model: HandyJSON {
+    var tag_name: String = ""
+    var url: String = ""
+    var tag_id: String = ""
+    var image: HomePage_More_Image_Model = HomePage_More_Image_Model()
+}
+
+struct HomePage_More_Model: HandyJSON {
+    var categoryName: String = ""
+    var items: [HomePage_More_Item_Model] = []
+    
+    /// 快速的从字典构建模型
+    static func build(with dict: [String: Any]) -> [HomePage_More_Model]? {
+        guard let result = dict["data"] as? [String: Any] else { return nil }
+        var modelsArray = [HomePage_More_Model]()
+        for (key, value) in result {
+            var model = HomePage_More_Model()
+            model.categoryName = key
+            guard let subDict = value as? [String: Any] else { return nil }
+            for(_, subValue) in subDict {
+                guard let dictionary = subValue as? [String: Any], let transfor = HomePage_More_Item_Model.deserialize(from: dictionary) else { return nil }
+                model.items.append(transfor)
+            }
+            modelsArray.append(model)
+        }
+        return modelsArray
+    }
+}

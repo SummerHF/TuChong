@@ -47,6 +47,8 @@ enum TuChong {
     case homepage_attention(page: Int, before_timestamp: Int?)
     /// 首页推荐
     case homepage_recommend(page: Int, type: RequestType)
+    /// 首页更多
+    case home_more
 }
 
 extension TuChong: TargetType {
@@ -57,9 +59,19 @@ extension TuChong: TargetType {
                 "version": "4.15.0"
         ]
     }
-    var baseURL: URL { return URL(string: "https://api.tuchong.com")! }
+    var baseURL: URL {
+        
+        switch self {
+        case .home_more:
+            return URL(string: "https://tuchong.com")!
+        default:
+            return URL(string: "https://api.tuchong.com")!
+        }
+    }
     var path: String {
         switch self {
+        case .home_more:
+            return "/rest/app-tag-nav"
         case .launch_ad:
             return "/2/welcome-images"
         case .home_nav:
@@ -73,14 +85,14 @@ extension TuChong: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
+        case .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .home_nav, .homepage_attention:
+        case .home_more, .home_nav, .homepage_attention:
             return .requestPlain
         case .launch_ad:
             /// 此处宽高写死
@@ -93,7 +105,7 @@ extension TuChong: TargetType {
    
     var sampleData: Data {
         switch self {
-        case .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
+        case .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         }
     }
