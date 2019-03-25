@@ -1,10 +1,7 @@
-//  AppDelegate+Extension.swift
-//  TuChong
 //
-//  Created by SummerHF on 2019/3/20.
+//  SnapKit
 //
-//
-//  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
+//  Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +20,23 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
-import UIKit
+import Foundation
 
-extension AppDelegate {
+#if os(iOS) || os(tvOS)
+    import UIKit
+#if swift(>=4.2)
+    typealias LayoutRelation = NSLayoutConstraint.Relation
+    typealias LayoutAttribute = NSLayoutConstraint.Attribute
+#else
+    typealias LayoutRelation = NSLayoutRelation
+    typealias LayoutAttribute = NSLayoutAttribute
+#endif
+    typealias LayoutPriority = UILayoutPriority
+#else
+    import AppKit
+    typealias LayoutRelation = NSLayoutConstraint.Relation
+    typealias LayoutAttribute = NSLayoutConstraint.Attribute
+    typealias LayoutPriority = NSLayoutConstraint.Priority
+#endif
 
-    /// 设置主窗口
-    func setKeyWindow() {
-        let tabBarController = BaseTabBarController()
-        let homeNavgationController = BaseNavigationController(rootViewController: HomeContainerViewController())
-        homeNavgationController.tabBarItem.title = "哈哈" 
-        tabBarController.viewControllers = [homeNavgationController]
-        self.window?.backgroundColor = UIColor.white
-        self.window?.rootViewController = tabBarController
-        self.window?.makeKeyAndVisible()
-    }
-    
-    /// 设置开机广告
-    func setLaunchAdvertiseMent() {
-        LaunchManager.manager.show()
-    }
-}

@@ -1,10 +1,7 @@
-//  AppDelegate+Extension.swift
-//  TuChong
 //
-//  Created by SummerHF on 2019/3/20.
+//  SnapKit
 //
-//
-//  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
+//  Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +20,42 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
-import UIKit
+#if os(iOS) || os(tvOS)
+    import UIKit
+#else
+    import AppKit
+#endif
 
-extension AppDelegate {
 
-    /// 设置主窗口
-    func setKeyWindow() {
-        let tabBarController = BaseTabBarController()
-        let homeNavgationController = BaseNavigationController(rootViewController: HomeContainerViewController())
-        homeNavgationController.tabBarItem.title = "哈哈" 
-        tabBarController.viewControllers = [homeNavgationController]
-        self.window?.backgroundColor = UIColor.white
-        self.window?.rootViewController = tabBarController
-        self.window?.makeKeyAndVisible()
+public final class ConstraintItem {
+    
+    internal weak var target: AnyObject?
+    internal let attributes: ConstraintAttributes
+    
+    internal init(target: AnyObject?, attributes: ConstraintAttributes) {
+        self.target = target
+        self.attributes = attributes
     }
     
-    /// 设置开机广告
-    func setLaunchAdvertiseMent() {
-        LaunchManager.manager.show()
+    internal var layoutConstraintItem: LayoutConstraintItem? {
+        return self.target as? LayoutConstraintItem
     }
+    
+}
+
+public func ==(lhs: ConstraintItem, rhs: ConstraintItem) -> Bool {
+    // pointer equality
+    guard lhs !== rhs else {
+        return true
+    }
+    
+    // must both have valid targets and identical attributes
+    guard let target1 = lhs.target,
+          let target2 = rhs.target,
+          target1 === target2 && lhs.attributes == rhs.attributes else {
+            return false
+    }
+    
+    return true
 }

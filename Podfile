@@ -15,4 +15,5 @@ pod 'HandyJSON', '~> 4.2.0'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'DeviceKit', '~> 1.3'
 pod 'YYCategories'
+pod 'SnapKit', '~> 4.0.0'
 end

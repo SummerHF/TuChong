@@ -50,7 +50,7 @@ class HomeContainerViewController: BaseViewControlle {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        initContainer()
+        initContainer()
     }
 }
 

@@ -1,10 +1,7 @@
-//  AppDelegate+Extension.swift
-//  TuChong
 //
-//  Created by SummerHF on 2019/3/20.
+//  SnapKit
 //
-//
-//  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
+//  Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +20,37 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
-import UIKit
+#if os(iOS) || os(tvOS)
+    import UIKit
+#else
+    import AppKit
+#endif
 
-extension AppDelegate {
 
-    /// 设置主窗口
-    func setKeyWindow() {
-        let tabBarController = BaseTabBarController()
-        let homeNavgationController = BaseNavigationController(rootViewController: HomeContainerViewController())
-        homeNavgationController.tabBarItem.title = "哈哈" 
-        tabBarController.viewControllers = [homeNavgationController]
-        self.window?.backgroundColor = UIColor.white
-        self.window?.rootViewController = tabBarController
-        self.window?.makeKeyAndVisible()
+public class ConstraintMakerEditable: ConstraintMakerPriortizable {
+
+    @discardableResult
+    public func multipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+        self.description.multiplier = amount
+        return self
     }
     
-    /// 设置开机广告
-    func setLaunchAdvertiseMent() {
-        LaunchManager.manager.show()
+    @discardableResult
+    public func dividedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
+        return self.multipliedBy(1.0 / amount.constraintMultiplierTargetValue)
     }
+    
+    @discardableResult
+    public func offset(_ amount: ConstraintOffsetTarget) -> ConstraintMakerEditable {
+        self.description.constant = amount.constraintOffsetTargetValue
+        return self
+    }
+    
+    @discardableResult
+    public func inset(_ amount: ConstraintInsetTarget) -> ConstraintMakerEditable {
+        self.description.constant = amount.constraintInsetTargetValue
+        return self
+    }
+    
 }

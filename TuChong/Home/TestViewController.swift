@@ -9,39 +9,42 @@
 import Foundation
 import AsyncDisplayKit
 
-//class TestScollView: UIScrollView {
-//    
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        print("test")
-//        if self.contentOffset.x <= 0 {
-////            if otherGestureRecognizer.delegate?.isKind(of: <#T##AnyClass#>) {
-////
-//            }
-//        return true
-//    }
-//}
-
 class TestViewController: BaseViewControlle {
     
-//    private var _scrollNode: ASScrollNode = ASScrollNode()
+    lazy var usernameNode: ASTextNode = {
+        let node = ASTextNode()
+        node.attributedText = NSAttributedString(string: "hannahmbanana", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        node.truncationMode = NSLineBreakMode.byTruncatingTail
+        node.maximumNumberOfLines = 1
+        return node
+    }()
     
-//    override init() {
-//        super.init(node: _scrollNode)
-//    }
+    lazy var postLocationNode: ASTextNode = {
+        let node = ASTextNode()
+        node.attributedText = NSAttributedString(string: "Sunset Beach, San Fransisco, CA", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        node.truncationMode = NSLineBreakMode.byTruncatingTail
+        node.maximumNumberOfLines = 1
+        return node
+    }()
     
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    lazy var posttimeNode: ASTextNode = {
+        let node = ASTextNode()
+        node.attributedText = NSAttributedString(string: "30m", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        node.truncationMode = NSLineBreakMode.byTruncatingTail
+        node.maximumNumberOfLines = 1
+        return node
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let testScroll = TestScollView()
-//        testScroll.frame = CGRect(x: 0, y: 88, width: macro.screenWidth, height: 800)
-//        testScroll.backgroundColor = UIColor.purple
-//        testScroll.contentSize = CGSize(width: 1200, height: 900)
-
-//        self.view.addSubview(testScroll)
-//        _scrollNode.backgroundColor = UIColor.yellow
-//        _scrollNode.view.contentSize = CGSize(width: 1000, height: 800)
+        self.node.layoutSpecBlock = { node, size in
+            let nameLocationStack = ASStackLayoutSpec.vertical()
+            nameLocationStack.style.flexGrow = 1.0
+            nameLocationStack.style.flexGrow = 1.0
+            nameLocationStack.children = [self.usernameNode, self.postLocationNode]
+            
+            let headerStack = ASStackLayoutSpec.init(direction: ASStackLayoutDirection.horizontal, spacing: 40, justifyContent: ASStackLayoutJustifyContent.start, alignItems: ASStackLayoutAlignItems.center, children: [nameLocationStack, self.posttimeNode])
+            return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10), child: headerStack)
+        }
     }
 }

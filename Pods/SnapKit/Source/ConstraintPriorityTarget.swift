@@ -1,10 +1,7 @@
-//  String+Extension.swift
-//  TuChong
 //
-//  Created by SummerHF on 2019/3/19.
+//  SnapKit
 //
-//
-//  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
+//  Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,45 +20,66 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
-import Foundation
+#if os(iOS) || os(tvOS)
+    import UIKit
+#else
+    import AppKit
+#endif
 
-// MARK: - Helpers
 
-public extension String {
-    var urlEscaped: String {
-        return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-    }
-    var utf8Encoded: Data {
-        return data(using: .utf8)!
-    }
+public protocol ConstraintPriorityTarget {
+    
+    var constraintPriorityTargetValue: Float { get }
+    
 }
 
-public extension Int {
+extension Int: ConstraintPriorityTarget {
     
-    /// 产生随机数
-    /// [0, upper)
-    static func randomIntValue(upper: Int) -> Int {
-        return Int(arc4random_uniform(UInt32(upper)))
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
     }
+    
 }
 
-public extension UILabel {
+extension UInt: ConstraintPriorityTarget {
     
-    /// 快速创建lable
-    static func lable(with title: String? = "", font: UIFont? = UIFont.systemFont(ofSize: 14), textColor: UIColor = UIColor.white) -> UILabel {
-        let lable = UILabel()
-        lable.text = title
-        lable.font = font
-        lable.textColor = textColor
-        return lable
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
     }
     
-    /// 快速赋值
-     public func setLable(with title: String? = "", font: UIFont? = UIFont.systemFont(ofSize: 14), textColor: UIColor = UIColor.white) {
-        self.text = title
-        self.font = font
-        self.textColor = textColor
-    }
 }
+
+extension Float: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return self
+    }
+    
+}
+
+extension Double: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
+    }
+    
+}
+
+extension CGFloat: ConstraintPriorityTarget {
+    
+    public var constraintPriorityTargetValue: Float {
+        return Float(self)
+    }
+    
+}
+
+#if os(iOS) || os(tvOS)
+extension UILayoutPriority: ConstraintPriorityTarget {
+
+    public var constraintPriorityTargetValue: Float {
+        return self.rawValue
+    }
+
+}
+#endif
