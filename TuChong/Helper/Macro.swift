@@ -21,6 +21,11 @@ struct Macro {
         return keyWindow?.rootViewController
     }
     
+    /// using navigation controller to present 
+    var presentViewController: UIViewController? {
+        return (rootViewController as? BaseTabBarController)?.selectedViewController
+    }
+    
     /// tabBar
     var tabBar: UITabBar? {
         return (keyWindow?.rootViewController as? BaseTabBarController)?.tabBar
@@ -47,7 +52,6 @@ struct Macro {
         default:
             return 20
         }
-        return UIApplication.shared.statusBarFrame.height
     }
     
     /// topHeight
@@ -71,6 +75,11 @@ struct Macro {
     /// 侧划返回的触发距离
     var sideslipDistance: CGFloat {
         return 40
+    }
+    
+    /// 隐藏tabbar
+    func setTabBarHidden(hidden: Bool) {
+        tabBar?.isHidden = hidden
     }
 }
 

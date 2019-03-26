@@ -1,7 +1,7 @@
-//  TagViewController.swift
+//  TagCollectionNodeLayout.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/3/25.
+//  Created by SummerHF on 2019/3/26.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -26,36 +26,5 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 
-class TagViewController: BaseViewControlle {
-
-//    let collectionNode: ASCollectionNode
-//    let collectionNodeLayout: TagCollectionNodeLayout
-//
-//    override init() {
-//        collectionNodeLayout = TagCollectionNodeLayout()
-//        collectionNode = ASCollectionNode(collectionViewLayout: collectionNodeLayout)
-//        collectionNode.backgroundColor = UIColor.yellow
-//        super.init(node: collectionNode)
-//    }
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    override func loadData() {
-        Network.request(target: .home_more, success: { (response) in
-             _ = HomePage_More_Model.build(with: response)
-        }, error: { _ in
-            
-        }) { (_) in
-            
-        }
-    }
-}
+class TagCollectionNodeLayout: UICollectionViewFlowLayout { }

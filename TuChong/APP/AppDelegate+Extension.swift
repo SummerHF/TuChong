@@ -33,7 +33,7 @@ extension AppDelegate {
     func setKeyWindow() {
         let tabBarController = BaseTabBarController()
         let homeNavgationController = BaseNavigationController(rootViewController: HomeContainerViewController())
-        homeNavgationController.tabBarItem.title = "哈哈" 
+        homeNavgationController.tabBarItem.title = "哈哈"
         tabBarController.viewControllers = [homeNavgationController]
         self.window?.backgroundColor = UIColor.white
         self.window?.rootViewController = tabBarController

@@ -109,7 +109,9 @@ class LaunchAdView: ASDisplayNode {
     }
     
     @objc private func dismissLaunchAdview() {
-        self.launchViewController?.dismiss(animated: false)
+        self.launchViewController?.dismiss(animated: false, completion: {
+            macro.setTabBarHidden(hidden: false)
+        })
     }
 }
 
@@ -119,18 +121,18 @@ class LaunchAdView: ASDisplayNode {
 class LaunchViewController: UIViewController {
     
     var launchModel: LaunchAd_App
-    
+
     /// 广告页
     lazy var launchAdvertisementView: LaunchAdView = {
         let view = LaunchAdView()
         view.launchViewController = self
         return view
     }()
-    
+
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
+
     /// 快速的初始化方法
     init(with model: LaunchAd_App) {
         self.launchModel = model
@@ -143,6 +145,7 @@ class LaunchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.red
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(launchAdvertisementView.view)
         launchAdvertisementView.view.snp.makeConstraints { (make) in

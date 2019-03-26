@@ -77,6 +77,9 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
         }
         self.node.addSubnode(navigationBar)
     }
+    
+    /// Base method, subclass to implement it
+    func loadData() { }
 }
 
 extension BaseViewControlle: NavigationBarManagerMent {
@@ -112,7 +115,7 @@ class BaseNavigationController: ASNavigationController {
 //         使用系统自带的屏幕边缘侧滑返回
          self.interactivePopGestureRecognizer?.delegate = self
          self.interactivePopGestureRecognizer?.isEnabled = true
-//
+////
 //         let target = self.interactivePopGestureRecognizer?.delegate
 //         self.interactivePopGestureRecognizer?.isEnabled = false
 //         let panGesture = UIPanGestureRecognizer(target: target, action: Selector(("handleNavigationTransition:")))
@@ -127,28 +130,35 @@ class BaseNavigationController: ASNavigationController {
         }
         super.pushViewController(viewController, animated: animated)
     }
+    
+//    override func popViewController(animated: Bool) -> UIViewController? {
+//        if self.viewControllers.count == 1 {
+//            self.tabBarController?.tabBar.isHidden = false
+//        }
+//        return super.popViewController(animated: animated)
+//    }
 }
 
 extension BaseNavigationController: UIGestureRecognizerDelegate {
     
-    private func gestureRecognizerShouldBegin(_ gestureRecognizer: UIPanGestureRecognizer) -> Bool {
-        /// Ignore when no view controller is pushed into the navigation stack.
-        if self.viewControllers.count <= 1 {
-            return false
-        }
-        /// Ignore pan gesture when the navigation controller is currently in transition.
-        if let value = self.navigationController?.value(forKey: "_isTransitioning") as? Bool, value {
-            return false
-        }
-        /// prevent calling the handle when the gesture begins in an opposite direction
-        let translation = gestureRecognizer.translation(in: gestureRecognizer.view)
-        let isLeftToRight = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
-        let multiplier = isLeftToRight ? 1 : -1
-        if  (translation.x * CGFloat(multiplier) <= 0) {
-            return false
-        }
-        return true
-    }
+//    private func gestureRecognizerShouldBegin(_ gestureRecognizer: UIPanGestureRecognizer) -> Bool {
+//        /// Ignore when no view controller is pushed into the navigation stack.
+//        if self.viewControllers.count <= 1 {
+//            return false
+//        }
+//        /// Ignore pan gesture when the navigation controller is currently in transition.
+//        if let value = self.navigationController?.value(forKey: "_isTransitioning") as? Bool, value {
+//            return false
+//        }
+//        /// prevent calling the handle when the gesture begins in an opposite direction
+//        let translation = gestureRecognizer.translation(in: gestureRecognizer.view)
+//        let isLeftToRight = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
+//        let multiplier = isLeftToRight ? 1 : -1
+//        if  (translation.x * CGFloat(multiplier) <= 0) {
+//            return false
+//        }
+//        return true
+//    }
 }
 
 // MARK: - BaseTabBarController

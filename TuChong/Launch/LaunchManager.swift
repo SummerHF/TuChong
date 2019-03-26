@@ -197,9 +197,12 @@ class LaunchManager: LaunchMangerProtocol {
         return self
     }
     
+    /// 弹出广告视图
     func showAdvertisementWith(model: LaunchAd_App) {
         guard let rootViewController = macro.rootViewController else { return }
         launchAdvertisementViewController = LaunchViewController(with: model)
-        rootViewController.present(launchAdvertisementViewController!, animated: false)
+        rootViewController.present(launchAdvertisementViewController!, animated: false) {
+            macro.setTabBarHidden(hidden: true)
+        }
     }
 }
