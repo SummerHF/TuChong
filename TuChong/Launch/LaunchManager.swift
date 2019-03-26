@@ -105,10 +105,7 @@ class LaunchManager: LaunchMangerProtocol {
     var admodels: LaunchAd?
     
     /// 广告启动页
-    lazy var launchAdvertisementView: LaunchAdView = {
-        let view = LaunchAdView()
-        return view
-    }()
+    var launchAdvertisementViewController: LaunchViewController?
     
     /// 创建目录
     @discardableResult
@@ -194,8 +191,6 @@ class LaunchManager: LaunchMangerProtocol {
             let random = Int.randomIntValue(upper: temp.count)
             let willShow = model.app[random]
             self.showAdvertisementWith(model: willShow)
-            /// 隐藏状态栏
-            UIApplication.shared.isStatusBarHidden = true
         }
         /// 更新
         self.update()
@@ -203,92 +198,8 @@ class LaunchManager: LaunchMangerProtocol {
     }
     
     func showAdvertisementWith(model: LaunchAd_App) {
-        guard let window = macro.keyWindow else { return }
-        window.addSubnode(launchAdvertisementView)
-        launchAdvertisementView.update(model: model)
-    }
-}
-
-// MARK: - LaunchAdView(启动广告视图)
-
-class LaunchAdView: ASDisplayNode {
-    
-    lazy var imageNode: ASImageNode = {
-        let image = ASImageNode()
-        return image
-    }()
-    
-    lazy var skipBtn: UIButton = {
-        let btn = UIButton(type: .custom)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        btn.setTitle("跳过", for: .normal)
-        btn.backgroundColor = UIColor.gray
-        btn.addTarget(self, action: #selector(dismissLaunchAdview), for: .touchUpInside)
-        return btn
-    }()
-    
-    lazy var titleLable: UILabel = {
-        let title = UILabel()
-        title.textColor = UIColor.white
-        return title
-    }()
-    
-    lazy var authorNameLable: UILabel = {
-        let nameLable = UILabel()
-        nameLable.textColor = UIColor.white
-        nameLable.font = UIFont.systemFont(ofSize: 8)
-        return nameLable
-    }()
-    
-    lazy var separator: UILabel = {
-        let separator = UILabel()
-        separator.backgroundColor = UIColor.white
-        return separator
-    }()
-    
-    override init() {
-        super.init()
-        self.frame = UIScreen.main.bounds
-        self.view.addSubview(imageNode.view)
-        self.view.addSubview(authorNameLable)
-        self.view.addSubview(separator)
-        self.view.addSubview(titleLable)
-        self.view.addSubview(skipBtn)
-        layoutsubViews()
-    }
-    
-    fileprivate func update(model: LaunchAd_App) {
-        guard let data = try? Data(contentsOf: model.localPathUrl!) else { return }
-        self.imageNode.image = UIImage(data: data)
-        self.authorNameLable.text = model.author_name
-        self.titleLable.text = model.title
-    }
-    
-    private func layoutsubViews() {
-        imageNode.view.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-        authorNameLable.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-20)
-        }
-        separator.snp.makeConstraints { (make) in
-            make.centerX.equalTo(authorNameLable)
-            make.bottom.equalTo(authorNameLable.snp.top).offset(-5)
-            make.size.equalTo(CGSize(width: 60, height: 0.5))
-        }
-        titleLable.snp.makeConstraints { (make) in
-            make.centerX.equalTo(authorNameLable)
-            make.bottom.equalTo(separator.snp.top).offset(-5)
-        }
-        skipBtn.snp.makeConstraints { (make) in
-            make.size.equalTo(CGSize(width: 40, height: 20))
-            make.top.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(-15)
-        }
-    }
-    
-    @objc private func dismissLaunchAdview() {
-        self.removeFromSupernode()
+        guard let rootViewController = macro.rootViewController else { return }
+        launchAdvertisementViewController = LaunchViewController(with: model)
+        rootViewController.present(launchAdvertisementViewController!, animated: false)
     }
 }

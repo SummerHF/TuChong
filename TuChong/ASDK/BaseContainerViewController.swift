@@ -33,7 +33,11 @@ import AsyncDisplayKit
 class BaseViewControlle: ASViewController<ASDisplayNode> {
     
     /// 全局共用的navigationBar
-    var navigationBar = CommenNavigationBar()
+    lazy var navigationBar = CommenNavigationBar()
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
     
     init() {
         super.init(node: ASDisplayNode())

@@ -11,6 +11,7 @@
 		53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317321F224130F600B6C10B /* BaseContainerViewController.swift */; };
 		53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53679354224132DE00C93C76 /* AppDelegate+Extension.swift */; };
 		53F43F99224509DD007027AD /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F43F98224509DD007027AD /* LaunchManager.swift */; };
+		C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BDC352249B26F001032DC /* LaunchViewController.swift */; };
 		C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */; };
 		C4AC63D12241BEF400324C23 /* Reference in Resources */ = {isa = PBXBuildFile; fileRef = C4AC63D02241BEF400324C23 /* Reference */; };
 		C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63D22241D3CE00324C23 /* Logger.swift */; };
@@ -36,6 +37,7 @@
 		827E6D5469BAD6EADF9335D1 /* Pods_TuChong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuChong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E197914226118C536E28EC /* Pods-TuChong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuChong.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuChong/Pods-TuChong.release.xcconfig"; sourceTree = "<group>"; };
 		A9932FE1DB24369678F50635 /* Pods-TuChong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuChong.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuChong/Pods-TuChong.debug.xcconfig"; sourceTree = "<group>"; };
+		C47BDC352249B26F001032DC /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		C4AC63D02241BEF400324C23 /* Reference */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reference; sourceTree = "<group>"; };
 		C4AC63D22241D3CE00324C23 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				53F43F98224509DD007027AD /* LaunchManager.swift */,
+				C47BDC352249B26F001032DC /* LaunchViewController.swift */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AD3C2F224097CB0095BC97 /* HomepageViewController.swift in Sources */,
+				C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */,
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
 				C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */,
 				C4AD3C45224098BE0095BC97 /* Service.swift in Sources */,

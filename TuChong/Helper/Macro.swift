@@ -16,6 +16,11 @@ struct Macro {
         return UIApplication.shared.keyWindow
     }
     
+    /// keyWindow's rootViewController
+    var rootViewController: UIViewController? {
+        return keyWindow?.rootViewController
+    }
+    
     /// tabBar
     var tabBar: UITabBar? {
         return (keyWindow?.rootViewController as? BaseTabBarController)?.tabBar
@@ -35,6 +40,13 @@ struct Macro {
     /// statusBarHeight
     var statusBarHeight: CGFloat {
         /// iphoneX, XR, XSMAX, XS 44, other height is 20
+        let device = Device()
+        switch device {
+        case .iPhoneX, .iPhoneXs, .iPhoneXr, .iPhoneXsMax:
+            return 44
+        default:
+            return 20
+        }
         return UIApplication.shared.statusBarFrame.height
     }
     

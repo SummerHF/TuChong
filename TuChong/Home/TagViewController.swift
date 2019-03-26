@@ -33,7 +33,7 @@ class TagViewController: BaseViewControlle {
         super.viewDidLoad()
         Network.request(target: .home_more, success: { (response) in
             let model = HomePage_More_Model.build(with: response)
-            print(model)
+//            print(model)
         }, error: { _ in
             
         }) { (_) in
