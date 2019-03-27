@@ -171,6 +171,9 @@ struct HomePage_More_Image_Model: HandyJSON {
     var camera_id: String = ""
     var md5: String = ""
     var lens_id: String = ""
+    var urlString: String {
+        return macro.homeNavMoreItemsBasePictureUrlString + "\(user_id)" + "/g/" + "\(img_id)" + ".jpg"
+    }
 }
 
 struct HomePage_More_Item_Model: HandyJSON {

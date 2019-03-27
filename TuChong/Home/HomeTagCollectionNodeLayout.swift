@@ -27,4 +27,4 @@
 
 import UIKit
 
-class TagCollectionNodeLayout: UICollectionViewFlowLayout { }
+class HomeTagCollectionNodeLayout: UICollectionViewFlowLayout { }

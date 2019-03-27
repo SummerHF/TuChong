@@ -81,6 +81,11 @@ struct Macro {
     func setTabBarHidden(hidden: Bool) {
         tabBar?.isHidden = hidden
     }
+    
+    /// constant about
+    let zero = 0
+    /// 首页更多图片拼接基本URL
+    let homeNavMoreItemsBasePictureUrlString = "https://photo.tuchong.com/"
 }
 
 let macro = Macro()

@@ -25,10 +25,11 @@
 		C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C44224098BD0095BC97 /* HomePage.swift */; };
 		C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C482240993A0095BC97 /* SwiftLintRule */; };
 		C4AD3C4B2240AEFE0095BC97 /* API in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C4A2240AEFE0095BC97 /* API */; };
-		C4B15B7D2248BD7C00D3DE12 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B15B7C2248BD7C00D3DE12 /* TagViewController.swift */; };
+		C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */; };
 		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
 		C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavView.swift */; };
-		C4F658812249C1C100297EF4 /* TagCollectionNodeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F658802249C1C100297EF4 /* TagCollectionNodeLayout.swift */; };
+		C4F658812249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F658802249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift */; };
+		C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F658A42249F0D700297EF4 /* HomeTagCellNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,11 +55,12 @@
 		C4AD3C44224098BD0095BC97 /* HomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		C4AD3C482240993A0095BC97 /* SwiftLintRule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftLintRule; sourceTree = "<group>"; };
 		C4AD3C4A2240AEFE0095BC97 /* API */ = {isa = PBXFileReference; lastKnownFileType = text; path = API; sourceTree = "<group>"; };
-		C4B15B7C2248BD7C00D3DE12 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagViewController.swift; sourceTree = "<group>"; };
 		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		C4B9825C2242172900F65C0E /* HomeNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavView.swift; sourceTree = "<group>"; };
 		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
-		C4F658802249C1C100297EF4 /* TagCollectionNodeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionNodeLayout.swift; sourceTree = "<group>"; };
+		C4F658802249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagCollectionNodeLayout.swift; sourceTree = "<group>"; };
+		C4F658A42249F0D700297EF4 /* HomeTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagCellNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +126,9 @@
 				C4B9825C2242172900F65C0E /* HomeNavView.swift */,
 				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
 				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
-				C4B15B7C2248BD7C00D3DE12 /* TagViewController.swift */,
-				C4F658802249C1C100297EF4 /* TagCollectionNodeLayout.swift */,
+				C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */,
+				C4F658802249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift */,
+				C4F658A42249F0D700297EF4 /* HomeTagCellNode.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -349,10 +352,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AD3C2F224097CB0095BC97 /* HomepageViewController.swift in Sources */,
+				C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */,
 				C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */,
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
 				C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */,
-				C4F658812249C1C100297EF4 /* TagCollectionNodeLayout.swift in Sources */,
+				C4F658812249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift in Sources */,
 				C4AD3C45224098BE0095BC97 /* Service.swift in Sources */,
 				C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */,
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
@@ -361,7 +365,7 @@
 				C4AD3C40224098B40095BC97 /* Extension.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
 				C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */,
-				C4B15B7D2248BD7C00D3DE12 /* TagViewController.swift in Sources */,
+				C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */,
 				C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */,
 				53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */,
 			);
