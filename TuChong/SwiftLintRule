@@ -42,6 +42,9 @@ return sizeThatFits
 swiftgen:
 https://medium.com/swift-india/the-clean-way-of-managing-assets-fonts-colors-string-literals-in-ios-xcode-project-1e06dcacf208
 
+Localizable
+https://www.jianshu.com/p/8c9e37f9b6a7
+
 disabled_rules: # 执行时排除掉的规则
 - colon
 - comma

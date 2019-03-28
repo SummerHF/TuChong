@@ -51,7 +51,7 @@ class HomeTagViewController: BaseViewControlle {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        self.title = "标签"
+        self.title = R.string.localizable.tag()
     }
     
     override func loadData() {

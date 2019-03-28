@@ -16,12 +16,10 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.file` struct is generated, and contains static references to 5 files.
+  /// This `R.file` struct is generated, and contains static references to 4 files.
   struct file {
     /// Resource file `API`.
     static let apI = Rswift.FileResource(bundle: R.hostingBundle, name: "API", pathExtension: "")
-    /// Resource file `Colors.json`.
-    static let colorsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Colors", pathExtension: "json")
     /// Resource file `GenerateResource.sh`.
     static let generateResourceSh = Rswift.FileResource(bundle: R.hostingBundle, name: "GenerateResource", pathExtension: "sh")
     /// Resource file `Reference`.
@@ -32,12 +30,6 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "API", withExtension: "")`
     static func apI(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.apI
-      return fileResource.bundle.url(forResource: fileResource)
-    }
-    
-    /// `bundle.url(forResource: "Colors", withExtension: "json")`
-    static func colorsJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.colorsJson
       return fileResource.bundle.url(forResource: fileResource)
     }
     
@@ -77,40 +69,18 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 3 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1 localization keys.
     struct localizable {
-      /// en translation: Some alert body there
+      /// zh-Hans translation: 标签
       /// 
-      /// Locales: en
-      static let alert_message = Rswift.StringResource(key: "alert_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
-      /// en translation: String one
-      /// 
-      /// Locales: en
-      static let stringOne = Rswift.StringResource(key: "String.One", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
-      /// en translation: Title of the alert
-      /// 
-      /// Locales: en
-      static let alert_title = Rswift.StringResource(key: "alert_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// Locales: zh-Hans, en, zh-Hant
+      static let tag = Rswift.StringResource(key: "tag", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       
-      /// en translation: Some alert body there
+      /// zh-Hans translation: 标签
       /// 
-      /// Locales: en
-      static func alert_message(_: Void = ()) -> String {
-        return NSLocalizedString("alert_message", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: String one
-      /// 
-      /// Locales: en
-      static func stringOne(_: Void = ()) -> String {
-        return NSLocalizedString("String.One", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Title of the alert
-      /// 
-      /// Locales: en
-      static func alert_title(_: Void = ()) -> String {
-        return NSLocalizedString("alert_title", bundle: R.hostingBundle, comment: "")
+      /// Locales: zh-Hans, en, zh-Hant
+      static func tag(_: Void = ()) -> String {
+        return NSLocalizedString("tag", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
