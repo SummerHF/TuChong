@@ -38,7 +38,7 @@ class HomeTagViewController: BaseViewControlle {
         collectionNodeLayout = HomeTagCollectionNodeLayout()
         collectionNode = ASCollectionNode(collectionViewLayout: collectionNodeLayout)
         super.init(node: collectionNode)
-        collectionNode.backgroundColor = UIColor.white
+        collectionNode.backgroundColor = Colors.backGroundColor
         collectionNode.dataSource = self
         collectionNode.delegate = self
         collectionNode.registerSupplementaryNode(ofKind: UICollectionView.elementKindSectionHeader)
@@ -51,6 +51,7 @@ class HomeTagViewController: BaseViewControlle {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        self.title = "标签"
     }
     
     override func loadData() {

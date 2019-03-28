@@ -47,9 +47,32 @@ open class BaseNavigationBar: ASDisplayNode {
     
     open override func didLoad() {
         self.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.topHeight)
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = Colors.themeColor
     }
 }
 
 /// 全局公用导航条
-open class CommenNavigationBar: BaseNavigationBar {}
+open class CommenNavigationBar: BaseNavigationBar {
+    
+    /// 设置标题
+    open var title: String? {
+        set {
+            titleLable.text = newValue
+        }
+        get {
+            return titleLable.text
+        }
+    }
+    
+    /// 标题
+    private var titleLable = UILabel()
+    
+    override init() {
+        super.init()
+        self.view.addSubview(titleLable)
+        titleLable.numberOfLines = 1
+        titleLable.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
+    }
+}

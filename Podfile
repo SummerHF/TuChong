@@ -16,4 +16,8 @@ pod 'SwiftyJSON', '~> 4.0'
 pod 'DeviceKit', '~> 1.3'
 pod 'YYCategories'
 pod 'SnapKit', '~> 4.0.0'
+pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git', :branch => 'wip/swift4'
+# pod 'SwiftGen', '~> 6.0'
+# 改用R.swift
+pod 'R.swift'
 end

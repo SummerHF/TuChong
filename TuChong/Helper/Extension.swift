@@ -59,7 +59,7 @@ public extension UILabel {
     }
     
     /// 快速赋值
-     public func setLable(with title: String? = "", font: UIFont? = UIFont.systemFont(ofSize: 14), textColor: UIColor = UIColor.white) {
+     public func setLable(with title: String? = "", font: UIFont? = UIFont.systemFont(ofSize: 14), textColor: UIColor = UIColor.black) {
         self.text = title
         self.font = font
         self.textColor = textColor

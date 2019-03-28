@@ -144,12 +144,14 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
@@ -160,12 +162,14 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"

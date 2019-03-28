@@ -11,6 +11,11 @@
 		53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317321F224130F600B6C10B /* BaseContainerViewController.swift */; };
 		53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53679354224132DE00C93C76 /* AppDelegate+Extension.swift */; };
 		53F43F99224509DD007027AD /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F43F98224509DD007027AD /* LaunchManager.swift */; };
+		C41E0CC4224CA6260032E12A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E0CC3224CA6260032E12A /* Color.swift */; };
+		C41E0CC7224CAED20032E12A /* Colors.json in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CC6224CAED20032E12A /* Colors.json */; };
+		C41E0CCA224CAFA90032E12A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CCC224CAFA90032E12A /* Localizable.strings */; };
+		C41E0CD2224CB0700032E12A /* GenerateResource.sh in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CD1224CB0700032E12A /* GenerateResource.sh */; };
+		C41E0CDC224CBB900032E12A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E0CDB224CBB900032E12A /* R.generated.swift */; };
 		C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BDC352249B26F001032DC /* LaunchViewController.swift */; };
 		C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */; };
 		C4AC63D12241BEF400324C23 /* Reference in Resources */ = {isa = PBXBuildFile; fileRef = C4AC63D02241BEF400324C23 /* Reference */; };
@@ -39,6 +44,11 @@
 		827E6D5469BAD6EADF9335D1 /* Pods_TuChong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuChong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E197914226118C536E28EC /* Pods-TuChong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuChong.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuChong/Pods-TuChong.release.xcconfig"; sourceTree = "<group>"; };
 		A9932FE1DB24369678F50635 /* Pods-TuChong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuChong.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuChong/Pods-TuChong.debug.xcconfig"; sourceTree = "<group>"; };
+		C41E0CC3224CA6260032E12A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		C41E0CC6224CAED20032E12A /* Colors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Colors.json; sourceTree = "<group>"; };
+		C41E0CCB224CAFA90032E12A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C41E0CD1224CB0700032E12A /* GenerateResource.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = GenerateResource.sh; sourceTree = "<group>"; };
+		C41E0CDB224CBB900032E12A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		C47BDC352249B26F001032DC /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		C4AC63D02241BEF400324C23 /* Reference */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reference; sourceTree = "<group>"; };
@@ -110,6 +120,26 @@
 			path = Launch;
 			sourceTree = "<group>";
 		};
+		C41E0CC5224CAE680032E12A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C41E0CDB224CBB900032E12A /* R.generated.swift */,
+				C41E0CD0224CB0190032E12A /* Fonts */,
+				C4AD3C33224097CB0095BC97 /* Assets.xcassets */,
+				C41E0CC6224CAED20032E12A /* Colors.json */,
+				C41E0CCC224CAFA90032E12A /* Localizable.strings */,
+				C41E0CD1224CB0700032E12A /* GenerateResource.sh */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C41E0CD0224CB0190032E12A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		C4AC63CC2241B80100324C23 /* APP */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +184,7 @@
 		C4AD3C2B224097CB0095BC97 /* TuChong */ = {
 			isa = PBXGroup;
 			children = (
+				C41E0CC5224CAE680032E12A /* Resources */,
 				53F43F97224509DD007027AD /* Launch */,
 				C4AC63CC2241B80100324C23 /* APP */,
 				5317321E224130B000B6C10B /* ASDK */,
@@ -161,7 +192,6 @@
 				C4AD3C41224098BD0095BC97 /* Service */,
 				C4AD3C3E224098B40095BC97 /* Helper */,
 				C4AC63CD2241BB4100324C23 /* Home */,
-				C4AD3C33224097CB0095BC97 /* Assets.xcassets */,
 				C4AD3C35224097CB0095BC97 /* LaunchScreen.storyboard */,
 				C4AD3C38224097CB0095BC97 /* Info.plist */,
 				C4AD3C482240993A0095BC97 /* SwiftLintRule */,
@@ -177,6 +207,7 @@
 				C4AC63D22241D3CE00324C23 /* Logger.swift */,
 				C4AD3C3F224098B40095BC97 /* Extension.swift */,
 				C4B9825A2241EE8400F65C0E /* Macro.swift */,
+				C41E0CC3224CA6260032E12A /* Color.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -205,11 +236,12 @@
 			buildConfigurationList = C4AD3C3B224097CB0095BC97 /* Build configuration list for PBXNativeTarget "TuChong" */;
 			buildPhases = (
 				67361F9908B6169A1FCF9F61 /* [CP] Check Pods Manifest.lock */,
-				C4AD3C25224097CB0095BC97 /* Sources */,
 				C4AD3C26224097CB0095BC97 /* Frameworks */,
 				C4AD3C27224097CB0095BC97 /* Resources */,
 				825C7678B036FB867F7CD682 /* [CP] Embed Pods Frameworks */,
-				C4AD3C47224098F50095BC97 /* ShellScript */,
+				C4AD3C47224098F50095BC97 /* SwiftLint */,
+				C41E0CDA224CB8D20032E12A /* R.swift */,
+				C4AD3C25224097CB0095BC97 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -261,8 +293,11 @@
 				C4AD3C37224097CB0095BC97 /* LaunchScreen.storyboard in Resources */,
 				C4AC63D12241BEF400324C23 /* Reference in Resources */,
 				C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */,
+				C41E0CCA224CAFA90032E12A /* Localizable.strings in Resources */,
+				C41E0CC7224CAED20032E12A /* Colors.json in Resources */,
 				C4AD3C34224097CB0095BC97 /* Assets.xcassets in Resources */,
 				C4AD3C4B2240AEFE0095BC97 /* API in Resources */,
+				C41E0CD2224CB0700032E12A /* GenerateResource.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,12 +330,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TuChong/Pods-TuChong-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -312,12 +349,14 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -331,13 +370,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TuChong/Pods-TuChong-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C4AD3C47224098F50095BC97 /* ShellScript */ = {
+		C41E0CDA224CB8D20032E12A /* R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = R.swift;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		C4AD3C47224098F50095BC97 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +417,7 @@
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
 				C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */,
 				C4F658812249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift in Sources */,
+				C41E0CDC224CBB900032E12A /* R.generated.swift in Sources */,
 				C4AD3C45224098BE0095BC97 /* Service.swift in Sources */,
 				C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */,
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
@@ -368,12 +429,21 @@
 				C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */,
 				C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */,
 				53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */,
+				C41E0CC4224CA6260032E12A /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		C41E0CCC224CAFA90032E12A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C41E0CCB224CAFA90032E12A /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		C4AD3C35224097CB0095BC97 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -32,12 +32,22 @@ import AsyncDisplayKit
 
 class BaseViewControlle: ASViewController<ASDisplayNode> {
     
-    /// 全局共用的navigationBar
-    lazy var navigationBar = CommenNavigationBar()
-    
     override var prefersStatusBarHidden: Bool {
         return false
     }
+    
+    /// 设置控制器标题
+    override var title: String? {
+        set {
+            navigationBar.title = newValue
+        }
+        get {
+            return navigationBar.title
+        }
+    }
+    
+    /// 全局共用的navigationBar
+    lazy var navigationBar = CommenNavigationBar()
     
     init() {
         super.init(node: ASDisplayNode())
@@ -64,7 +74,7 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = Colors.backGroundColor
     }
     
     /// 配置导航条

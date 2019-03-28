@@ -39,8 +39,6 @@ class HomeTagCellNode: ASCellNode {
     init(with itemModel: HomePage_More_Item_Model) {
         imageNode = ASNetworkImageNode()
         titelNode = ASTextNode()
-//        imageNode.isLayerBacked = true
-//        titelNode.isLayerBacked = true
         model = itemModel
         super.init()
         self.addSubnode(imageNode)
@@ -48,6 +46,7 @@ class HomeTagCellNode: ASCellNode {
     }
     
     override func didLoad() {
+        imageNode.contentMode = .scaleAspectFill
         imageNode.url = URL(string: model.image.urlString)!
         titelNode.attributedText = NSAttributedString(string: model.tag_name, attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.white
@@ -55,11 +54,9 @@ class HomeTagCellNode: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        titelNode.style.alignSelf = .center
-        let insetImageLayoutSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2), child: imageNode)
         let insetLayoutSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: CGFloat.infinity, left: 0, bottom: 0, right: 0), child: titelNode)
         let centerLayoutSpec = ASCenterLayoutSpec(centeringOptions: .X, sizingOptions: .minimumXY, child: insetLayoutSpec)
-        return ASOverlayLayoutSpec(child: insetImageLayoutSpec, overlay: centerLayoutSpec)
+        return ASOverlayLayoutSpec(child: imageNode, overlay: centerLayoutSpec)
     }
 }
 
@@ -81,8 +78,8 @@ class HomeTagSectionHeaderNode: ASCellNode {
     }
     
     override func didLoad() {
-        self.backgroundColor = UIColor.white
-        let color = UIColor(red: 239.0 / 255.0, green: 45.0 / 255.0, blue: 88.0 / 255.0, alpha: 1.0)
+        self.backgroundColor = Colors.backGroundColor
+        let color = RGBA(R: 239, G: 45, B: 88)
         separator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 8.0, cornerColor: color, fill: color)
         titleNode.attributedText = NSAttributedString(string: headerTitle, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
