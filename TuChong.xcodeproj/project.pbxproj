@@ -32,6 +32,9 @@
 		C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */; };
 		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
 		C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavView.swift */; };
+		C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */; };
+		C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */; };
+		C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */; };
 		C4F658812249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F658802249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift */; };
 		C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F658A42249F0D700297EF4 /* HomeTagCellNode.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +72,9 @@
 		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		C4B9825C2242172900F65C0E /* HomeNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavView.swift; sourceTree = "<group>"; };
 		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
+		C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableNode.swift; sourceTree = "<group>"; };
 		C4F658802249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagCollectionNodeLayout.swift; sourceTree = "<group>"; };
 		C4F658A42249F0D700297EF4 /* HomeTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagCellNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,8 +129,8 @@
 		C41E0CC5224CAE680032E12A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C41E0CDB224CBB900032E12A /* R.generated.swift */,
 				C41E0CD0224CB0190032E12A /* Fonts */,
+				C41E0CDB224CBB900032E12A /* R.generated.swift */,
 				C4AD3C33224097CB0095BC97 /* Assets.xcassets */,
 				C41E0CD1224CB0700032E12A /* GenerateResource.sh */,
 				C41E0CE4224CC0D40032E12A /* Localizable.strings */,
@@ -152,6 +158,7 @@
 		C4AC63CD2241BB4100324C23 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C4AD3C43224098BD0095BC97 /* Model */,
 				C4B9825C2242172900F65C0E /* HomeNavView.swift */,
 				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
 				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
@@ -187,10 +194,10 @@
 				53F43F97224509DD007027AD /* Launch */,
 				C4AC63CC2241B80100324C23 /* APP */,
 				5317321E224130B000B6C10B /* ASDK */,
-				C4AD3C43224098BD0095BC97 /* Model */,
 				C4AD3C41224098BD0095BC97 /* Service */,
 				C4AD3C3E224098B40095BC97 /* Helper */,
 				C4AC63CD2241BB4100324C23 /* Home */,
+				C4E57B3B224DB43D00F9D511 /* Activity */,
 				C4AD3C35224097CB0095BC97 /* LaunchScreen.storyboard */,
 				C4AD3C38224097CB0095BC97 /* Info.plist */,
 				C4AD3C482240993A0095BC97 /* SwiftLintRule */,
@@ -225,6 +232,16 @@
 				C4AD3C44224098BD0095BC97 /* HomePage.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C4E57B3B224DB43D00F9D511 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */,
+				C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */,
+				C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */,
+			);
+			path = Activity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,7 +430,9 @@
 				C4AD3C2F224097CB0095BC97 /* HomepageViewController.swift in Sources */,
 				C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */,
 				C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */,
+				C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */,
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
+				C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */,
 				C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */,
 				C4F658812249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift in Sources */,
 				C41E0CDC224CBB900032E12A /* R.generated.swift in Sources */,
@@ -421,6 +440,7 @@
 				C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */,
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
+				C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* Extension.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
@@ -582,6 +602,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G6WGUJ4M73;
 				INFOPLIST_FILE = TuChong/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -590,7 +611,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TuChong/App/TuChong-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Debug;
@@ -603,6 +624,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G6WGUJ4M73;
 				INFOPLIST_FILE = TuChong/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -611,7 +633,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TuChong/App/TuChong-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Release;

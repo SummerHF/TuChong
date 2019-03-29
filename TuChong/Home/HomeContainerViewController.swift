@@ -50,6 +50,7 @@ class HomeContainerViewController: BaseViewControlle {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hiddenLfetBackItem = true 
         initContainer()
     }
 }

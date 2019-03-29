@@ -82,6 +82,12 @@ class LaunchAdView: ASDisplayNode {
         self.imageNode.image = UIImage(data: data)
         self.authorNameLable.text = model.author_name
         self.titleLable.text = model.title
+        /// 隐藏分割线 如果没有名字和标题的话
+        if self.titleLable.text == nil || self.authorNameLable.text == nil {
+            self.separator.isHidden = true
+        } else {
+            self.separator.isHidden = true
+        }
     }
     
     private func layoutsubViews() {

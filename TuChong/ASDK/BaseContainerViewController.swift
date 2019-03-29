@@ -46,6 +46,16 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
         }
     }
     
+    /// 隐藏返回按钮
+    var hiddenLfetBackItem: Bool {
+        set {
+            navigationBar.hiddenBackitem = newValue
+        }
+        get {
+            return navigationBar.hiddenBackitem
+        }
+    }
+    
     /// 全局共用的navigationBar
     lazy var navigationBar = CommenNavigationBar()
     
@@ -74,7 +84,7 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Colors.backGroundColor
+        self.view.backgroundColor = Color.backGroundColor
     }
     
     /// 配置导航条

@@ -33,7 +33,7 @@ func RGBA(R: CGFloat, G: CGFloat, B: CGFloat, A: CGFloat = 1.0) -> UIColor {
     return UIColor.init(red: R / 255.0, green: G / 255.0, blue: B / 255.0, alpha: A)
 }
 
-struct Colors {
+struct Color {
     /// 主题颜色
     static var themeColor = UIColor.white
     static var backGroundColor = UIColor.white

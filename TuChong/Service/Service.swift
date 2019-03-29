@@ -49,6 +49,10 @@ enum TuChong {
     case homepage_recommend(page: Int, type: RequestType)
     /// 首页更多
     case home_more
+    /// 活动 - 头部banner
+    case activity
+    /// 活动 - 底部的热门活动
+    case activity_event(page: Int)
 }
 
 extension TuChong: TargetType {
@@ -60,7 +64,6 @@ extension TuChong: TargetType {
         ]
     }
     var baseURL: URL {
-        
         switch self {
         case .home_more:
             return URL(string: "https://tuchong.com")!
@@ -80,32 +83,38 @@ extension TuChong: TargetType {
             return "/4/users/self/activities"
         case .homepage_recommend:
             return "/2/feed-app"
+        case .activity:
+            return "/discover-app"
+        case .activity_event:
+            return "/4/events"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
+        case .activity_event, .activity, .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .home_more, .home_nav, .homepage_attention:
+        case .home_more, .home_nav, .homepage_attention, .activity:
             return .requestPlain
+        case .activity_event(page: let page):
+            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
         case .launch_ad:
-            /// 此处宽高写死
+            /// 启动图, 此处宽高写死
             return .requestParameters(parameters: ["height": "750", "width": "1334"], encoding: URLEncoding.default)
         case .homepage_recommend(page: let page, type: let type):
             let type = type == .refresh ? "refresh" : "loadmore"
             return .requestParameters(parameters: ["page": page, "type": type], encoding: URLEncoding.default)
         }
     }
-   
+
     var sampleData: Data {
         switch self {
-        case .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
+        case .activity_event, .activity, .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         }
     }

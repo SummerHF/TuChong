@@ -78,7 +78,7 @@ class HomeTagSectionHeaderNode: ASCellNode {
     }
     
     override func didLoad() {
-        self.backgroundColor = Colors.backGroundColor
+        self.backgroundColor = Color.backGroundColor
         let color = RGBA(R: 239, G: 45, B: 88)
         separator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 8.0, cornerColor: color, fill: color)
         titleNode.attributedText = NSAttributedString(string: headerTitle, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])

@@ -38,7 +38,7 @@ class HomeTagViewController: BaseViewControlle {
         collectionNodeLayout = HomeTagCollectionNodeLayout()
         collectionNode = ASCollectionNode(collectionViewLayout: collectionNodeLayout)
         super.init(node: collectionNode)
-        collectionNode.backgroundColor = Colors.backGroundColor
+        collectionNode.backgroundColor = Color.backGroundColor
         collectionNode.dataSource = self
         collectionNode.delegate = self
         collectionNode.registerSupplementaryNode(ofKind: UICollectionView.elementKindSectionHeader)

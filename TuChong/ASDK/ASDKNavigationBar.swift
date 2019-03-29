@@ -41,18 +41,22 @@ import AsyncDisplayKit
 
 /// 基类导航条
 open class BaseNavigationBar: ASDisplayNode {
+    
     override init() {
         super.init()
     }
     
     open override func didLoad() {
         self.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.topHeight)
-        self.backgroundColor = Colors.themeColor
+        self.backgroundColor = Color.themeColor
     }
 }
 
 /// 全局公用导航条
 open class CommenNavigationBar: BaseNavigationBar {
+    
+    let bottomMargin: CGFloat = -5.0
+    let leftMargin: CGFloat = 5.0
     
     /// 设置标题
     open var title: String? {
@@ -64,15 +68,45 @@ open class CommenNavigationBar: BaseNavigationBar {
         }
     }
     
+    open var hiddenBackitem: Bool {
+        set {
+            leftBackItem.isHidden = newValue
+        }
+        get {
+            return leftBackItem.isHidden
+        }
+    }
+    
     /// 标题
-    private var titleLable = UILabel()
+    private let titleLable = UILabel()
+    private let leftBackItem = UIImageView(image: R.image.bc_back())
     
     override init() {
         super.init()
-        self.view.addSubview(titleLable)
         titleLable.numberOfLines = 1
+        leftBackItem.isUserInteractionEnabled = true
+        self.view.addSubview(titleLable)
+        self.view.addSubview(leftBackItem)
         titleLable.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(bottomMargin)
         }
+        leftBackItem.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(leftMargin)
+            /// 标题为空
+            if titleLable.text != nil {
+                make.centerY.equalTo(titleLable)
+            } else {
+                make.bottom.equalToSuperview().offset(bottomMargin)
+            }
+            make.size.equalTo(CGSize(width: R.image.bc_back()!.size.width, height: R.image.bc_back()!.size.height))
+        }
+    }
+    
+    open override func didLoad() {
+        super.didLoad()
+        leftBackItem.addGestureRecognizer(UITapGestureRecognizer(actionBlock: { _ in
+            
+        }))
     }
 }

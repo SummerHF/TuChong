@@ -31,10 +31,16 @@ extension AppDelegate {
 
     /// 设置主窗口
     func setKeyWindow() {
-        let tabBarController = BaseTabBarController()
+        /// 首页
         let homeNavgationController = BaseNavigationController(rootViewController: HomeContainerViewController())
-        homeNavgationController.tabBarItem.title = "哈哈"
-        tabBarController.viewControllers = [homeNavgationController]
+        homeNavgationController.tabBarItem.title = R.string.localizable.tab_bar_home_title()
+        /// 活动
+        let activityNavigationController = BaseNavigationController(rootViewController: ActivityViewController())
+        activityNavigationController.tabBarItem.title = R.string.localizable.tab_bar_activity_title()
+        /// TabBar
+        let tabBarController = BaseTabBarController()
+        tabBarController.viewControllers = [homeNavgationController, activityNavigationController]
+        /// window
         self.window?.backgroundColor = UIColor.white
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
