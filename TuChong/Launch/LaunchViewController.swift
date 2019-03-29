@@ -43,7 +43,7 @@ class LaunchAdView: ASDisplayNode {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         btn.setTitle("跳过", for: .normal)
-        btn.backgroundColor = UIColor.gray
+        btn.backgroundColor = RGBA(R: 31, G: 32, B: 41, A: 0.3)
         btn.addTarget(self, action: #selector(dismissLaunchAdview), for: .touchUpInside)
         return btn
     }()

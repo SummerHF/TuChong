@@ -65,3 +65,10 @@ public extension UILabel {
         self.textColor = textColor
     }
 }
+
+public extension UIFont {
+    
+    static func boldFont(size: CGFloat) -> UIFont {
+        return UIFont.boldSystemFont(ofSize: size)
+    }
+}
