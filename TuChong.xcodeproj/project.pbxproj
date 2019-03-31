@@ -129,20 +129,12 @@
 		C41E0CC5224CAE680032E12A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C41E0CD0224CB0190032E12A /* Fonts */,
 				C41E0CDB224CBB900032E12A /* R.generated.swift */,
 				C4AD3C33224097CB0095BC97 /* Assets.xcassets */,
 				C41E0CD1224CB0700032E12A /* GenerateResource.sh */,
 				C41E0CE4224CC0D40032E12A /* Localizable.strings */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		C41E0CD0224CB0190032E12A /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		C4AC63CC2241B80100324C23 /* APP */ = {

@@ -46,6 +46,12 @@ https://medium.com/swift-india/the-clean-way-of-managing-assets-fonts-colors-str
 Localizable
 https://www.jianshu.com/p/8c9e37f9b6a7
 
+git clone缓慢:
+sudo vim /etc/hosts
+192.30.253.112 github.com
+151.101.77.194 github.global.ssl.fastly.net
+然后刷新缓存: sudo dscacheutil -flushcache
+
 disabled_rules: # 执行时排除掉的规则
 - colon
 - comma
