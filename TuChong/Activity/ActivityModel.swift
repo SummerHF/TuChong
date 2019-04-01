@@ -68,6 +68,18 @@ struct Activity_Events_Model: HandyJSON {
     var images: [String] = []
     var image_posts: [String] = []
     var is_packet: Bool = false
+    
+    var image_count_value: String {
+        if image_count < 10000 {
+            return "\(image_count)"
+        } else {
+            return String(format: "%.1f", CGFloat(image_count) / 10000.0) + "万"
+        }
+    }
+    
+    var image_count_string: String {
+        return image_count_value + "件作品"
+    }
 }
 
 struct Activity_Top_Model: HandyJSON {

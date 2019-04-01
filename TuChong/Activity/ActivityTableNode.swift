@@ -107,7 +107,7 @@ class ActivityCategoryNode: ASDisplayNode {
     
     override init() {
         super.init()
-        self.backgroundColor = UIColor.yellow
+        self.backgroundColor = Color.backGroundColor
         self.automaticallyManagesSubnodes = true
     }
     
@@ -135,12 +135,19 @@ class ActivityCategoryNode: ASDisplayNode {
                                                                             NSAttributedString.Key.foregroundColor: UIColor.black])
             button.setAttributedTitle(attributed, for: UIControl.State.normal)
             buttons.append(button)
+            /// add target
+            button.addTarget(self, action: #selector(handleTapEvent(button:)), forControlEvents: .touchUpInside)
         }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let stackLayout = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .spaceBetween, alignItems: .center, children: buttons)
+        let stackLayout = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .spaceBetween, alignItems: .stretch, children: buttons)
         return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), child: stackLayout)
+    }
+
+    /// button event
+    @objc private func handleTapEvent(button: ASButtonNode) {
+        print(button.view.tag)
     }
 }
 
@@ -164,7 +171,7 @@ class ActivityTitileNode: ASDisplayNode {
         super.didLoad()
         imageNode.image = R.image.iconNearbyHot_15x15_()
         titleNode.attributedText = NSAttributedString(string: R.string.localizable.hot_activity_title(), attributes: [
-            NSAttributedString.Key.font : UIFont.boldFont(size: 16),
+            NSAttributedString.Key.font : UIFont.boldFont_19(),
             NSAttributedString.Key.foregroundColor: UIColor.flatBlack
             ])
     }
@@ -230,23 +237,111 @@ class ActivityBannerView: UIView {
     }
 }
 
+// MARK: - ActivityTableCell
+
+class ActivityTableCell: ASCellNode {
+    
+    let event: Activity_Events_Model
+    let imageNode: ASNetworkImageNode
+    let titleNode: ASTextNode
+    let prizecountNode: ASTextNode
+    let dotImageNode: ASImageNode
+    let trophyImageNode: ASImageNode
+    
+    init(with model: Activity_Events_Model) {
+        self.event = model
+        self.imageNode = ASNetworkImageNode()
+        self.titleNode = ASTextNode()
+        self.prizecountNode = ASTextNode()
+        self.dotImageNode = ASImageNode()
+        self.trophyImageNode = ASImageNode()
+        super.init()
+        self.selectionStyle = .none
+        self.automaticallyManagesSubnodes = true
+        /// layer backed
+        self.imageNode.isLayerBacked = true
+        self.titleNode.isLayerBacked = true
+        self.prizecountNode.isLayerBacked = true
+        self.dotImageNode.isLayerBacked = true
+        self.trophyImageNode.isLayerBacked = true
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        imageNode.contentMode = .scaleAspectFill
+        imageNode.url = URL(string: event.images.first ?? "")
+        /// titleNode
+        let attributed = NSMutableParagraphStyle()
+        titleNode.maximumNumberOfLines = 1
+        titleNode.truncationMode = .byTruncatingTail
+        titleNode.attributedText = NSAttributedString(string: event.title, attributes: [
+            NSAttributedString.Key.font: UIFont.boldFont_19(),
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.paragraphStyle: attributed
+            ])
+        /// prizecountNode
+        let mutableAttributed = NSMutableAttributedString(string: event.image_count_string, attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont.normalFont_12()])
+        let range = NSString(string: event.image_count_string).range(of: event.image_count_value)
+        mutableAttributed.addAttributes([NSAttributedString.Key.font: UIFont.boldFont_12()], range: range)
+        prizecountNode.attributedText = mutableAttributed
+        /// dotImageNode
+        dotImageNode.image = R.image.dot()
+        /// trophyImageNode
+        trophyImageNode.image = R.image.trophy()
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let offset: CGFloat = 36
+        titleNode.style.preferredSize = CGSize(width: macro.screenWidth - offset, height: offset)
+        imageNode.style.preferredSize = CGSize(width: 40, height: 40)
+        trophyImageNode.style.preferredSize = CGSize(width: 20, height: 20)
+        /// Price desc ared
+        let horizontalLayoutSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 2, justifyContent: .start, alignItems: .center, children: [
+            prizecountNode,
+            dotImageNode,
+            trophyImageNode
+            ])
+        /// Main stack
+        let mainStackLayoutSpec = ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .center, children: [
+            ASRatioLayoutSpec(ratio: 0.6, child: imageNode),
+            titleNode,
+            horizontalLayoutSpec
+            ])
+        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10), child: mainStackLayoutSpec)
+    }
+}
+
 // MARK: - ActivityTableNode
 
 class ActivityTableNode: ASTableNode {
     
     private var bannerView = ActivityBannerView()
+    private var eventsModel: [Activity_Events_Model] = [] {
+        didSet {
+            self.reloadData()
+        }
+    }
     
     override init(style: UITableView.Style) {
         super.init(style: style)
         self.dataSource = self
         self.delegate = self
+        self.backgroundColor = Color.backGroundColor
+        self.view.separatorStyle = .none
     }
     
     override func didLoad() {
         super.didLoad()
     }
     
-    func reloadTopBanner(banner: [Activity_Top_Banner_Model]) {
+    func reload(topBanner: [Activity_Top_Banner_Model], bottomEvents: [Activity_Events_Model]) {
+        eventsModel = bottomEvents
+        reloadTopBanner(banner: topBanner)
+    }
+    
+    private func reloadTopBanner(banner: [Activity_Top_Banner_Model]) {
         bannerView.configureTopBanner(with: banner)
     }
 }
@@ -256,11 +351,11 @@ class ActivityTableNode: ASTableNode {
 extension ActivityTableNode: ASTableDataSource, ASTableDelegate {
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return eventsModel.count
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        return ASCellNode()
+        return ActivityTableCell(with: eventsModel[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

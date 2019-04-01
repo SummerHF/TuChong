@@ -54,10 +54,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 7 images.
+  /// This `R.image` struct is generated, and contains static references to 10 images.
   struct image {
     /// Image `bc_back`.
     static let bc_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "bc_back")
+    /// Image `dot`.
+    static let dot = Rswift.ImageResource(bundle: R.hostingBundle, name: "dot")
     /// Image `iconNearbyHot_15x15_`.
     static let iconNearbyHot_15x15_ = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconNearbyHot_15x15_")
     /// Image `lauch_image_icon`.
@@ -70,10 +72,19 @@ struct R: Rswift.Validatable {
     static let photography_club = Rswift.ImageResource(bundle: R.hostingBundle, name: "photography_club")
     /// Image `recommend_ cameraman`.
     static let recommend_Cameraman = Rswift.ImageResource(bundle: R.hostingBundle, name: "recommend_ cameraman")
+    /// Image `red_envelopes`.
+    static let red_envelopes = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_envelopes")
+    /// Image `trophy`.
+    static let trophy = Rswift.ImageResource(bundle: R.hostingBundle, name: "trophy")
     
     /// `UIImage(named: "bc_back", bundle: ..., traitCollection: ...)`
     static func bc_back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.bc_back, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "dot", bundle: ..., traitCollection: ...)`
+    static func dot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.dot, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "iconNearbyHot_15x15_", bundle: ..., traitCollection: ...)`
@@ -104,6 +115,16 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "recommend_ cameraman", bundle: ..., traitCollection: ...)`
     static func recommend_Cameraman(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.recommend_Cameraman, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "red_envelopes", bundle: ..., traitCollection: ...)`
+    static func red_envelopes(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.red_envelopes, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "trophy", bundle: ..., traitCollection: ...)`
+    static func trophy(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.trophy, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}

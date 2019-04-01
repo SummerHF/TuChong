@@ -39,7 +39,7 @@ class ActivityViewController: BaseViewControlle {
     }
     
     override init() {
-        tableNode = ActivityTableNode(style: .plain)
+        tableNode = ActivityTableNode(style: .grouped)
         super.init(node: tableNode)
     }
     
@@ -74,7 +74,7 @@ class ActivityViewController: BaseViewControlle {
         })
         /// all request finished
         group.notify(queue: .main) {
-            self.tableNode.reloadTopBanner(banner: self.topBannerModel.banners)
+            self.tableNode.reload(topBanner: self.topBannerModel.banners, bottomEvents: self.bottomEventModel.eventList)
         }
     }
 }

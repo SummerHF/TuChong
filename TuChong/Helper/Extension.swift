@@ -76,4 +76,18 @@ public extension UIFont {
     static func smallFont_10() -> UIFont {
         return UIFont.systemFont(ofSize: 10)
     }
+    
+    /// 19号粗体
+    static func boldFont_19() -> UIFont {
+        return UIFont.boldSystemFont(ofSize: 19)
+    }
+    
+    /// 12号粗体
+    static func boldFont_12() -> UIFont {
+        return UIFont.boldSystemFont(ofSize: 12)
+    }
+    
+    static func normalFont_12() -> UIFont {
+        return UIFont.systemFont(ofSize: 12)
+    }
 }
