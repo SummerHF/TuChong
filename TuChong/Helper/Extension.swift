@@ -71,4 +71,9 @@ public extension UIFont {
     static func boldFont(size: CGFloat) -> UIFont {
         return UIFont.boldSystemFont(ofSize: size)
     }
+    
+    /// 10号字体
+    static func smallFont_10() -> UIFont {
+        return UIFont.systemFont(ofSize: 10)
+    }
 }

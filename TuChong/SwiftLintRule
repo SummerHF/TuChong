@@ -1,5 +1,3 @@
-
-
 Moya基本用法: https://github.com/Moya/Moya/tree/master/docs_CN/Examples
 https://www.jianshu.com/p/219b197a230a
 
@@ -39,10 +37,14 @@ sizeThatFits.height = 71
 return sizeThatFits
 }
 
+NSMutableParagraphStyle: 用来解决ASButton中的title文字局中显示.
+https://www.jianshu.com/p/46d377ca2dfb
+
 字体, 颜色，本地化
 swiftgen:
 https://medium.com/swift-india/the-clean-way-of-managing-assets-fonts-colors-string-literals-in-ios-xcode-project-1e06dcacf208
 
+本地化相关
 Localizable
 https://www.jianshu.com/p/8c9e37f9b6a7
 
@@ -52,6 +54,7 @@ sudo vim /etc/hosts
 151.101.77.194 github.global.ssl.fastly.net
 然后刷新缓存: sudo dscacheutil -flushcache
 
+swiftLint rule
 disabled_rules: # 执行时排除掉的规则
 - colon
 - comma

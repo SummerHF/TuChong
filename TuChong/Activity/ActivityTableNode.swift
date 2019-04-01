@@ -93,11 +93,54 @@ extension ActivityBannerCollectionNode: ASCollectionDataSource, ASCollectionDele
     }
 }
 
+// MARK: - ActivityCategoryNode
+
+/// 4个分类
 class ActivityCategoryNode: ASDisplayNode {
+    
+    /// 标题
+    var titles = [R.string.localizable.photography_club(), R.string.localizable.recommended_photographer(), R.string.localizable.lecture(), R.string.localizable.photography_tutorial()]
+    /// 标题
+    var images = [R.image.photography_club(), R.image.recommend_Cameraman(), R.image.lecture(), R.image.photography_tutorial()]
+    /// 按钮
+    var buttons: [ASButtonNode] = []
     
     override init() {
         super.init()
         self.backgroundColor = UIColor.yellow
+        self.automaticallyManagesSubnodes = true
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        
+        for index in 0..<titles.count {
+            let title = titles[index]
+            let image = images[index]
+            let button = ASButtonNode()
+            /// binding tag
+            button.view.tag = index
+            /// property
+            button.imageNode.style.preferredSize = CGSize(width: 40, height: 40)
+            button.titleNode.style.preferredSize = CGSize(width: 60, height: 30)
+            button.titleNode.maximumNumberOfLines = 1
+            button.titleNode.truncationMode = .byTruncatingTail
+            button.laysOutHorizontally = false
+            button.setImage(image, for: UIControl.State.normal)
+            /// text style
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+            let attributed = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.smallFont_10(),
+                                                                            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                                                                            NSAttributedString.Key.foregroundColor: UIColor.black])
+            button.setAttributedTitle(attributed, for: UIControl.State.normal)
+            buttons.append(button)
+        }
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let stackLayout = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .spaceBetween, alignItems: .center, children: buttons)
+        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), child: stackLayout)
     }
 }
 
@@ -137,7 +180,7 @@ class ActivityTitileNode: ASDisplayNode {
 
 class ActivityBannerView: UIView {
     
-    var heights: CGFloat = 400
+    var heights: CGFloat = 360
     
     var collectionNodeHeight: CGFloat {
         return heights * 0.5
