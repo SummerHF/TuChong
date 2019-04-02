@@ -80,6 +80,19 @@ struct Activity_Events_Model: HandyJSON {
     var image_count_string: String {
         return image_count_value + "件作品"
     }
+    
+    var remainingDays_string: String {
+        var str = ""
+        for c in "距截稿\(remainingDays)天" {
+            str.append("\(c) ")
+        }
+        return str
+    }
+    
+    /// 是否显示截止日期
+    var showDeadline: Bool {
+        return end_at != ""
+    }
 }
 
 struct Activity_Top_Model: HandyJSON {

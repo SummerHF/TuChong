@@ -251,6 +251,9 @@ class ActivityTableCell: ASCellNode {
     let redpacketImageNode: ASImageNode
     let redpacketActivityDesNode: ASTextNode
     let backgroundNode: ASDisplayNode
+    let deadlineNode: ASTextNode
+    /// 角标
+    let cornermarkNode: ASImageNode
     
     init(with model: Activity_Events_Model) {
         self.event = model
@@ -263,6 +266,8 @@ class ActivityTableCell: ASCellNode {
         self.redpacketImageNode = ASImageNode()
         self.redpacketActivityDesNode =  ASTextNode()
         self.backgroundNode = ASDisplayNode()
+        self.deadlineNode = ASTextNode()
+        self.cornermarkNode = ASImageNode()
         super.init()
         self.selectionStyle = .none
         self.automaticallyManagesSubnodes = true
@@ -276,6 +281,8 @@ class ActivityTableCell: ASCellNode {
         self.redpacketImageNode.isLayerBacked = true
         self.redpacketActivityDesNode.isLayerBacked = true
         self.backgroundNode.isLayerBacked = true
+        self.deadlineNode.isLayerBacked = true
+        self.cornermarkNode.isLayerBacked = true
     }
     
     override func didLoad() {
@@ -307,7 +314,7 @@ class ActivityTableCell: ASCellNode {
         /// prize describtion
         prizeDescNode.maximumNumberOfLines = 1
         prizeDescNode.truncationMode = .byTruncatingTail
-        prizeDescNode.attributedText = NSAttributedString(string: event.prize_desc, attributes: [NSAttributedString.Key.font: UIFont.normalFont_12(),
+        prizeDescNode.attributedText = NSAttributedString(string: event.is_packet ? event.image_count_string : event.prize_desc, attributes: [NSAttributedString.Key.font: UIFont.normalFont_12(),
                                                                                                  NSAttributedString.Key.foregroundColor: UIColor.black])
         /// red packet
         redpacketActivityDesNode.attributedText = NSAttributedString(string: R.string.localizable.red_packet_activity(), attributes:     [NSAttributedString.Key.font: UIFont.normalFont_12(),
@@ -317,6 +324,11 @@ class ActivityTableCell: ASCellNode {
         redpacketImageNode.image = R.image.red_envelopes()
         /// background node
         backgroundNode.backgroundColor = RGBA(R: 248, G: 247, B: 245)
+        /// deadline area
+        deadlineNode.attributedText = NSAttributedString(string: event.remainingDays_string, attributes: [NSAttributedString.Key.font: UIFont.normalFont_12(),
+                                                                                      NSAttributedString.Key.foregroundColor: UIColor.white
+                                                                                    ])
+        cornermarkNode.image = R.image.corner_mark()
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -353,7 +365,7 @@ class ActivityTableCell: ASCellNode {
             horizontalLayoutSpec])
         
         /// BackgroundLayoutSpec
-        let backgroundLayoutSpec = ASBackgroundLayoutSpec(child: ASInsetLayoutSpec(insets: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), child: verticalLayoutSpec), background: backgroundNode)
+        let backgroundLayoutSpec = ASBackgroundLayoutSpec(child: ASInsetLayoutSpec(insets: UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 16), child: verticalLayoutSpec), background: backgroundNode)
         
         /// Main stack
         let mainStackLayoutSpec = ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [
@@ -363,7 +375,16 @@ class ActivityTableCell: ASCellNode {
         
         /// Main inset
         let insetLayoutSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), child: mainStackLayoutSpec)
-        return insetLayoutSpec
+        
+        /// Whether show Deadline 
+        if event.showDeadline {
+            /// Cornermark background
+            let cornermarkBackgroundLayoutSpec = ASBackgroundLayoutSpec(child: ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 20), child: deadlineNode), background: cornermarkNode)
+            /// Main layout
+            return ASOverlayLayoutSpec(child: insetLayoutSpec, overlay: ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: CGFloat.infinity, right: CGFloat.infinity), child: cornermarkBackgroundLayoutSpec))
+        } else {
+            return insetLayoutSpec
+        }
     }
 }
 
