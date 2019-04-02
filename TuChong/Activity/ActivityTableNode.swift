@@ -247,6 +247,10 @@ class ActivityTableCell: ASCellNode {
     let prizecountNode: ASTextNode
     let dotImageNode: ASImageNode
     let trophyImageNode: ASImageNode
+    let prizeDescNode: ASTextNode
+    let redpacketImageNode: ASImageNode
+    let redpacketActivityDesNode: ASTextNode
+    let backgroundNode: ASDisplayNode
     
     init(with model: Activity_Events_Model) {
         self.event = model
@@ -255,6 +259,10 @@ class ActivityTableCell: ASCellNode {
         self.prizecountNode = ASTextNode()
         self.dotImageNode = ASImageNode()
         self.trophyImageNode = ASImageNode()
+        self.prizeDescNode = ASTextNode()
+        self.redpacketImageNode = ASImageNode()
+        self.redpacketActivityDesNode =  ASTextNode()
+        self.backgroundNode = ASDisplayNode()
         super.init()
         self.selectionStyle = .none
         self.automaticallyManagesSubnodes = true
@@ -264,10 +272,16 @@ class ActivityTableCell: ASCellNode {
         self.prizecountNode.isLayerBacked = true
         self.dotImageNode.isLayerBacked = true
         self.trophyImageNode.isLayerBacked = true
+        self.prizeDescNode.isLayerBacked = true
+        self.redpacketImageNode.isLayerBacked = true
+        self.redpacketActivityDesNode.isLayerBacked = true
+        self.backgroundNode.isLayerBacked = true
     }
     
     override func didLoad() {
         super.didLoad()
+        /// set background color
+        backgroundColor = Color.backGroundColor
         imageNode.contentMode = .scaleAspectFill
         imageNode.url = URL(string: event.images.first ?? "")
         /// titleNode
@@ -290,26 +304,66 @@ class ActivityTableCell: ASCellNode {
         dotImageNode.image = R.image.dot()
         /// trophyImageNode
         trophyImageNode.image = R.image.trophy()
+        /// prize describtion
+        prizeDescNode.maximumNumberOfLines = 1
+        prizeDescNode.truncationMode = .byTruncatingTail
+        prizeDescNode.attributedText = NSAttributedString(string: event.prize_desc, attributes: [NSAttributedString.Key.font: UIFont.normalFont_12(),
+                                                                                                 NSAttributedString.Key.foregroundColor: UIColor.black])
+        /// red packet
+        redpacketActivityDesNode.attributedText = NSAttributedString(string: R.string.localizable.red_packet_activity(), attributes:     [NSAttributedString.Key.font: UIFont.normalFont_12(),
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.backgroundColor: RGBA(R: 250, G: 32, B: 104)
+            ])
+        redpacketImageNode.image = R.image.red_envelopes()
+        /// background node
+        backgroundNode.backgroundColor = RGBA(R: 248, G: 247, B: 245)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let offset: CGFloat = 36
-        titleNode.style.preferredSize = CGSize(width: macro.screenWidth - offset, height: offset)
-        imageNode.style.preferredSize = CGSize(width: 40, height: 40)
+
+        prizeDescNode.style.maxWidth = ASDimension(unit: .points, value: 200)
+        dotImageNode.style.preferredSize = CGSize(width: 8, height: 8)
         trophyImageNode.style.preferredSize = CGSize(width: 20, height: 20)
-        /// Price desc ared
-        let horizontalLayoutSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 2, justifyContent: .start, alignItems: .center, children: [
+        redpacketImageNode.style.preferredSize = CGSize(width: 15, height: 15)
+        
+        var horizontalLayoutSpec: ASStackLayoutSpec
+        
+        if event.is_packet {
+        horizontalLayoutSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [
+            /// red packet
+            ASStackLayoutSpec(direction: .horizontal, spacing: 1, justifyContent: .start, alignItems: .center, children: [
+                redpacketImageNode,
+                redpacketActivityDesNode
+                ]),
+            dotImageNode,
+            prizeDescNode
+            ])
+        } else {
+            /// Price desc ared
+        horizontalLayoutSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [
             prizecountNode,
             dotImageNode,
-            trophyImageNode
+            trophyImageNode,
+            prizeDescNode
             ])
-        /// Main stack
-        let mainStackLayoutSpec = ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .center, children: [
-            ASRatioLayoutSpec(ratio: 0.6, child: imageNode),
+        }
+        /// Vertical stack
+        let verticalLayoutSpec = ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
             titleNode,
-            horizontalLayoutSpec
+            horizontalLayoutSpec])
+        
+        /// BackgroundLayoutSpec
+        let backgroundLayoutSpec = ASBackgroundLayoutSpec(child: ASInsetLayoutSpec(insets: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), child: verticalLayoutSpec), background: backgroundNode)
+        
+        /// Main stack
+        let mainStackLayoutSpec = ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [
+            ASRatioLayoutSpec(ratio: 0.6, child: imageNode),
+            backgroundLayoutSpec
             ])
-        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10), child: mainStackLayoutSpec)
+        
+        /// Main inset
+        let insetLayoutSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), child: mainStackLayoutSpec)
+        return insetLayoutSpec
     }
 }
 

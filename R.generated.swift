@@ -145,7 +145,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 8 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 9 localization keys.
     struct localizable {
       /// zh-Hans translation: 推荐摄影师
       /// 
@@ -171,6 +171,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let hot_activity_title = Rswift.StringResource(key: "hot_activity_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 红包活动
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let red_packet_activity = Rswift.StringResource(key: "red_packet_activity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 胶囊演讲
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -220,6 +224,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func hot_activity_title(_: Void = ()) -> String {
         return NSLocalizedString("hot_activity_title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 红包活动
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func red_packet_activity(_: Void = ()) -> String {
+        return NSLocalizedString("red_packet_activity", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 胶囊演讲
