@@ -90,4 +90,12 @@ public extension UIFont {
     static func normalFont_12() -> UIFont {
         return UIFont.systemFont(ofSize: 12)
     }
+    
+    static func normalFont_13() -> UIFont {
+        return UIFont.systemFont(ofSize: 13)
+    }
+    
+    static func normalFont_16() -> UIFont {
+        return UIFont.systemFont(ofSize: 16)
+    }
 }

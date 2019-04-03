@@ -64,6 +64,15 @@ struct Macro {
         }
     }
     
+    var bottomMargin: CGFloat {
+        return -5
+    }
+    
+    /// searchBar size
+    var searchBarSize: CGSize {
+        return CGSize(width: macro.screenWidth - 20, height: 32)
+    }
+    
     /// topHeight
     var topHeight: CGFloat {
         return navigationBarHeight + statusBarHeight

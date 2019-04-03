@@ -37,4 +37,5 @@ struct Color {
     /// 主题颜色
     static var themeColor = UIColor.white
     static var backGroundColor = UIColor.white
+    static var lightGray = RGBA(R: 133, G: 133, B: 135)
 }

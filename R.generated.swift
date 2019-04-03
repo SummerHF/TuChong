@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 11 images.
+  /// This `R.image` struct is generated, and contains static references to 13 images.
   struct image {
     /// Image `bc_back`.
     static let bc_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "bc_back")
@@ -76,6 +76,10 @@ struct R: Rswift.Validatable {
     static let recommend_Cameraman = Rswift.ImageResource(bundle: R.hostingBundle, name: "recommend_ cameraman")
     /// Image `red_envelopes`.
     static let red_envelopes = Rswift.ImageResource(bundle: R.hostingBundle, name: "red_envelopes")
+    /// Image `searchBar_background`.
+    static let searchBar_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "searchBar_background")
+    /// Image `search_topic`.
+    static let search_topic = Rswift.ImageResource(bundle: R.hostingBundle, name: "search_topic")
     /// Image `trophy`.
     static let trophy = Rswift.ImageResource(bundle: R.hostingBundle, name: "trophy")
     
@@ -129,6 +133,16 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.red_envelopes, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "searchBar_background", bundle: ..., traitCollection: ...)`
+    static func searchBar_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.searchBar_background, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "search_topic", bundle: ..., traitCollection: ...)`
+    static func search_topic(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.search_topic, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "trophy", bundle: ..., traitCollection: ...)`
     static func trophy(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.trophy, compatibleWith: traitCollection)
@@ -152,8 +166,16 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 9 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 11 localization keys.
     struct localizable {
+      /// zh-Hans translation: 作品, 教程, 摄影师，搜搜看
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let search_bar_placeholder = Rswift.StringResource(key: "search_bar_placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 取消
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let cancel_button_title = Rswift.StringResource(key: "cancel_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 推荐摄影师
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -190,6 +212,20 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let tab_bar_home_title = Rswift.StringResource(key: "tab_bar_home_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      
+      /// zh-Hans translation: 作品, 教程, 摄影师，搜搜看
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func search_bar_placeholder(_: Void = ()) -> String {
+        return NSLocalizedString("search_bar_placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 取消
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func cancel_button_title(_: Void = ()) -> String {
+        return NSLocalizedString("cancel_button_title", bundle: R.hostingBundle, comment: "")
+      }
       
       /// zh-Hans translation: 推荐摄影师
       /// 

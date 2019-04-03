@@ -55,7 +55,6 @@ open class BaseNavigationBar: ASDisplayNode {
 /// 全局公用导航条
 open class CommenNavigationBar: BaseNavigationBar {
     
-    let bottomMargin: CGFloat = -5.0
     let leftMargin: CGFloat = 5.0
     
     /// 设置标题
@@ -89,7 +88,7 @@ open class CommenNavigationBar: BaseNavigationBar {
         self.view.addSubview(leftBackItem)
         titleLable.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(bottomMargin)
+            make.bottom.equalToSuperview().offset(macro.bottomMargin)
         }
         leftBackItem.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(leftMargin)
@@ -97,7 +96,7 @@ open class CommenNavigationBar: BaseNavigationBar {
             if titleLable.text != nil {
                 make.centerY.equalTo(titleLable)
             } else {
-                make.bottom.equalToSuperview().offset(bottomMargin)
+                make.bottom.equalToSuperview().offset(macro.bottomMargin)
             }
             make.size.equalTo(CGSize(width: R.image.bc_back()!.size.width, height: R.image.bc_back()!.size.height))
         }

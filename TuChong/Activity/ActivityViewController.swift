@@ -33,6 +33,7 @@ class ActivityViewController: BaseViewControlle {
     private let tableNode: ActivityTableNode
     private var topBannerModel: Activity_Top_Model = Activity_Top_Model()
     private var bottomEventModel: Activity_Bottom_List_Model = Activity_Bottom_List_Model()
+    private let searchBar = SearchBar()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -46,6 +47,7 @@ class ActivityViewController: BaseViewControlle {
     override func viewDidLoad() {
         super.viewDidLoad()
         hiddenLfetBackItem = true
+        addSearchBar()
         loadData()
     }
     
@@ -75,6 +77,16 @@ class ActivityViewController: BaseViewControlle {
         /// all request finished
         group.notify(queue: .main) {
             self.tableNode.reload(topBanner: self.topBannerModel.banners, bottomEvents: self.bottomEventModel.eventList)
+        }
+    }
+    
+    /// addSearchBar
+    private func addSearchBar() {
+        self.navigationBar.view.addSubview(searchBar)
+        searchBar.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(macro.bottomMargin)
+            make.size.equalTo(macro.searchBarSize)
         }
     }
 }

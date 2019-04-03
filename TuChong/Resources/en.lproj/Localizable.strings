@@ -7,4 +7,5 @@
 "lecture" = "Lecture";
 "photography_tutorial" = "Tutorial";
 "red_packet_activity" = "Red Envelope Activities";
-
+"search_bar_placeholder" = "Works, Tutorials, Photographers，Search look";
+"cancel_button_title" = "Cancel";
