@@ -46,11 +46,21 @@ struct Macro {
     var statusBarHeight: CGFloat {
         /// iphoneX, XR, XSMAX, XS 44, other height is 20
         let device = Device()
-        switch device {
-        case .iPhoneX, .iPhoneXs, .iPhoneXr, .iPhoneXsMax:
-            return 44
-        default:
-            return 20
+        /// support simulator
+        if device.isSimulator {
+            switch device {
+            case .simulator(.iPhoneX), .simulator(.iPhoneXs), .simulator(.iPhoneXr), .simulator(.iPhoneXsMax):
+                return 44
+            default:
+                return 20
+            }
+        } else {
+            switch device {
+            case .iPhoneX, .iPhoneXs, .iPhoneXr, .iPhoneXsMax:
+                return 44
+            default:
+                return 20
+            }
         }
     }
     
