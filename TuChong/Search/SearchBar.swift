@@ -29,11 +29,20 @@ import UIKit
 
 class BaseTextField: UITextField {}
 
+
+
+// MARK: - SearchBarProtocol
+
+@objc protocol SearchBarProtocol: class {
+    @objc optional func searchBarDidBeginEditing(searchBar: SearchBar)
+    @objc optional func searchBarDidEndEditing(searchBar: SearchBar)
+}
+
 class SearchBar: UIView {
     
     private let buttonWidth: CGFloat = 60
     private let offset: CGFloat = 100
-
+    public weak var delegate: SearchBarProtocol?
     /// 取消
     lazy var cancelButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -110,6 +119,8 @@ extension SearchBar: UITextFieldDelegate {
         UIView.animate(withDuration: 0.2) {
             self.layoutIfNeeded()
         }
+        
+        self.delegate?.searchBarDidBeginEditing?(searchBar: self)
     }
     
     @objc private func cancelButtonEvent() {
@@ -125,5 +136,6 @@ extension SearchBar: UITextFieldDelegate {
         UIView.animate(withDuration: 0.2) {
             self.layoutIfNeeded()
         }
+        self.delegate?.searchBarDidEndEditing?(searchBar: self)
     }
 }

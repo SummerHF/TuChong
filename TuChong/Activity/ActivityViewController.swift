@@ -34,6 +34,7 @@ class ActivityViewController: BaseViewControlle {
     private var topBannerModel: Activity_Top_Model = Activity_Top_Model()
     private var bottomEventModel: Activity_Bottom_List_Model = Activity_Bottom_List_Model()
     private let searchBar = SearchBar()
+    private let searchTableNode = SearchTableNode()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -82,11 +83,23 @@ class ActivityViewController: BaseViewControlle {
     
     /// addSearchBar
     private func addSearchBar() {
+        searchBar.delegate = self
         self.navigationBar.view.addSubview(searchBar)
         searchBar.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(macro.bottomMargin)
             make.size.equalTo(macro.searchBarSize)
         }
+    }
+}
+
+extension ActivityViewController: SearchBarProtocol {
+    
+    func searchBarDidBeginEditing(searchBar: SearchBar) {
+        print("searchBarDidBeginEditing")
+    }
+    
+    func searchBarDidEndEditing(searchBar: SearchBar) {
+        print("searchBarDidEndEditing")
     }
 }
