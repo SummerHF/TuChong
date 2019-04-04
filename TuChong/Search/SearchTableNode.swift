@@ -31,9 +31,9 @@ class SearchTableNode: ASTableNode {
     
     private var targetNode: ASDisplayNode?
     private let sectionCount = 2
-    private var authorList: [Search_Hot_Photographer_User] = []
     private var hotEventList: [Activity_Events_Model] = []
-    
+    private var authorList: [Search_Hot_Photographer_User] = []
+
     override init(style: UITableView.Style) {
         /// 指定样式, 为组样式
         super.init(style: .grouped)
@@ -97,6 +97,7 @@ class SearchTableNode: ASTableNode {
             group.leave()
         }
         group.notify(queue: DispatchQueue.main) {
+            self.reloadData()
         }
     }
 }
@@ -110,11 +111,21 @@ extension SearchTableNode: ASTableDataSource, ASTableDelegate {
     }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case 0:
+            return 1
+        default:
+            return authorList.count
+        }
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        return ASCellNode()
+        switch indexPath.section {
+        case 0:
+            return ASCellNode()
+        default:
+            return SearchCellNode(with: authorList[indexPath.row], index: indexPath.row)
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

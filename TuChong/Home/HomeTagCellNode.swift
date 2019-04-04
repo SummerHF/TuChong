@@ -82,6 +82,7 @@ class CollectionSectionHeaderNode: ASCellNode {
     }
     
     override func didLoad() {
+        super.didLoad()
         self.backgroundColor = Color.backGroundColor
         let color = RGBA(R: 239, G: 45, B: 88)
         separator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 8.0, cornerColor: color, fill: color)
