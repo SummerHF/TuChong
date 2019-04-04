@@ -166,7 +166,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 11 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 12 localization keys.
     struct localizable {
       /// zh-Hans translation: 作品, 教程, 摄影师，搜搜看
       /// 
@@ -196,6 +196,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let tab_bar_activity_title = Rswift.StringResource(key: "tab_bar_activity_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 热搜摄影师
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let hot_search_photographer_title = Rswift.StringResource(key: "hot_search_photographer_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 热门活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -260,6 +264,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func tab_bar_activity_title(_: Void = ()) -> String {
         return NSLocalizedString("tab_bar_activity_title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 热搜摄影师
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func hot_search_photographer_title(_: Void = ()) -> String {
+        return NSLocalizedString("hot_search_photographer_title", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 热门活动

@@ -29,8 +29,6 @@ import UIKit
 
 class BaseTextField: UITextField {}
 
-
-
 // MARK: - SearchBarProtocol
 
 @objc protocol SearchBarProtocol: class {
@@ -125,6 +123,7 @@ extension SearchBar: UITextFieldDelegate {
     
     @objc private func cancelButtonEvent() {
         textField.resignFirstResponder()
+        textField.text = nil
         cancelButton.snp.remakeConstraints { (make) in
             make.left.equalTo(self.snp.right).offset(offset)
             make.centerY.equalToSuperview()

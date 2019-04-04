@@ -28,12 +28,13 @@
 		C4AD3C37224097CB0095BC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C35224097CB0095BC97 /* LaunchScreen.storyboard */; };
 		C4AD3C40224098B40095BC97 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C3F224098B40095BC97 /* Extension.swift */; };
 		C4AD3C45224098BE0095BC97 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C42224098BD0095BC97 /* Service.swift */; };
-		C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C44224098BD0095BC97 /* HomePage.swift */; };
+		C4AD3C46224098BE0095BC97 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C44224098BD0095BC97 /* HomePageModel.swift */; };
 		C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C482240993A0095BC97 /* SwiftLintRule */; };
 		C4AD3C4B2240AEFE0095BC97 /* API in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C4A2240AEFE0095BC97 /* API */; };
 		C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */; };
 		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
 		C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavView.swift */; };
+		C4CBE21C2255A9260074F58A /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21B2255A9260074F58A /* SearchModel.swift */; };
 		C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */; };
 		C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */; };
 		C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */; };
@@ -69,13 +70,14 @@
 		C4AD3C38224097CB0095BC97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4AD3C3F224098B40095BC97 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		C4AD3C42224098BD0095BC97 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		C4AD3C44224098BD0095BC97 /* HomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		C4AD3C44224098BD0095BC97 /* HomePageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		C4AD3C482240993A0095BC97 /* SwiftLintRule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftLintRule; sourceTree = "<group>"; };
 		C4AD3C4A2240AEFE0095BC97 /* API */ = {isa = PBXFileReference; lastKnownFileType = text; path = API; sourceTree = "<group>"; };
 		C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagViewController.swift; sourceTree = "<group>"; };
 		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		C4B9825C2242172900F65C0E /* HomeNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavView.swift; sourceTree = "<group>"; };
 		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
+		C4CBE21B2255A9260074F58A /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableNode.swift; sourceTree = "<group>"; };
@@ -163,7 +165,7 @@
 		C4AC63CD2241BB4100324C23 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C4AD3C43224098BD0095BC97 /* Model */,
+				C4AD3C44224098BD0095BC97 /* HomePageModel.swift */,
 				C4B9825C2242172900F65C0E /* HomeNavView.swift */,
 				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
 				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
@@ -232,20 +234,13 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		C4AD3C43224098BD0095BC97 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C4AD3C44224098BD0095BC97 /* HomePage.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		C4E57B3B224DB43D00F9D511 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
 				C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */,
 				C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */,
 				C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */,
+				C4CBE21B2255A9260074F58A /* SearchModel.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -436,10 +431,11 @@
 				C4AD3C2F224097CB0095BC97 /* HomepageViewController.swift in Sources */,
 				C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */,
 				C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */,
+				C4CBE21C2255A9260074F58A /* SearchModel.swift in Sources */,
 				C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */,
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
 				C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */,
-				C4AD3C46224098BE0095BC97 /* HomePage.swift in Sources */,
+				C4AD3C46224098BE0095BC97 /* HomePageModel.swift in Sources */,
 				C4F658812249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift in Sources */,
 				C41E0CDC224CBB900032E12A /* R.generated.swift in Sources */,
 				C4AD3C45224098BE0095BC97 /* Service.swift in Sources */,

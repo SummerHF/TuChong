@@ -60,7 +60,11 @@ class HomeTagCellNode: ASCellNode {
     }
 }
 
-class HomeTagSectionHeaderNode: ASCellNode {
+// MARK: - SectionHeaderNode &&  SectionHeaderView
+
+class CollectionSectionHeaderNode: ASCellNode {
+    
+    static let headerHeight: CGFloat = 44
     
     let headerTitle: String
     let titleNode: ASTextNode
@@ -88,5 +92,50 @@ class HomeTagSectionHeaderNode: ASCellNode {
         separator.style.preferredSize = CGSize(width: 4, height: 12)
         let horizontal = ASStackLayoutSpec.init(direction: .horizontal, spacing: 8, justifyContent: .start, alignItems: .center, children: [separator, titleNode])
         return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), child: horizontal)
+    }
+}
+
+class TableSectionHeaderView: UIView {
+    
+    static let headerHeight: CGFloat = 44
+    
+    let headerTitle: String
+    let titleNode: ASTextNode
+    let separator: ASImageNode
+    
+    init(with sectionTitle: String) {
+        self.headerTitle = sectionTitle
+        self.titleNode = ASTextNode()
+        self.separator = ASImageNode()
+        let frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: TableSectionHeaderView.headerHeight)
+        super.init(frame: frame)
+        self.setProperty()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setProperty() {
+        backgroundColor = Color.backGroundColor
+        self.addSubnode(titleNode)
+        self.addSubnode(separator)
+        let color = RGBA(R: 239, G: 45, B: 88)
+        separator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 8.0, cornerColor: color, fill: color)
+        titleNode.attributedText = NSAttributedString(string: headerTitle, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        
+        /// layouts
+        separator.view.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(10)
+            make.size.equalTo(CGSize(width: 4, height: 12))
+        }
+        
+        titleNode.view.snp.makeConstraints { (make) in
+            make.left.equalTo(separator.view.snp.right).offset(8)
+            make.centerY.equalTo(separator.view)
+            make.right.equalToSuperview().offset(-10)
+            make.height.equalTo(separator.view.snp.height)
+        }
     }
 }

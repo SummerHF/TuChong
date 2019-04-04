@@ -83,8 +83,8 @@ class LaunchAdView: ASDisplayNode {
         self.authorNameLable.text = model.author_name
         self.titleLable.text = model.title
         /// 隐藏分割线 如果没有名字和标题的话
-        if self.titleLable.text == nil || self.authorNameLable.text == nil {
-            self.separator.isHidden = true
+        if self.titleLable.text != "" && self.authorNameLable.text != "" {
+            self.separator.isHidden = false
         } else {
             self.separator.isHidden = true
         }
@@ -101,7 +101,8 @@ class LaunchAdView: ASDisplayNode {
         separator.snp.makeConstraints { (make) in
             make.centerX.equalTo(authorNameLable)
             make.bottom.equalTo(authorNameLable.snp.top).offset(-5)
-            make.size.equalTo(CGSize(width: 60, height: 0.5))
+            make.height.equalTo(0.5)
+            make.width.greaterThanOrEqualTo(titleLable.snp.width)
         }
         titleLable.snp.makeConstraints { (make) in
             make.centerX.equalTo(authorNameLable)

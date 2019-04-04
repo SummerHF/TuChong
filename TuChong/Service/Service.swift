@@ -53,6 +53,8 @@ enum TuChong {
     case activity
     /// 活动 - 底部的热门活动
     case activity_event(page: Int)
+    /// 搜索
+    case search_hot(page: Int)
 }
 
 extension TuChong: TargetType {
@@ -87,12 +89,14 @@ extension TuChong: TargetType {
             return "/discover-app"
         case .activity_event:
             return "/4/events"
+        case .search_hot:
+            return "/users/hot"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .activity_event, .activity, .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
+        case .search_hot, .activity_event, .activity, .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
             return .get
         }
     }
@@ -102,6 +106,9 @@ extension TuChong: TargetType {
         case .home_more, .home_nav, .homepage_attention, .activity:
             return .requestPlain
         case .activity_event(page: let page):
+            if page == 0 {
+                return .requestPlain
+            }
             return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
         case .launch_ad:
             /// 启动图, 此处宽高写死
@@ -109,12 +116,22 @@ extension TuChong: TargetType {
         case .homepage_recommend(page: let page, type: let type):
             let type = type == .refresh ? "refresh" : "loadmore"
             return .requestParameters(parameters: ["page": page, "type": type], encoding: URLEncoding.default)
+            /// 搜索
+        case .search_hot(page: let page):
+            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
         }
     }
 
     var sampleData: Data {
         switch self {
-        case .activity_event, .activity, .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
+        case .search_hot,
+             .activity_event,
+             .activity,
+             .home_more,
+             .launch_ad,
+             .home_nav,
+             .homepage_attention,
+             .homepage_recommend:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         }
     }

@@ -33,8 +33,14 @@ class ActivityViewController: BaseViewControlle {
     private let tableNode: ActivityTableNode
     private var topBannerModel: Activity_Top_Model = Activity_Top_Model()
     private var bottomEventModel: Activity_Bottom_List_Model = Activity_Bottom_List_Model()
+    /// 搜索框
     private let searchBar = SearchBar()
-    private let searchTableNode = SearchTableNode()
+    /// 搜索TableNode
+    private lazy var searchTableNode: SearchTableNode = {
+        let node = SearchTableNode()
+        node.frame = tableNode.frame
+        return node
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -93,13 +99,17 @@ class ActivityViewController: BaseViewControlle {
     }
 }
 
+// MARK: - SearchBarProtocol
+
 extension ActivityViewController: SearchBarProtocol {
     
     func searchBarDidBeginEditing(searchBar: SearchBar) {
-        print("searchBarDidBeginEditing")
+        searchTableNode.show(in: self.node)
+        print(self.node.view)
+        print(self.view)
     }
     
     func searchBarDidEndEditing(searchBar: SearchBar) {
-        print("searchBarDidEndEditing")
+        searchTableNode.dissmiss()
     }
 }

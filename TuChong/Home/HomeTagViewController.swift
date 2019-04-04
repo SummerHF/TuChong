@@ -87,7 +87,7 @@ extension HomeTagViewController: ASCollectionDataSource, ASCollectionDelegate, A
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> ASCellNode {
         guard let array = self.modelArray else { return ASCellNode() }
-        return HomeTagSectionHeaderNode(with: array[indexPath.section].categoryName)
+        return CollectionSectionHeaderNode(with: array[indexPath.section].categoryName)
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, sizeRangeForHeaderInSection section: Int) -> ASSizeRange {
