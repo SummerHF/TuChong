@@ -104,9 +104,7 @@ class ActivityViewController: BaseViewControlle {
 extension ActivityViewController: SearchBarProtocol {
     
     func searchBarDidBeginEditing(searchBar: SearchBar) {
-        searchTableNode.show(in: self.node)
-        print(self.node.view)
-        print(self.view)
+        searchTableNode.show(in: self.node, searchBar: searchBar)
     }
     
     func searchBarDidEndEditing(searchBar: SearchBar) {

@@ -41,8 +41,8 @@ class SearchCellNode: ASCellNode {
     let avatorWidth: CGFloat = 36
     let rankWidth: CGFloat = 30
     let vertificationWidth: CGFloat = 14
-    let followNodeWidth: CGFloat = 64
-    let followNodeHeight: CGFloat = 24
+    let followNodeWidth: CGFloat = 65
+    let followNodeHeight: CGFloat = 27
     /// Adaptive for iPhoneX
     let maxWidth: CGFloat = (175.0 / 375.0) * macro.screenWidth
     let bottomLine: ASDisplayNode
@@ -149,7 +149,7 @@ class SearchCellNode: ASCellNode {
             ])
         
         let verticalStack = ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .center, alignItems: .stretch, children: [
-            ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), child: horizontalStack),
+            ASInsetLayoutSpec(insets: UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10), child: horizontalStack),
             ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0), child: bottomLine)])
         return verticalStack
     }

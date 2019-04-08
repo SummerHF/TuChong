@@ -29,6 +29,7 @@ import AsyncDisplayKit
 
 class SearchTableNode: ASTableNode {
     
+    private var search: SearchBar?
     private var targetNode: ASDisplayNode?
     private let sectionCount = 2
     private var hotEventList: [Activity_Events_Model] = []
@@ -47,11 +48,10 @@ class SearchTableNode: ASTableNode {
         self.delegate = self
     }
 
-    func show(in node: ASDisplayNode) {
+    func show(in node: ASDisplayNode, searchBar: SearchBar) {
         targetNode = node
-        node.addSubnode(self)
-        /// animate
-        fadeAnimation(isHidden: false)
+        search = searchBar
+        searchBar.isFirstShow = false
         /// Every display requires a request for data
         loadData()
     }
@@ -60,6 +60,7 @@ class SearchTableNode: ASTableNode {
         fadeAnimation(isHidden: true) {
             self.removeFromSupernode()
             self.targetNode = nil
+            self.search?.isFirstShow = true
         }
     }
     
@@ -98,6 +99,10 @@ class SearchTableNode: ASTableNode {
         }
         group.notify(queue: DispatchQueue.main) {
             self.reloadData()
+            /// add self to target view
+            self.targetNode?.addSubnode(self)
+            /// animate
+            self.fadeAnimation(isHidden: false)
         }
     }
 }
@@ -141,5 +146,11 @@ extension SearchTableNode: ASTableDataSource, ASTableDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return TableSectionHeaderView.headerHeight
+    }
+    
+    /// When scrollView begin drag, end editing
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        _ = self.search?.endEditing(true)
+
     }
 }

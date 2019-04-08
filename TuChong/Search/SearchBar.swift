@@ -40,6 +40,8 @@ class SearchBar: UIView {
     
     private let buttonWidth: CGFloat = 60
     private let offset: CGFloat = 100
+    public var isFirstShow: Bool = true
+    
     public weak var delegate: SearchBarProtocol?
     /// 取消
     lazy var cancelButton: UIButton = {
@@ -99,6 +101,7 @@ extension SearchBar: UITextFieldDelegate {
     
     /// begin editing
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard isFirstShow else { return }
         remakeConstraints()
     }
     
@@ -136,5 +139,10 @@ extension SearchBar: UITextFieldDelegate {
             self.layoutIfNeeded()
         }
         self.delegate?.searchBarDidEndEditing?(searchBar: self)
+    }
+    
+    override func endEditing(_ force: Bool) -> Bool {
+        super.endEditing(force)
+        return self.textField.resignFirstResponder()
     }
 }
