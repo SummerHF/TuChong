@@ -42,7 +42,7 @@ struct Search_Hot_Photographer_User: HandyJSON {
     var followers: Int = 0
     var url: String = ""
     var icon: String = ""
-    var verifications: Int = 0
+    var verifications: Bool = false
     var verification_list: [Search_Hot_Photographer_User_Verification] = []
     var images: [String] = []
     var is_following: Bool = false

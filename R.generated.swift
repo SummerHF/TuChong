@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 13 images.
+  /// This `R.image` struct is generated, and contains static references to 19 images.
   struct image {
     /// Image `bc_back`.
     static let bc_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "bc_back")
@@ -62,12 +62,18 @@ struct R: Rswift.Validatable {
     static let corner_mark = Rswift.ImageResource(bundle: R.hostingBundle, name: "corner_mark")
     /// Image `dot`.
     static let dot = Rswift.ImageResource(bundle: R.hostingBundle, name: "dot")
+    /// Image `first`.
+    static let first = Rswift.ImageResource(bundle: R.hostingBundle, name: "first")
     /// Image `iconNearbyHot_15x15_`.
     static let iconNearbyHot_15x15_ = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconNearbyHot_15x15_")
+    /// Image `icon_relation_followed`.
+    static let icon_relation_followed = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_relation_followed")
     /// Image `lauch_image_icon`.
     static let lauch_image_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "lauch_image_icon")
     /// Image `lecture`.
     static let lecture = Rswift.ImageResource(bundle: R.hostingBundle, name: "lecture")
+    /// Image `online_follow`.
+    static let online_follow = Rswift.ImageResource(bundle: R.hostingBundle, name: "online_follow")
     /// Image `photography _tutorial`.
     static let photography_tutorial = Rswift.ImageResource(bundle: R.hostingBundle, name: "photography _tutorial")
     /// Image `photography_club`.
@@ -80,8 +86,14 @@ struct R: Rswift.Validatable {
     static let searchBar_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "searchBar_background")
     /// Image `search_topic`.
     static let search_topic = Rswift.ImageResource(bundle: R.hostingBundle, name: "search_topic")
+    /// Image `second`.
+    static let second = Rswift.ImageResource(bundle: R.hostingBundle, name: "second")
+    /// Image `third`.
+    static let third = Rswift.ImageResource(bundle: R.hostingBundle, name: "third")
     /// Image `trophy`.
     static let trophy = Rswift.ImageResource(bundle: R.hostingBundle, name: "trophy")
+    /// Image `verifications`.
+    static let verifications = Rswift.ImageResource(bundle: R.hostingBundle, name: "verifications")
     
     /// `UIImage(named: "bc_back", bundle: ..., traitCollection: ...)`
     static func bc_back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -98,9 +110,19 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.dot, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "first", bundle: ..., traitCollection: ...)`
+    static func first(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.first, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "iconNearbyHot_15x15_", bundle: ..., traitCollection: ...)`
     static func iconNearbyHot_15x15_(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.iconNearbyHot_15x15_, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon_relation_followed", bundle: ..., traitCollection: ...)`
+    static func icon_relation_followed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_relation_followed, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "lauch_image_icon", bundle: ..., traitCollection: ...)`
@@ -111,6 +133,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "lecture", bundle: ..., traitCollection: ...)`
     static func lecture(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.lecture, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "online_follow", bundle: ..., traitCollection: ...)`
+    static func online_follow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.online_follow, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "photography _tutorial", bundle: ..., traitCollection: ...)`
@@ -143,9 +170,24 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.search_topic, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "second", bundle: ..., traitCollection: ...)`
+    static func second(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.second, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "third", bundle: ..., traitCollection: ...)`
+    static func third(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.third, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "trophy", bundle: ..., traitCollection: ...)`
     static func trophy(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.trophy, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "verifications", bundle: ..., traitCollection: ...)`
+    static func verifications(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.verifications, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
