@@ -186,6 +186,7 @@ class BaseTabBarController: ASTabBarController {
     
     lazy var customTabBar: TabBar = {
         let tabBar = TabBar()
+        tabBar.agency = self
         return tabBar
     }()
     
@@ -210,5 +211,16 @@ class BaseTabBarController: ASTabBarController {
         let userProfileNavigationController = BaseNavigationController(rootViewController: UserViewController())
         /// set sub viewcontroller
         self.viewControllers = [homeNavgationController, photoFilmNavigationController, activityNavigationController, userProfileNavigationController]
+    }
+}
+
+extension BaseTabBarController: TabBarProtocol {
+    
+    func tabbar(tabBar: UITabBar, hasSelcted Index: Int) {
+        self.selectedIndex = Index
+    }
+    
+    func tabbarPresentAlbumViewController(tabBar: UITabBar) {
+        print("tabbarPresentAlbumViewController")
     }
 }

@@ -82,7 +82,7 @@ class BarItemButton: ASButtonNode {
     /// Disable highlited state
     override var isHighlighted: Bool {
         set {
-            
+          
         }
         get {
             return false
@@ -121,7 +121,12 @@ class BarItemButton: ASButtonNode {
     }
 }
 
-// MARK: - TabBarView
+// MARK: - TabBarNode
+
+@objc protocol TabBarNodeProtocol {
+    @objc optional func tabbarNode(node: TabBarNode, hasSelcted Index: Int)
+    @objc optional func tabbarNodePresentAlbumViewController(node: TabBarNode)
+}
 
 class TabBarNode: ASDisplayNode {
     
@@ -129,9 +134,25 @@ class TabBarNode: ASDisplayNode {
         return BarItemButton.buildNodes()
     }()
     
+    weak var delegate: TabBarNodeProtocol?
+    
     override init() {
         super.init()
         self.automaticallyManagesSubnodes = true
+    }
+    
+    override func didLoad() {
+        for item in nodeArray {
+            item.addTarget(self, action: #selector(barItemEvent(button:)), forControlEvents: .touchUpInside)
+        }
+    }
+    
+    @objc private func barItemEvent(button: BarItemButton) {
+        if button.itemModel.type == .plus {
+            self.delegate?.tabbarNodePresentAlbumViewController?(node: self)
+        } else {
+            self.delegate?.tabbarNode?(node: self, hasSelcted: button.itemModel.index)
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -144,12 +165,20 @@ class TabBarNode: ASDisplayNode {
 
 // MARK: - TabBar
 
+@objc protocol TabBarProtocol {
+    @objc optional func tabbar(tabBar: UITabBar, hasSelcted Index: Int)
+    @objc optional func tabbarPresentAlbumViewController(tabBar: UITabBar)
+}
+
 class TabBar: UITabBar {
     
     lazy var tabBarNode: TabBarNode = {
         let view = TabBarNode()
+        view.delegate = self
         return view
     }()
+    
+    weak var agency: TabBarProtocol?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -170,5 +199,16 @@ class TabBar: UITabBar {
         }
         tabBarNode.frame = self.bounds
         self.bringSubviewToFront(tabBarNode.view)
+    }
+}
+
+extension TabBar: TabBarNodeProtocol {
+    
+    func tabbarNode(node: TabBarNode, hasSelcted Index: Int) {
+        self.agency?.tabbar?(tabBar: self, hasSelcted: Index)
+    }
+    
+    func tabbarNodePresentAlbumViewController(node: TabBarNode) {
+        self.agency?.tabbarPresentAlbumViewController?(tabBar: self)
     }
 }
