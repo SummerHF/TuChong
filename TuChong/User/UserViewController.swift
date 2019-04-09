@@ -29,4 +29,10 @@ import AsyncDisplayKit
 
 /// 我的
 
-class UserViewController: BaseViewControlle { }
+class UserViewController: BaseViewControlle {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hiddenLfetBackItem = true
+    }
+}

@@ -48,14 +48,17 @@ class BarItemModel: NSObject {
     var title: String
     var defaultImage: UIImage?
     var selectedImage: UIImage?
+    /// use this image when selected photoFilm
+    var whiteImage: UIImage?
     var type: BarItemType
     var index: Int
     
     /// default index is Four, for center plus button
-    init(title: String = "", defaultImage: UIImage? = nil, selectedImage: UIImage? = nil, type: BarItemType, index: Int = 4) {
+    init(title: String = "", defaultImage: UIImage? = nil, selectedImage: UIImage? = nil, whiteImage: UIImage? = nil, type: BarItemType, index: Int = 4) {
         self.title = title
         self.defaultImage = defaultImage
         self.selectedImage = selectedImage
+        self.whiteImage = whiteImage
         self.type = type
         self.index = index
         super.init()
@@ -63,9 +66,9 @@ class BarItemModel: NSObject {
     
     /// Create items array
     static func buildModels() -> [BarItemModel] {
-        let homeItemModel = BarItemModel(title: R.string.localizable.home(), defaultImage: R.image.home(), selectedImage: R.image.home_selected(), type: .home, index: 0)
+        let homeItemModel = BarItemModel(title: R.string.localizable.home(), defaultImage: R.image.home(), selectedImage: R.image.home_selected(), whiteImage: R.image.home_white(), type: .home, index: 0)
         let photoFilmItemModel = BarItemModel(title: R.string.localizable.film(), defaultImage: R.image.film_play(), selectedImage: R.image.film_play_selected(), type: .photoFilm, index: 1)
-        let centerItemModel = BarItemModel(defaultImage: R.image.plus(), type: .plus)
+        let centerItemModel = BarItemModel(defaultImage: R.image.plus(), whiteImage: R.image.plus_white(), type: .plus)
         let activityItemModel = BarItemModel(title: R.string.localizable.avtivity(), defaultImage: R.image.activity(), selectedImage: R.image.activity_selcted(), type: .activity, index: 2)
         let userItemModel = BarItemModel(title: R.string.localizable.user(), defaultImage: R.image.user_profile(), selectedImage: R.image.use_profile_selected(), type: .profile, index: 3)
         return [homeItemModel, photoFilmItemModel, centerItemModel, activityItemModel, userItemModel]
@@ -130,11 +133,16 @@ class BarItemButton: ASButtonNode {
 
 class TabBarNode: ASDisplayNode {
     
+    private var defaultIndex: Int = 0
+    
     lazy var nodeArray: [BarItemButton] = {
         return BarItemButton.buildNodes()
     }()
     
     weak var delegate: TabBarNodeProtocol?
+    
+    /// default selected
+    private var defaultSelectedItemNode: BarItemButton?
     
     override init() {
         super.init()
@@ -142,15 +150,22 @@ class TabBarNode: ASDisplayNode {
     }
     
     override func didLoad() {
-        for item in nodeArray {
-            item.addTarget(self, action: #selector(barItemEvent(button:)), forControlEvents: .touchUpInside)
+        for i in 0..<nodeArray.count {
+            if defaultIndex == i {
+                defaultSelectedItemNode = nodeArray[i]
+                defaultSelectedItemNode?.isSelected = true
+            }
+            nodeArray[i].addTarget(self, action: #selector(barItemEvent(button:)), forControlEvents: .touchUpInside)
         }
     }
     
     @objc private func barItemEvent(button: BarItemButton) {
+        guard let node = defaultSelectedItemNode , node != button else { return }
+        /// when selected center plust, ignore animate
         if button.itemModel.type == .plus {
             self.delegate?.tabbarNodePresentAlbumViewController?(node: self)
         } else {
+            animateWith(currentNode: node, selectedNode: button)
             self.delegate?.tabbarNode?(node: self, hasSelcted: button.itemModel.index)
         }
     }
@@ -160,6 +175,34 @@ class TabBarNode: ASDisplayNode {
         let height = macro.tabBarHeight
         _ = nodeArray.map { $0.style.preferredSize = CGSize(width: width, height: height) }
         return ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .center, alignItems: .stretch, children: nodeArray)
+    }
+    
+    /// set button node animate for selected event
+    private func animateWith(currentNode: BarItemButton, selectedNode: BarItemButton) {
+        
+        if selectedNode.itemModel.type == .photoFilm {
+            /// selected
+            resetButtonNodeAttributes(isSelectedPhotoFilm: true)
+        } else if currentNode.itemModel.type == .photoFilm {
+            /// cancel selected
+            resetButtonNodeAttributes(isSelectedPhotoFilm: false)
+        }
+        currentNode.isSelected = false
+        selectedNode.isSelected = true
+        defaultSelectedItemNode = selectedNode
+    }
+    
+    private func resetButtonNodeAttributes(isSelectedPhotoFilm: Bool) {
+        /// change tabbar backgroundcolor
+        self.backgroundColor = isSelectedPhotoFilm ? UIColor.black : UIColor.clear
+        /// change title color
+        for value in nodeArray {
+            value.setAttributedTitle(NSAttributedString(string: value.itemModel.title, attributes: [
+                NSAttributedString.Key.font: UIFont.normalFont_10(),
+                NSAttributedString.Key.foregroundColor: (isSelectedPhotoFilm ? UIColor.white : UIColor.black)
+                ]), for: .normal)
+            value.setImage(isSelectedPhotoFilm ? value.itemModel.whiteImage : value.itemModel.defaultImage, for: .normal)
+        }
     }
 }
 

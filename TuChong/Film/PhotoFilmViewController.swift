@@ -29,4 +29,18 @@ import AsyncDisplayKit
 
 /// 照片电影
 
-class PhotoFilmViewController: BaseViewControlle { }
+class PhotoFilmViewController: BaseViewControlle {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.black
+    }
+    
+    override func initialHidden() -> Bool {
+        return true
+    }
+}

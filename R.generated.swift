@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 28 images.
+  /// This `R.image` struct is generated, and contains static references to 30 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -74,6 +74,8 @@ struct R: Rswift.Validatable {
     static let first = Rswift.ImageResource(bundle: R.hostingBundle, name: "first")
     /// Image `home_selected`.
     static let home_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "home_selected")
+    /// Image `home_white`.
+    static let home_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "home_white")
     /// Image `home`.
     static let home = Rswift.ImageResource(bundle: R.hostingBundle, name: "home")
     /// Image `iconNearbyHot_15x15_`.
@@ -90,6 +92,8 @@ struct R: Rswift.Validatable {
     static let photography_tutorial = Rswift.ImageResource(bundle: R.hostingBundle, name: "photography _tutorial")
     /// Image `photography_club`.
     static let photography_club = Rswift.ImageResource(bundle: R.hostingBundle, name: "photography_club")
+    /// Image `plus_white`.
+    static let plus_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus_white")
     /// Image `plus`.
     static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
     /// Image `recommend_ cameraman`.
@@ -163,6 +167,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.home_selected, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "home_white", bundle: ..., traitCollection: ...)`
+    static func home_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.home_white, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "iconNearbyHot_15x15_", bundle: ..., traitCollection: ...)`
     static func iconNearbyHot_15x15_(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.iconNearbyHot_15x15_, compatibleWith: traitCollection)
@@ -201,6 +210,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "plus", bundle: ..., traitCollection: ...)`
     static func plus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.plus, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "plus_white", bundle: ..., traitCollection: ...)`
+    static func plus_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.plus_white, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "recommend_ cameraman", bundle: ..., traitCollection: ...)`
