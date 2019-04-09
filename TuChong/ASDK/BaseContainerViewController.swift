@@ -182,4 +182,33 @@ extension BaseNavigationController: UIGestureRecognizerDelegate {
 
 // MARK: - BaseTabBarController
 
-class BaseTabBarController: ASTabBarController {}
+class BaseTabBarController: ASTabBarController {
+    
+    lazy var customTabBar: TabBar = {
+        let tabBar = TabBar()
+        return tabBar
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addCustomTabbar()
+        addViewControllers()
+    }
+    
+    private func addCustomTabbar() {
+        self.setValue(customTabBar, forKey: "tabBar")
+    }
+    
+    private func addViewControllers() {
+        /// 首页
+        let homeNavgationController = BaseNavigationController(rootViewController: HomeContainerViewController())
+        /// 照片电影
+        let photoFilmNavigationController = BaseNavigationController(rootViewController: PhotoFilmViewController())
+        /// 活动
+        let activityNavigationController = BaseNavigationController(rootViewController: ActivityViewController())
+        /// 活动
+        let userProfileNavigationController = BaseNavigationController(rootViewController: UserViewController())
+        /// set sub viewcontroller
+        self.viewControllers = [homeNavgationController, photoFilmNavigationController, activityNavigationController, userProfileNavigationController]
+    }
+}

@@ -1,7 +1,7 @@
-//  AppDelegate+Extension.swift
+//  PhotoFilmViewController.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/3/20.
+//  Created by SummerHF on 2019/4/9.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -25,22 +25,8 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import AsyncDisplayKit
 
-extension AppDelegate {
+/// 照片电影
 
-    /// 设置主窗口
-    func setKeyWindow() {
-        /// TabBar
-        let tabBarController = BaseTabBarController()
-        /// Window
-        self.window?.backgroundColor = UIColor.white
-        self.window?.rootViewController = tabBarController
-        self.window?.makeKeyAndVisible()
-    }
-    
-    /// 设置开机广告
-    func setLaunchAdvertiseMent() {
-        LaunchManager.manager.show()
-    }
-}
+class PhotoFilmViewController: BaseViewControlle { }

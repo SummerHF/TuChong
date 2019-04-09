@@ -54,16 +54,28 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 19 images.
+  /// This `R.image` struct is generated, and contains static references to 28 images.
   struct image {
+    /// Image `activity_selcted`.
+    static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
+    /// Image `activity`.
+    static let activity = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity")
     /// Image `bc_back`.
     static let bc_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "bc_back")
     /// Image `corner_mark`.
     static let corner_mark = Rswift.ImageResource(bundle: R.hostingBundle, name: "corner_mark")
     /// Image `dot`.
     static let dot = Rswift.ImageResource(bundle: R.hostingBundle, name: "dot")
+    /// Image `film_play_selected`.
+    static let film_play_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "film_play_selected")
+    /// Image `film_play`.
+    static let film_play = Rswift.ImageResource(bundle: R.hostingBundle, name: "film_play")
     /// Image `first`.
     static let first = Rswift.ImageResource(bundle: R.hostingBundle, name: "first")
+    /// Image `home_selected`.
+    static let home_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "home_selected")
+    /// Image `home`.
+    static let home = Rswift.ImageResource(bundle: R.hostingBundle, name: "home")
     /// Image `iconNearbyHot_15x15_`.
     static let iconNearbyHot_15x15_ = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconNearbyHot_15x15_")
     /// Image `icon_relation_followed`.
@@ -78,6 +90,8 @@ struct R: Rswift.Validatable {
     static let photography_tutorial = Rswift.ImageResource(bundle: R.hostingBundle, name: "photography _tutorial")
     /// Image `photography_club`.
     static let photography_club = Rswift.ImageResource(bundle: R.hostingBundle, name: "photography_club")
+    /// Image `plus`.
+    static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
     /// Image `recommend_ cameraman`.
     static let recommend_Cameraman = Rswift.ImageResource(bundle: R.hostingBundle, name: "recommend_ cameraman")
     /// Image `red_envelopes`.
@@ -92,8 +106,22 @@ struct R: Rswift.Validatable {
     static let third = Rswift.ImageResource(bundle: R.hostingBundle, name: "third")
     /// Image `trophy`.
     static let trophy = Rswift.ImageResource(bundle: R.hostingBundle, name: "trophy")
+    /// Image `use_profile_selected`.
+    static let use_profile_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "use_profile_selected")
+    /// Image `user_profile`.
+    static let user_profile = Rswift.ImageResource(bundle: R.hostingBundle, name: "user_profile")
     /// Image `verifications`.
     static let verifications = Rswift.ImageResource(bundle: R.hostingBundle, name: "verifications")
+    
+    /// `UIImage(named: "activity", bundle: ..., traitCollection: ...)`
+    static func activity(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.activity, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "activity_selcted", bundle: ..., traitCollection: ...)`
+    static func activity_selcted(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.activity_selcted, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "bc_back", bundle: ..., traitCollection: ...)`
     static func bc_back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -110,9 +138,29 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.dot, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "film_play", bundle: ..., traitCollection: ...)`
+    static func film_play(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.film_play, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "film_play_selected", bundle: ..., traitCollection: ...)`
+    static func film_play_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.film_play_selected, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "first", bundle: ..., traitCollection: ...)`
     static func first(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.first, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "home", bundle: ..., traitCollection: ...)`
+    static func home(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.home, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "home_selected", bundle: ..., traitCollection: ...)`
+    static func home_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.home_selected, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "iconNearbyHot_15x15_", bundle: ..., traitCollection: ...)`
@@ -150,6 +198,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.photography_club, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "plus", bundle: ..., traitCollection: ...)`
+    static func plus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.plus, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "recommend_ cameraman", bundle: ..., traitCollection: ...)`
     static func recommend_Cameraman(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.recommend_Cameraman, compatibleWith: traitCollection)
@@ -185,6 +238,16 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.trophy, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "use_profile_selected", bundle: ..., traitCollection: ...)`
+    static func use_profile_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.use_profile_selected, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "user_profile", bundle: ..., traitCollection: ...)`
+    static func user_profile(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.user_profile, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "verifications", bundle: ..., traitCollection: ...)`
     static func verifications(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.verifications, compatibleWith: traitCollection)
@@ -208,7 +271,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 12 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 16 localization keys.
     struct localizable {
       /// zh-Hans translation: 作品, 教程, 摄影师，搜搜看
       /// 
@@ -218,6 +281,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let cancel_button_title = Rswift.StringResource(key: "cancel_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 我的
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let user = Rswift.StringResource(key: "user", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 推荐摄影师
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -237,6 +304,10 @@ struct R: Rswift.Validatable {
       /// zh-Hans translation: 活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
+      static let avtivity = Rswift.StringResource(key: "avtivity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 活动
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
       static let tab_bar_activity_title = Rswift.StringResource(key: "tab_bar_activity_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 热搜摄影师
       /// 
@@ -246,6 +317,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let hot_activity_title = Rswift.StringResource(key: "hot_activity_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 照片电影
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let film = Rswift.StringResource(key: "film", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 红包活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -254,6 +329,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let lecture = Rswift.StringResource(key: "lecture", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 首页
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let home = Rswift.StringResource(key: "home", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 首页
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -271,6 +350,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func cancel_button_title(_: Void = ()) -> String {
         return NSLocalizedString("cancel_button_title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 我的
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func user(_: Void = ()) -> String {
+        return NSLocalizedString("user", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 推荐摄影师
@@ -304,6 +390,13 @@ struct R: Rswift.Validatable {
       /// zh-Hans translation: 活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
+      static func avtivity(_: Void = ()) -> String {
+        return NSLocalizedString("avtivity", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 活动
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
       static func tab_bar_activity_title(_: Void = ()) -> String {
         return NSLocalizedString("tab_bar_activity_title", bundle: R.hostingBundle, comment: "")
       }
@@ -322,6 +415,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("hot_activity_title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 照片电影
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func film(_: Void = ()) -> String {
+        return NSLocalizedString("film", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 红包活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -334,6 +434,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func lecture(_: Void = ()) -> String {
         return NSLocalizedString("lecture", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 首页
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func home(_: Void = ()) -> String {
+        return NSLocalizedString("home", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 首页

@@ -53,6 +53,8 @@ sudo vim /etc/hosts
 192.30.253.112 github.com
 151.101.77.194 github.global.ssl.fastly.net
 然后刷新缓存: sudo dscacheutil -flushcache
+tabbar item animate
+https://uxplanet.org/20-ios-tab-bar-open-source-ui-animation-components-libraries-swift-objective-c-43c0039dff0d
 
 swiftLint rule
 disabled_rules: # 执行时排除掉的规则
