@@ -37,7 +37,7 @@
 		C4AD3C4B2240AEFE0095BC97 /* API in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C4A2240AEFE0095BC97 /* API */; };
 		C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */; };
 		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
-		C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavView.swift */; };
+		C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavNode.swift */; };
 		C4CBE21C2255A9260074F58A /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21B2255A9260074F58A /* SearchModel.swift */; };
 		C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */; };
 		C4DC5C19225DDEDE00985CE3 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC5C18225DDEDE00985CE3 /* ScrollView.swift */; };
@@ -85,7 +85,7 @@
 		C4AD3C4A2240AEFE0095BC97 /* API */ = {isa = PBXFileReference; lastKnownFileType = text; path = API; sourceTree = "<group>"; };
 		C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagViewController.swift; sourceTree = "<group>"; };
 		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
-		C4B9825C2242172900F65C0E /* HomeNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavView.swift; sourceTree = "<group>"; };
+		C4B9825C2242172900F65C0E /* HomeNavNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavNode.swift; sourceTree = "<group>"; };
 		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
 		C4CBE21B2255A9260074F58A /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellNode.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				C4AD3C44224098BD0095BC97 /* HomePageModel.swift */,
-				C4B9825C2242172900F65C0E /* HomeNavView.swift */,
+				C4B9825C2242172900F65C0E /* HomeNavNode.swift */,
 				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
 				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
 				C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */,
@@ -493,7 +493,7 @@
 				C43AEA09225442BC00C2CFE7 /* SearchBar.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
 				C43B9A56225C617100C15872 /* UserViewController.swift in Sources */,
-				C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */,
+				C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */,
 				C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */,
 				C43AEA0B225482D200C2CFE7 /* SearchTableNode.swift in Sources */,
 				C4DC5C19225DDEDE00985CE3 /* ScrollView.swift in Sources */,

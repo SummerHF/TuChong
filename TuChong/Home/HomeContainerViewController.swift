@@ -34,9 +34,8 @@ class HomeContainerViewController: BaseViewControlle {
     /// 搜索框
     private let searchBar = SearchBar()
     /// 头部的导航视图
-    var navView: HomeNavView? {
+    var navView: HomeNavNode? {
         didSet {
-            navView?.delegate = self
             self.node.addSubnode(navView!)
         }
     }
@@ -72,7 +71,7 @@ class HomeContainerViewController: BaseViewControlle {
         Network.request(target: .home_nav, success: { (response) in
             guard let model = HomePage_Nav.deserialize(from: response) else { return }
             self.navArray = model.data
-            self.navView = HomeNavView(data: model.data)
+            self.navView = HomeNavNode(data: model.data, delegate: self)
         }, error: { (error) in
             print(error)
         }) { (moyaError) in
@@ -84,11 +83,16 @@ class HomeContainerViewController: BaseViewControlle {
 
 // MARK: - HomeNavViewDlegate
 
-extension HomeContainerViewController: HomeNavViewDlegate {
+extension HomeContainerViewController: HomeNavNodeDlegate {
     
-    func homeNavViewMoreBtnEvent() {
+    func homeNavNodeMoreBtnEvent(node: HomeNavNode) {
         /// 标签页
         let tagVC = HomeTagViewController()
         self.navigationController?.pushViewController(tagVC, animated: true)
+    }
+    
+    func homeNav(node: HomeNavNode, selectedBtn: HomeNavItemButton, with index: Int) {
+        print(index)
+        print(selectedBtn.itemModel.name)
     }
 }

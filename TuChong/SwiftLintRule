@@ -56,6 +56,9 @@ sudo vim /etc/hosts
 tabbar item animate
 https://uxplanet.org/20-ios-tab-bar-open-source-ui-animation-components-libraries-swift-objective-c-43c0039dff0d
 
+分页相关:
+https://github.com/pujiaxin33/JXSegmentedView
+
 swiftLint rule
 disabled_rules: # 执行时排除掉的规则
 - colon
