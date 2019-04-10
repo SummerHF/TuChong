@@ -31,6 +31,8 @@ import AsyncDisplayKit
 class HomeContainerViewController: BaseViewControlle {
     
     var navArray: [HomePageNav_Data_Model] = []
+    /// 搜索框
+    private let searchBar = SearchBar()
     /// 头部的导航视图
     var navView: HomeNavView? {
         didSet {
@@ -50,12 +52,20 @@ class HomeContainerViewController: BaseViewControlle {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hiddenLfetBackItem = true 
+        hiddenLfetBackItem = true
+        addSearchBar()
         initContainer()
     }
-}
-
-extension HomeContainerViewController {
+    
+    /// addSearchBar
+    private func addSearchBar() {
+        self.navigationBar.view.addSubview(searchBar)
+        searchBar.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(macro.bottomMargin)
+            make.size.equalTo(macro.searchBarSize)
+        }
+    }
     
     /// 初始化容器视图
     func initContainer() {
@@ -69,7 +79,10 @@ extension HomeContainerViewController {
             print(moyaError)
         }
     }
+    
 }
+
+// MARK: - HomeNavViewDlegate
 
 extension HomeContainerViewController: HomeNavViewDlegate {
     

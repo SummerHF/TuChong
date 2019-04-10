@@ -40,6 +40,7 @@
 		C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavView.swift */; };
 		C4CBE21C2255A9260074F58A /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21B2255A9260074F58A /* SearchModel.swift */; };
 		C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */; };
+		C4DC5C19225DDEDE00985CE3 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC5C18225DDEDE00985CE3 /* ScrollView.swift */; };
 		C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */; };
 		C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */; };
 		C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */; };
@@ -88,6 +89,7 @@
 		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
 		C4CBE21B2255A9260074F58A /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellNode.swift; sourceTree = "<group>"; };
+		C4DC5C18225DDEDE00985CE3 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableNode.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				5317321F224130F600B6C10B /* BaseContainerViewController.swift */,
 				C4AC63D42241E53700324C23 /* ASDKNavigationBar.swift */,
+				C4DC5C18225DDEDE00985CE3 /* ScrollView.swift */,
 			);
 			path = ASDK;
 			sourceTree = "<group>";
@@ -439,7 +442,7 @@
 			);
 			name = R.swift;
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -493,6 +496,7 @@
 				C4B9825D2242172900F65C0E /* HomeNavView.swift in Sources */,
 				C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */,
 				C43AEA0B225482D200C2CFE7 /* SearchTableNode.swift in Sources */,
+				C4DC5C19225DDEDE00985CE3 /* ScrollView.swift in Sources */,
 				C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */,
 				53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */,
 				C41E0CC4224CA6260032E12A /* Color.swift in Sources */,
