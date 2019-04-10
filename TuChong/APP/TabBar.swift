@@ -27,7 +27,7 @@
 
 import UIKit
 import AsyncDisplayKit
-import DeviceKit
+import pop
 
 enum BarItemType {
     /// 首页
@@ -67,10 +67,10 @@ class BarItemModel: NSObject {
     /// Create items array
     static func buildModels() -> [BarItemModel] {
         let homeItemModel = BarItemModel(title: R.string.localizable.home(), defaultImage: R.image.home(), selectedImage: R.image.home_selected(), whiteImage: R.image.home_white(), type: .home, index: 0)
-        let photoFilmItemModel = BarItemModel(title: R.string.localizable.film(), defaultImage: R.image.film_play(), selectedImage: R.image.film_play_selected(), type: .photoFilm, index: 1)
+        let photoFilmItemModel = BarItemModel(title: R.string.localizable.film(), defaultImage: R.image.film_play(), selectedImage: R.image.film_play_selected(), whiteImage: R.image.film_play_selected(), type: .photoFilm, index: 1)
         let centerItemModel = BarItemModel(defaultImage: R.image.plus(), whiteImage: R.image.plus_white(), type: .plus)
-        let activityItemModel = BarItemModel(title: R.string.localizable.avtivity(), defaultImage: R.image.activity(), selectedImage: R.image.activity_selcted(), type: .activity, index: 2)
-        let userItemModel = BarItemModel(title: R.string.localizable.user(), defaultImage: R.image.user_profile(), selectedImage: R.image.use_profile_selected(), type: .profile, index: 3)
+        let activityItemModel = BarItemModel(title: R.string.localizable.avtivity(), defaultImage: R.image.activity(), selectedImage: R.image.activity_selcted(), whiteImage: R.image.activity_white(), type: .activity, index: 2)
+        let userItemModel = BarItemModel(title: R.string.localizable.user(), defaultImage: R.image.user_profile(), selectedImage: R.image.use_profile_selected(), whiteImage: R.image.user_profile_white(), type: .profile, index: 3)
         return [homeItemModel, photoFilmItemModel, centerItemModel, activityItemModel, userItemModel]
     }
 }
@@ -80,7 +80,7 @@ class BarItemModel: NSObject {
 class BarItemButton: ASButtonNode {
     
     let itemModel: BarItemModel
-    let spacing: CGFloat = 10.0
+    let spacing: CGFloat = 4.0
     
     /// Disable highlited state
     override var isHighlighted: Bool {
@@ -101,13 +101,18 @@ class BarItemButton: ASButtonNode {
         super.didLoad()
         
         self.laysOutHorizontally = false
+        self.imageNode.isLayerBacked = false
+        self.imageNode.contentMode = .scaleAspectFit
         self.setImage(itemModel.defaultImage, for: .normal)
-
+        
         if itemModel.type != .plus {
+            self.imageNode.style.preferredSize = CGSize(width: 24, height: 24)
             self.setImage(itemModel.selectedImage, for: .selected)
             self.setAttributedTitle(NSAttributedString(string: itemModel.title, attributes: [NSAttributedString.Key.font: UIFont.normalFont_10(),
                                                                                              NSAttributedString.Key.foregroundColor: UIColor.black
                 ]), for: .normal)
+        } else {
+            self.imageNode.style.preferredSize = CGSize(width: 36, height: 36)
         }
         self.contentSpacing = spacing
     }
@@ -134,6 +139,8 @@ class BarItemButton: ASButtonNode {
 class TabBarNode: ASDisplayNode {
     
     private var defaultIndex: Int = 0
+    private let rotateKey = "rotateKey"
+    private let rotateBackKey = "rotateBackKey"
     
     lazy var nodeArray: [BarItemButton] = {
         return BarItemButton.buildNodes()
@@ -179,7 +186,6 @@ class TabBarNode: ASDisplayNode {
     
     /// set button node animate for selected event
     private func animateWith(currentNode: BarItemButton, selectedNode: BarItemButton) {
-        
         if selectedNode.itemModel.type == .photoFilm {
             /// selected
             resetButtonNodeAttributes(isSelectedPhotoFilm: true)
@@ -189,7 +195,33 @@ class TabBarNode: ASDisplayNode {
         }
         currentNode.isSelected = false
         selectedNode.isSelected = true
-        defaultSelectedItemNode = selectedNode
+        self.defaultSelectedItemNode = selectedNode
+        ///before rotate, remove the key for imageNode layer
+        selectedNode.imageNode.view.layer.pop_removeAllAnimations()
+        /// rotate
+        let rotationAnimation = TabBarNode.createPopRotationAnimation()
+        rotationAnimation.fromValue = 0.0
+        rotationAnimation.toValue = Double.pi / 2.0
+        selectedNode.isEnabled = false
+        rotationAnimation.completionBlock = { _ , _ in
+            selectedNode.isEnabled = true
+            self.rotateBack(currentNode: selectedNode)
+        }
+        selectedNode.imageNode.view.layer.pop_add(rotationAnimation, forKey: rotateKey)
+    }
+    
+    /// rotate back when iamgeNode go to the back
+    private func rotateBack(currentNode: BarItemButton) {
+        let rotationAnimation = TabBarNode.createPopRotationAnimation()
+        rotationAnimation.fromValue = Double.pi / 2.0
+        rotationAnimation.toValue = 0.0
+        currentNode.imageNode.view.layer.pop_add(rotationAnimation, forKey: rotateBackKey)
+    }
+    
+    static func createPopRotationAnimation() -> POPBasicAnimation {
+        let rotationAnimation = POPBasicAnimation(propertyNamed: kPOPLayerRotationY)!
+        rotationAnimation.duration = 0.2
+        return rotationAnimation
     }
     
     private func resetButtonNodeAttributes(isSelectedPhotoFilm: Bool) {

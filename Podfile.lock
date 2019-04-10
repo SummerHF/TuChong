@@ -26,6 +26,7 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0-beta.13):
     - PINCache (= 3.0.1-beta.6)
     - PINRemoteImage/Core
+  - pop (1.0.12)
   - R.swift (5.0.2):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.0)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - DeviceKit (~> 1.3)
   - HandyJSON (~> 4.2.0)
   - Moya/RxSwift (~> 12.0)
+  - pop
   - R.swift
   - SnapKit (~> 4.0.0)
   - SwiftyJSON (~> 4.0)
@@ -79,6 +81,7 @@ SPEC REPOS:
     - PINCache
     - PINOperation
     - PINRemoteImage
+    - pop
     - R.swift
     - R.swift.Library
     - Result
@@ -108,6 +111,7 @@ SPEC CHECKSUMS:
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   R.swift: 81455d81467763cbd3f4d79d938d05f4ac4c0228
   R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
@@ -118,6 +122,6 @@ SPEC CHECKSUMS:
   Texture: fc6e0157201f3a6e503d364c147b1872e365cef4
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
 
-PODFILE CHECKSUM: ca4b6ffc92d8a38701cc2edc278c9169c6dd1639
+PODFILE CHECKSUM: 8e63b87f6093e7a696f14bc2115fbfbcbb0d2569
 
 COCOAPODS: 1.5.3
