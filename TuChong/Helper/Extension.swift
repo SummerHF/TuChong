@@ -111,6 +111,10 @@ public extension UIFont {
         return UIFont.systemFont(ofSize: 16)
     }
     
+    static func normalFont_18() -> UIFont {
+        return UIFont.systemFont(ofSize: 18)
+    }
+    
     static func normalFont_20() -> UIFont {
         return UIFont.systemFont(ofSize: 20)
     }

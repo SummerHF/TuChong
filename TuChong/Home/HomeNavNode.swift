@@ -182,4 +182,8 @@ class HomeNavNode: ASDisplayNode {
             self.scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
         }
     }
+    
+    open func hasSelected(index: Int) {
+        selectedBtnEvent(selectedButton: buttonArray[index])
+    }
 }

@@ -91,6 +91,14 @@ struct Macro {
         return UIScreen.main.bounds.height
     }
     
+    var homeContainerY: CGFloat {
+        return topHeight + homenavHeight
+    }
+    
+    var homeContainerHeight: CGFloat {
+        return screenHeight - homeContainerY
+    }
+    
     /// 侧划返回的触发距离
     var sideslipDistance: CGFloat {
         return 40

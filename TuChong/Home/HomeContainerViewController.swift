@@ -28,8 +28,13 @@
 import UIKit
 import AsyncDisplayKit
 
+// MARK: - HomeContainerViewController
+
 class HomeContainerViewController: BaseViewControlle {
-    
+    /// default selected
+    private var selectedIndex: Int = 0
+    /// UIPageController's inner scrollView
+    private var scrollView: UIScrollView?
     var navArray: [HomePageNav_Data_Model] = []
     /// 搜索框
     private let searchBar = SearchBar()
@@ -39,6 +44,9 @@ class HomeContainerViewController: BaseViewControlle {
             self.node.addSubnode(navView!)
         }
     }
+    /// using `UIPageViewController` to manage sub viewcontroller
+    var pageController: UIPageViewController?
+    var dictionaryForController: [Int: BaseViewControlle] = [:]
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -91,8 +99,102 @@ extension HomeContainerViewController: HomeNavNodeDlegate {
         self.navigationController?.pushViewController(tagVC, animated: true)
     }
     
+    /// create pagecontroller and subViewControllers
     func homeNav(node: HomeNavNode, selectedBtn: HomeNavItemButton, with index: Int) {
-        print(index)
-        print(selectedBtn.itemModel.name)
+        /// has created `UIPageController`
+        if let manager = pageController {
+            if let subViewController = dictionaryForController[index] {
+                manager.setViewControllers([subViewController], direction: (index > selectedIndex ? .forward : .reverse), animated: true, completion: nil)
+            } else {
+                /// to created subviewcontroller
+                let subViewController = self.create(subviewControll: index)
+                dictionaryForController[index] = subViewController
+                manager.setViewControllers([subViewController], direction: (index > selectedIndex ? .forward : .reverse), animated: true, completion: nil)
+            }
+            self.selectedIndex = index
+        } else {
+            /// first crated
+            let managerViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+            self.addChild(managerViewController)
+            self.view.addSubview(managerViewController.view)
+            managerViewController.didMove(toParent: self)
+            managerViewController.view.frame = CGRect(x: 0, y: macro.homeContainerY, width: macro.screenWidth, height: macro.homeContainerHeight)
+            managerViewController.delegate = self
+            managerViewController.dataSource = self
+            /// has created subviewcontroller
+            if let subViewController = dictionaryForController[index] {
+                managerViewController.setViewControllers([subViewController], direction: .forward, animated: false, completion: nil)
+            } else {
+                /// to created subviewcontroller
+                let subViewController = self.create(subviewControll: index)
+                dictionaryForController[index] = subViewController
+                managerViewController.setViewControllers([subViewController], direction: .forward, animated: false, completion: nil)
+            }
+            self.pageController = managerViewController
+            self.selectedIndex = index
+        }
+    }
+}
+
+extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        for (key, vc) in dictionaryForController {
+            if vc == viewController, key > 0 {
+                if let value = dictionaryForController[key - 1] {
+                    return value
+                } else {
+                    let vc = self.create(subviewControll: key)
+                    dictionaryForController[key - 1] = vc
+                    return vc
+                }
+            }
+        }
+        return nil
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        for (key, vc) in dictionaryForController {
+            if vc == viewController, key < navArray.count - 1 {
+                if let value = dictionaryForController[key + 1] {
+                    return value
+                } else {
+                    let vc = self.create(subviewControll: key)
+                    dictionaryForController[key + 1] = vc
+                    return vc
+                }
+            }
+        }
+        return nil
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let target = pendingViewControllers.first else { return }
+        for (key, vc) in dictionaryForController where vc == target {
+           self.selectedIndex = key
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if finished {
+            self.navView?.hasSelected(index: self.selectedIndex)
+        }
+    }
+    
+    private func create(subviewControll withIndex: Int) -> BaseViewControlle {
+        let controller = HomeSubViewController()
+        controller.view.backgroundColor = RGBA(R: CGFloat(arc4random_uniform(256)), G: CGFloat(arc4random_uniform(256)), B: CGFloat(arc4random_uniform(256)))
+        controller.hiddenLfetBackItem = true
+        return controller
+    }
+}
+
+extension HomeContainerViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset)
+        print(selectedIndex)
+//        print(scrollView.contentSize)
+//        if scrollView.contentSize.width <
     }
 }
