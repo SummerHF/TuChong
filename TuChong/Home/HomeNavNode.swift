@@ -28,11 +28,7 @@
 import UIKit
 import AsyncDisplayKit
 
-// MARK: - HomeNavViewDlegatee
-
-@objc protocol HomeNavViewDlegate: class {
-    @objc optional func homeNavViewMoreBtnEvent()
-}
+// MARK: - HomeNavItemButton
 
 class HomeNavItemButton: UIButton {
     
@@ -45,8 +41,8 @@ class HomeNavItemButton: UIButton {
         }
     }
     
-    private var itemModel: HomePageNav_Data_Model
-    private var index: Int
+    var itemModel: HomePageNav_Data_Model
+    var index: Int
     
     init(model: HomePageNav_Data_Model, index: Int) {
         self.itemModel = model
@@ -59,10 +55,9 @@ class HomeNavItemButton: UIButton {
             ]), for: .normal)
         
         self.setAttributedTitle(NSAttributedString(string: model.name, attributes: [
-            NSAttributedString.Key.font: UIFont.normalFont_20(),
+            NSAttributedString.Key.font: UIFont.normalFont_18(),
             NSAttributedString.Key.foregroundColor: UIColor.black
             ]), for: .selected)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -70,16 +65,23 @@ class HomeNavItemButton: UIButton {
     }
 }
 
-// MARK: - HomeNavView
+// MARK: - HomeNavViewDlegatee
 
-class HomeNavView: ASDisplayNode {
+@objc protocol HomeNavNodeDlegate {
+    @objc optional func homeNav(node: HomeNavNode, selectedBtn: HomeNavItemButton, with index: Int)
+    @objc optional func homeNavNodeMoreBtnEvent(node: HomeNavNode)
+}
+// MARK: - HomeNavNode
+
+class HomeNavNode: ASDisplayNode {
     
     let moreBtnNodeWidth: CGFloat = 40
-    let itemWidth: CGFloat = 60
-    var dataArray: [HomePageNav_Data_Model]
-    var buttonArray: [HomeNavItemButton] = []
+    let itemWidth: CGFloat = 64
+    private var dataArray: [HomePageNav_Data_Model]
+    private var buttonArray: [HomeNavItemButton] = []
+    private var defaultSelectedButton: HomeNavItemButton?
     
-    weak var delegate: HomeNavViewDlegate?
+    weak var delegate: HomeNavNodeDlegate?
     
     /// using scrollView
     lazy var scrollView: ScrollView = {
@@ -96,8 +98,9 @@ class HomeNavView: ASDisplayNode {
         return node
     }()
     
-    init(data: [HomePageNav_Data_Model]) {
+    init(data: [HomePageNav_Data_Model], delegate: HomeNavNodeDlegate) {
         self.dataArray = data
+        self.delegate = delegate
         super.init()
         self.addNavItems()
     }
@@ -109,20 +112,21 @@ class HomeNavView: ASDisplayNode {
     
     override func didLoad() {
         self.frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
-        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.width - moreBtnNodeWidth, height: self.view.height)
+        self.scrollView.frame = self.bounds
         self.moreBtnNode.frame = CGRect(x: self.view.width - moreBtnNodeWidth, y: 0, width: moreBtnNodeWidth, height: self.view.height)
-        
         /// add subButton
         var lastView: UIView = self.scrollView
         for (index, model) in dataArray.enumerated() {
             let button = HomeNavItemButton(model: model, index: index)
             buttonArray.append(button)
-            
             /// default selected,
             if model.default {
-                button.isSelected = true 
+                button.isSelected = true
+                defaultSelectedButton = button
+                self.delegate?.homeNav?(node: self, selectedBtn: button, with: index)
             }
-            
+            /// add button event
+            button.addTarget(self, action: #selector(selectedBtnEvent(selectedButton:)), for: .touchUpInside)
             /// add button to scrollView
             self.scrollView.addSubview(button)
             button.snp.makeConstraints { (make) in
@@ -136,11 +140,46 @@ class HomeNavView: ASDisplayNode {
             }
             lastView = button
         }
-        /// set content offset
-        self.scrollView.contentSize = CGSize(width: CGFloat(dataArray.count) * itemWidth, height: self.view.height)
+        /// set content size
+        let totalWidth: CGFloat = itemWidth * CGFloat(dataArray.count)
+        if lastView != self.scrollView && totalWidth <= self.view.width - moreBtnNodeWidth {
+            /// don't need to add unnecessary offset
+            self.scrollView.contentSize = CGSize(width: totalWidth, height: self.view.height)
+        } else {
+            self.scrollView.contentSize = CGSize(width: totalWidth + moreBtnNodeWidth, height: self.view.height)
+        }
     }
     
-    @objc func moreBtnEvent() {
-        self.delegate?.homeNavViewMoreBtnEvent?()
+    /// more tag event
+    @objc private func moreBtnEvent() {
+        self.delegate?.homeNavNodeMoreBtnEvent?(node: self)
+    }
+    
+    @objc private func selectedBtnEvent(selectedButton: HomeNavItemButton) {
+        guard let button = defaultSelectedButton , selectedButton != button else { return }
+        button.isSelected = false
+        selectedButton.isSelected = true
+        defaultSelectedButton = selectedButton
+        /// selected event
+        self.delegate?.homeNav?(node: self, selectedBtn: selectedButton, with: selectedButton.index)
+        /// animate
+        scrollAnimate(with: selectedButton)
+    }
+    
+    /// set animate for button
+    private func scrollAnimate(with selectedBtn: HomeNavItemButton) {
+        guard self.scrollView.contentSize.width > self.view.width - moreBtnNodeWidth else { return }
+        let contentWidth = self.scrollView.contentSize.width
+        let offsetX = (self.view.width - selectedBtn.width) / 2.0
+        if selectedBtn.left <= self.view.width / 2.0 {
+            /// don't need
+            self.scrollView.setContentOffset(CGPoint.zero, animated: false)
+        } else if selectedBtn.frame.maxX > contentWidth - self.view.width / 2.0 {
+            let x = contentWidth - self.view.width
+            self.scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
+        } else {
+            let x = selectedBtn.frame.minX - offsetX
+            self.scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
+        }
     }
 }
