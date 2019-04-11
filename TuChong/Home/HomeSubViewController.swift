@@ -29,8 +29,22 @@ import AsyncDisplayKit
 
 class HomeSubViewController: BaseViewControlle {
     
+    private let index: Int
+    private let model: HomePageNav_Data_Model
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(model: HomePageNav_Data_Model, index: Int) {
+        self.model = model
+        self.index = index
+        super.init()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(model.name)
     }
     
     override func initialHidden() -> Bool {

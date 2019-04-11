@@ -22,6 +22,7 @@
 		C43B9A58225C61E100C15872 /* PhotoFilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */; };
 		C43B9A5B225C62D600C15872 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A5A225C62D600C15872 /* AlbumViewController.swift */; };
 		C462BFFC225EE64700AB91F1 /* HomeSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */; };
+		C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */; };
 		C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BDC352249B26F001032DC /* LaunchViewController.swift */; };
 		C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */; };
 		C4AC63D12241BEF400324C23 /* Reference in Resources */ = {isa = PBXBuildFile; fileRef = C4AC63D02241BEF400324C23 /* Reference */; };
@@ -69,6 +70,7 @@
 		C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilmViewController.swift; sourceTree = "<group>"; };
 		C43B9A5A225C62D600C15872 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSubViewController.swift; sourceTree = "<group>"; };
+		C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeContainerViewController+UIPageViewController.swift"; sourceTree = "<group>"; };
 		C47BDC352249B26F001032DC /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		C4AC63D02241BEF400324C23 /* Reference */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reference; sourceTree = "<group>"; };
@@ -194,6 +196,16 @@
 			path = Plus;
 			sourceTree = "<group>";
 		};
+		C462BFFF225F13DD00AB91F1 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */,
+				C4F658802249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift */,
+				C4F658A42249F0D700297EF4 /* HomeTagCellNode.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
 		C4AC63CC2241B80100324C23 /* APP */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,14 +220,13 @@
 		C4AC63CD2241BB4100324C23 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C462BFFF225F13DD00AB91F1 /* Tag */,
+				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
+				C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */,
+				C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */,
 				C4AD3C44224098BD0095BC97 /* HomePageModel.swift */,
 				C4B9825C2242172900F65C0E /* HomeNavNode.swift */,
-				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
-				C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */,
 				C4AD3C2E224097CB0095BC97 /* HomepageViewController.swift */,
-				C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */,
-				C4F658802249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift */,
-				C4F658A42249F0D700297EF4 /* HomeTagCellNode.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -494,6 +505,7 @@
 				C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* Extension.swift in Sources */,
+				C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */,
 				C43AEA09225442BC00C2CFE7 /* SearchBar.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
 				C43B9A56225C617100C15872 /* UserViewController.swift in Sources */,

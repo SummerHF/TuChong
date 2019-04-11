@@ -32,10 +32,10 @@ import AsyncDisplayKit
 
 class HomeContainerViewController: BaseViewControlle {
     /// default selected
-    private var selectedIndex: Int = 0
+    public var selectedIndex: Int = 0
     /// UIPageController's inner scrollView
     private var scrollView: UIScrollView?
-    var navArray: [HomePageNav_Data_Model] = []
+    public var navArray: [HomePageNav_Data_Model] = []
     /// 搜索框
     private let searchBar = SearchBar()
     /// 头部的导航视图
@@ -136,55 +136,3 @@ extension HomeContainerViewController: HomeNavNodeDlegate {
     }
 }
 
-extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        for (key, vc) in dictionaryForController {
-            if vc == viewController, key > 0 {
-                if let value = dictionaryForController[key - 1] {
-                    return value
-                } else {
-                    let vc = self.create(subviewControll: key)
-                    dictionaryForController[key - 1] = vc
-                    return vc
-                }
-            }
-        }
-        return nil
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        for (key, vc) in dictionaryForController {
-            if vc == viewController, key < navArray.count - 1 {
-                if let value = dictionaryForController[key + 1] {
-                    return value
-                } else {
-                    let vc = self.create(subviewControll: key)
-                    dictionaryForController[key + 1] = vc
-                    return vc
-                }
-            }
-        }
-        return nil
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        guard let target = pendingViewControllers.first else { return }
-        for (key, vc) in dictionaryForController where vc == target {
-           self.selectedIndex = key
-        }
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if finished {
-            self.navView?.hasSelected(index: self.selectedIndex)
-        }
-    }
-    
-    private func create(subviewControll withIndex: Int) -> BaseViewControlle {
-        let controller = HomeSubViewController()
-        controller.view.backgroundColor = RGBA(R: CGFloat(arc4random_uniform(256)), G: CGFloat(arc4random_uniform(256)), B: CGFloat(arc4random_uniform(256)))
-        controller.hiddenLfetBackItem = true
-        return controller
-    }
-}
