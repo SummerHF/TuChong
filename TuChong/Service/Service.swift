@@ -41,11 +41,13 @@ enum RequestType {
 enum TuChong {
     /// 启动广告
     case launch_ad
-    /// 首页
+    /// 首页分类
     case home_nav
-    /// 首页关注
+    /// 首页
+    case homepage(path: String, paraments: [String: Any])
+    /// 首页关注 ----- will not available
     case homepage_attention(page: Int, before_timestamp: Int?)
-    /// 首页推荐
+    /// 首页推荐 ----- will not available
     case homepage_recommend(page: Int, type: RequestType)
     /// 首页更多
     case home_more
@@ -62,7 +64,7 @@ extension TuChong: TargetType {
         /// 请求头处内容写死
         return ["content-type": "application/json",
                 "platform": "ios",
-                "version": "4.15.0"
+                "version": "4.16.1"
         ]
     }
     var baseURL: URL {
@@ -91,12 +93,14 @@ extension TuChong: TargetType {
             return "/4/events"
         case .search_hot:
             return "/users/hot"
+        case let .homepage(path, _):
+            return path
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .search_hot, .activity_event, .activity, .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
+        case .homepage, .search_hot, .activity_event, .activity, .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
             return .get
         }
     }
@@ -105,6 +109,8 @@ extension TuChong: TargetType {
         switch self {
         case .home_more, .home_nav, .homepage_attention, .activity:
             return .requestPlain
+        case let .homepage(_, paraments):
+            return .requestParameters(parameters: paraments, encoding: URLEncoding.default)
         case .activity_event(page: let page):
             if page == 0 {
                 return .requestPlain
@@ -113,18 +119,19 @@ extension TuChong: TargetType {
         case .launch_ad:
             /// 启动图, 此处宽高写死
             return .requestParameters(parameters: ["height": "750", "width": "1334"], encoding: URLEncoding.default)
-        case .homepage_recommend(page: let page, type: let type):
+        case let .homepage_recommend(page, type):
             let type = type == .refresh ? "refresh" : "loadmore"
             return .requestParameters(parameters: ["page": page, "type": type], encoding: URLEncoding.default)
             /// 搜索
-        case .search_hot(page: let page):
+        case let .search_hot(page):
             return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
         }
     }
 
     var sampleData: Data {
         switch self {
-        case .search_hot,
+        case .homepage,
+             .search_hot,
              .activity_event,
              .activity,
              .home_more,
