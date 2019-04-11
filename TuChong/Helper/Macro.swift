@@ -9,6 +9,8 @@
 import UIKit
 import DeviceKit
 
+// MARK: - Macro
+
 struct Macro {
     
     /// keyWindow of application
@@ -116,3 +118,13 @@ struct Macro {
 }
 
 let macro = Macro()
+
+// MARK: - Request parameters
+
+/// using those key for request
+struct RequestparameterKey {
+    static let page = "page"
+    static let tag = "tag"
+    static let first_refresh = "first_refresh"
+    static let type = "type"
+}

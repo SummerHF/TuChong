@@ -1,7 +1,7 @@
-//  HomepageViewController.swift
+//  CategoryViewController.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/3/20.
+//  Created by SummerHF on 2019/4/11.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -25,22 +25,46 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+// MARK: - CategoryViewController
 
-class HomepageViewController: BaseViewControlle {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+/// `Type` is Tag
+class CategoryViewController: BaseViewControlle {
+    
+    private let index: Int
+    private let model: HomePageNav_Data_Model
+    private let path: String
+    private var paramerers: [String: Any]
+    private let page: Int = 2
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        Network.request(target: .homepage_recommend(page: 1, type: .refresh), success: { (result) in
-            guard let model = HomePage_Recommend_Model.deserialize(from: result) else { return }
-            print(model.message)
-        }, error: { (code) in
-            print(code)
-        }) { (error) in
-            print(error)
+    /// Fast Initializers
+    init(model: HomePageNav_Data_Model, index: Int, path: String, parameters: [String: Any]) {
+        self.model = model
+        self.index = index
+        self.paramerers = parameters
+        self.path = path
+        super.init()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadData()
+    }
+    
+    override func loadData() {
+        Network.request(target: TuChong.homepage(path: path, parameters: paramerers), success: { (response) in
+            print(response)
+        }, error: { (_) in
+            
+        }) { (_) in
+            
         }
+    }
+    
+    override func initialHidden() -> Bool {
+        return true
     }
 }

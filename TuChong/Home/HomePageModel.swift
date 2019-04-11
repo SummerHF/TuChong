@@ -114,11 +114,25 @@ struct HomePageNav_Data_Entry_Model: HandyJSON {
     var category: String = ""
 }
 
+enum HomePage_Nav_Type: String {
+    case none
+    case follow
+    case tag
+    case wallpaper
+    case recommend
+    case video_recommend
+    case rn
+}
+
 struct HomePageNav_Data_Model: HandyJSON {
     var name: String = ""
     var type: String = ""
     var entry: HomePageNav_Data_Entry_Model = HomePageNav_Data_Entry_Model()
     var `default`: Bool = false
+    /// nav item type
+    var itemType: HomePage_Nav_Type {
+        return HomePage_Nav_Type(rawValue: type) ?? .none
+    }
 }
 
 // MARK: - 首页, 导航

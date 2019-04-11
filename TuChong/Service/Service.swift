@@ -31,7 +31,7 @@ import SwiftyJSON
 
 // MARK: - Type
 
-enum RequestType {
+enum RequestType: String {
     case refresh
     case loadmore
 }
@@ -44,7 +44,7 @@ enum TuChong {
     /// 首页分类
     case home_nav
     /// 首页
-    case homepage(path: String, paraments: [String: Any])
+    case homepage(path: String, parameters: [String: Any])
     /// 首页关注 ----- will not available
     case homepage_attention(page: Int, before_timestamp: Int?)
     /// 首页推荐 ----- will not available
@@ -109,8 +109,8 @@ extension TuChong: TargetType {
         switch self {
         case .home_more, .home_nav, .homepage_attention, .activity:
             return .requestPlain
-        case let .homepage(_, paraments):
-            return .requestParameters(parameters: paraments, encoding: URLEncoding.default)
+        case let .homepage(_, parameters):
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .activity_event(page: let page):
             if page == 0 {
                 return .requestPlain
