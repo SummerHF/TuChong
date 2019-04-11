@@ -190,7 +190,7 @@ struct Recommend_Feedlist_Model: HandyJSON {
     var entry: Recommend_Feedlist_Eentry_Model = Recommend_Feedlist_Eentry_Model()
 }
 
-// MARK: - HomeNavViewDlegatee
+// MARK: - RecommendModel
 
 struct RecommendModel: HandyJSON {
     var is_history: Bool = false

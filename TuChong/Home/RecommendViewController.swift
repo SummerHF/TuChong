@@ -37,6 +37,7 @@ class RecommendViewController: BaseViewControlle {
     private let path: String
     private var paramerers: [String: Any]
     private let page: Int = 2
+    private var feedList: [Recommend_Feedlist_Model] = []
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -58,7 +59,8 @@ class RecommendViewController: BaseViewControlle {
     
     override func loadData() {
         Network.request(target: TuChong.homepage(path: path, parameters: paramerers), success: { (response) in
-            print(response)
+            guard let model = RecommendModel.deserialize(from: response) else { return }
+            self.feedList = model.feedList
         }, error: { (_) in
             
         }) { (_) in
