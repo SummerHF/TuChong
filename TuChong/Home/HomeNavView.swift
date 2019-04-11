@@ -59,7 +59,7 @@ class HomeNavItemButton: UIButton {
             ]), for: .normal)
         
         self.setAttributedTitle(NSAttributedString(string: model.name, attributes: [
-            NSAttributedString.Key.font: UIFont.normalFont_18(),
+            NSAttributedString.Key.font: UIFont.normalFont_20(),
             NSAttributedString.Key.foregroundColor: UIColor.black
             ]), for: .selected)
         
@@ -75,7 +75,7 @@ class HomeNavItemButton: UIButton {
 class HomeNavView: ASDisplayNode {
     
     let moreBtnNodeWidth: CGFloat = 40
-    let itemWidth: CGFloat = 64
+    let itemWidth: CGFloat = 60
     var dataArray: [HomePageNav_Data_Model]
     var buttonArray: [HomeNavItemButton] = []
     
