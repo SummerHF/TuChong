@@ -121,8 +121,7 @@ class TableSectionHeaderView: UIView {
         backgroundColor = Color.backGroundColor
         self.addSubnode(titleNode)
         self.addSubnode(separator)
-        let color = RGBA(R: 239, G: 45, B: 88)
-        separator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 8.0, cornerColor: color, fill: color)
+        separator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 8.0, cornerColor: Color.lineColor, fill: Color.lineColor)
         titleNode.attributedText = NSAttributedString(string: headerTitle, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         
         /// layouts

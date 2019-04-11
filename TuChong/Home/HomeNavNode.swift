@@ -1,4 +1,4 @@
-//  HomepageViewController.swift
+//  HomeNavNode.swift
 //  TuChong
 //
 //  Created by SummerHF on 2019/3/20.
@@ -55,7 +55,7 @@ class HomeNavItemButton: UIButton {
             ]), for: .normal)
         
         self.setAttributedTitle(NSAttributedString(string: model.name, attributes: [
-            NSAttributedString.Key.font: UIFont.normalFont_18(),
+            NSAttributedString.Key.font: UIFont.normalFont_20(),
             NSAttributedString.Key.foregroundColor: UIColor.black
             ]), for: .selected)
     }
@@ -80,7 +80,9 @@ class HomeNavNode: ASDisplayNode {
     private var dataArray: [HomePageNav_Data_Model]
     private var buttonArray: [HomeNavItemButton] = []
     private var defaultSelectedButton: HomeNavItemButton?
-    
+    private let indicatorSize = CGSize(width: 14, height: 4)
+    private let indicatorBottom: CGFloat = -2
+
     weak var delegate: HomeNavNodeDlegate?
     
     /// using scrollView
@@ -93,9 +95,17 @@ class HomeNavNode: ASDisplayNode {
     /// moreBtnNode
     lazy var moreBtnNode: ASButtonNode = {
         let node = ASButtonNode()
-        node.backgroundColor = UIColor.purple
         node.addTarget(self, action: #selector(moreBtnEvent), forControlEvents: .touchUpInside)
+        node.setImage(R.image.right_arrow(), for: .normal)
+        node.backgroundColor = Color.flatWhite
         return node
+    }()
+    
+    /// bottom indicator
+    lazy var indicator: UIView = {
+        let view =  UIView()
+        view.backgroundColor = Color.lineColor
+        return view
     }()
     
     init(data: [HomePageNav_Data_Model], delegate: HomeNavNodeDlegate) {
@@ -119,12 +129,6 @@ class HomeNavNode: ASDisplayNode {
         for (index, model) in dataArray.enumerated() {
             let button = HomeNavItemButton(model: model, index: index)
             buttonArray.append(button)
-            /// default selected,
-            if model.default {
-                button.isSelected = true
-                defaultSelectedButton = button
-                self.delegate?.homeNav?(node: self, selectedBtn: button, with: index)
-            }
             /// add button event
             button.addTarget(self, action: #selector(selectedBtnEvent(selectedButton:)), for: .touchUpInside)
             /// add button to scrollView
@@ -137,6 +141,20 @@ class HomeNavNode: ASDisplayNode {
                     make.left.equalTo(lastView.snp.right)
                 }
                 make.size.equalTo(CGSize(width: itemWidth, height: self.view.height))
+            }
+            /// default selected,
+            if model.default {
+                button.isSelected = true
+                defaultSelectedButton = button
+                self.delegate?.homeNav?(node: self, selectedBtn: button, with: index)
+                
+                /// add bottom indicator
+                self.scrollView.addSubview(indicator)
+                indicator.snp.makeConstraints { (make) in
+                    make.bottom.equalTo(button).offset(indicatorBottom)
+                    make.centerX.equalTo(button)
+                    make.size.equalTo(indicatorSize)
+                }
             }
             lastView = button
         }
@@ -164,6 +182,12 @@ class HomeNavNode: ASDisplayNode {
         self.delegate?.homeNav?(node: self, selectedBtn: selectedButton, with: selectedButton.index)
         /// animate
         scrollAnimate(with: selectedButton)
+        /// update indicator
+        indicator.snp.remakeConstraints { (make) in
+            make.size.equalTo(indicatorSize)
+            make.centerX.equalTo(selectedButton)
+            make.bottom.equalTo(selectedButton).offset(indicatorBottom)
+        }
     }
     
     /// set animate for button

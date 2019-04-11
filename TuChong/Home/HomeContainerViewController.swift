@@ -188,13 +188,3 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
         return controller
     }
 }
-
-extension HomeContainerViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset)
-        print(selectedIndex)
-//        print(scrollView.contentSize)
-//        if scrollView.contentSize.width <
-    }
-}
