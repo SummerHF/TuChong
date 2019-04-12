@@ -38,11 +38,12 @@ class RecommendCellNode: ASCellNode {
     private let nameTextNode: ASTextNode
     private let verifiedTextNode: ASTextNode
     private let focusBtnNode: ASButtonNode
+    private let photoImageNode: ASNetworkImageNode
     /// size
     private let avatorWidth: CGFloat = 36
     private let vertificationWidth: CGFloat = 12
     private let insetForHeader = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-
+    
     init(with feenListItem: Recommend_Feedlist_Model, at index: Int) {
         self.feenListItem = feenListItem
         self.index = index
@@ -51,6 +52,7 @@ class RecommendCellNode: ASCellNode {
         self.nameTextNode = ASTextNode()
         self.verifiedTextNode = ASTextNode()
         self.focusBtnNode = ASButtonNode()
+        self.photoImageNode = ASNetworkImageNode()
         super.init()
         self.selectionStyle = .none
         self.automaticallyManagesSubnodes = true
@@ -64,7 +66,7 @@ class RecommendCellNode: ASCellNode {
         self.avatorImageNode.imageModificationBlock = { image in
               image.byRoundCornerRadius(image.size.width / 2.0)
         }
-        self.vertificationImageNode.image = R.image.verifications()
+        self.vertificationImageNode.image = feenListItem.entry.site.verified_image
         self.nameTextNode.attributedText = NSAttributedString(string: feenListItem.entry.site.name, attributes: [
             NSAttributedString.Key.font: UIFont.boldFont_15(),
             NSAttributedString.Key.foregroundColor: UIColor.black
@@ -81,6 +83,15 @@ class RecommendCellNode: ASCellNode {
         self.focusBtnNode.setAttributedTitle(NSAttributedString(string: R.string.localizable.focus(), attributes: [
             NSAttributedString.Key.font: UIFont.normalFont_12(),
             NSAttributedString.Key.foregroundColor: Color.lineColor]), for: .normal)
+        ///
+        print(feenListItem.stageType)
+        switch feenListItem.stageType {
+        case .multi_photo:
+            guard let image = feenListItem.entry.images.first else { return }
+            self.photoImageNode.url = URL(string: image.url)
+        default:
+            break
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -118,7 +129,9 @@ class RecommendCellNode: ASCellNode {
                                 style.spacingAfter = 0.0
                             })
                          ])
-                  )
+                  ),
+                  /// Center Photo
+                centerPhotoArea() ?? ASLayoutSpec().styled({ (style) in style.flexShrink = 1.0 })
               ])
     }
     
@@ -127,5 +140,16 @@ class RecommendCellNode: ASCellNode {
         let layoutSpec = ASCornerLayoutSpec(child: avatorImageNode, corner: vertificationImageNode, location: ASCornerLayoutLocation.bottomRight)
         layoutSpec.offset = CGPoint(x: -5, y: -5)
         return layoutSpec
+    }
+    
+    /// Photo area, Including various types
+    private func centerPhotoArea() -> ASLayoutElement? {
+        switch feenListItem.stageType {
+        case .multi_photo:
+            guard let image = feenListItem.entry.images.first else { return nil }
+            return ASRatioLayoutSpec(ratio: image.ratio, child: photoImageNode)
+        default:
+            return nil
+        }
     }
 }

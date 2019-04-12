@@ -57,6 +57,8 @@ enum TuChong {
     case activity_event(page: Int)
     /// 搜索
     case search_hot(page: Int)
+    /// 点击关注后推荐
+//    /site-recommend/1350538/?page=1&count=10
 }
 
 extension TuChong: TargetType {
@@ -64,7 +66,8 @@ extension TuChong: TargetType {
         /// 请求头处内容写死
         return ["content-type": "application/json",
                 "platform": "ios",
-                "version": "4.16.1"
+                "version": "4.16.1",
+                "device": "51857464990"
         ]
     }
     var baseURL: URL {

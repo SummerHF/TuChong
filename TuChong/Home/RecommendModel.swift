@@ -34,10 +34,18 @@ struct Recommend_Feedlist_Images_Model: HandyJSON {
     var user_id: Int = 0
     var title: String = ""
     var excerpt: String = ""
-    var width: Int = 0
-    var height: Int = 0
+    var width: CGFloat = 0
+    var height: CGFloat = 0
     var description: String = ""
     var isAuthorTK: Bool = false
+    /// the url for photo
+    var url: String {
+        return "https://photo.tuchong.com/\(user_id)/lr/\(img_id).jpg"
+    }
+    /// the image scale
+    var ratio: CGFloat {
+        return height / width
+    }
 }
 
 struct Recommend_Feedlist_Equip_Model: HandyJSON {
@@ -139,6 +147,15 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
     var iconURL: URL {
         return URL(string: icon)!
     }
+    var verified_image: UIImage? {
+        if 11 == verified_type {
+            return R.image.verifications_green()
+        } else if 13 == verified_type {
+            return R.image.verifications()
+        } else {
+            return nil
+        }
+    }
 }
 
 struct Recommend_Feedlist_RecomType_Model {
@@ -179,8 +196,10 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var rqt_id: String = ""
     var users: [Recommend_Feedlist_Users_Model] = []
     var site: Recommend_Feedlist_Site_Model = Recommend_Feedlist_Site_Model()
+    /// wait to confirm
+    var sites: String?
     var recom_type: Recommend_Feedlist_RecomType_Model = Recommend_Feedlist_RecomType_Model()
-    var music: Recommend_Feedlist_Music_Model = Recommend_Feedlist_Music_Model()
+    var music: Recommend_Feedlist_Music_Model?
     var comment_list: [Recommend_Feedlist_CommensList_Model] = []
     var equip: Recommend_Feedlist_Equip_Model = Recommend_Feedlist_Equip_Model()
     var images: [Recommend_Feedlist_Images_Model] = []
@@ -189,10 +208,50 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
 
 // MARK: - Feedlist
 
+/// use this enum to decide how to show image
+enum StageType: String {
+    case banner
+    case text
+    case multi_photo
+    case collection
+    case music
+    case video
+    case none
+    case site_list
+    
+    init(outType: String, innerType: String, isMusic: Bool) {
+        if outType == "banner" {
+            self = .banner
+        } else if outType == "video" {
+            self = .video
+        } else if outType == "post" {
+            if innerType == "text" {
+                self = .text
+            } else if innerType == "multi-photo" {
+                self = .multi_photo
+            } else if innerType == "collection" {
+                self = .collection
+            } else if isMusic {
+                self = .music
+            } else {
+                self = .none
+            }
+        } else if outType == "site-list" {
+            self = .site_list
+        } else {
+            self = .none
+        }
+    }
+}
+
 struct Recommend_Feedlist_Model: HandyJSON {
     var type: String = ""
     var is_marked: Bool = false
     var entry: Recommend_Feedlist_Eentry_Model = Recommend_Feedlist_Eentry_Model()
+    /// how to show the content
+    var stageType: StageType {
+        return StageType(outType: type, innerType: entry.type, isMusic: entry.music != nil)
+    }
 }
 
 // MARK: - RecommendModel
@@ -205,3 +264,56 @@ struct RecommendModel: HandyJSON {
     var more: Bool = false
     var result: String = ""
 }
+
+//sites": [{
+//"site_id": "4873279",
+//"type": "user",
+//"name": "Frank\u90d1\u5e06",
+//"domain": "zhengfanfrank.tuchong.com",
+//"url": "https:\/\/zhengfanfrank.tuchong.com\/",
+//"icon": "http:\/\/sf3-tccdn-tos.pstatp.com\/obj\/tuchong-avatar\/ll_4873279_1",
+//"description": "\u81ea\u7531\u6444\u5f71\u5e08 \u5fae\u535a:@Frank\u90d1\u5e06",
+//"intro": "\u81ea\u7531\u6444\u5f71\u5e08 \u5fae\u535a:@Frank\u90d1\u5e06",
+//"posts": 43,
+//"appearance": {
+//    "color": "#000",
+//    "image": "http:\/\/sf3-tccdn-tos.pstatp.com\/obj\/tuchong-avatar\/h_u_0"
+//},
+//"is_bind_everphoto": false,
+//"followers": 1995,
+//"members": 0,
+//"group_posts": 0,
+//"recommend_reason": "\u4f5c\u54c1 43  \u7c89\u4e1d 1995",
+//"verified": false,
+//"verified_type": 0,
+//"verified_reason": "",
+//"verifications": 0,
+//"verification_list": [],
+//"images": [{
+//"img_id": 324473171,
+//"user_id": 4873279,
+//"title": "001",
+//"excerpt": "",
+//"width": 1666,
+//"height": 2499,
+//"is_authorized_tc": 0
+//}, {
+//"img_id": 276500724,
+//"user_id": 4873279,
+//"title": "001",
+//"excerpt": "",
+//"width": 1666,
+//"height": 2499,
+//"is_authorized_tc": 0
+//}, {
+//"img_id": 67111818,
+//"user_id": 4873279,
+//"title": "001",
+//"excerpt": "",
+//"width": 1666,
+//"height": 2499,
+//"is_authorized_tc": 1
+//}],
+//"is_following": false,
+//"is_follower": false
+//}
