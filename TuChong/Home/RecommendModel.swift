@@ -175,6 +175,9 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var comments: Int = 0
     var title: String = ""
     var image_count: Int = 0
+    var iamge_count_desc: String {
+        return "\(image_count) " + R.string.localizable.pictures()
+    }
     var rewardable: Bool = false
     var rewards: Int = 0
     var wallpaper: Bool = false

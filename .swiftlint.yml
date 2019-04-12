@@ -11,6 +11,7 @@ disabled_rules: # 执行时排除掉的规则
   - file_length
   - unused_setter_value
   - for_where
+  - type_body_length
   
 line_length: 300
 

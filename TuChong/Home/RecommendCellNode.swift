@@ -39,11 +39,19 @@ class RecommendCellNode: ASCellNode {
     private let verifiedTextNode: ASTextNode
     private let focusBtnNode: ASButtonNode
     private let photoImageNode: ASNetworkImageNode
+    private var totalImageCountBtnNode: ASButtonNode?
     /// size
     private let avatorWidth: CGFloat = 36
     private let vertificationWidth: CGFloat = 12
     private let insetForHeader = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-    
+    private let insetForOperation = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
+    private let likeBtnNode: ASButtonNode
+    private let commentBtnNode: ASButtonNode
+    private let shareBtnNode: ASButtonNode
+    private let collectBtnNode: ASButtonNode
+    /// right share
+    private let shareRightNode: ASButtonNode
+
     init(with feenListItem: Recommend_Feedlist_Model, at index: Int) {
         self.feenListItem = feenListItem
         self.index = index
@@ -53,6 +61,11 @@ class RecommendCellNode: ASCellNode {
         self.verifiedTextNode = ASTextNode()
         self.focusBtnNode = ASButtonNode()
         self.photoImageNode = ASNetworkImageNode()
+        self.likeBtnNode = ASButtonNode()
+        self.commentBtnNode = ASButtonNode()
+        self.shareBtnNode = ASButtonNode()
+        self.collectBtnNode = ASButtonNode()
+        self.shareRightNode = ASButtonNode()
         super.init()
         self.selectionStyle = .none
         self.automaticallyManagesSubnodes = true
@@ -84,14 +97,30 @@ class RecommendCellNode: ASCellNode {
             NSAttributedString.Key.font: UIFont.normalFont_12(),
             NSAttributedString.Key.foregroundColor: Color.lineColor]), for: .normal)
         ///
-        print(feenListItem.stageType)
         switch feenListItem.stageType {
         case .multi_photo:
             guard let image = feenListItem.entry.images.first else { return }
             self.photoImageNode.url = URL(string: image.url)
+            /// image count is more than one
+            if feenListItem.entry.image_count > 1 {
+                let node = ASButtonNode()
+                node.setAttributedTitle(NSAttributedString(string: feenListItem.entry.iamge_count_desc, attributes:            [NSAttributedString.Key.font: UIFont.normalFont_12(),
+                     NSAttributedString.Key.foregroundColor: Color.lightGray ])
+                    , for: .normal)
+                node.setImage(R.image.triangle_bottom(), for: .normal)
+                node.imageAlignment = .end
+                node.contentSpacing = 4
+                self.totalImageCountBtnNode = node
+            }
         default:
             break
         }
+        /// operation
+        self.likeBtnNode.setImage(R.image.like(), for: .normal)
+        self.commentBtnNode.setImage(R.image.comment(), for: .normal)
+        self.shareBtnNode.setImage(R.image.share(), for: .normal)
+        self.collectBtnNode.setImage(R.image.collect(), for: .normal)
+        self.shareRightNode.setImage(R.image.share_right(), for: .normal)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -124,14 +153,16 @@ class RecommendCellNode: ASCellNode {
                             ASLayoutSpec().styled({ (style) in
                                 style.flexGrow = 1.0
                             }),
-                            /// focusBtn Node
+                            /// FocusBtn Node
                             focusBtnNode.styled({ (style) in
                                 style.spacingAfter = 0.0
                             })
                          ])
                   ),
                   /// Center Photo
-                centerPhotoArea() ?? ASLayoutSpec().styled({ (style) in style.flexShrink = 1.0 })
+                centerPhotoArea() ?? ASLayoutSpec().styled({ (style) in style.flexShrink = 1.0 }),
+                  /// Operation
+                createOperateArea()
               ])
     }
     
@@ -147,9 +178,30 @@ class RecommendCellNode: ASCellNode {
         switch feenListItem.stageType {
         case .multi_photo:
             guard let image = feenListItem.entry.images.first else { return nil }
-            return ASRatioLayoutSpec(ratio: image.ratio, child: photoImageNode)
+            return ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .center, children: [
+                ASRatioLayoutSpec(ratio: image.ratio, child: photoImageNode),
+                self.totalImageCountBtnNode ?? ASLayoutSpec().styled({ (style) in style.flexShrink = 1.0 })
+                ])
         default:
             return nil
         }
+    }
+    
+    /// Including like, comment, share, collect
+    private func createOperateArea() -> ASLayoutElement {
+        return ASInsetLayoutSpec(insets: insetForOperation, child:
+            ASStackLayoutSpec(direction: .horizontal, spacing: 20, justifyContent: .start, alignItems: .center, children: [
+                likeBtnNode,
+                commentBtnNode,
+                shareBtnNode,
+                collectBtnNode,
+                ASLayoutSpec().styled({ (style) in
+                    style.flexGrow = 1.0
+                }),
+                shareRightNode.styled({ (style) in
+                    style.spacingAfter = 0.0
+                })
+                ])
+        )
     }
 }

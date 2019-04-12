@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 34 images.
+  /// This `R.image` struct is generated, and contains static references to 40 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -64,6 +64,10 @@ struct R: Rswift.Validatable {
     static let activity = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity")
     /// Image `bc_back`.
     static let bc_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "bc_back")
+    /// Image `collect`.
+    static let collect = Rswift.ImageResource(bundle: R.hostingBundle, name: "collect")
+    /// Image `comment`.
+    static let comment = Rswift.ImageResource(bundle: R.hostingBundle, name: "comment")
     /// Image `corner_mark`.
     static let corner_mark = Rswift.ImageResource(bundle: R.hostingBundle, name: "corner_mark")
     /// Image `dot`.
@@ -88,6 +92,8 @@ struct R: Rswift.Validatable {
     static let lauch_image_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "lauch_image_icon")
     /// Image `lecture`.
     static let lecture = Rswift.ImageResource(bundle: R.hostingBundle, name: "lecture")
+    /// Image `like`.
+    static let like = Rswift.ImageResource(bundle: R.hostingBundle, name: "like")
     /// Image `online_follow`.
     static let online_follow = Rswift.ImageResource(bundle: R.hostingBundle, name: "online_follow")
     /// Image `photography _tutorial`.
@@ -110,8 +116,14 @@ struct R: Rswift.Validatable {
     static let search_topic = Rswift.ImageResource(bundle: R.hostingBundle, name: "search_topic")
     /// Image `second`.
     static let second = Rswift.ImageResource(bundle: R.hostingBundle, name: "second")
+    /// Image `share_right`.
+    static let share_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "share_right")
+    /// Image `share`.
+    static let share = Rswift.ImageResource(bundle: R.hostingBundle, name: "share")
     /// Image `third`.
     static let third = Rswift.ImageResource(bundle: R.hostingBundle, name: "third")
+    /// Image `triangle_bottom`.
+    static let triangle_bottom = Rswift.ImageResource(bundle: R.hostingBundle, name: "triangle_bottom")
     /// Image `trophy`.
     static let trophy = Rswift.ImageResource(bundle: R.hostingBundle, name: "trophy")
     /// Image `use_profile_selected`.
@@ -143,6 +155,16 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "bc_back", bundle: ..., traitCollection: ...)`
     static func bc_back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.bc_back, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "collect", bundle: ..., traitCollection: ...)`
+    static func collect(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.collect, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "comment", bundle: ..., traitCollection: ...)`
+    static func comment(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.comment, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "corner_mark", bundle: ..., traitCollection: ...)`
@@ -205,6 +227,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.lecture, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "like", bundle: ..., traitCollection: ...)`
+    static func like(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.like, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "online_follow", bundle: ..., traitCollection: ...)`
     static func online_follow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.online_follow, compatibleWith: traitCollection)
@@ -260,9 +287,24 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.second, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "share", bundle: ..., traitCollection: ...)`
+    static func share(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.share, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "share_right", bundle: ..., traitCollection: ...)`
+    static func share_right(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.share_right, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "third", bundle: ..., traitCollection: ...)`
     static func third(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.third, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "triangle_bottom", bundle: ..., traitCollection: ...)`
+    static func triangle_bottom(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.triangle_bottom, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "trophy", bundle: ..., traitCollection: ...)`
@@ -313,7 +355,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 17 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 18 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -327,6 +369,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let cancel_button_title = Rswift.StringResource(key: "cancel_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 张照片
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let pictures = Rswift.StringResource(key: "pictures", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 我的
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -403,6 +449,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func cancel_button_title(_: Void = ()) -> String {
         return NSLocalizedString("cancel_button_title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 张照片
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func pictures(_: Void = ()) -> String {
+        return NSLocalizedString("pictures", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 我的
