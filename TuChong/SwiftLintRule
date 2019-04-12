@@ -56,6 +56,9 @@ sudo vim /etc/hosts
 tabbar item animate
 https://uxplanet.org/20-ios-tab-bar-open-source-ui-animation-components-libraries-swift-objective-c-43c0039dff0d
 
+drawrect:
+https://blog.csdn.net/jijiji000111/article/details/50480405
+
 分页相关:
 https://github.com/pujiaxin33/JXSegmentedView
 

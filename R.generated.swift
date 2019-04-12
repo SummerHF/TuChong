@@ -306,8 +306,12 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 16 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 17 localization keys.
     struct localizable {
+      /// zh-Hans translation: + 关注
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let focus = Rswift.StringResource(key: "focus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 作品, 教程, 摄影师，搜搜看
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -372,6 +376,13 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let tab_bar_home_title = Rswift.StringResource(key: "tab_bar_home_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      
+      /// zh-Hans translation: + 关注
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func focus(_: Void = ()) -> String {
+        return NSLocalizedString("focus", bundle: R.hostingBundle, comment: "")
+      }
       
       /// zh-Hans translation: 作品, 教程, 摄影师，搜搜看
       /// 

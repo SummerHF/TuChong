@@ -136,6 +136,9 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
     var verification_list: [Recommend_Feedlist_Verification_List_Model] = []
     var is_following: Bool = false
     var is_follower: Bool = false
+    var iconURL: URL {
+        return URL(string: icon)!
+    }
 }
 
 struct Recommend_Feedlist_RecomType_Model {
@@ -183,6 +186,8 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var images: [Recommend_Feedlist_Images_Model] = []
     var tags: [Recommend_Feedlist_Tags_Model] = []
 }
+
+// MARK: - Feedlist
 
 struct Recommend_Feedlist_Model: HandyJSON {
     var type: String = ""

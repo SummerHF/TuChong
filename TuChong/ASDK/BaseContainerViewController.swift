@@ -100,6 +100,9 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
     
     /// Base method, subclass to implement it
     func loadData() { }
+    
+    /// Base method, subclass to implement it
+    func addSubviews() { }
 }
 
 extension BaseViewControlle: NavigationBarManagerMent {

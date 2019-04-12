@@ -38,6 +38,14 @@ class RecommendViewController: BaseViewControlle {
     private var paramerers: [String: Any]
     private let page: Int = 2
     private var feedList: [Recommend_Feedlist_Model] = []
+    /// tableNode
+    private lazy var tableNode: ASTableNode = {
+        let tableNode = ASTableNode(style: .plain)
+        tableNode.dataSource = self
+        tableNode.view.separatorStyle = .none
+        tableNode.view.showsVerticalScrollIndicator = false
+        return tableNode
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -54,13 +62,24 @@ class RecommendViewController: BaseViewControlle {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addSubviews()
         self.loadData()
+    }
+    
+    override func addSubviews() {
+        self.view.addSubnode(tableNode)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.tableNode.frame = self.view.bounds
     }
     
     override func loadData() {
         Network.request(target: TuChong.homepage(path: path, parameters: paramerers), success: { (response) in
             guard let model = RecommendModel.deserialize(from: response) else { return }
             self.feedList = model.feedList
+            self.tableNode.reloadData()
         }, error: { (_) in
             
         }) { (_) in
@@ -70,5 +89,16 @@ class RecommendViewController: BaseViewControlle {
     
     override func initialHidden() -> Bool {
         return true
+    }
+}
+
+extension RecommendViewController: ASTableDataSource {
+    
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return feedList.count
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+        return RecommendCellNode(with: feedList[indexPath.row], at: indexPath.row)
     }
 }

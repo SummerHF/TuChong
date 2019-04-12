@@ -104,7 +104,7 @@ class SearchCellNode: ASCellNode {
         /// User avatorR
         avatorNode.url = URL(string: model.icon)
         avatorNode.imageModificationBlock = { image in
-            image.byRoundCornerRadius(self.avatorWidth/2.0)
+            image.byRoundCornerRadius(image.size.width / 2.0, borderWidth: 0.2, borderColor: UIColor.flatGray)
         }
         /// Vertification
         vertificationNode.image = R.image.verifications()
