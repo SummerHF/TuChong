@@ -190,7 +190,7 @@ class RecommendCellNode: ASCellNode {
     /// Including like, comment, share, collect
     private func createOperateArea() -> ASLayoutElement {
         return ASInsetLayoutSpec(insets: insetForOperation, child:
-            ASStackLayoutSpec(direction: .horizontal, spacing: 20, justifyContent: .start, alignItems: .center, children: [
+            ASStackLayoutSpec(direction: .horizontal, spacing: 24, justifyContent: .start, alignItems: .center, children: [
                 likeBtnNode,
                 commentBtnNode,
                 shareBtnNode,
