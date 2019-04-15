@@ -149,12 +149,21 @@ class RecommendCellNode: ASCellNode {
             tagStr += String(format: " #%@", item.tag_name)
         }
         
-        let tagDesc = String(format: "%@ %@%@", name, content, tagStr)
-        let attr = NSMutableAttributedString(string: tagDesc, attributes: [NSAttributedString.Key.font: UIFont.normalFont_13(),
-                                                                          NSAttributedString.Key.foregroundColor: UIColor.black])
-        attr.addAttributes([NSAttributedString.Key.font: UIFont.boldFont_13()], range: NSString(string: tagDesc).range(of: name))
-        self.tagNode.attributedText = attr
-//        self.tagNode.maximumNumberOfLines = 2
+        var tagDesc = String(format: "%@%@", content, tagStr)
+        if tagDesc.count == 0 {
+            self.tagNode.attributedText = nil
+        } else {
+            tagDesc = String(format: "%@ %@", name, tagDesc)
+            let attr = NSMutableAttributedString(string: tagDesc, attributes: [NSAttributedString.Key.font: UIFont.normalFont_13(),
+                                                                               NSAttributedString.Key.foregroundColor: UIColor.black])
+            attr.addAttributes([NSAttributedString.Key.font: UIFont.boldFont_13()], range: NSString(string: tagDesc).range(of: name))
+            self.tagNode.attributedText = attr
+            self.tagNode.truncationAttributedText = NSAttributedString(string: "...展开", attributes: [
+                NSAttributedString.Key.font: UIFont.normalFont_13(),
+                NSAttributedString.Key.foregroundColor: Color.lightGray
+                ])
+            self.tagNode.maximumNumberOfLines = 2
+        }
     }
     
     // MARK: - layoutSpecThatFits
@@ -307,6 +316,11 @@ class RecommendCellNode: ASCellNode {
     
     /// Tags area
     private func createTagsArea() -> ASLayoutElement {
+        if let attributed = self.tagNode.attributedText , attributed.length == 0 {
+            return ASLayoutSpec().styled({ (style) in
+                style.flexShrink = 1.0
+            })
+        }
         return ASInsetLayoutSpec(insets: insetForTags, child: self.tagNode)
     }
 }
