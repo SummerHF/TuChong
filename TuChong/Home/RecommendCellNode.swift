@@ -40,8 +40,15 @@ class RecommendCellNode: ASCellNode {
     private let focusBtnNode: ASButtonNode
     private let photoImageNode: ASNetworkImageNode
     private var totalImageCountBtnNode: ASButtonNode?
+    private let likeBtnNode: ASButtonNode
+    private let commentBtnNode: ASButtonNode
+    private let shareBtnNode: ASButtonNode
+    private let collectBtnNode: ASButtonNode
+    /// right share
+    private let shareRightNode: ASButtonNode
     private let equipTextNode: ASTextNode
     private let likeCountTextNode: ASTextNode
+    private let tagNode: ASTextNode
     /// size
     private let avatorWidth: CGFloat = 36
     private let vertificationWidth: CGFloat = 12
@@ -49,12 +56,7 @@ class RecommendCellNode: ASCellNode {
     private let insetForOperation = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     private let insetForEquip = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     private let insetForLikes = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
-    private let likeBtnNode: ASButtonNode
-    private let commentBtnNode: ASButtonNode
-    private let shareBtnNode: ASButtonNode
-    private let collectBtnNode: ASButtonNode
-    /// right share
-    private let shareRightNode: ASButtonNode
+    private let insetForTags = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
 
     init(with feenListItem: Recommend_Feedlist_Model, at index: Int) {
         self.feenListItem = feenListItem
@@ -72,6 +74,7 @@ class RecommendCellNode: ASCellNode {
         self.shareRightNode = ASButtonNode()
         self.equipTextNode = ASTextNode()
         self.likeCountTextNode = ASTextNode()
+        self.tagNode = ASTextNode()
         super.init()
         self.selectionStyle = .none
         self.automaticallyManagesSubnodes = true
@@ -130,6 +133,28 @@ class RecommendCellNode: ASCellNode {
         self.shareBtnNode.setImage(R.image.share(), for: .normal)
         self.collectBtnNode.setImage(R.image.collect(), for: .normal)
         self.shareRightNode.setImage(R.image.share_right(), for: .normal)
+        /// tag Node
+        let name = feenListItem.entry.site.name
+        var content: String = ""
+        if !feenListItem.entry.title.isEmpty && !feenListItem.entry.content.isEmpty {
+            content = feenListItem.entry.title + "·" + feenListItem.entry.content
+        } else if !feenListItem.entry.title.isEmpty {
+            content = feenListItem.entry.title
+        } else if !feenListItem.entry.content.isEmpty {
+            content = feenListItem.entry.content
+        }
+        
+        var tagStr = ""
+        for item in feenListItem.entry.tags {
+            tagStr += String(format: " #%@", item.tag_name)
+        }
+        
+        let tagDesc = String(format: "%@ %@%@", name, content, tagStr)
+        let attr = NSMutableAttributedString(string: tagDesc, attributes: [NSAttributedString.Key.font: UIFont.normalFont_13(),
+                                                                          NSAttributedString.Key.foregroundColor: UIColor.black])
+        attr.addAttributes([NSAttributedString.Key.font: UIFont.boldFont_13()], range: NSString(string: tagDesc).range(of: name))
+        self.tagNode.attributedText = attr
+//        self.tagNode.maximumNumberOfLines = 2
     }
     
     // MARK: - layoutSpecThatFits
@@ -176,7 +201,9 @@ class RecommendCellNode: ASCellNode {
                   /// Equip
                 createEquipArea(),
                   /// Likes
-                createLikesArea()
+                createLikesArea(),
+                  /// Tags
+                createTagsArea()
               ])
     }
     
@@ -276,5 +303,10 @@ class RecommendCellNode: ASCellNode {
                 style.flexShrink = 1.0
             })
         }
+    }
+    
+    /// Tags area
+    private func createTagsArea() -> ASLayoutElement {
+        return ASInsetLayoutSpec(insets: insetForTags, child: self.tagNode)
     }
 }
