@@ -204,9 +204,18 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var recom_type: Recommend_Feedlist_RecomType_Model = Recommend_Feedlist_RecomType_Model()
     var music: Recommend_Feedlist_Music_Model?
     var comment_list: [Recommend_Feedlist_CommensList_Model] = []
-    var equip: Recommend_Feedlist_Equip_Model = Recommend_Feedlist_Equip_Model()
+    var equip: Recommend_Feedlist_Equip_Model?
     var images: [Recommend_Feedlist_Images_Model] = []
     var tags: [Recommend_Feedlist_Tags_Model] = []
+    var favorites_desc: NSMutableAttributedString {
+        let string = "\(favorites)" + R.string.localizable.likes()
+        let mutableAttr = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.font: UIFont.normalFont_13(),
+                                                                                  NSAttributedString.Key.foregroundColor: UIColor.black
+                                                                                  ])
+        mutableAttr.addAttributes([NSAttributedString.Key.font: UIFont.boldFont_13(),
+                                   NSAttributedString.Key.foregroundColor: UIColor.black], range: NSString(string: string).range(of: "\(favorites)"))
+        return mutableAttr
+    }
 }
 
 // MARK: - Feedlist

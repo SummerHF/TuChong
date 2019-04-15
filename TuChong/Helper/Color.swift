@@ -41,4 +41,6 @@ struct Color {
     static var thinGray = RGBA(R: 243, G: 243, B: 243)
     static var flatWhite = RGBA(R: 255, G: 255, B: 255, A: 0.9)
     static var lineColor = RGBA(R: 239, G: 45, B: 88)
+    static var eqipBackGroundColor = RGBA(R: 251, G: 251, B: 251)
+    static var eqipBorderColor = RGBA(R: 220, G: 220, B: 220)
 }

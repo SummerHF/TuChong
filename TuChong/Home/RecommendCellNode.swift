@@ -40,11 +40,15 @@ class RecommendCellNode: ASCellNode {
     private let focusBtnNode: ASButtonNode
     private let photoImageNode: ASNetworkImageNode
     private var totalImageCountBtnNode: ASButtonNode?
+    private let equipTextNode: ASTextNode
+    private let likeCountTextNode: ASTextNode
     /// size
     private let avatorWidth: CGFloat = 36
     private let vertificationWidth: CGFloat = 12
     private let insetForHeader = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     private let insetForOperation = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
+    private let insetForEquip = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+    private let insetForLikes = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     private let likeBtnNode: ASButtonNode
     private let commentBtnNode: ASButtonNode
     private let shareBtnNode: ASButtonNode
@@ -66,16 +70,21 @@ class RecommendCellNode: ASCellNode {
         self.shareBtnNode = ASButtonNode()
         self.collectBtnNode = ASButtonNode()
         self.shareRightNode = ASButtonNode()
+        self.equipTextNode = ASTextNode()
+        self.likeCountTextNode = ASTextNode()
         super.init()
         self.selectionStyle = .none
         self.automaticallyManagesSubnodes = true
     }
+    
+    // MARK: - didLoad
     
     override func didLoad() {
         super.didLoad()
         self.backgroundColor = Color.backGroundColor
         /// avator
         self.avatorImageNode.url = feenListItem.entry.site.iconURL
+        //// ASImageNodeRoundBorderModificationBlock(1.0, color), create rounded image
         self.avatorImageNode.imageModificationBlock = { image in
               image.byRoundCornerRadius(image.size.width / 2.0)
         }
@@ -123,10 +132,11 @@ class RecommendCellNode: ASCellNode {
         self.shareRightNode.setImage(R.image.share_right(), for: .normal)
     }
     
+    // MARK: - layoutSpecThatFits
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         self.avatorImageNode.style.preferredSize = CGSize(width: self.avatorWidth, height: self.avatorWidth)
         self.vertificationImageNode.style.preferredSize = CGSize(width: self.vertificationWidth, height: self.vertificationWidth)
-        
         /// Main stack
         return ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [
                   /// Header stack with inset
@@ -162,11 +172,15 @@ class RecommendCellNode: ASCellNode {
                   /// Center Photo
                 centerPhotoArea() ?? ASLayoutSpec().styled({ (style) in style.flexShrink = 1.0 }),
                   /// Operation
-                createOperateArea()
+                createOperateArea(),
+                  /// Equip
+                createEquipArea(),
+                  /// Likes
+                createLikesArea()
               ])
     }
     
-    /// avator corner layout spec
+    /// Avator corner layout spec
     private func avatorCornerLayoutSpec() -> ASCornerLayoutSpec {
         let layoutSpec = ASCornerLayoutSpec(child: avatorImageNode, corner: vertificationImageNode, location: ASCornerLayoutLocation.bottomRight)
         layoutSpec.offset = CGPoint(x: -5, y: -5)
@@ -203,5 +217,64 @@ class RecommendCellNode: ASCellNode {
                 })
                 ])
         )
+    }
+    
+    /// Equip area
+    private func createEquipArea() -> ASLayoutElement {
+        if let equip = feenListItem.entry.equip {
+            self.equipTextNode.attributedText = NSAttributedString(string: equip.display_name, attributes: [
+                NSAttributedString.Key.font: UIFont.normalFont_12(),
+                NSAttributedString.Key.foregroundColor: Color.lightGray
+                ])
+            self.configureEquipArea()
+            return ASInsetLayoutSpec(insets: insetForEquip, child: ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .center, children: [
+                self.equipTextNode
+                ]))
+        } else {
+            return ASLayoutSpec().styled({ (style) in
+                style.flexShrink = 1.0
+            })
+        }
+    }
+    
+    private func configureEquipArea() {
+        self.equipTextNode.style.maxWidth = ASDimension(unit: .points, value: macro.screenWidth - insetForEquip.left - insetForEquip.right)
+        self.equipTextNode.maximumNumberOfLines = 1
+        self.equipTextNode.truncationMode = .byTruncatingTail
+        self.equipTextNode.backgroundColor = Color.eqipBackGroundColor
+        self.equipTextNode.textContainerInset = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
+ 
+        /// add rounded border
+        self.equipTextNode.willDisplayNodeContentWithRenderingContext = {
+            context, drawParameters in
+            let bounds: CGRect = context.boundingBoxOfClipPath
+            let radius: CGFloat = 20.0 * UIScreen.main.scale
+            let lineWidth: CGFloat = 0.8
+            /// set overlay
+            let overlay = UIImage.as_resizableRoundedImage(withCornerRadius: radius, cornerColor: Color.backGroundColor, fill: Color.backGroundColor)
+            overlay.draw(in: bounds)
+            let path = UIBezierPath(roundedRect: CGRect(x: lineWidth/2.0, y: lineWidth/2.0, width: bounds.width - lineWidth, height: bounds.height - lineWidth), cornerRadius: radius)
+            /// set strike
+            Color.eqipBorderColor.setStroke()
+            path.lineWidth = lineWidth
+            path.stroke()
+            path.addClip()
+        }
+    }
+    
+    /// Likes area
+    private func createLikesArea() -> ASLayoutElement {
+        if feenListItem.entry.favorites != 0 {
+            self.likeCountTextNode.attributedText = feenListItem.entry.favorites_desc
+            return ASInsetLayoutSpec(insets: insetForLikes, child:
+                self.likeCountTextNode.styled({ (style) in
+                    style.flexGrow = 1.0
+                })
+            )
+        } else {
+            return ASLayoutSpec().styled({ (style) in
+                style.flexShrink = 1.0
+            })
+        }
     }
 }

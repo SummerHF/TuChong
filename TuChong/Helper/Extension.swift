@@ -86,6 +86,12 @@ public extension UIFont {
     static func boldFont_12() -> UIFont {
         return UIFont.boldSystemFont(ofSize: 12)
     }
+    
+    /// 13号粗体
+    static func boldFont_13() -> UIFont {
+        return UIFont.boldSystemFont(ofSize: 13)
+    }
+    
     /// 15号粗体
     static func boldFont_15() -> UIFont {
         return UIFont.boldSystemFont(ofSize: 15)
