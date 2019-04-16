@@ -64,6 +64,9 @@ class RecommendCellNode: ASCellNode {
     private let commentCountNode: ASTextNode
     /// comment
     private let topCommentTextNode: ASTextNode
+    private let topCommentLikeBtnNode: ASButtonNode
+    private let topCommentReplySepator: ASDisplayNode
+    private let topCommentReplyTextNode: ASTextNode
     /// size
     private let avatorWidth: CGFloat = 36
     private let vertificationWidth: CGFloat = 12
@@ -74,6 +77,7 @@ class RecommendCellNode: ASCellNode {
     private let insetForTags = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     private let insetForCommentsCount = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     private let insetForComments = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
+    private let insetForReplyComments = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
 
     init(with feenListItem: Recommend_Feedlist_Model, at index: Int) {
         self.feenListItem = feenListItem
@@ -94,6 +98,9 @@ class RecommendCellNode: ASCellNode {
         self.tagNode = ASTextNode()
         self.commentCountNode = ASTextNode()
         self.topCommentTextNode = ASTextNode()
+        self.topCommentLikeBtnNode = ASButtonNode()
+        self.topCommentReplySepator = ASDisplayNode()
+        self.topCommentReplyTextNode = ASTextNode()
         super.init()
         self.selectionStyle = .none
         self.automaticallyManagesSubnodes = true
@@ -208,7 +215,9 @@ class RecommendCellNode: ASCellNode {
                   /// Comments Count
                 createCommentCountArea(),
                   /// Comments Area
-                createCommentsArea()
+                createCommentsArea(),
+                  /// Reply Area
+                createReplyCommentsArea()
               ])
     }
     
@@ -340,15 +349,45 @@ class RecommendCellNode: ASCellNode {
         guard let comments = feenListItem.entry.comment_list, let comment = comments.first else { return ASLayoutSpec().styled({ (style) in
             style.flexShrink = 1.0
         })}
-        self.topCommentTextNode.setAttributedWith(name: comment.author.name, content: "你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊", maxLines: 2)
+        /// set top comment
+        self.topCommentTextNode.setAttributedWith(name: comment.author.name, content: comment.content, maxLines: 2)
+        self.topCommentLikeBtnNode.setImage(R.image.comment_like(), for: .normal)
+        let imageSize = R.image.comment_like()!.size
         return ASInsetLayoutSpec(insets: insetForComments, child:
-//                ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .start, alignItems: .center, children: [
+                ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .start, alignItems: .stretch, children: [
                     self.topCommentTextNode.styled({ (style) in
-                        style.maxWidth = ASDimension(unit: .points, value: 200)
+                        style.maxWidth = ASDimension(unit: .points, value: 300)
+                    }),
+                    ASLayoutSpec().styled({ (style) in
+                        style.flexGrow = 1.0
+                    }),
+                    self.topCommentLikeBtnNode.styled({ (style) in
+                        style.spacingAfter = 0.0
+                        style.preferredSize = imageSize
                     })
-//                ]
+                ]
             )
-//        )
+        )
+    }
+    
+    /// Reply area
+    private func createReplyCommentsArea() -> ASLayoutElement {
+        guard let comments = feenListItem.entry.comment_list, let comment = comments.first, let replyComment = comment.sub_notes.first else { return ASLayoutSpec().styled({ (style) in
+            style.flexShrink = 1.0
+        })}
+        self.topCommentReplySepator.backgroundColor = Color.lightGray
+        self.topCommentReplyTextNode.setAttributedWith(replyName: replyComment.author.name, repiedName: comment.author.name, content: replyComment.content)
+        return ASInsetLayoutSpec(insets: insetForReplyComments, child:
+            ASStackLayoutSpec(direction: .horizontal, spacing: 5, justifyContent: .start, alignItems: .center, children: [
+                self.topCommentReplySepator.styled({ (style) in
+                    style.preferredSize = CGSize(width: 1.0, height: 12)
+                    style.spacingBefore = 0.5
+                }),
+                self.topCommentReplyTextNode.styled({ (style) in
+                    style.maxWidth = ASDimension(unit: .points, value: 280)
+                })
+            ])
+        )
     }
 }
 

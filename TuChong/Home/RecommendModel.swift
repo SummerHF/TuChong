@@ -86,9 +86,11 @@ struct Recommend_Feedlist_CommensAuthor_Model: HandyJSON {
     var verification_list: [Recommend_Feedlist_Verification_List_Model] = []
 }
 
-struct Recommend_Feedlist_Subnotes_Model {
+struct Recommend_Feedlist_Subnotes_Model: HandyJSON {
     var note_id: Int = 0
     var author: Recommend_Feedlist_CommensAuthor_Model = Recommend_Feedlist_CommensAuthor_Model()
+    var content: String = ""
+    var liked: Bool = false
 }
 
 struct Recommend_Feedlist_CommensList_Model: HandyJSON {
