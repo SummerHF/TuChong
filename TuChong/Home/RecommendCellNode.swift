@@ -70,6 +70,7 @@ class RecommendCellNode: ASCellNode {
     private let insetForEquip = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     private let insetForLikes = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     private let insetForTags = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
+    private let insetForCommentsCount = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
 
     init(with feenListItem: Recommend_Feedlist_Model, at index: Int) {
         self.feenListItem = feenListItem
@@ -199,7 +200,9 @@ class RecommendCellNode: ASCellNode {
                   /// Likes
                 createLikesArea(),
                   /// Tags
-                createTagsArea()
+                createTagsArea(),
+                  /// Comments Count
+                createCommentCountArea()
               ])
     }
     
@@ -309,6 +312,21 @@ class RecommendCellNode: ASCellNode {
             })
         }
         return ASInsetLayoutSpec(insets: insetForTags, child: self.tagNode)
+    }
+    
+    /// Comments count
+    private func createCommentCountArea() -> ASLayoutElement {
+        if feenListItem.entry.comments > 0 {
+            self.commentCountNode.attributedText = NSAttributedString(string: "查看全部\(feenListItem.entry.comments)条评论", attributes: [
+                NSAttributedString.Key.font: UIFont.normalFont_13(),
+                NSAttributedString.Key.foregroundColor: Color.lightGray
+                ])
+            return ASInsetLayoutSpec(insets: insetForCommentsCount, child: self.commentCountNode)
+        } else {
+            return ASLayoutSpec().styled({ (style) in
+                style.flexShrink = 1.0
+            })
+        }
     }
 }
 
