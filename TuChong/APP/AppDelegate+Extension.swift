@@ -114,4 +114,21 @@ extension ASTextNode {
             }
         }
     }
+    
+    func setAttributedWith(name: String, content: String, maxLines: UInt) {
+//        let string = String(format: "%@ %@", name, content)
+        let string = "\(name) \(content)"
+        let attr = NSMutableAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: UIFont.normalFont_13(),
+            NSAttributedString.Key.foregroundColor: UIColor.black
+            ])
+//        attr.addAttributes([
+//            NSAttributedString.Key.font: UIFont.boldFont_13(),
+//            NSAttributedString.Key.foregroundColor: UIColor.black
+//            ], range: NSString(string: string).range(of: name))
+        
+        self.attributedText = attr
+//        self.maximumNumberOfLines = 0
+//        self.truncationMode = .byTruncatingTail
+    }
 }

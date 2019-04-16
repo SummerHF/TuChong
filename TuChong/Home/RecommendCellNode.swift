@@ -62,6 +62,8 @@ class RecommendCellNode: ASCellNode {
     private let likeCountTextNode: ASTextNode
     private let tagNode: ASTextNode
     private let commentCountNode: ASTextNode
+    /// comment
+    private let topCommentTextNode: ASTextNode
     /// size
     private let avatorWidth: CGFloat = 36
     private let vertificationWidth: CGFloat = 12
@@ -71,6 +73,7 @@ class RecommendCellNode: ASCellNode {
     private let insetForLikes = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     private let insetForTags = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     private let insetForCommentsCount = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
+    private let insetForComments = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
 
     init(with feenListItem: Recommend_Feedlist_Model, at index: Int) {
         self.feenListItem = feenListItem
@@ -90,6 +93,7 @@ class RecommendCellNode: ASCellNode {
         self.likeCountTextNode = ASTextNode()
         self.tagNode = ASTextNode()
         self.commentCountNode = ASTextNode()
+        self.topCommentTextNode = ASTextNode()
         super.init()
         self.selectionStyle = .none
         self.automaticallyManagesSubnodes = true
@@ -202,7 +206,9 @@ class RecommendCellNode: ASCellNode {
                   /// Tags
                 createTagsArea(),
                   /// Comments Count
-                createCommentCountArea()
+                createCommentCountArea(),
+                  /// Comments Area
+                createCommentsArea()
               ])
     }
     
@@ -327,6 +333,22 @@ class RecommendCellNode: ASCellNode {
                 style.flexShrink = 1.0
             })
         }
+    }
+    
+    /// Comments area
+    private func createCommentsArea() -> ASLayoutElement {
+        guard let comments = feenListItem.entry.comment_list, let comment = comments.first else { return ASLayoutSpec().styled({ (style) in
+            style.flexShrink = 1.0
+        })}
+        self.topCommentTextNode.setAttributedWith(name: comment.author.name, content: "你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊", maxLines: 2)
+        return ASInsetLayoutSpec(insets: insetForComments, child:
+//                ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .start, alignItems: .center, children: [
+                    self.topCommentTextNode.styled({ (style) in
+                        style.maxWidth = ASDimension(unit: .points, value: 200)
+                    })
+//                ]
+            )
+//        )
     }
 }
 

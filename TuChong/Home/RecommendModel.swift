@@ -203,7 +203,7 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var sites: String?
     var recom_type: Recommend_Feedlist_RecomType_Model = Recommend_Feedlist_RecomType_Model()
     var music: Recommend_Feedlist_Music_Model?
-    var comment_list: [Recommend_Feedlist_CommensList_Model] = []
+    var comment_list: [Recommend_Feedlist_CommensList_Model]?
     var equip: Recommend_Feedlist_Equip_Model?
     var images: [Recommend_Feedlist_Images_Model] = []
     var tags: [Recommend_Feedlist_Tags_Model] = []
