@@ -27,11 +27,23 @@
 
 import AsyncDisplayKit
 
+// MARK: - RecommendCellNodeProtocol
+
+protocol RecommendCellNodeProtocol: class {
+    /// 点击更多时，刷新cell以展开显示更多内容
+   func needToReload(cell: ASCellNode, at index: Int, isFolding: Bool)
+    /// 点击某一个tag时
+   func needToShowTagDetail(cell: ASCellNode, at index: Int, tag: Recommend_Feedlist_Tags_Model)
+}
+
+// MARK: - RecommendCellNode
+
 /// 推荐Cell
 class RecommendCellNode: ASCellNode {
     
-    private let feenListItem: Recommend_Feedlist_Model
+    private var feenListItem: Recommend_Feedlist_Model
     private let index: Int
+    weak var delegate: RecommendCellNodeProtocol?
     /// node
     private let avatorImageNode: ASNetworkImageNode
     private let vertificationImageNode: ASImageNode
@@ -49,6 +61,7 @@ class RecommendCellNode: ASCellNode {
     private let equipTextNode: ASTextNode
     private let likeCountTextNode: ASTextNode
     private let tagNode: ASTextNode
+    private let commentCountNode: ASTextNode
     /// size
     private let avatorWidth: CGFloat = 36
     private let vertificationWidth: CGFloat = 12
@@ -75,9 +88,11 @@ class RecommendCellNode: ASCellNode {
         self.equipTextNode = ASTextNode()
         self.likeCountTextNode = ASTextNode()
         self.tagNode = ASTextNode()
+        self.commentCountNode = ASTextNode()
         super.init()
         self.selectionStyle = .none
         self.automaticallyManagesSubnodes = true
+        self.neverShowPlaceholders = true 
     }
     
     // MARK: - didLoad
@@ -134,36 +149,8 @@ class RecommendCellNode: ASCellNode {
         self.collectBtnNode.setImage(R.image.collect(), for: .normal)
         self.shareRightNode.setImage(R.image.share_right(), for: .normal)
         /// tag Node
-        let name = feenListItem.entry.site.name
-        var content: String = ""
-        if !feenListItem.entry.title.isEmpty && !feenListItem.entry.content.isEmpty {
-            content = feenListItem.entry.title + "·" + feenListItem.entry.content
-        } else if !feenListItem.entry.title.isEmpty {
-            content = feenListItem.entry.title
-        } else if !feenListItem.entry.content.isEmpty {
-            content = feenListItem.entry.content
-        }
-        
-        var tagStr = ""
-        for item in feenListItem.entry.tags {
-            tagStr += String(format: " #%@", item.tag_name)
-        }
-        
-        var tagDesc = String(format: "%@%@", content, tagStr)
-        if tagDesc.count == 0 {
-            self.tagNode.attributedText = nil
-        } else {
-            tagDesc = String(format: "%@ %@", name, tagDesc)
-            let attr = NSMutableAttributedString(string: tagDesc, attributes: [NSAttributedString.Key.font: UIFont.normalFont_13(),
-                                                                               NSAttributedString.Key.foregroundColor: UIColor.black])
-            attr.addAttributes([NSAttributedString.Key.font: UIFont.boldFont_13()], range: NSString(string: tagDesc).range(of: name))
-            self.tagNode.attributedText = attr
-            self.tagNode.truncationAttributedText = NSAttributedString(string: "...展开", attributes: [
-                NSAttributedString.Key.font: UIFont.normalFont_13(),
-                NSAttributedString.Key.foregroundColor: Color.lightGray
-                ])
-            self.tagNode.maximumNumberOfLines = 2
-        }
+        self.tagNode.setAttributedWith(name: feenListItem.entry.site.name, title: feenListItem.entry.title, content: feenListItem.entry.content, tags: feenListItem.entry.tags, isFloding: feenListItem.isFolding)
+        self.configureTagsArea()
     }
     
     // MARK: - layoutSpecThatFits
@@ -322,5 +309,45 @@ class RecommendCellNode: ASCellNode {
             })
         }
         return ASInsetLayoutSpec(insets: insetForTags, child: self.tagNode)
+    }
+}
+
+// MARK: - ASTextNodeDelegate
+
+extension RecommendCellNode: ASTextNodeDelegate {
+    
+    func configureTagsArea() {
+        /// set delegate
+        self.tagNode.delegate = self
+        /// enable  user interaction
+        self.tagNode.isUserInteractionEnabled = true
+        /// add target event
+        self.tagNode.addTarget(self, action: #selector(tagNodeUserTapEvent), forControlEvents: .touchUpInside)
+    }
+    
+    @objc private func tagNodeUserTapEvent() {
+        if self.tagNode.isTruncated {
+            /// since tagNode isTruncated, so need to reopen it.
+            textNodeTappedTruncationToken(self.tagNode)
+        }
+    }
+    
+    func textNodeTappedTruncationToken(_ textNode: ASTextNode!) {
+        /// reload tableNode
+        self.delegate?.needToReload(cell: self, at: index, isFolding: false)
+    }
+    
+    func textNode(_ textNode: ASTextNode!, tappedLinkAttribute attribute: String!, value: Any!, at point: CGPoint, textRange: NSRange) {
+        if self.tagNode.isTruncated {
+            textNodeTappedTruncationToken(self.tagNode)
+        } else {
+            guard let string = value as? String else { return }
+            for item in feenListItem.entry.tags {
+                let value = String(format: " #%@", item.tag_name)
+                if value == string {
+                    self.delegate?.needToShowTagDetail(cell: self, at: index, tag: item)
+                }
+            }
+        }
     }
 }

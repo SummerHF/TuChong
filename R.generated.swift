@@ -355,7 +355,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 19 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -373,6 +373,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let cancel_button_title = Rswift.StringResource(key: "cancel_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 展开
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let more = Rswift.StringResource(key: "more", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 张照片
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -460,6 +464,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func cancel_button_title(_: Void = ()) -> String {
         return NSLocalizedString("cancel_button_title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 展开
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func more(_: Void = ()) -> String {
+        return NSLocalizedString("more", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 张照片

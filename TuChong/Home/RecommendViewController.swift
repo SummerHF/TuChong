@@ -99,6 +99,20 @@ extension RecommendViewController: ASTableDataSource {
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        return RecommendCellNode(with: feedList[indexPath.row], at: indexPath.row)
+        let cell = RecommendCellNode(with: feedList[indexPath.row], at: indexPath.row)
+        cell.delegate = self
+        return cell
+    }
+}
+
+extension RecommendViewController: RecommendCellNodeProtocol {
+    
+    func needToReload(cell: ASCellNode, at index: Int, isFolding: Bool) {
+        feedList[index].isFolding = isFolding
+        tableNode.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+    }
+    
+    func needToShowTagDetail(cell: ASCellNode, at index: Int, tag: Recommend_Feedlist_Tags_Model) {
+        print(tag.tag_name, tag.tag_id)
     }
 }

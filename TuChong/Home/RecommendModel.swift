@@ -257,6 +257,8 @@ enum StageType: String {
 }
 
 struct Recommend_Feedlist_Model: HandyJSON {
+    /// whether the cell folds
+    var isFolding: Bool = true
     var type: String = ""
     var is_marked: Bool = false
     var entry: Recommend_Feedlist_Eentry_Model = Recommend_Feedlist_Eentry_Model()
