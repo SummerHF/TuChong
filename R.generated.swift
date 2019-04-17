@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 41 images.
+  /// This `R.image` struct is generated, and contains static references to 42 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -96,6 +96,8 @@ struct R: Rswift.Validatable {
     static let lecture = Rswift.ImageResource(bundle: R.hostingBundle, name: "lecture")
     /// Image `like`.
     static let like = Rswift.ImageResource(bundle: R.hostingBundle, name: "like")
+    /// Image `login_logo`.
+    static let login_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "login_logo")
     /// Image `online_follow`.
     static let online_follow = Rswift.ImageResource(bundle: R.hostingBundle, name: "online_follow")
     /// Image `photography _tutorial`.
@@ -239,6 +241,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.like, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "login_logo", bundle: ..., traitCollection: ...)`
+    static func login_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.login_logo, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "online_follow", bundle: ..., traitCollection: ...)`
     static func online_follow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.online_follow, compatibleWith: traitCollection)
@@ -362,7 +369,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -408,6 +415,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let tag = Rswift.StringResource(key: "tag", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 注册
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let register = Rswift.StringResource(key: "register", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -428,6 +439,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let film = Rswift.StringResource(key: "film", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 登录
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let login = Rswift.StringResource(key: "login", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 登录后查看更多精彩内容
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let login_prompt = Rswift.StringResource(key: "login_prompt", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 红包活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -522,6 +541,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tag", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 注册
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func register(_: Void = ()) -> String {
+        return NSLocalizedString("register", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -555,6 +581,20 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func film(_: Void = ()) -> String {
         return NSLocalizedString("film", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 登录
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func login(_: Void = ()) -> String {
+        return NSLocalizedString("login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 登录后查看更多精彩内容
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func login_prompt(_: Void = ()) -> String {
+        return NSLocalizedString("login_prompt", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 红包活动

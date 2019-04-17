@@ -36,6 +36,8 @@ class FollowViewController: BaseViewControlle {
     private let model: HomePageNav_Data_Model
     private let page: Int = 1
     
+    private var loginNode: FollowViewUserLoginNode?
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -44,11 +46,24 @@ class FollowViewController: BaseViewControlle {
         self.model = model
         self.index = index
         super.init()
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubviews()
+    }
+    
+    override func addSubviews() {
+        if !UserManager.manager.isLogin {
+            let node = FollowViewUserLoginNode()
+            self.view.addSubnode(node)
+            node.view.snp.makeConstraints { (make) in
+                make.center.equalToSuperview()
+                make.width.equalToSuperview()
+                make.height.equalToSuperview().multipliedBy(0.6)
+            }
+            self.loginNode = node
+        }
     }
     
     override func initialHidden() -> Bool {

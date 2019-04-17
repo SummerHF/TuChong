@@ -29,6 +29,8 @@
 		C462C003225F39C700AB91F1 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462C002225F39C700AB91F1 /* CategoryViewController.swift */; };
 		C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BDC352249B26F001032DC /* LaunchViewController.swift */; };
 		C4827C382266B828009E94C5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C372266B828009E94C5 /* FollowViewController.swift */; };
+		C4827C3A2266BC1D009E94C5 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C392266BC1D009E94C5 /* UserManager.swift */; };
+		C4827C3F2266BD60009E94C5 /* FollowViewUserLoginNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */; };
 		C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */; };
 		C4AC63D12241BEF400324C23 /* Reference in Resources */ = {isa = PBXBuildFile; fileRef = C4AC63D02241BEF400324C23 /* Reference */; };
 		C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63D22241D3CE00324C23 /* Logger.swift */; };
@@ -81,6 +83,8 @@
 		C462C002225F39C700AB91F1 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		C47BDC352249B26F001032DC /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		C4827C372266B828009E94C5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
+		C4827C392266BC1D009E94C5 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewUserLoginNode.swift; sourceTree = "<group>"; };
 		C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		C4AC63D02241BEF400324C23 /* Reference */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reference; sourceTree = "<group>"; };
 		C4AC63D22241D3CE00324C23 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -214,6 +218,14 @@
 			path = Tag;
 			sourceTree = "<group>";
 		};
+		C4827C3D2266BD34009E94C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C4AC63CC2241B80100324C23 /* APP */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +233,7 @@
 				C4AD3C2C224097CB0095BC97 /* AppDelegate.swift */,
 				C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */,
 				C43B9A51225C2FFA00C15872 /* TabBar.swift */,
+				C4827C392266BC1D009E94C5 /* UserManager.swift */,
 			);
 			path = APP;
 			sourceTree = "<group>";
@@ -228,6 +241,7 @@
 		C4AC63CD2241BB4100324C23 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C4827C3D2266BD34009E94C5 /* View */,
 				C462BFFF225F13DD00AB91F1 /* Tag */,
 				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
 				C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */,
@@ -497,8 +511,10 @@
 			files = (
 				53EA9630225F706500132012 /* RecommendModel.swift in Sources */,
 				C43B9A52225C2FFA00C15872 /* TabBar.swift in Sources */,
+				C4827C3A2266BC1D009E94C5 /* UserManager.swift in Sources */,
 				C41A32C422601E09009AF4CF /* RecommendCellNode.swift in Sources */,
 				C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */,
+				C4827C3F2266BD60009E94C5 /* FollowViewUserLoginNode.swift in Sources */,
 				C462C003225F39C700AB91F1 /* CategoryViewController.swift in Sources */,
 				C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */,
 				C43B9A58225C61E100C15872 /* PhotoFilmViewController.swift in Sources */,

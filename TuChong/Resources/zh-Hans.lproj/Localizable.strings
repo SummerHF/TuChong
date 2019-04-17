@@ -18,3 +18,6 @@
 "pictures" = "张照片";
 "likes" = "人喜欢";
 "more" = "展开";
+"login" = "登录";
+"register" = "注册";
+"login_prompt" = "登录后查看更多精彩内容";

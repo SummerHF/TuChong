@@ -154,3 +154,16 @@ extension ASTextNode {
         self.truncationMode = .byTruncatingTail
     }
 }
+
+// MARK: - ASDisplayNode
+
+extension ASDisplayNode {
+    
+    /// fast to add corner and border
+    func set(cornerRadius: CGFloat = 0.0, borderWidth: CGFloat = 0.0, borderColor: UIColor = UIColor.clear) {
+        self.layer.cornerRadius = cornerRadius
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.view.clipsToBounds = true
+    }
+}

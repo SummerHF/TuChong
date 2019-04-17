@@ -1,7 +1,7 @@
-//  Color.swift
+//  UserManager.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/3/28.
+//  Created by SummerHF on 2019/4/17.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -25,23 +25,13 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
-import ChameleonFramework
+import Foundation
 
-/// use this method to create color fast
-func RGBA(R: CGFloat, G: CGFloat, B: CGFloat, A: CGFloat = 1.0) -> UIColor {
-    return UIColor.init(red: R / 255.0, green: G / 255.0, blue: B / 255.0, alpha: A)
-}
+/// Use this struct to manager `User` state
 
-struct Color {
-    /// 主题颜色
-    static var themeColor = UIColor.white
-    static var backGroundColor = UIColor.white
-    static var lightGray = RGBA(R: 133, G: 133, B: 135)
-    static var thinGray = RGBA(R: 243, G: 243, B: 243)
-    static var flatWhite = RGBA(R: 255, G: 255, B: 255, A: 0.9)
-    static var lineColor = RGBA(R: 239, G: 45, B: 88)
-    static var eqipBackGroundColor = RGBA(R: 251, G: 251, B: 251)
-    static var eqipBorderColor = RGBA(R: 220, G: 220, B: 220)
-    static var orangerColor = RGBA(R: 247, G: 134, B: 100)
+struct UserManager {
+    /// user manager singleton
+    static let manager = UserManager()
+    
+    var isLogin: Bool = false
 }

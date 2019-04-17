@@ -18,3 +18,6 @@
 "pictures" = "pictures";
 "likes" = " likes";
 "more" = "more";
+"login" = "Login";
+"register" = "Register";
+"login_prompt" = "Log in to see more highlights";
