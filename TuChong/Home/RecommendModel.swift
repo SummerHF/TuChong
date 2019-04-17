@@ -62,6 +62,7 @@ struct Recommend_Feedlist_Tags_Model: HandyJSON {
     var status: String = ""
     var description: String = ""
     var cover_img_id: String = ""
+    var cover_url: String = ""
 }
 
 struct Recommend_Feedlist_Verification_List_Model: HandyJSON {

@@ -68,7 +68,8 @@ class RecommendBaseCellNode: ASCellNode {
     let insetForCommentsCount = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     let insetForComments = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     let insetForReplyComments = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
-    
+    let insetForTopicCollectionNode = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+
     init(with feenListItem: Recommend_Feedlist_Model, at index: Int) {
         self.feenListItem = feenListItem
         self.index = index

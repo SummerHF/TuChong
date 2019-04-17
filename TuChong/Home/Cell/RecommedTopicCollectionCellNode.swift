@@ -1,4 +1,4 @@
-//  RecommendTopCellNode.swift
+//  RecommedTopicCollectionCellNode.swift
 //  TuChong
 //
 //  Created by SummerHF on 2019/4/17.
@@ -27,36 +27,33 @@
 
 import AsyncDisplayKit
 
-class RecommendTopCellNode: RecommendBaseCellNode {
+class RecommedTopicCollectionCellNode: ASCellNode {
+    let tagItem: Recommend_Feedlist_Tags_Model
+    let index: Int
+    let imageNode: ASNetworkImageNode
+    let tagNameTextNode: ASTextNode
     
-    private let titleNameTextNode: ASTextNode
-    private let moreTextNode: ASTextNode
-
-    override init(with feenListItem: Recommend_Feedlist_Model, at index: Int) {
-        self.titleNameTextNode = ASTextNode()
-        self.moreTextNode = ASTextNode()
-        super.init(with: feenListItem, at: index)
+    init(with tagItem: Recommend_Feedlist_Tags_Model, at index: Int) {
+        self.tagItem = tagItem
+        self.index = index
+        self.imageNode = ASNetworkImageNode()
+        self.tagNameTextNode = ASTextNode()
+        super.init()
+        self.tagNameTextNode.isLayerBacked = true
+        self.automaticallyManagesSubnodes = true
     }
     
     override func didLoad() {
         super.didLoad()
-        self.titleNameTextNode.setAttributdWith(string: R.string.localizable.circle(), font: UIFont.boldFont_13())
-        self.moreTextNode.setAttributdWith(string: R.string.localizable.to_view_more(), font: UIFont.normalFont_13(), color: Color.lightGray)
+        self.imageNode.url = URL(string: tagItem.cover_url)
+        self.tagNameTextNode.setAttributdWith(string: "#\(tagItem.tag_name)", font: UIFont.normalFont_12(), color: Color.flatWhite, aligement: .center)
+        self.imageNode.imageModificationBlock = {
+            image in
+            image.byBlurDark()?.byRoundCornerRadius(8.0)
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [
-                ASInsetLayoutSpec(insets: insetForHeader, child:
-                    ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [
-                        self.titleNameTextNode,
-                        ASLayoutSpec().styled({ (style) in
-                            style.flexGrow = 1.0
-                        }),
-                        self.moreTextNode.styled({ (style) in
-                            style.spacingAfter = 0.0
-                        })
-                     ])
-                  )
-            ])
-      }
+        return ASOverlayLayoutSpec(child: imageNode, overlay: ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .minimumXY, child: tagNameTextNode))
+    }
 }

@@ -154,11 +154,21 @@ extension ASTextNode {
         self.truncationMode = .byTruncatingTail
     }
     
-    func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black) {
-        self.attributedText = NSAttributedString(string: string, attributes: [
-            NSAttributedString.Key.font: font,
-            NSAttributedString.Key.foregroundColor: color
-            ])
+    func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, aligement: NSTextAlignment? = nil) {
+        if let aligeValue = aligement {
+            let style = NSMutableParagraphStyle()
+            style.alignment = aligeValue
+            self.attributedText = NSAttributedString(string: string, attributes: [
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: color,
+                NSAttributedString.Key.paragraphStyle: style
+                ])
+        } else {
+            self.attributedText = NSAttributedString(string: string, attributes: [
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: color
+                ])
+        }
     }
 }
 

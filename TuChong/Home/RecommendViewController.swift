@@ -102,7 +102,7 @@ extension RecommendViewController: ASTableDataSource {
         let model = feedList[indexPath.row]
         switch model.stageType {
         case .topic:
-            let cell = RecommendTopCellNode(with: feedList[indexPath.row], at: indexPath.row)
+            let cell = RecommendTopicCellNode(with: feedList[indexPath.row], at: indexPath.row)
             return cell
         default:
             let cell = RecommendCellNode(with: feedList[indexPath.row], at: indexPath.row)
