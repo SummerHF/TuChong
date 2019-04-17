@@ -104,12 +104,16 @@ extension HomeContainerViewController: HomeNavNodeDlegate {
         /// has created `UIPageController`
         if let manager = pageController {
             if let subViewController = dictionaryForController[index] {
-                manager.setViewControllers([subViewController], direction: (index > selectedIndex ? .forward : .reverse), animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    manager.setViewControllers([subViewController], direction: (index > self.selectedIndex ? .forward : .reverse), animated: false, completion: nil)
+                }
             } else {
                 /// to created subviewcontroller
                 let subViewController = self.create(subviewControll: index)
                 dictionaryForController[index] = subViewController
-                manager.setViewControllers([subViewController], direction: (index > selectedIndex ? .forward : .reverse), animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    manager.setViewControllers([subViewController], direction: (index > self.selectedIndex ? .forward : .reverse), animated: false, completion: nil)
+                }
             }
             self.selectedIndex = index
         } else {

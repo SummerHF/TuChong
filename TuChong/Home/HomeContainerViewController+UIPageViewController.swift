@@ -61,13 +61,15 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         guard let target = pendingViewControllers.first else { return }
+        print(pendingViewControllers)
         for (key, vc) in dictionaryForController where vc == target {
             self.selectedIndex = key
         }
     }
     
+    /// using completed to judge index
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if finished {
+        if completed && finished {
             self.navView?.hasSelected(index: self.selectedIndex)
         }
     }
