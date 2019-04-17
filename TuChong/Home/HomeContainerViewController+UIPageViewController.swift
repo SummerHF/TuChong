@@ -35,7 +35,7 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
                 if let value = dictionaryForController[key - 1] {
                     return value
                 } else {
-                    let vc = self.create(subviewControll: key)
+                    let vc = self.create(subviewControll: key-1)
                     dictionaryForController[key - 1] = vc
                     return vc
                 }
@@ -50,7 +50,7 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
                 if let value = dictionaryForController[key + 1] {
                     return value
                 } else {
-                    let vc = self.create(subviewControll: key)
+                    let vc = self.create(subviewControll: key+1)
                     dictionaryForController[key + 1] = vc
                     return vc
                 }
@@ -84,7 +84,7 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
         case .follow:
             print("follow")
             // need to login in
-            viewController = HomeSubViewController(model: navArray[withIndex], index: withIndex)
+            viewController = FollowViewController(model: navArray[withIndex], index: withIndex)
         case .recommend:
             path = "/2/feed-app"
             parameters = [RequestparameterKey.page: page, RequestparameterKey.type: RequestType.refresh.rawValue]
