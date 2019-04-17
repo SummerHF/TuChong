@@ -31,6 +31,7 @@
 		C4827C382266B828009E94C5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C372266B828009E94C5 /* FollowViewController.swift */; };
 		C4827C3A2266BC1D009E94C5 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C392266BC1D009E94C5 /* UserManager.swift */; };
 		C4827C3F2266BD60009E94C5 /* FollowViewUserLoginNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */; };
+		C4A502492266F49C00867EBE /* RecommendBaseCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A502482266F49C00867EBE /* RecommendBaseCellNode.swift */; };
 		C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */; };
 		C4AC63D12241BEF400324C23 /* Reference in Resources */ = {isa = PBXBuildFile; fileRef = C4AC63D02241BEF400324C23 /* Reference */; };
 		C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63D22241D3CE00324C23 /* Logger.swift */; };
@@ -52,6 +53,7 @@
 		C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */; };
 		C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */; };
 		C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */; };
+		C4EB9FEF2266F074008747C7 /* RecommendTopCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB9FEE2266F074008747C7 /* RecommendTopCellNode.swift */; };
 		C4F658812249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F658802249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift */; };
 		C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F658A42249F0D700297EF4 /* HomeTagCellNode.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +87,7 @@
 		C4827C372266B828009E94C5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		C4827C392266BC1D009E94C5 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewUserLoginNode.swift; sourceTree = "<group>"; };
+		C4A502482266F49C00867EBE /* RecommendBaseCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendBaseCellNode.swift; sourceTree = "<group>"; };
 		C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		C4AC63D02241BEF400324C23 /* Reference */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reference; sourceTree = "<group>"; };
 		C4AC63D22241D3CE00324C23 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 		C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableNode.swift; sourceTree = "<group>"; };
+		C4EB9FEE2266F074008747C7 /* RecommendTopCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTopCellNode.swift; sourceTree = "<group>"; };
 		C4F658802249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagCollectionNodeLayout.swift; sourceTree = "<group>"; };
 		C4F658A42249F0D700297EF4 /* HomeTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagCellNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -226,6 +230,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C4A502472266F46A00867EBE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C4A502482266F49C00867EBE /* RecommendBaseCellNode.swift */,
+				C4EB9FEE2266F074008747C7 /* RecommendTopCellNode.swift */,
+				C41A32C322601E09009AF4CF /* RecommendCellNode.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		C4AC63CC2241B80100324C23 /* APP */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,13 +255,13 @@
 		C4AC63CD2241BB4100324C23 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C4A502472266F46A00867EBE /* Cell */,
 				C4827C3D2266BD34009E94C5 /* View */,
 				C462BFFF225F13DD00AB91F1 /* Tag */,
 				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
 				C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */,
 				C4827C372266B828009E94C5 /* FollowViewController.swift */,
 				C462C000225F35AE00AB91F1 /* RecommendViewController.swift */,
-				C41A32C322601E09009AF4CF /* RecommendCellNode.swift */,
 				C462C002225F39C700AB91F1 /* CategoryViewController.swift */,
 				C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */,
 				C4AD3C44224098BD0095BC97 /* HomePageModel.swift */,
@@ -533,6 +547,8 @@
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
 				C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */,
+				C4EB9FEF2266F074008747C7 /* RecommendTopCellNode.swift in Sources */,
+				C4A502492266F49C00867EBE /* RecommendBaseCellNode.swift in Sources */,
 				C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* Extension.swift in Sources */,

@@ -369,7 +369,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 25 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -387,6 +387,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let cancel_button_title = Rswift.StringResource(key: "cancel_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 圈子
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let circle = Rswift.StringResource(key: "circle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 展开
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -411,6 +415,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let photography_tutorial = Rswift.StringResource(key: "photography_tutorial", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 查看更多
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let to_view_more = Rswift.StringResource(key: "to_view_more", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 标签
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -492,6 +500,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("cancel_button_title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 圈子
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func circle(_: Void = ()) -> String {
+        return NSLocalizedString("circle", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 展开
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -532,6 +547,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func photography_tutorial(_: Void = ()) -> String {
         return NSLocalizedString("photography_tutorial", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 查看更多
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func to_view_more(_: Void = ()) -> String {
+        return NSLocalizedString("to_view_more", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 标签

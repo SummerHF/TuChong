@@ -99,9 +99,16 @@ extension RecommendViewController: ASTableDataSource {
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        let cell = RecommendCellNode(with: feedList[indexPath.row], at: indexPath.row)
-        cell.delegate = self
-        return cell
+        let model = feedList[indexPath.row]
+        switch model.stageType {
+        case .topic:
+            let cell = RecommendTopCellNode(with: feedList[indexPath.row], at: indexPath.row)
+            return cell
+        default:
+            let cell = RecommendCellNode(with: feedList[indexPath.row], at: indexPath.row)
+            cell.delegate = self
+            return cell
+        }
     }
 }
 

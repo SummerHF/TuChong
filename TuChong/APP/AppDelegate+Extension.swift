@@ -153,6 +153,13 @@ extension ASTextNode {
         self.maximumNumberOfLines = 1
         self.truncationMode = .byTruncatingTail
     }
+    
+    func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black) {
+        self.attributedText = NSAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+            ])
+    }
 }
 
 // MARK: - ASDisplayNode

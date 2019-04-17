@@ -66,7 +66,7 @@ extension TuChong: TargetType {
         /// 请求头处内容写死
         return ["content-type": "application/json",
                 "platform": "ios",
-                "version": "4.16.1",
+                "version": "5.0.1",
                 "device": "51857464990"
         ]
     }

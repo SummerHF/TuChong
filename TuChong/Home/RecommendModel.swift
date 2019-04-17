@@ -146,8 +146,8 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
     var verification_list: [Recommend_Feedlist_Verification_List_Model] = []
     var is_following: Bool = false
     var is_follower: Bool = false
-    var iconURL: URL {
-        return URL(string: icon)!
+    var iconURL: URL? {
+        return URL(string: icon)
     }
     var verified_image: UIImage? {
         if 11 == verified_type {
@@ -232,6 +232,7 @@ enum StageType: String {
     case video
     case none
     case site_list
+    case topic
     
     init(outType: String, innerType: String, isMusic: Bool) {
         if outType == "banner" {
@@ -252,6 +253,8 @@ enum StageType: String {
             }
         } else if outType == "site-list" {
             self = .site_list
+        } else if outType == "topic" {
+            self = .topic
         } else {
             self = .none
         }
