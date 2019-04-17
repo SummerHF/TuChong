@@ -116,7 +116,6 @@ extension RecommendViewController: RecommendCellNodeProtocol {
     
     func needToReload(cell: ASCellNode, at index: Int, isFolding: Bool) {
         feedList[index].isFolding = isFolding
-        tableNode.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
     }
     
     func needToShowTagDetail(cell: ASCellNode, at index: Int, tag: Recommend_Feedlist_Tags_Model) {

@@ -176,8 +176,15 @@ extension RecommendCellNode: ASTextNodeDelegate {
     }
     
     func textNodeTappedTruncationToken(_ textNode: ASTextNode!) {
-        /// reload tableNode
+        /// inform delegate, change `isFolding` property
         self.delegate?.needToReload(cell: self, at: index, isFolding: false)
+        /// relayout cell
+        self.transitionLayoutWithTagNode()
+    }
+    
+    private func transitionLayoutWithTagNode() {
+        self.tagNode.maximumNumberOfLines = 0
+        transitionLayout(withAnimation: false, shouldMeasureAsync: true, measurementCompletion: nil)
     }
     
     func textNode(_ textNode: ASTextNode!, tappedLinkAttribute attribute: String!, value: Any!, at point: CGPoint, textRange: NSRange) {
