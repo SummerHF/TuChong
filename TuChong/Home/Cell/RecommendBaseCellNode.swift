@@ -27,6 +27,8 @@
 
 import AsyncDisplayKit
 
+/// Base Recommend Cell, contains almost all property and layout method, subClass to using it
+/// ASDisplayNode+Subclasses
 class RecommendBaseCellNode: ASCellNode {
     
     let feenListItem: Recommend_Feedlist_Model
@@ -144,10 +146,7 @@ class RecommendBaseCellNode: ASCellNode {
     /// Equip area
     func createEquipArea() -> ASLayoutElement {
         if let equip = feenListItem.entry.equip {
-            self.equipTextNode.attributedText = NSAttributedString(string: equip.display_name, attributes: [
-                NSAttributedString.Key.font: UIFont.normalFont_12(),
-                NSAttributedString.Key.foregroundColor: Color.lightGray
-                ])
+            self.equipTextNode.setAttributdWith(string: equip.display_name, font: UIFont.normalFont_12(), color: Color.lightGray)
             self.configureEquipArea()
             return ASInsetLayoutSpec(insets: insetForEquip, child: ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: .start, alignItems: .center, children: [
                 self.equipTextNode
@@ -213,10 +212,7 @@ class RecommendBaseCellNode: ASCellNode {
     /// Comments count
     func createCommentCountArea() -> ASLayoutElement {
         if feenListItem.entry.comments > 0 {
-            self.commentCountNode.attributedText = NSAttributedString(string: "查看全部\(feenListItem.entry.comments)条评论", attributes: [
-                NSAttributedString.Key.font: UIFont.normalFont_13(),
-                NSAttributedString.Key.foregroundColor: Color.lightGray
-                ])
+            self.commentCountNode.setAttributdWith(string: "查看全部\(feenListItem.entry.comments)条评论", font: UIFont.normalFont_13(), color: Color.lightGray)
             return ASInsetLayoutSpec(insets: insetForCommentsCount, child: self.commentCountNode)
         } else {
             return ASLayoutSpec().styled({ (style) in
@@ -271,5 +267,3 @@ class RecommendBaseCellNode: ASCellNode {
         )
     }
 }
-
-//ASDisplayNode+Subclasses
