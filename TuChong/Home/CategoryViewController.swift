@@ -39,7 +39,7 @@ class CategoryViewController: BaseViewControlle {
     private var paramerers: [String: Any]
     private let page: Int = 2
     private let collectionNode: ASCollectionNode
-    private let collectionNodeContentInset = UIEdgeInsets(top: 10, left: 20, bottom: 0, right: 20)
+    private let layoutInspector = CategoryFlowLayoutInspector()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -55,6 +55,7 @@ class CategoryViewController: BaseViewControlle {
         let layout = CategoryFlowLayout()
         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
         super.init()
+        layout.delegate = self
     }
     
     override func viewDidLoad() {
@@ -64,11 +65,11 @@ class CategoryViewController: BaseViewControlle {
     }
     
     override func addSubviews() {
+        collectionNode.layoutInspector = layoutInspector
         collectionNode.dataSource = self
         collectionNode.view.isScrollEnabled = true
         collectionNode.view.showsVerticalScrollIndicator = false
         collectionNode.backgroundColor = Color.backGroundColor
-        collectionNode.contentInset = collectionNodeContentInset
         self.view.addSubnode(collectionNode)
     }
     
@@ -97,7 +98,11 @@ class CategoryViewController: BaseViewControlle {
 
 // MARK: - dataSource
 
-extension CategoryViewController: ASCollectionDataSource {
+extension CategoryViewController: ASCollectionDataSource, CategoryFlowLayoutDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, layout: CategoryFlowLayout, originalRatioAtIndexPath: IndexPath) -> CGFloat {
+        return post_list[originalRatioAtIndexPath.row].image_cover_ratio
+    }
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
         return post_list.count
@@ -105,5 +110,9 @@ extension CategoryViewController: ASCollectionDataSource {
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
         return CategoryCellNode(with: post_list[indexPath.row], at: indexPath.row)
+    }
+    
+    func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
+        return 1
     }
 }

@@ -45,10 +45,18 @@ class CategoryCellNode: ASCellNode {
     override func didLoad() {
         super.didLoad()
         self.imageNode.url = URL(string: postListItem.image_cover)
+        self.imageNode.imageModificationBlock = {
+            image in
+            image.byRoundCornerRadius(8.0)
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let ratioLayoutSpec = ASRatioLayoutSpec(ratio: postListItem.image_cover_ratio, child: self.imageNode)
-        return ASInsetLayoutSpec(insets: insetForImageNode, child: ratioLayoutSpec)
-    }
+        return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child:
+                    ASStackLayoutSpec(direction: .vertical, spacing: 0.0, justifyContent: .start, alignItems: .stretch, children: [
+                         ratioLayoutSpec
+               ])
+           )
+      }
 }
