@@ -209,6 +209,16 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var comment_list: [Recommend_Feedlist_CommensList_Model]?
     var equip: Recommend_Feedlist_Equip_Model?
     var images: [Recommend_Feedlist_Images_Model] = []
+    /// Take the first photo as the cover
+    var image_cover: String {
+        guard let image = images.first else { return "" }
+        return image.url
+    }
+    /// Take the first photo as the cover and caculate cover ratio
+    var image_cover_ratio: CGFloat {
+        guard let image = images.first else { return 1.0 }
+        return image.height / image.width
+    }
     var tags: [Recommend_Feedlist_Tags_Model] = []
     var favorites_desc: NSMutableAttributedString {
         let string = "\(favorites)" + R.string.localizable.likes()
@@ -283,6 +293,11 @@ struct RecommendModel: HandyJSON {
     var message: String = ""
     var more: Bool = false
     var result: String = ""
+}
+
+struct RecommendTagsModel: HandyJSON {
+    var result: String = ""
+    var post_list: [Recommend_Feedlist_Eentry_Model] = []
 }
 
 //sites": [{

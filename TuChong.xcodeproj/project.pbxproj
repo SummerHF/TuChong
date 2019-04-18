@@ -31,6 +31,8 @@
 		C4827C382266B828009E94C5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C372266B828009E94C5 /* FollowViewController.swift */; };
 		C4827C3A2266BC1D009E94C5 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C392266BC1D009E94C5 /* UserManager.swift */; };
 		C4827C3F2266BD60009E94C5 /* FollowViewUserLoginNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */; };
+		C4893B5E2268109500B2AE01 /* CategoryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4893B5D2268109500B2AE01 /* CategoryFlowLayout.swift */; };
+		C4893B602268127E00B2AE01 /* CategoryCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4893B5F2268127E00B2AE01 /* CategoryCellNode.swift */; };
 		C4A502492266F49C00867EBE /* RecommendBaseCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A502482266F49C00867EBE /* RecommendBaseCellNode.swift */; };
 		C4A5024B2267035700867EBE /* RecommedTopicCollectionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A5024A2267035700867EBE /* RecommedTopicCollectionCellNode.swift */; };
 		C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */; };
@@ -88,6 +90,8 @@
 		C4827C372266B828009E94C5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		C4827C392266BC1D009E94C5 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewUserLoginNode.swift; sourceTree = "<group>"; };
+		C4893B5D2268109500B2AE01 /* CategoryFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFlowLayout.swift; sourceTree = "<group>"; };
+		C4893B5F2268127E00B2AE01 /* CategoryCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellNode.swift; sourceTree = "<group>"; };
 		C4A502482266F49C00867EBE /* RecommendBaseCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendBaseCellNode.swift; sourceTree = "<group>"; };
 		C4A5024A2267035700867EBE /* RecommedTopicCollectionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommedTopicCollectionCellNode.swift; sourceTree = "<group>"; };
 		C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 				C4A502482266F49C00867EBE /* RecommendBaseCellNode.swift */,
 				C4EB9FEE2266F074008747C7 /* RecommendTopicCellNode.swift */,
 				C41A32C322601E09009AF4CF /* RecommendCellNode.swift */,
+				C4893B5F2268127E00B2AE01 /* CategoryCellNode.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */,
 				C4827C372266B828009E94C5 /* FollowViewController.swift */,
 				C462C000225F35AE00AB91F1 /* RecommendViewController.swift */,
+				C4893B5D2268109500B2AE01 /* CategoryFlowLayout.swift */,
 				C462C002225F39C700AB91F1 /* CategoryViewController.swift */,
 				C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */,
 				C4AD3C44224098BD0095BC97 /* HomePageModel.swift */,
@@ -528,6 +534,7 @@
 			files = (
 				53EA9630225F706500132012 /* RecommendModel.swift in Sources */,
 				C43B9A52225C2FFA00C15872 /* TabBar.swift in Sources */,
+				C4893B5E2268109500B2AE01 /* CategoryFlowLayout.swift in Sources */,
 				C4827C3A2266BC1D009E94C5 /* UserManager.swift in Sources */,
 				C41A32C422601E09009AF4CF /* RecommendCellNode.swift in Sources */,
 				C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */,
@@ -542,6 +549,7 @@
 				C462BFFC225EE64700AB91F1 /* HomeSubViewController.swift in Sources */,
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
 				C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */,
+				C4893B602268127E00B2AE01 /* CategoryCellNode.swift in Sources */,
 				C4AD3C46224098BE0095BC97 /* HomePageModel.swift in Sources */,
 				C4F658812249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift in Sources */,
 				C41E0CDC224CBB900032E12A /* R.generated.swift in Sources */,

@@ -92,7 +92,7 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
             parameters = [RequestparameterKey.page: page, RequestparameterKey.type: RequestType.refresh.rawValue]
             viewController = RecommendViewController(model: model, index: withIndex, path: path, parameters: parameters)
         case .tag:
-            path = "/discovery/\(model.entry.id)/category"
+            path = "/discover/\(model.entry.id)/category"
             parameters = [RequestparameterKey.page: page]
             viewController = CategoryViewController(model: model, index: withIndex, path: path, parameters: parameters)
         case .wallpaper:

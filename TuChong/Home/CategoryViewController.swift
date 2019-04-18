@@ -25,6 +25,8 @@
 //  THE SOFTWARE.
 //
 
+import AsyncDisplayKit
+
 // MARK: - CategoryViewController
 
 /// `Type` is Tag
@@ -32,9 +34,12 @@ class CategoryViewController: BaseViewControlle {
     
     private let index: Int
     private let model: HomePageNav_Data_Model
+    private var post_list: [Recommend_Feedlist_Eentry_Model] = []
     private let path: String
     private var paramerers: [String: Any]
     private let page: Int = 2
+    private let collectionNode: ASCollectionNode
+    private let collectionNodeContentInset = UIEdgeInsets(top: 10, left: 20, bottom: 0, right: 20)
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -46,17 +51,38 @@ class CategoryViewController: BaseViewControlle {
         self.index = index
         self.paramerers = parameters
         self.path = path
+        /// layout
+        let layout = CategoryFlowLayout()
+        self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
         super.init()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubviews()
         loadData()
     }
     
+    override func addSubviews() {
+        collectionNode.dataSource = self
+        collectionNode.view.isScrollEnabled = true
+        collectionNode.view.showsVerticalScrollIndicator = false
+        collectionNode.backgroundColor = Color.backGroundColor
+        collectionNode.contentInset = collectionNodeContentInset
+        self.view.addSubnode(collectionNode)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.collectionNode.frame = self.view.bounds
+    }
+    
     override func loadData() {
-        Network.request(target: TuChong.homepage(path: path, parameters: paramerers), success: { (response) in
-            print(response)
+        Network.request(target: .homepage(path: path, parameters: paramerers), success: { (response) in
+            guard let model = RecommendTagsModel.deserialize(from: response) else { return }
+            /// filter the empty images
+            self.post_list = model.post_list.filter { return $0.image_count > 0 }
+            self.collectionNode.reloadData()
         }, error: { (_) in
             
         }) { (_) in
@@ -66,5 +92,18 @@ class CategoryViewController: BaseViewControlle {
     
     override func initialHidden() -> Bool {
         return true
+    }
+}
+
+// MARK: - dataSource
+
+extension CategoryViewController: ASCollectionDataSource {
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
+        return post_list.count
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
+        return CategoryCellNode(with: post_list[indexPath.row], at: indexPath.row)
     }
 }
