@@ -30,13 +30,8 @@ import AsyncDisplayKit
 // MARK: - RecommendViewController
 
 /// `Type` is Recommend
-class RecommendViewController: BaseViewControlle {
+class RecommendViewController: RecommendBaseViewController {
     
-    private let index: Int
-    private let model: HomePageNav_Data_Model
-    private let path: String
-    private var paramerers: [String: Any]
-    private let page: Int = 2
     private var feedList: [Recommend_Feedlist_Model] = []
     /// tableNode
     private lazy var tableNode: ASTableNode = {
@@ -52,12 +47,8 @@ class RecommendViewController: BaseViewControlle {
     }
     
     /// Fast Initializers
-    init(model: HomePageNav_Data_Model, index: Int, path: String, parameters: [String: Any]) {
-        self.model = model
-        self.index = index
-        self.paramerers = parameters
-        self.path = path
-        super.init()
+    override init(model: HomePageNav_Data_Model, index: Int, path: String, parameters: [String: Any]) {
+        super.init(model: model, index: index, path: path, parameters: parameters)
     }
     
     override func viewDidLoad() {
@@ -85,10 +76,6 @@ class RecommendViewController: BaseViewControlle {
         }) { (_) in
             
         }
-    }
-    
-    override func initialHidden() -> Bool {
-        return true
     }
 }
 

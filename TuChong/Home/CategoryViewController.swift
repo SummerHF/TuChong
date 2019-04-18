@@ -30,14 +30,8 @@ import AsyncDisplayKit
 // MARK: - CategoryViewController
 
 /// `Type` is Tag
-class CategoryViewController: BaseViewControlle {
+class CategoryViewController: RecommendBaseViewController {
     
-    private let index: Int
-    private let model: HomePageNav_Data_Model
-    private var post_list: [Recommend_Feedlist_Eentry_Model] = []
-    private let path: String
-    private var paramerers: [String: Any]
-    private let page: Int = 2
     private let collectionNode: ASCollectionNode
     private let layoutInspector = CategoryFlowLayoutInspector()
     
@@ -46,15 +40,11 @@ class CategoryViewController: BaseViewControlle {
     }
     
     /// Fast Initializers
-    init(model: HomePageNav_Data_Model, index: Int, path: String, parameters: [String: Any]) {
-        self.model = model
-        self.index = index
-        self.paramerers = parameters
-        self.path = path
+    override init(model: HomePageNav_Data_Model, index: Int, path: String, parameters: [String: Any]) {
         /// layout
         let layout = CategoryFlowLayout()
         self.collectionNode = ASCollectionNode(collectionViewLayout: layout)
-        super.init()
+        super.init(model: model, index: index, path: path, parameters: parameters)
         layout.delegate = self
     }
     
@@ -89,10 +79,6 @@ class CategoryViewController: BaseViewControlle {
         }) { (_) in
             
         }
-    }
-    
-    override func initialHidden() -> Bool {
-        return true
     }
 }
 

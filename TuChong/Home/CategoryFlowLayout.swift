@@ -130,8 +130,7 @@ class CategoryFlowLayout: UICollectionViewFlowLayout {
     private func shortestColumnIndex() -> Int {
         var index = 0
         var shortestHeight = CGFloat.greatestFiniteMagnitude
-        _ = _columnHeights.enumerated().map {
-            (idx, height) in
+        _ = _columnHeights.enumerated().map { (idx, height) in
             if height < shortestHeight {
                 index = idx
                 shortestHeight = height
@@ -143,8 +142,7 @@ class CategoryFlowLayout: UICollectionViewFlowLayout {
     private func tallestColumnIndex() -> Int {
         var index = 0
         var tallestHeight: CGFloat = 0
-        _ = _columnHeights.enumerated().map {
-            (idx, height) in
+        _ = _columnHeights.enumerated().map { (idx, height) in
             if height > tallestHeight {
                 index = idx
                 tallestHeight = height

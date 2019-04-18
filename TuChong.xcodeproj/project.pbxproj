@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0F3232510304A995F6B6037D /* Pods_TuChong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827E6D5469BAD6EADF9335D1 /* Pods_TuChong.framework */; };
+		5304106E2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5304106D2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift */; };
+		530410722268A64100EB1AE5 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530410702268A64000EB1AE5 /* HomePageModel.swift */; };
+		530410732268A64100EB1AE5 /* RecommendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530410712268A64100EB1AE5 /* RecommendModel.swift */; };
 		53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317321F224130F600B6C10B /* BaseContainerViewController.swift */; };
 		53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53679354224132DE00C93C76 /* AppDelegate+Extension.swift */; };
-		53EA9630225F706500132012 /* RecommendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EA962F225F706500132012 /* RecommendModel.swift */; };
+		53D1F5B52268A7340046F0FE /* RecommendBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1F5B42268A7340046F0FE /* RecommendBaseViewController.swift */; };
 		53F43F99224509DD007027AD /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F43F98224509DD007027AD /* LaunchManager.swift */; };
 		C41A32C422601E09009AF4CF /* RecommendCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A32C322601E09009AF4CF /* RecommendCellNode.swift */; };
 		C41E0CC4224CA6260032E12A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E0CC3224CA6260032E12A /* Color.swift */; };
@@ -44,7 +47,6 @@
 		C4AD3C37224097CB0095BC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C35224097CB0095BC97 /* LaunchScreen.storyboard */; };
 		C4AD3C40224098B40095BC97 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C3F224098B40095BC97 /* Extension.swift */; };
 		C4AD3C45224098BE0095BC97 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C42224098BD0095BC97 /* Service.swift */; };
-		C4AD3C46224098BE0095BC97 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD3C44224098BD0095BC97 /* HomePageModel.swift */; };
 		C4AD3C492240993A0095BC97 /* SwiftLintRule in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C482240993A0095BC97 /* SwiftLintRule */; };
 		C4AD3C4B2240AEFE0095BC97 /* API in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C4A2240AEFE0095BC97 /* API */; };
 		C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */; };
@@ -62,9 +64,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5304106D2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendVideoPlayerController.swift; sourceTree = "<group>"; };
+		530410702268A64000EB1AE5 /* HomePageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
+		530410712268A64100EB1AE5 /* RecommendModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendModel.swift; sourceTree = "<group>"; };
 		5317321F224130F600B6C10B /* BaseContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseContainerViewController.swift; sourceTree = "<group>"; };
 		53679354224132DE00C93C76 /* AppDelegate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extension.swift"; sourceTree = "<group>"; };
-		53EA962F225F706500132012 /* RecommendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendModel.swift; sourceTree = "<group>"; };
+		53D1F5B42268A7340046F0FE /* RecommendBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendBaseViewController.swift; sourceTree = "<group>"; };
 		53F43F98224509DD007027AD /* LaunchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		827E6D5469BAD6EADF9335D1 /* Pods_TuChong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuChong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E197914226118C536E28EC /* Pods-TuChong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuChong.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuChong/Pods-TuChong.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,7 +110,6 @@
 		C4AD3C38224097CB0095BC97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4AD3C3F224098B40095BC97 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		C4AD3C42224098BD0095BC97 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		C4AD3C44224098BD0095BC97 /* HomePageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		C4AD3C482240993A0095BC97 /* SwiftLintRule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftLintRule; sourceTree = "<group>"; };
 		C4AD3C4A2240AEFE0095BC97 /* API */ = {isa = PBXFileReference; lastKnownFileType = text; path = API; sourceTree = "<group>"; };
 		C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,15 @@
 				827E6D5469BAD6EADF9335D1 /* Pods_TuChong.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5304106F2268A64000EB1AE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				530410702268A64000EB1AE5 /* HomePageModel.swift */,
+				530410712268A64100EB1AE5 /* RecommendModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5317321E224130B000B6C10B /* ASDK */ = {
@@ -263,19 +276,20 @@
 		C4AC63CD2241BB4100324C23 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5304106F2268A64000EB1AE5 /* Model */,
 				C4A502472266F46A00867EBE /* Cell */,
 				C4827C3D2266BD34009E94C5 /* View */,
 				C462BFFF225F13DD00AB91F1 /* Tag */,
 				C4AC63CE2241BBD100324C23 /* HomeContainerViewController.swift */,
 				C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */,
+				53D1F5B42268A7340046F0FE /* RecommendBaseViewController.swift */,
 				C4827C372266B828009E94C5 /* FollowViewController.swift */,
 				C462C000225F35AE00AB91F1 /* RecommendViewController.swift */,
-				C4893B5D2268109500B2AE01 /* CategoryFlowLayout.swift */,
 				C462C002225F39C700AB91F1 /* CategoryViewController.swift */,
+				C4893B5D2268109500B2AE01 /* CategoryFlowLayout.swift */,
+				5304106D2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift */,
 				C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */,
-				C4AD3C44224098BD0095BC97 /* HomePageModel.swift */,
 				C4B9825C2242172900F65C0E /* HomeNavNode.swift */,
-				53EA962F225F706500132012 /* RecommendModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -532,7 +546,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53EA9630225F706500132012 /* RecommendModel.swift in Sources */,
 				C43B9A52225C2FFA00C15872 /* TabBar.swift in Sources */,
 				C4893B5E2268109500B2AE01 /* CategoryFlowLayout.swift in Sources */,
 				C4827C3A2266BC1D009E94C5 /* UserManager.swift in Sources */,
@@ -550,7 +563,7 @@
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
 				C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */,
 				C4893B602268127E00B2AE01 /* CategoryCellNode.swift in Sources */,
-				C4AD3C46224098BE0095BC97 /* HomePageModel.swift in Sources */,
+				530410732268A64100EB1AE5 /* RecommendModel.swift in Sources */,
 				C4F658812249C1C100297EF4 /* HomeTagCollectionNodeLayout.swift in Sources */,
 				C41E0CDC224CBB900032E12A /* R.generated.swift in Sources */,
 				C4AD3C45224098BE0095BC97 /* Service.swift in Sources */,
@@ -563,9 +576,11 @@
 				C4A502492266F49C00867EBE /* RecommendBaseCellNode.swift in Sources */,
 				C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
+				530410722268A64100EB1AE5 /* HomePageModel.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* Extension.swift in Sources */,
 				C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */,
 				C43AEA09225442BC00C2CFE7 /* SearchBar.swift in Sources */,
+				5304106E2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
 				C43B9A56225C617100C15872 /* UserViewController.swift in Sources */,
 				C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */,
@@ -575,6 +590,7 @@
 				C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */,
 				53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */,
 				C41E0CC4224CA6260032E12A /* Color.swift in Sources */,
+				53D1F5B52268A7340046F0FE /* RecommendBaseViewController.swift in Sources */,
 				C462C001225F35AE00AB91F1 /* RecommendViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
