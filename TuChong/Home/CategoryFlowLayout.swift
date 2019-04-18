@@ -156,7 +156,7 @@ class CategoryFlowLayout: UICollectionViewFlowLayout {
     /// itemSize
     func itemSizeAt(indexPath: IndexPath) -> CGSize {
         guard let ratio = self.delegate?.collectionView?(self.collectionView!, layout: self, originalRatioAtIndexPath: indexPath) else { return CGSize.zero }
-        let descriptionHeigth: CGFloat = 40
+        let descriptionHeigth: CGFloat = 32
         let height = columnWidthForLayout() * ratio + descriptionHeigth
         let width = columnWidthForLayout()
         /// need to FIX:

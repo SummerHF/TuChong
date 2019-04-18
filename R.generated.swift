@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 42 images.
+  /// This `R.image` struct is generated, and contains static references to 43 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -74,6 +74,8 @@ struct R: Rswift.Validatable {
     static let corner_mark = Rswift.ImageResource(bundle: R.hostingBundle, name: "corner_mark")
     /// Image `dot`.
     static let dot = Rswift.ImageResource(bundle: R.hostingBundle, name: "dot")
+    /// Image `favorite`.
+    static let favorite = Rswift.ImageResource(bundle: R.hostingBundle, name: "favorite")
     /// Image `film_play_selected`.
     static let film_play_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "film_play_selected")
     /// Image `film_play`.
@@ -184,6 +186,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "dot", bundle: ..., traitCollection: ...)`
     static func dot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.dot, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "favorite", bundle: ..., traitCollection: ...)`
+    static func favorite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.favorite, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "film_play", bundle: ..., traitCollection: ...)`

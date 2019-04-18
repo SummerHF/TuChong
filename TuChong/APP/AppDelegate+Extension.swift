@@ -172,6 +172,19 @@ extension ASTextNode {
     }
 }
 
+// MARK: - ASButtonNode
+
+extension ASButtonNode {
+    
+    func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, state: UIControl.State) {
+        
+        self.setAttributedTitle(NSAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+            ]), for: state)
+        }
+}
+
 // MARK: - ASDisplayNode
 
 extension ASDisplayNode {
