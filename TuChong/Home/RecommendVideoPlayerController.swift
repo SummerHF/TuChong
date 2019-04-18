@@ -30,9 +30,9 @@ import AsyncDisplayKit
 /// `Type` is video_recommend
 class RecommendVideoPlayerController: RecommendBaseViewController {
     
-    /// Fast Initializers
-    override init(model: HomePageNav_Data_Model, index: Int, path: String, parameters: [String: Any]) {
-        super.init(model: model, index: index, path: path, parameters: parameters)
+    /// Fast Initializers without `parameters`
+    init(model: HomePageNav_Data_Model, index: Int, path: String) {
+        super.init(model: model, index: index, path: path, parameters: [:])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,6 +41,17 @@ class RecommendVideoPlayerController: RecommendBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Color.lineColor
+        loadData()
+    }
+    
+    /// First add nav data
+    override func loadData() {
+        Network.request(target: TuChong.homepage(path: path, parameters: paramerers), success: { (response) in
+            print(response)
+        }, error: { (_) in
+            
+        }) { (_) in
+            
+        }
     }
 }

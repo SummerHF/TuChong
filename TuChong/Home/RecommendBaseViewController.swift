@@ -31,7 +31,6 @@ class RecommendBaseViewController: BaseViewControlle {
     
     let index: Int
     let model: HomePageNav_Data_Model
-    var post_list: [Recommend_Feedlist_Eentry_Model] = []
     let path: String
     var paramerers: [String: Any]
     let page: Int = 2

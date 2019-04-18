@@ -103,12 +103,12 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
                           RequestparameterKey.tag: model.entry.id]
             viewController = HomeSubViewController(model: navArray[withIndex], index: withIndex)
         case .video_recommend:
-            //            /2/video/app/fav?page=1&type=refresh
+            /// /2/video/app/fav?page=1&type=refresh
             /// to do
             /// 首先获取banner
             path = "/2/app-video-nav"
             parameters = [RequestparameterKey.page: page, RequestparameterKey.type: RequestType.refresh.rawValue]
-            viewController = HomeSubViewController(model: navArray[withIndex], index: withIndex)
+            viewController = RecommendVideoPlayerController(model: model, index: withIndex, path: path)
         case .rn:
             print("rn To do")
         //  https://tuchong.com/rest/sites/1615439,1615432,1615443,1615461,1615437/posts?page=1&count=10
