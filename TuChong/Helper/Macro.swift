@@ -85,6 +85,11 @@ struct Macro {
         return 40
     }
     
+    /// videonavHeight
+    var videonavHeight: CGFloat {
+        return 40
+    }
+    
     var screenWidth: CGFloat {
         return UIScreen.main.bounds.width
     }
@@ -113,8 +118,17 @@ struct Macro {
     
     /// constant about
     let zero = 0
+    
     /// 首页更多图片拼接基本URL
     let homeNavMoreItemsBasePictureUrlString = "https://photo.tuchong.com/"
+    
+    /// current system `language`
+    let language: String = NSLocale.preferredLanguages.first ?? "en-CN"
+    
+    /// video nav `Y`
+    var videoNavTop: CGFloat {
+        return 0.0
+    }
 }
 
 let macro = Macro()

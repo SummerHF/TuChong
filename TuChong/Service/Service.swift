@@ -44,7 +44,7 @@ enum TuChong {
     /// 首页分类
     case home_nav
     /// 首页
-    case homepage(path: String, parameters: [String: Any])
+    case homepage(path: String, parameters: [String: Any]?)
     /// 首页关注 ----- will not available
     case homepage_attention(page: Int, before_timestamp: Int?)
     /// 首页推荐 ----- will not available
@@ -67,7 +67,8 @@ extension TuChong: TargetType {
         return ["content-type": "application/json",
                 "platform": "ios",
                 "version": "5.0.1",
-                "device": "51857464990"
+                "device": "51857464990",
+                "language": macro.language
         ]
     }
     var baseURL: URL {
@@ -113,7 +114,11 @@ extension TuChong: TargetType {
         case .home_more, .home_nav, .homepage_attention, .activity:
             return .requestPlain
         case let .homepage(_, parameters):
-            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+            if let para = parameters {
+                return .requestParameters(parameters: para, encoding: URLEncoding.default)
+            } else {
+                return .requestPlain
+            }
         case .activity_event(page: let page):
             if page == 0 {
                 return .requestPlain

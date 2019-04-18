@@ -30,6 +30,15 @@ import AsyncDisplayKit
 /// `Type` is video_recommend
 class RecommendVideoPlayerController: RecommendBaseViewController {
     
+    private var navArray: [HomePageNav_Data_Model] = []
+    
+    /// 头部的导航视图
+    var navView: VideoNavNode? {
+        didSet {
+            self.node.addSubnode(navView!)
+        }
+    }
+    
     /// Fast Initializers without `parameters`
     init(model: HomePageNav_Data_Model, index: Int, path: String) {
         super.init(model: model, index: index, path: path, parameters: [:])
@@ -46,12 +55,18 @@ class RecommendVideoPlayerController: RecommendBaseViewController {
     
     /// First add nav data
     override func loadData() {
-        Network.request(target: TuChong.homepage(path: path, parameters: paramerers), success: { (response) in
-            print(response)
+        Network.request(target: TuChong.homepage(path: path, parameters: nil), success: { (response) in
+            guard let model = HomePage_Nav.deserialize(from: response) else { return }
+            self.navArray = model.data
+            self.navView = VideoNavNode(data: model.data, delegate: self)
         }, error: { (_) in
             
         }) { (_) in
             
         }
     }
+}
+
+extension RecommendVideoPlayerController: VideoNavNodeProtocol {
+    
 }
