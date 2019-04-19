@@ -32,6 +32,7 @@ class RecommendWallpaperCell: ASCellNode {
     let postListItem: Recommend_Feedlist_Model
     let index: Int
     let photoImageNode: ASNetworkImageNode
+    let gifImageNode: ASNetworkImageNode
     
     private let insetForPhotoImageNode = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
     
@@ -39,15 +40,15 @@ class RecommendWallpaperCell: ASCellNode {
         self.postListItem = postListItem
         self.index = index
         self.photoImageNode = ASNetworkImageNode()
+        self.gifImageNode = ASNetworkImageNode()
         super.init()
         self.automaticallyManagesSubnodes = true
-        self.neverShowPlaceholders = true 
     }
     
     override func didLoad() {
         super.didLoad()
         if postListItem.stageType == .video {
-            self.photoImageNode.url = URL(string: postListItem.entry.gif_cover)
+            self.gifImageNode.url = URL(string: postListItem.entry.gif_cover)
         } else {
             self.photoImageNode.url = URL(string: postListItem.entry.image_cover)
             self.photoImageNode.imageModificationBlock = {
@@ -58,6 +59,6 @@ class RecommendWallpaperCell: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec(insets: insetForPhotoImageNode, child: ASRatioLayoutSpec(ratio: WallpaperLayout.ration, child: self.photoImageNode))
+        return ASInsetLayoutSpec(insets: insetForPhotoImageNode, child: ASRatioLayoutSpec(ratio: WallpaperLayout.ration, child: postListItem.stageType == .video ? self.gifImageNode : self.photoImageNode))
     }
 }

@@ -119,6 +119,7 @@ extension RecommendWallpaperViewController: WallpaperNavNodeProtocol {
             guard let model = HomePage_Wallpaper.deserialize(from: response) else { return }
             self.feedList = model.feedList
             self.banner = model.banner
+            self.collectionNode.setContentOffset(CGPoint(x: -self.collectionNodeInset.left, y: -self.collectionNodeInset.top), animated: false)
             self.collectionNode.reloadData()
         }, error: { (_) in
             
