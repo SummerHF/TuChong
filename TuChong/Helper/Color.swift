@@ -45,4 +45,5 @@ struct Color {
     static var eqipBackGroundColor = RGBA(R: 251, G: 251, B: 251)
     static var eqipBorderColor = RGBA(R: 220, G: 220, B: 220)
     static var orangerColor = RGBA(R: 247, G: 134, B: 100)
+    static var flatGray = RGBA(R: 227, G: 227, B: 227)
 }

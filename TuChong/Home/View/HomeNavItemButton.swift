@@ -43,12 +43,13 @@ class HomeNavItemButton: UIButton {
     var index: Int
     
     let buttonFont: UIFont = UIFont.normalFont_13()
+    let selectedFont: UIFont = UIFont.normalFont_15()
     let buttonHeight: CGFloat = 24
     var buttonWidth: CGFloat {
         /// fast caculate `string` size
         return itemModel.name.size(withAttributes: [NSAttributedString.Key.font: buttonFont]).width + floatWidth
     }
-    private let floatWidth: CGFloat = 30
+    private let floatWidth: CGFloat = 28
     
     init(model: HomePageNav_Data_Model, index: Int) {
         self.itemModel = model
@@ -69,12 +70,14 @@ class HomeNavItemButton: UIButton {
     open func selected(isSelected: Bool) {
         if isSelected {
             self.isSelected = true
+            self.titleLabel?.font = selectedFont
             self.setTitleColor(Color.black, for: .selected)
             self.set(cornerRadius: 0.0, borderWidth: 0.0, borderColor: UIColor.clear)
         } else {
             self.isSelected = false
+            self.titleLabel?.font = buttonFont
             self.setTitleColor(Color.lightGray, for: .normal)
-            self.set(cornerRadius: buttonHeight / 2.0, borderWidth: 0.4, borderColor: Color.thinGray)
+            self.set(cornerRadius: buttonHeight / 2.0, borderWidth: 1.2, borderColor: Color.flatGray)
         }
     }
 }

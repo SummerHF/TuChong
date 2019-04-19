@@ -59,9 +59,22 @@ class VideoNavNode: ASDisplayNode {
             lastView = button
             /// set default state
             button.setDefaultState()
+            /// set default selected
+            if model.default {
+                defaultSelectedButton = button
+            }
+            /// add button event
+            button.addTarget(self, action: #selector(selectedBtnEvent(selectedButton:)), for: .touchUpInside)
         }
         
         /// set contentSize
         self.scrollView.contentSize = CGSize(width: lastView.frame.maxX + innerInsets.right, height: self.view.height)
+    }
+    
+    @objc private func selectedBtnEvent(selectedButton: HomeNavItemButton) {
+        guard let defaultButton = defaultSelectedButton,  defaultButton != selectedButton else { return }
+        defaultButton.selected(isSelected: false)
+        selectedButton.selected(isSelected: true)
+        defaultSelectedButton = selectedButton
     }
 }
