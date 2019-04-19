@@ -97,3 +97,10 @@ func logPath() -> URL {
 
 /// 可输出到控制台或者保存到本地
 let logger = Logger(destination: logPath())
+
+// MARK: - using `printLog` to replace `print` when `Debug` mode
+public func printLog<T>(_ message: T, fileName: String = #file, methodName: String = #function, lineNumber: Int = #line) {
+    #if DEBUG
+    print("[函数名 : \((fileName as NSString).lastPathComponent) \(methodName)]-->[行号 : \(lineNumber)]\n-->> \(message)")
+    #endif
+}

@@ -210,7 +210,7 @@ extension ASDisplayNode {
     }
     
     /// use this method to change `ScrollView` contetOffset to adjust subItem's location
-    func scrollAnimate(with selectedBtn: HomeNavItemButton, scrollView: UIScrollView, containerView: UIView) {
+    func scrollAnimate(with selectedBtn: NavItemButton, scrollView: UIScrollView, containerView: UIView) {
         guard scrollView.contentSize.width > containerView.width else { return }
         let contentWidth = scrollView.contentSize.width
         let offsetX = (containerView.width - selectedBtn.width) / 2.0

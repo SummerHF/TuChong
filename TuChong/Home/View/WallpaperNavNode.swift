@@ -1,4 +1,4 @@
-//  VideoNavNode.swift
+//  WallpaperNavNode.swift
 //  TuChong
 //
 //  Created by SummerHF on 2019/4/19.
@@ -24,19 +24,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+
 import AsyncDisplayKit
 
-@objc protocol VideoNavNodeProtocol {
-    @objc optional func videoNav(node: VideoNavNode, selectedBtn: HomeNavItemButton, with index: Int)
+@objc protocol WallpaperNavNodeProtocol {
+    @objc optional func wllpaperNav(node: WallpaperNavNode, selectedBtn: HomeNavItemButton, with index: Int)
 }
 
-class VideoNavNode: ASDisplayNode {
+class WallpaperNavNode: ASDisplayNode {
     
-    private var dataArray: [HomePageNav_Data_Model]
-    private var buttonArray: [HomeNavItemButton] = []
-    private var defaultSelectedButton: HomeNavItemButton?
+    private var dataArray: [HomePaga_Wallpaper_Data_Model]
+    private var buttonArray: [WallpaperNavItemButton] = []
+    private var defaultSelectedButton: WallpaperNavItemButton?
     
-    weak var delegate: VideoNavNodeProtocol?
+    weak var delegate: WallpaperNavNodeProtocol?
     
     private let innerInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     private let spacing: CGFloat = 20
@@ -47,7 +48,7 @@ class VideoNavNode: ASDisplayNode {
         return scrollView
     }()
     
-    init(data: [HomePageNav_Data_Model], delegate: VideoNavNodeProtocol) {
+    init(data: [HomePaga_Wallpaper_Data_Model], delegate: WallpaperNavNodeProtocol) {
         self.dataArray = data
         self.delegate = delegate
         super.init()
@@ -66,8 +67,8 @@ class VideoNavNode: ASDisplayNode {
         /// add subBtn
         var lastView = UIView()
         for (index, model) in dataArray.enumerated() {
-            let button = HomeNavItemButton(model: model, index: index)
-            button.setTitle(model.name, for: .normal)
+            let button = WallpaperNavItemButton(model: model, index: index)
+            button.setTitle(model.tag_name, for: .normal)
             let buttonX: CGFloat = index == 0 ? innerInsets.left : spacing + lastView.frame.maxX
             let buttonY: CGFloat = (self.view.height - button.buttonHeight) / 2.0
             /// set frame
@@ -88,7 +89,7 @@ class VideoNavNode: ASDisplayNode {
         self.scrollView.contentSize = CGSize(width: lastView.frame.maxX + innerInsets.right, height: self.view.height)
     }
     
-    @objc private func selectedBtnEvent(selectedButton: HomeNavItemButton) {
+    @objc private func selectedBtnEvent(selectedButton: WallpaperNavItemButton) {
         guard let defaultButton = defaultSelectedButton,  defaultButton != selectedButton else { return }
         defaultButton.selected(isSelected: false)
         selectedButton.selected(isSelected: true)

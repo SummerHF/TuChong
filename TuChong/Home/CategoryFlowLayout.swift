@@ -83,8 +83,6 @@ class CategoryFlowLayout: UICollectionViewFlowLayout {
             attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemSize.width, height: itemSize.height)
             _columnHeights[columnIndex] = attributes.frame.maxY + _interItemSpacing.bottom
             _itemAttributes.append(attributes)
-            print("section:\(section), index:\(columnIndex), frame: \(attributes.frame)")
-
         }
     }
     

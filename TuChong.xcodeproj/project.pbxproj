@@ -16,7 +16,9 @@
 		53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53679354224132DE00C93C76 /* AppDelegate+Extension.swift */; };
 		53D1F5B52268A7340046F0FE /* RecommendBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1F5B42268A7340046F0FE /* RecommendBaseViewController.swift */; };
 		53F43F99224509DD007027AD /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F43F98224509DD007027AD /* LaunchManager.swift */; };
-		C402B23C22694C6D007746EB /* HomeNavItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B23B22694C6D007746EB /* HomeNavItemButton.swift */; };
+		C402B23C22694C6D007746EB /* NavItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B23B22694C6D007746EB /* NavItemButton.swift */; };
+		C402B23E22696D64007746EB /* RecommendWallpaperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B23D22696D64007746EB /* RecommendWallpaperViewController.swift */; };
+		C402B2402269755F007746EB /* WallpaperNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B23F2269755F007746EB /* WallpaperNavNode.swift */; };
 		C41A32C422601E09009AF4CF /* RecommendCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A32C322601E09009AF4CF /* RecommendCellNode.swift */; };
 		C41E0CC4224CA6260032E12A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E0CC3224CA6260032E12A /* Color.swift */; };
 		C41E0CD2224CB0700032E12A /* GenerateResource.sh in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CD1224CB0700032E12A /* GenerateResource.sh */; };
@@ -77,7 +79,9 @@
 		827E6D5469BAD6EADF9335D1 /* Pods_TuChong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuChong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E197914226118C536E28EC /* Pods-TuChong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuChong.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuChong/Pods-TuChong.release.xcconfig"; sourceTree = "<group>"; };
 		A9932FE1DB24369678F50635 /* Pods-TuChong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuChong.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuChong/Pods-TuChong.debug.xcconfig"; sourceTree = "<group>"; };
-		C402B23B22694C6D007746EB /* HomeNavItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavItemButton.swift; sourceTree = "<group>"; };
+		C402B23B22694C6D007746EB /* NavItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavItemButton.swift; sourceTree = "<group>"; };
+		C402B23D22696D64007746EB /* RecommendWallpaperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendWallpaperViewController.swift; sourceTree = "<group>"; };
+		C402B23F2269755F007746EB /* WallpaperNavNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperNavNode.swift; sourceTree = "<group>"; };
 		C41A32C322601E09009AF4CF /* RecommendCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCellNode.swift; sourceTree = "<group>"; };
 		C41E0CC3224CA6260032E12A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C41E0CD1224CB0700032E12A /* GenerateResource.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = GenerateResource.sh; sourceTree = "<group>"; };
@@ -248,9 +252,10 @@
 		C4827C3D2266BD34009E94C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C402B23B22694C6D007746EB /* HomeNavItemButton.swift */,
+				C402B23B22694C6D007746EB /* NavItemButton.swift */,
 				C4B9825C2242172900F65C0E /* HomeNavNode.swift */,
 				535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */,
+				C402B23F2269755F007746EB /* WallpaperNavNode.swift */,
 				C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */,
 			);
 			path = View;
@@ -295,6 +300,7 @@
 				C462C002225F39C700AB91F1 /* CategoryViewController.swift */,
 				C4893B5D2268109500B2AE01 /* CategoryFlowLayout.swift */,
 				5304106D2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift */,
+				C402B23D22696D64007746EB /* RecommendWallpaperViewController.swift */,
 				C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */,
 			);
 			path = Home;
@@ -568,6 +574,7 @@
 				C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */,
 				C462BFFC225EE64700AB91F1 /* HomeSubViewController.swift in Sources */,
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
+				C402B23E22696D64007746EB /* RecommendWallpaperViewController.swift in Sources */,
 				C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */,
 				C4893B602268127E00B2AE01 /* CategoryCellNode.swift in Sources */,
 				530410732268A64100EB1AE5 /* RecommendModel.swift in Sources */,
@@ -583,6 +590,7 @@
 				C4A502492266F49C00867EBE /* RecommendBaseCellNode.swift in Sources */,
 				C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
+				C402B2402269755F007746EB /* WallpaperNavNode.swift in Sources */,
 				530410722268A64100EB1AE5 /* HomePageModel.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* Extension.swift in Sources */,
 				C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */,
@@ -592,7 +600,7 @@
 				C43B9A56225C617100C15872 /* UserViewController.swift in Sources */,
 				C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */,
 				C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */,
-				C402B23C22694C6D007746EB /* HomeNavItemButton.swift in Sources */,
+				C402B23C22694C6D007746EB /* NavItemButton.swift in Sources */,
 				C43AEA0B225482D200C2CFE7 /* SearchTableNode.swift in Sources */,
 				C4DC5C19225DDEDE00985CE3 /* ScrollView.swift in Sources */,
 				C4AD3C2D224097CB0095BC97 /* AppDelegate.swift in Sources */,

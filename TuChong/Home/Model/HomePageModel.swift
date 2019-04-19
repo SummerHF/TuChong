@@ -135,11 +135,37 @@ struct HomePageNav_Data_Model: HandyJSON {
     }
 }
 
+struct HomePaga_Wallpaper_Data_Model: HandyJSON {
+    var tag_id: Int = 0
+    var tag_name: String = ""
+    var `default`: Bool = false
+}
+
 // MARK: - 首页, 导航
 
 struct HomePage_Nav: HandyJSON {
     var result: String = ""
     var data: [HomePageNav_Data_Model] = []
+}
+
+// MARK: - 首页, 壁纸
+
+struct HomePage_Wallpaper_Nav: HandyJSON {
+    var result: String = ""
+    var tags: [HomePaga_Wallpaper_Data_Model] = []
+    
+    /// fast create model and default selected index `One`
+    static func build(with parameters: [String: Any]?) -> [HomePaga_Wallpaper_Data_Model]? {
+        guard let model = HomePage_Wallpaper_Nav.deserialize(from: parameters) else { return nil }
+        var array: [HomePaga_Wallpaper_Data_Model] = []
+        for (index, var model) in model.tags.enumerated() {
+            if index == 0 {
+                model.default = true
+            }
+            array.append(model)
+        }
+        return array
+    }
 }
 
 // MARK: - 首页, 关注

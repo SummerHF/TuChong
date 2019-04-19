@@ -28,7 +28,9 @@
 import UIKit
 import Foundation
 
-class HomeNavItemButton: UIButton {
+// MARK: - NavItemButton `Base`
+
+class NavItemButton: UIButton {
     
     override var isHighlighted: Bool {
         set {
@@ -38,6 +40,12 @@ class HomeNavItemButton: UIButton {
             return false
         }
     }
+}
+
+// MARK: - HomeNavItemButton
+
+/// for `VideoNavNode`
+class HomeNavItemButton: NavItemButton {
     
     var itemModel: HomePageNav_Data_Model
     var index: Int
@@ -52,6 +60,54 @@ class HomeNavItemButton: UIButton {
     private let floatWidth: CGFloat = 28
     
     init(model: HomePageNav_Data_Model, index: Int) {
+        self.itemModel = model
+        self.index = index
+        super.init(frame: CGRect.zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    /// Whether selected or deselected
+    open func setDefaultState() {
+        self.titleLabel?.font = buttonFont
+        selected(isSelected: itemModel.default)
+    }
+    
+    open func selected(isSelected: Bool) {
+        if isSelected {
+            self.isSelected = true
+            self.titleLabel?.font = selectedFont
+            self.setTitleColor(Color.black, for: .selected)
+            self.set(cornerRadius: 0.0, borderWidth: 0.0, borderColor: UIColor.clear)
+        } else {
+            self.isSelected = false
+            self.titleLabel?.font = buttonFont
+            self.setTitleColor(Color.lightGray, for: .normal)
+            self.set(cornerRadius: buttonHeight / 2.0, borderWidth: 1.2, borderColor: Color.flatGray)
+        }
+    }
+}
+
+// MARK: - HomeNavItemButton
+
+/// for `WallpaperNavNode`
+class WallpaperNavItemButton: NavItemButton {
+    
+    var itemModel: HomePaga_Wallpaper_Data_Model
+    var index: Int
+    
+    let buttonFont: UIFont = UIFont.normalFont_13()
+    let selectedFont: UIFont = UIFont.normalFont_15()
+    let buttonHeight: CGFloat = 24
+    var buttonWidth: CGFloat {
+        /// fast caculate `string` size
+        return itemModel.tag_name.size(withAttributes: [NSAttributedString.Key.font: buttonFont]).width + floatWidth
+    }
+    private let floatWidth: CGFloat = 28
+    
+    init(model: HomePaga_Wallpaper_Data_Model, index: Int) {
         self.itemModel = model
         self.index = index
         super.init(frame: CGRect.zero)
