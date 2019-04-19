@@ -31,13 +31,27 @@ import AsyncDisplayKit
 class RecommendWallpaperViewController: RecommendBaseViewController {
     
     private var navArray: [HomePaga_Wallpaper_Data_Model] = []
+    private var feedList: [Recommend_Feedlist_Model] = []
+    private var banner: HomePage_Wallpaper_Banner?
+    
+    private let collectionNodeInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     
     /// 头部的导航视图
-    var navView: WallpaperNavNode? {
+    private var navView: WallpaperNavNode? {
         didSet {
             self.node.addSubnode(navView!)
         }
     }
+    
+    private let layout = WallpaperLayout()
+    
+    private lazy var collectionNode: ASCollectionNode = {
+        let collectionNode = ASCollectionNode(collectionViewLayout: layout)
+        collectionNode.contentInset = collectionNodeInset
+        collectionNode.backgroundColor = Color.backGroundColor
+        collectionNode.dataSource = self
+        return collectionNode
+    }()
     
     /// Fast Initializers without `parameters`
     init(model: HomePageNav_Data_Model, index: Int, path: String) {
@@ -51,6 +65,17 @@ class RecommendWallpaperViewController: RecommendBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        addSubviews()
+    }
+    
+    override func addSubviews() {
+        self.view.addSubnode(collectionNode)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionNode.frame = CGRect(x: 0, y: macro.homenavHeight, width: self.view.width, height: self.view.height - macro.homenavHeight)
+        layout.configureItemSize()
     }
     
     /// First add nav data
@@ -67,6 +92,38 @@ class RecommendWallpaperViewController: RecommendBaseViewController {
     }
 }
 
+// MARK: - Datasource
+
+extension RecommendWallpaperViewController: ASCollectionDataSource {
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
+        return feedList.count
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
+        return RecommendWallpaperCell(with: feedList[indexPath.row], at: indexPath.row)
+    }
+}
+
+// MARK: - WallpaperNavNodeProtocol
+
 extension RecommendWallpaperViewController: WallpaperNavNodeProtocol {
     
+    /// Send request after selected trigger
+    func wllpaperNav(node: WallpaperNavNode, selectedBtn: NavItemButton, with index: Int, and tagID: Int) {
+        let path = "/4/wall-paper/app"
+        let parameters = [RequestparameterKey.page: self.initialPage,
+                          RequestparameterKey.tag: tagID
+                          ]
+        Network.request(target: .homepage(path: path, parameters: parameters), success: { (response) in
+            guard let model = HomePage_Wallpaper.deserialize(from: response) else { return }
+            self.feedList = model.feedList
+            self.banner = model.banner
+            self.collectionNode.reloadData()
+        }, error: { (_) in
+            
+        }) { (_) in
+            
+        }
+    }
 }

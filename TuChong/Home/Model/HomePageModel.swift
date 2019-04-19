@@ -148,7 +148,7 @@ struct HomePage_Nav: HandyJSON {
     var data: [HomePageNav_Data_Model] = []
 }
 
-// MARK: - 首页, 壁纸
+// MARK: - 首页, 壁纸, 导航
 
 struct HomePage_Wallpaper_Nav: HandyJSON {
     var result: String = ""
@@ -166,6 +166,26 @@ struct HomePage_Wallpaper_Nav: HandyJSON {
         }
         return array
     }
+}
+
+// MARK: - 首页, 壁纸, 横幅
+
+struct HomePage_Wallpaper_Banner: HandyJSON {
+    var banner_id: Int = 0
+    var url: String = ""
+    var src: String = ""
+    var width: CGFloat = 0.0
+    var height: CGFloat = 0.0
+}
+
+// MARK: - 首页, 壁纸
+
+struct HomePage_Wallpaper: HandyJSON {
+    var result: String = ""
+    var more: Bool = false
+    var tos_name: String = ""
+    var feedList: [Recommend_Feedlist_Model] = []
+    var banner: HomePage_Wallpaper_Banner?
 }
 
 // MARK: - 首页, 关注

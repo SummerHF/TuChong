@@ -1,7 +1,7 @@
-//  RecommendBaseViewController.swift
+//  WallpaperLayout.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/3/20.
+//  Created by SummerHF on 2019/4/19.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -25,31 +25,31 @@
 //  THE SOFTWARE.
 //
 
-import AsyncDisplayKit
+import Foundation
 
-class RecommendBaseViewController: BaseViewControlle {
+class WallpaperLayout: UICollectionViewFlowLayout {
     
-    let index: Int
-    let model: HomePageNav_Data_Model
-    let path: String
-    var paramerers: [String: Any]
-    var page: Int = 2
-    var initialPage: Int = 1
+    static let ration: CGFloat = 1.6
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// Fast Initializers
-    init(model: HomePageNav_Data_Model, index: Int, path: String, parameters: [String: Any]) {
-        self.model = model
-        self.index = index
-        self.paramerers = parameters
-        self.path = path
+    override init() {
         super.init()
     }
     
-    override func initialHidden() -> Bool {
-        return true
+    /// Caculate itemsize
+    open func configureItemSize() {
+        guard let collectionView = self.collectionView else { return }
+        let lineSpacing: CGFloat = 10.0
+        let numberOfLines: CGFloat = 2.0
+        let width = collectionView.width - collectionView.contentInset.left - collectionView.contentInset.right
+        let itemWidth = (width - (numberOfLines - 1.0) * lineSpacing) / numberOfLines
+        let itemHeight = itemWidth * WallpaperLayout.ration
+        
+        self.minimumLineSpacing = 8.0
+        self.minimumInteritemSpacing = 8.0
+        self.itemSize = CGSize(width: itemWidth, height: itemHeight)
     }
 }

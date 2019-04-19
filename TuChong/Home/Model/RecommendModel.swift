@@ -168,6 +168,24 @@ struct Recommend_Feedlist_RecomType_Model {
 }
 
 struct Recommend_Feedlist_Eentry_Model: HandyJSON {
+    /// for video
+    var vid: String = ""
+    var video_id: String = ""
+    var cover: String = ""
+    var raw_cover: String = ""
+    var video_width: CGFloat = 0.0
+    var video_height: CGFloat = 0.0
+    var share_url: String = ""
+    var share_cover: String = ""
+    var duration: CGFloat = 0.0
+    var is_recommend: Bool = false
+    var is_ultra: Bool = false
+    var category: [String] = []
+    var gif_cover: String = ""
+    var author: Recommend_Feedlist_Site_Model = Recommend_Feedlist_Site_Model()
+    var is_hot: Bool = false
+    var passed_time: String = ""
+    ///
     var post_id: Int = 0
     var author_id: String = ""
     var type: String = ""

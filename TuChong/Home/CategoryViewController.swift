@@ -83,7 +83,7 @@ class CategoryViewController: RecommendBaseViewController {
     }
 }
 
-// MARK: - dataSource
+// MARK: - DataSource
 
 extension CategoryViewController: ASCollectionDataSource, CategoryFlowLayoutDelegate {
     
@@ -96,7 +96,7 @@ extension CategoryViewController: ASCollectionDataSource, CategoryFlowLayoutDele
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
-        return CategoryCellNode(with: post_list[indexPath.row], at: indexPath.row)
+        return RecommendCategoryCellNode(with: post_list[indexPath.row], at: indexPath.row)
     }
     
     func numberOfSections(in collectionNode: ASCollectionNode) -> Int {

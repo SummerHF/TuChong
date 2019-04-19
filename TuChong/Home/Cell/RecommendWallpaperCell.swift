@@ -1,7 +1,7 @@
-//  RecommendBaseViewController.swift
+//  RecommendWallpaperCell.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/3/20.
+//  Created by SummerHF on 2019/4/19.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -27,29 +27,37 @@
 
 import AsyncDisplayKit
 
-class RecommendBaseViewController: BaseViewControlle {
+class RecommendWallpaperCell: ASCellNode {
     
+    let postListItem: Recommend_Feedlist_Model
     let index: Int
-    let model: HomePageNav_Data_Model
-    let path: String
-    var paramerers: [String: Any]
-    var page: Int = 2
-    var initialPage: Int = 1
+    let photoImageNode: ASNetworkImageNode
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private let insetForPhotoImageNode = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
     
-    /// Fast Initializers
-    init(model: HomePageNav_Data_Model, index: Int, path: String, parameters: [String: Any]) {
-        self.model = model
+    init(with postListItem: Recommend_Feedlist_Model, at index: Int) {
+        self.postListItem = postListItem
         self.index = index
-        self.paramerers = parameters
-        self.path = path
+        self.photoImageNode = ASNetworkImageNode()
         super.init()
+        self.automaticallyManagesSubnodes = true
+        self.neverShowPlaceholders = true 
     }
     
-    override func initialHidden() -> Bool {
-        return true
+    override func didLoad() {
+        super.didLoad()
+        if postListItem.stageType == .video {
+            self.photoImageNode.url = URL(string: postListItem.entry.gif_cover)
+        } else {
+            self.photoImageNode.url = URL(string: postListItem.entry.image_cover)
+            self.photoImageNode.imageModificationBlock = {
+                image in
+                image.byRoundCornerRadius(8.0)
+            }
+        }
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASInsetLayoutSpec(insets: insetForPhotoImageNode, child: ASRatioLayoutSpec(ratio: WallpaperLayout.ration, child: self.photoImageNode))
     }
 }

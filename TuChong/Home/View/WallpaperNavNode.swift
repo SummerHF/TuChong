@@ -28,7 +28,7 @@
 import AsyncDisplayKit
 
 @objc protocol WallpaperNavNodeProtocol {
-    @objc optional func wllpaperNav(node: WallpaperNavNode, selectedBtn: HomeNavItemButton, with index: Int)
+    @objc optional func wllpaperNav(node: WallpaperNavNode, selectedBtn: NavItemButton, with index: Int, and tagID: Int)
 }
 
 class WallpaperNavNode: ASDisplayNode {
@@ -80,6 +80,8 @@ class WallpaperNavNode: ASDisplayNode {
             /// set default selected
             if model.default {
                 defaultSelectedButton = button
+                /// nofify delegate
+                self.delegate?.wllpaperNav?(node: self, selectedBtn: button, with: index, and: model.tag_id)
             }
             /// add button event
             button.addTarget(self, action: #selector(selectedBtnEvent(selectedButton:)), for: .touchUpInside)
@@ -94,6 +96,9 @@ class WallpaperNavNode: ASDisplayNode {
         defaultButton.selected(isSelected: false)
         selectedButton.selected(isSelected: true)
         defaultSelectedButton = selectedButton
+        /// nofify delegate
+        self.delegate?.wllpaperNav?(node: self, selectedBtn: selectedButton, with: selectedButton.index, and: selectedButton.itemModel.tag_id)
+        /// animate
         self.scrollAnimate(with: selectedButton, scrollView: scrollView, containerView: self.view)
     }
 }

@@ -27,7 +27,7 @@
 
 import AsyncDisplayKit
 
-class CategoryCellNode: ASCellNode {
+class RecommendCategoryCellNode: ASCellNode {
     
     let postListItem: Recommend_Feedlist_Eentry_Model
     let index: Int
