@@ -190,7 +190,6 @@ extension ASButtonNode {
 extension UIButton {
     
     func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, state: UIControl.State) {
-        
         self.setAttributedTitle(NSAttributedString(string: string, attributes: [
             NSAttributedString.Key.font: font,
             NSAttributedString.Key.foregroundColor: color
@@ -208,6 +207,23 @@ extension ASDisplayNode {
         self.layer.borderWidth = borderWidth
         self.layer.borderColor = borderColor.cgColor
         self.view.clipsToBounds = true
+    }
+    
+    /// use this method to change `ScrollView` contetOffset to adjust subItem's location
+    func scrollAnimate(with selectedBtn: HomeNavItemButton, scrollView: UIScrollView, containerView: UIView) {
+        guard scrollView.contentSize.width > containerView.width else { return }
+        let contentWidth = scrollView.contentSize.width
+        let offsetX = (containerView.width - selectedBtn.width) / 2.0
+        if selectedBtn.left <= containerView.width / 2.0 {
+            /// don't need
+            scrollView.setContentOffset(CGPoint.zero, animated: false)
+        } else if selectedBtn.frame.maxX > contentWidth - containerView.width / 2.0 {
+            let x = contentWidth - containerView.width
+            scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
+        } else {
+            let x = selectedBtn.frame.minX - offsetX
+            scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
+        }
     }
 }
 

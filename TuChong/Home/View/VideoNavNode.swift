@@ -76,5 +76,6 @@ class VideoNavNode: ASDisplayNode {
         defaultButton.selected(isSelected: false)
         selectedButton.selected(isSelected: true)
         defaultSelectedButton = selectedButton
+        self.scrollAnimate(with: selectedButton, scrollView: scrollView, containerView: self.view)
     }
 }
