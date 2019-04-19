@@ -28,43 +28,6 @@
 import UIKit
 import AsyncDisplayKit
 
-// MARK: - HomeNavItemButton
-
-class HomeNavItemButton: UIButton {
-    
-    override var isHighlighted: Bool {
-        set {
-            
-        }
-        get {
-            return false
-        }
-    }
-    
-    var itemModel: HomePageNav_Data_Model
-    var index: Int
-    
-    init(model: HomePageNav_Data_Model, index: Int) {
-        self.itemModel = model
-        self.index = index
-        super.init(frame: CGRect.zero)
-        
-        self.setAttributedTitle(NSAttributedString(string: model.name, attributes: [
-            NSAttributedString.Key.font: UIFont.normalFont_15(),
-            NSAttributedString.Key.foregroundColor: Color.lightGray
-            ]), for: .normal)
-        
-        self.setAttributedTitle(NSAttributedString(string: model.name, attributes: [
-            NSAttributedString.Key.font: UIFont.normalFont_20(),
-            NSAttributedString.Key.foregroundColor: UIColor.black
-            ]), for: .selected)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 // MARK: - HomeNavViewDlegatee
 
 @objc protocol HomeNavNodeDlegate {
@@ -75,8 +38,8 @@ class HomeNavItemButton: UIButton {
 
 class HomeNavNode: ASDisplayNode {
     
-    let moreBtnNodeWidth: CGFloat = 40
-    let itemWidth: CGFloat = 64
+    private let moreBtnNodeWidth: CGFloat = 40
+    private let itemWidth: CGFloat = 64
     private var dataArray: [HomePageNav_Data_Model]
     private var buttonArray: [HomeNavItemButton] = []
     private var defaultSelectedButton: HomeNavItemButton?
@@ -128,6 +91,8 @@ class HomeNavNode: ASDisplayNode {
         var lastView: UIView = self.scrollView
         for (index, model) in dataArray.enumerated() {
             let button = HomeNavItemButton(model: model, index: index)
+            button.setAttributdWith(string: model.name, font: UIFont.normalFont_15(), color: Color.lightGray, state: .normal)
+            button.setAttributdWith(string: model.name, font: UIFont.normalFont_20(), color: Color.black, state: .selected)
             buttonArray.append(button)
             /// add button event
             button.addTarget(self, action: #selector(selectedBtnEvent(selectedButton:)), for: .touchUpInside)

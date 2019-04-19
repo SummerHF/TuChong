@@ -182,7 +182,20 @@ extension ASButtonNode {
             NSAttributedString.Key.font: font,
             NSAttributedString.Key.foregroundColor: color
             ]), for: state)
-        }
+    }
+}
+
+// MARK: - UIButton
+
+extension UIButton {
+    
+    func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, state: UIControl.State) {
+        
+        self.setAttributedTitle(NSAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+            ]), for: state)
+    }
 }
 
 // MARK: - ASDisplayNode
@@ -195,5 +208,18 @@ extension ASDisplayNode {
         self.layer.borderWidth = borderWidth
         self.layer.borderColor = borderColor.cgColor
         self.view.clipsToBounds = true
+    }
+}
+
+// MARK: - UIView
+
+extension UIView {
+    
+    /// fast to add corner and border
+    func set(cornerRadius: CGFloat = 0.0, borderWidth: CGFloat = 0.0, borderColor: UIColor = UIColor.clear) {
+        self.layer.cornerRadius = cornerRadius
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.clipsToBounds = true
     }
 }
