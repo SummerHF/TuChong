@@ -186,15 +186,18 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var is_hot: Bool = false
     var passed_time: String = ""
     ///
-    var post_id: Int = 0
+    var post_id: String = ""
+    var site_id: String = ""
+    var excerpt: String = ""
     var author_id: String = ""
     var type: String = ""
     var url: String = ""
     var published_at: String = ""
-    var excerpt: String = ""
+    var parent_comments: Int = 0
     var favorites: Int = 0
     var comments: Int = 0
     var title: String = ""
+    var app_url: String = ""
     var image_count: Int = 0
     var iamge_count_desc: String {
         return "\(image_count) " + R.string.localizable.pictures()
@@ -210,7 +213,6 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var delete: Bool = false
     var content: String = ""
     var update: Bool = false
-    var title_image: String = ""
     var is_favorite: Bool = false
     var is_top: Bool = false
     var data_type: String = ""
@@ -227,6 +229,8 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var comment_list: [Recommend_Feedlist_CommensList_Model]?
     var equip: Recommend_Feedlist_Equip_Model?
     var images: [Recommend_Feedlist_Images_Model] = []
+    var image_srcs: [String] = []
+    var title_image: HomePage_Entry_TitleImage_Model = HomePage_Entry_TitleImage_Model()
     /// Take the first photo as the cover
     var image_cover: String {
         guard let image = images.first else { return "" }

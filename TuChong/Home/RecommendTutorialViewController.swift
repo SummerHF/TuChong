@@ -30,6 +30,7 @@ import AsyncDisplayKit
 class RecommendTutorialViewController: RecommendBaseViewController {
     
     private var baseURL: String = ""
+    private var feedList: [Tutorial_List_Model] = []
     
     private var tableNodeFrame: CGRect {
         let height: CGFloat = macro.screenHeight - macro.topHeight - macro.homenavHeight - macro.videonavHeight
@@ -82,8 +83,9 @@ class RecommendTutorialViewController: RecommendBaseViewController {
     override func loadData() {
         self.showLoadingView(with: tableNodeFrame)
         Network.request(target: .homepage(baseURL: baseURL, path: path, parameters: paramerers), success: { (responseData) in
-            printLog(responseData)
             self.removeLoadingView()
+            let model = Tutorial_Model.build(with: responseData)
+            self.feedList = model
         }, error: { (_) in
             self.removeLoadingView()
         }) { (_) in

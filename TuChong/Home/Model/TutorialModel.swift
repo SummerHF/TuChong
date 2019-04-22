@@ -26,6 +26,7 @@
 //
 
 import Foundation
+import HandyJSON
 
 struct Tutorial_Data_Model {
     
@@ -57,5 +58,38 @@ struct Tutorial_Data_Model {
             modelArray.append(item)
         }
         return modelArray
+    }
+}
+
+// MARK: - 首页, 推荐
+
+struct Tutorial_List_Model {
+    
+    var post: Recommend_Feedlist_Eentry_Model
+    var site: Recommend_Feedlist_Site_Model
+    
+    init(post: Recommend_Feedlist_Eentry_Model, site: Recommend_Feedlist_Site_Model) {
+        self.post = post
+        self.site = site
+    }
+}
+
+struct Tutorial_Model: HandyJSON {
+    var result: String = ""
+    var posts: [Recommend_Feedlist_Eentry_Model] = []
+    
+    /// 快速的从字典构建模型
+    static func build(with dict: [String: Any]) -> [Tutorial_List_Model] {
+        var listArray: [Tutorial_List_Model] = []
+        guard let model = Tutorial_Model.deserialize(from: dict), let sites = dict["sites"] as? [String: Any] else { return listArray }
+        for post in model.posts {
+            for (key, value) in sites {
+            if key == post.site_id, let result = value as? [String: Any] {
+                guard let site = Recommend_Feedlist_Site_Model.deserialize(from: result) else { return listArray }
+                listArray.append(Tutorial_List_Model(post: post, site: site))
+            }
+          }
+      }
+        return listArray
     }
 }
