@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 44 images.
+  /// This `R.image` struct is generated, and contains static references to 46 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -100,6 +100,8 @@ struct R: Rswift.Validatable {
     static let lecture = Rswift.ImageResource(bundle: R.hostingBundle, name: "lecture")
     /// Image `like`.
     static let like = Rswift.ImageResource(bundle: R.hostingBundle, name: "like")
+    /// Image `loading`.
+    static let loading = Rswift.ImageResource(bundle: R.hostingBundle, name: "loading")
     /// Image `login_logo`.
     static let login_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "login_logo")
     /// Image `online_follow`.
@@ -128,6 +130,8 @@ struct R: Rswift.Validatable {
     static let share_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "share_right")
     /// Image `share`.
     static let share = Rswift.ImageResource(bundle: R.hostingBundle, name: "share")
+    /// Image `test`.
+    static let test = Rswift.ImageResource(bundle: R.hostingBundle, name: "test")
     /// Image `third`.
     static let third = Rswift.ImageResource(bundle: R.hostingBundle, name: "third")
     /// Image `triangle_bottom`.
@@ -255,6 +259,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.like, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "loading", bundle: ..., traitCollection: ...)`
+    static func loading(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.loading, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "login_logo", bundle: ..., traitCollection: ...)`
     static func login_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.login_logo, compatibleWith: traitCollection)
@@ -323,6 +332,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "share_right", bundle: ..., traitCollection: ...)`
     static func share_right(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.share_right, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "test", bundle: ..., traitCollection: ...)`
+    static func test(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.test, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "third", bundle: ..., traitCollection: ...)`

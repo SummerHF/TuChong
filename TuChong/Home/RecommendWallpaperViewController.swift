@@ -76,7 +76,7 @@ class RecommendWallpaperViewController: RecommendBaseViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionNode.frame = CGRect(x: 0, y: macro.homenavHeight, width: self.view.width, height: self.view.height - macro.homenavHeight)
+        collectionNode.frame = CGRect(x: 0, y: macro.homenavHeight, width: self.view.width, height: self.view.height - macro.videonavHeight)
         layout.configureItemSize()
     }
     

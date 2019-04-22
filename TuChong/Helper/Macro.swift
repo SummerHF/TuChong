@@ -13,6 +13,9 @@ import DeviceKit
 
 struct Macro {
     
+    /// Loading view's key
+    static var loadingKey: String = "loadingKey"
+    
     /// keyWindow of application
     var keyWindow: UIWindow? {
         return UIApplication.shared.keyWindow

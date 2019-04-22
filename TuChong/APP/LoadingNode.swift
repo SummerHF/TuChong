@@ -1,4 +1,4 @@
-//  AppDelegate+Extension.swift
+//  LoadingNode.swift
 //  TuChong
 //
 //  Created by SummerHF on 2019/3/20.
@@ -27,22 +27,38 @@
 
 import AsyncDisplayKit
 
-// MARK: - AppDelegate
-
-extension AppDelegate {
-
-    /// 设置主窗口
-    func setKeyWindow() {
-        /// TabBar
-        let tabBarController = BaseTabBarController()
-        /// Window
-        self.window?.backgroundColor = UIColor.white
-        self.window?.rootViewController = tabBarController
-        self.window?.makeKeyAndVisible()
+class LoadingNode: ASDisplayNode {
+    
+    private var targetFrame: CGRect?
+    private let imageNode: ASImageNode
+    
+    init(frame: CGRect? = CGRect.zero) {
+        self.targetFrame = frame
+        self.imageNode = ASImageNode()
+        super.init()
+        self.imageNode.isLayerBacked = true 
+        self.automaticallyManagesSubnodes = true
     }
     
-    /// 设置开机广告
-    func setLaunchAdvertiseMent() {
-        LaunchManager.manager.show()
+    override func didLoad() {
+        super.didLoad()
+        self.backgroundColor = Color.backGroundColor
+        self.imageNode.image = R.image.loading()
+    }
+    
+    override func didEnterPreloadState() {
+        super.didEnterPreloadState()
+        /// set Frame
+        if let frame = targetFrame {
+            self.frame = frame
+        } else if let frame = supernode?.frame {
+            self.frame = frame
+        } else {
+            self.frame = UIScreen.main.bounds
+        }
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: self.imageNode)
     }
 }

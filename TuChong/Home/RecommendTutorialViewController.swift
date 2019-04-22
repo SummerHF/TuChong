@@ -31,12 +31,22 @@ class RecommendTutorialViewController: RecommendBaseViewController {
     
     private var baseURL: String = ""
     
-    /// 头部的导航视图
-    private var navView: TutorialNavNode? {
-        didSet {
-            self.node.addSubnode(navView!)
-        }
+    private var tableNodeFrame: CGRect {
+        let height: CGFloat = macro.screenHeight - macro.topHeight - macro.homenavHeight - macro.videonavHeight
+        return CGRect(x: 0, y: macro.videonavHeight, width: macro.screenWidth, height: height)
     }
+    
+    /// 头部的导航视图
+    private lazy var navView: TutorialNavNode = {
+        let navView = TutorialNavNode(delegate: self)
+        return navView
+    }()
+    
+    /// 列表
+    private lazy var tableNode: ASTableNode = {
+        let tableNode = ASTableNode(style: .plain)
+        return tableNode
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -53,20 +63,31 @@ class RecommendTutorialViewController: RecommendBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubviews()
         loadData()
     }
     
     override func addSubviews() {
-        
+        /// add navView
+        self.node.addSubnode(navView)
+        /// add listView
+        self.node.addSubnode(tableNode)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableNode.frame = tableNodeFrame
     }
     
     override func loadData() {
+        self.showLoadingView(with: tableNodeFrame)
         Network.request(target: .homepage(baseURL: baseURL, path: path, parameters: paramerers), success: { (responseData) in
-            self.navView = TutorialNavNode(delegate: self)
+            printLog(responseData)
+            self.removeLoadingView()
         }, error: { (_) in
-            
+            self.removeLoadingView()
         }) { (_) in
-            
+            self.removeLoadingView()
         }
     }
 }

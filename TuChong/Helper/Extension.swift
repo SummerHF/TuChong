@@ -25,9 +25,13 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import AsyncDisplayKit
 
-// MARK: - Helpers
+/**
+ UIKit Extents
+ */
+
+// MARK: - String
 
 public extension String {
     var urlEscaped: String {
@@ -38,6 +42,8 @@ public extension String {
     }
 }
 
+// MARK: - Int
+
 public extension Int {
     
     /// 产生随机数
@@ -46,6 +52,8 @@ public extension Int {
         return Int(arc4random_uniform(UInt32(upper)))
     }
 }
+
+// MARK: - UILabel
 
 public extension UILabel {
     
@@ -65,6 +73,33 @@ public extension UILabel {
         self.textColor = textColor
     }
 }
+
+// MARK: - UIButton
+
+extension UIButton {
+    
+    func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, state: UIControl.State) {
+        self.setAttributedTitle(NSAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+            ]), for: state)
+    }
+}
+
+// MARK: - UIView
+
+extension UIView {
+    
+    /// fast to add corner and border
+    func set(cornerRadius: CGFloat = 0.0, borderWidth: CGFloat = 0.0, borderColor: UIColor = UIColor.clear) {
+        self.layer.cornerRadius = cornerRadius
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.clipsToBounds = true
+    }
+}
+
+// MARK: - UIFont
 
 public extension UIFont {
     
@@ -131,5 +166,232 @@ public extension UIFont {
     
     static func normalFont_20() -> UIFont {
         return UIFont.systemFont(ofSize: 20)
+    }
+}
+
+/**
+ AsyncDisplayKit Extents
+ */
+
+// MARK: - ASTextNode
+
+let kLinkAttributeName = "kLinkAttributeName"
+
+extension ASTextNode {
+    ///
+    /// setting `ASTextNode` attributed
+    ///
+    ///
+    /// - parameter name:  user name
+    /// - parameter title:  title
+    /// - parameter content:  description of picture
+    /// - parameter tags: tags array
+    /// - parameter isFloding: Whether the cell folds, Default is `True`
+    ///
+    func setAttributedWith(name: String, title: String, content: String, tags: [Recommend_Feedlist_Tags_Model], isFloding: Bool = true) {
+        var contentString = ""
+        if !title.isEmpty && !content.isEmpty {
+            contentString = title + "·" + content
+        } else if !title.isEmpty {
+            contentString = title
+        } else if !content.isEmpty {
+            contentString = content
+        }
+        var tagString = ""
+        for item in tags {
+            tagString += String(format: " #%@", item.tag_name)
+        }
+        contentString = String(format: "%@%@", contentString, tagString)
+        if contentString.count == 0 {
+            self.attributedText = nil
+        } else {
+            /// add addAttributesString
+            contentString = String(format: "%@ %@", name, contentString)
+            let attr = NSMutableAttributedString(string: contentString, attributes: [
+                NSAttributedString.Key.font: UIFont.normalFont_13(),
+                NSAttributedString.Key.foregroundColor: UIColor.black
+                ])
+            attr.addAttributes([NSAttributedString.Key.font: UIFont.boldFont_13()], range: NSString(string: contentString).range(of: name))
+            /// add tap event for tags
+            self.linkAttributeNames = [kLinkAttributeName]
+            for item in tags {
+                let value = String(format: " #%@", item.tag_name)
+                attr.addAttributes([
+                    NSAttributedString.Key.init(rawValue: kLinkAttributeName): value,
+                    NSAttributedString.Key.underlineColor: UIColor.clear
+                    ],
+                                   range: NSString(string: contentString).range(of: value))
+            }
+            self.attributedText = attr
+            if isFloding {
+                /// add truncationAttributedText
+                self.maximumNumberOfLines = 2
+                let truncationStr = "...\(R.string.localizable.more())"
+                let truncationAttr = NSMutableAttributedString(string: truncationStr, attributes: [
+                    NSAttributedString.Key.font: UIFont.normalFont_13(),
+                    NSAttributedString.Key.foregroundColor: Color.lightGray])
+                truncationAttr.addAttributes([
+                    NSAttributedString.Key.foregroundColor: UIColor.black
+                    ], range: NSString(string: truncationStr).range(of: "..."))
+                self.truncationAttributedText = truncationAttr
+            } else {
+                self.truncationAttributedText = nil
+                self.maximumNumberOfLines = 0
+            }
+        }
+    }
+    
+    func setAttributedWith(name: String, content: String, maxLines: UInt) {
+        let string = "\(name)  \(content)"
+        let attr = NSMutableAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: UIFont.normalFont_13(),
+            NSAttributedString.Key.foregroundColor: UIColor.black
+            ])
+        attr.addAttributes([
+            NSAttributedString.Key.font: UIFont.boldFont_13(),
+            NSAttributedString.Key.foregroundColor: UIColor.black
+            ], range: NSString(string: string).range(of: name))
+        
+        self.attributedText = attr
+        self.maximumNumberOfLines = maxLines
+        self.truncationMode = .byTruncatingTail
+    }
+    
+    ///
+    /// setting `ASTextNode` attributed
+    ///
+    ///
+    /// - parameter replyName:   commenter
+    /// - parameter repiedName:  the user who is repied
+    /// - parameter content:  reply content
+    ///
+    func setAttributedWith(replyName: String, repiedName: String, content: String) {
+        let string = "\(replyName)  @\(repiedName)  \(content)"
+        let attr = NSMutableAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: UIFont.normalFont_13(),
+            NSAttributedString.Key.foregroundColor: UIColor.black
+            ])
+        attr.addAttributes([
+            NSAttributedString.Key.font: UIFont.boldFont_13(),
+            NSAttributedString.Key.foregroundColor: UIColor.black
+            ], range: NSString(string: string).range(of: replyName))
+        self.attributedText = attr
+        self.maximumNumberOfLines = 1
+        self.truncationMode = .byTruncatingTail
+    }
+    
+    func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, aligement: NSTextAlignment? = nil) {
+        if let aligeValue = aligement {
+            let style = NSMutableParagraphStyle()
+            style.alignment = aligeValue
+            self.attributedText = NSAttributedString(string: string, attributes: [
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: color,
+                NSAttributedString.Key.paragraphStyle: style
+                ])
+        } else {
+            self.attributedText = NSAttributedString(string: string, attributes: [
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: color
+                ])
+        }
+    }
+}
+
+// MARK: - ASButtonNode
+
+extension ASButtonNode {
+    
+    func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, state: UIControl.State) {
+        
+        self.setAttributedTitle(NSAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+            ]), for: state)
+    }
+}
+
+// MARK: - ASDisplayNode
+
+extension ASDisplayNode {
+    
+    /// fast to add corner and border
+    func set(cornerRadius: CGFloat = 0.0, borderWidth: CGFloat = 0.0, borderColor: UIColor = UIColor.clear) {
+        self.layer.cornerRadius = cornerRadius
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.view.clipsToBounds = true
+    }
+    
+    /// This method is efficiently add rounded corners
+    /// Suitable for cell content
+    func add(cornerRadius: CGFloat = 0.0, backgroundColor: UIColor = Color.backGroundColor) {
+        self.backgroundColor = backgroundColor
+        self.cornerRadius = cornerRadius
+        self.cornerRoundingType = .clipping
+    }
+    
+    /// use this method to change `ScrollView` contetOffset to adjust subItem's location
+    func scrollAnimate(with selectedBtn: NavItemButton, scrollView: UIScrollView, containerView: UIView) {
+        guard scrollView.contentSize.width > containerView.width else { return }
+        let contentWidth = scrollView.contentSize.width
+        let offsetX = (containerView.width - selectedBtn.width) / 2.0
+        if selectedBtn.left <= containerView.width / 2.0 {
+            /// don't need
+            scrollView.setContentOffset(CGPoint.zero, animated: false)
+        } else if selectedBtn.frame.maxX > contentWidth - containerView.width / 2.0 {
+            let x = contentWidth - containerView.width
+            scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
+        } else {
+            let x = selectedBtn.frame.minX - offsetX
+            scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
+        }
+    }
+}
+
+// MARK: - ASCollectionNode
+
+extension ASCollectionNode {
+    
+    /// scroll to top
+    func scrollToTop(animate: Bool) {
+        self.setContentOffset(CGPoint(x: -self.contentInset.left, y: -self.contentInset.left), animated: animate)
+    }
+}
+
+// MARK: - ASViewController
+
+/// Add extension for generic type
+extension ASViewController where DisplayNodeType == ASDisplayNode {
+    
+    /// remove dynamic and objc modifier
+    /// add dynamic property
+    private var loadingNode: ASDisplayNode? {
+        get {
+            return objc_getAssociatedObject(self, &Macro.loadingKey) as? ASDisplayNode
+        }
+        set {
+            if let newLoadingView = newValue {
+                if let oldLoadingView = loadingNode {
+                    oldLoadingView.removeFromSupernode()
+                }
+                /// add new loading view
+                self.node.addSubnode(newLoadingView)
+                /// bring subview to front
+                self.view.bringSubviewToFront(newLoadingView.view)
+                /// save new loading view
+                objc_setAssociatedObject(self, &Macro.loadingKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
+    }
+    
+    /// use this method to add loading load
+    open func showLoadingView(with Frame: CGRect) {
+        self.loadingNode = LoadingNode(frame: Frame)
+    }
+    
+    /// remove
+    open func removeLoadingView() {
+        self.loadingNode?.removeFromSupernode()
     }
 }

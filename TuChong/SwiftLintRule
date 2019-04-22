@@ -69,6 +69,11 @@ Texture Demo:
 ASDKLayoutTransition
 https://github.com/texturegroup/texture/tree/master/examples
 
+#if DEBUG #else macro 定义
+https://stackoverflow.com/questions/24003291/ifdef-replacement-in-the-swift-language
+
+
+////////////////////////////////////////////////////////////////////////
 swiftLint rule
 disabled_rules: # 执行时排除掉的规则
 - colon
