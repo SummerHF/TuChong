@@ -1,7 +1,7 @@
-//  RecommendVideoPlayerController.swift
+//  RecommendTutorialViewController.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/4/11.
+//  Created by SummerHF on 2019/4/22.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -27,25 +27,28 @@
 
 import AsyncDisplayKit
 
-/// `Type` is video_recommend
-class RecommendVideoPlayerController: RecommendBaseViewController {
+class RecommendTutorialViewController: RecommendBaseViewController {
     
-    private var navArray: [HomePageNav_Data_Model] = []
+    private var baseURL: String = ""
     
     /// 头部的导航视图
-    var navView: VideoNavNode? {
+    private var navView: TutorialNavNode? {
         didSet {
             self.node.addSubnode(navView!)
         }
     }
     
-    /// Fast Initializers without `parameters`
-    init(model: HomePageNav_Data_Model, index: Int, path: String) {
-        super.init(model: model, index: index, path: path, parameters: [:])
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(model: HomePageNav_Data_Model, index: Int, path: String, parameters: [String : Any]) {
+        super.init(model: model, index: index, path: path, parameters: parameters)
+    }
+    
+    convenience init(model: HomePageNav_Data_Model, index: Int, baseURL: String, path: String, parameters: [String : Any]) {
+        self.init(model: model, index: index, path: path, parameters: parameters)
+        self.baseURL = baseURL
     }
     
     override func viewDidLoad() {
@@ -53,12 +56,13 @@ class RecommendVideoPlayerController: RecommendBaseViewController {
         loadData()
     }
     
-    /// First add nav data
+    override func addSubviews() {
+        
+    }
+    
     override func loadData() {
-        Network.request(target: TuChong.homepage(baseURL: nil, path: path, parameters: nil), success: { (response) in
-            guard let model = HomePage_Nav.deserialize(from: response) else { return }
-            self.navArray = model.data
-            self.navView = VideoNavNode(data: model.data, delegate: self)
+        Network.request(target: .homepage(baseURL: baseURL, path: path, parameters: paramerers), success: { (responseData) in
+            self.navView = TutorialNavNode(delegate: self)
         }, error: { (_) in
             
         }) { (_) in
@@ -67,6 +71,6 @@ class RecommendVideoPlayerController: RecommendBaseViewController {
     }
 }
 
-extension RecommendVideoPlayerController: VideoNavNodeProtocol {
+extension RecommendTutorialViewController: TutorialNavNodeProtocol {
     
 }

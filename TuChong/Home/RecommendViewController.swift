@@ -67,7 +67,7 @@ class RecommendViewController: RecommendBaseViewController {
     }
     
     override func loadData() {
-        Network.request(target: TuChong.homepage(path: path, parameters: paramerers), success: { (response) in
+        Network.request(target: TuChong.homepage(baseURL: nil, path: path, parameters: paramerers), success: { (response) in
             guard let model = RecommendModel.deserialize(from: response) else { return }
             self.feedList = model.feedList
             self.tableNode.reloadData()

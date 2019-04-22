@@ -70,7 +70,7 @@ class CategoryViewController: RecommendBaseViewController {
     }
     
     override func loadData() {
-        Network.request(target: .homepage(path: path, parameters: paramerers), success: { (response) in
+        Network.request(target: .homepage(baseURL: nil, path: path, parameters: paramerers), success: { (response) in
             guard let model = RecommendTagsModel.deserialize(from: response) else { return }
             /// filter the empty images
             self.post_list = model.post_list.filter { return $0.image_count > 0 }

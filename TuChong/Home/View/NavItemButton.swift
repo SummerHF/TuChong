@@ -90,7 +90,7 @@ class HomeNavItemButton: NavItemButton {
     }
 }
 
-// MARK: - HomeNavItemButton
+// MARK: - WallpaperNavItemButton
 
 /// for `WallpaperNavNode`
 class WallpaperNavItemButton: NavItemButton {
@@ -133,7 +133,55 @@ class WallpaperNavItemButton: NavItemButton {
             self.isSelected = false
             self.titleLabel?.font = buttonFont
             self.setTitleColor(Color.lightGray, for: .normal)
-            self.set(cornerRadius: buttonHeight / 2.0, borderWidth: 1.2, borderColor: Color.flatGray)
+            self.set(cornerRadius: buttonHeight / 2.0, borderWidth: 1.0, borderColor: Color.flatGray)
+        }
+    }
+}
+
+// MARK: - TutorialNavItemButton
+
+/// for `TutorialNavNode`
+class TutorialNavItemButton: NavItemButton {
+    
+    var itemModel: Tutorial_Data_Model
+    var index: Int
+    
+    let buttonFont: UIFont = UIFont.normalFont_13()
+    let selectedFont: UIFont = UIFont.normalFont_15()
+    let buttonHeight: CGFloat = 24
+    var buttonWidth: CGFloat {
+        /// fast caculate `string` size
+        return itemModel.tutorial_name.size(withAttributes: [NSAttributedString.Key.font: buttonFont]).width + floatWidth
+    }
+    private let floatWidth: CGFloat = 28
+    
+    init(model: Tutorial_Data_Model, index: Int) {
+        self.itemModel = model
+        self.index = index
+        super.init(frame: CGRect.zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    /// Whether selected or deselected
+    open func setDefaultState() {
+        self.titleLabel?.font = buttonFont
+        selected(isSelected: itemModel.default)
+    }
+    
+    open func selected(isSelected: Bool) {
+        if isSelected {
+            self.isSelected = true
+            self.titleLabel?.font = selectedFont
+            self.setTitleColor(Color.black, for: .selected)
+            self.set(cornerRadius: 0.0, borderWidth: 0.0, borderColor: UIColor.clear)
+        } else {
+            self.isSelected = false
+            self.titleLabel?.font = buttonFont
+            self.setTitleColor(Color.lightGray, for: .normal)
+            self.set(cornerRadius: buttonHeight / 2.0, borderWidth: 1.0, borderColor: Color.flatGray)
         }
     }
 }

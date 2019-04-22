@@ -141,4 +141,5 @@ struct RequestparameterKey {
     static let tag = "tag"
     static let first_refresh = "first_refresh"
     static let type = "type"
+    static let count = "count"
 }

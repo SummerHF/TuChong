@@ -383,12 +383,16 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 25 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 31 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let focus = Rswift.StringResource(key: "focus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 人像
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let portrait = Rswift.StringResource(key: "portrait", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 人喜欢
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -401,6 +405,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let cancel_button_title = Rswift.StringResource(key: "cancel_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 后期修图
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let post_revision = Rswift.StringResource(key: "post_revision", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 器材应用
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let equipment_application = Rswift.StringResource(key: "equipment_application", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 圈子
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -417,6 +429,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let user = Rswift.StringResource(key: "user", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 所有
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let all = Rswift.StringResource(key: "all", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 手机拍照
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let phone_photo = Rswift.StringResource(key: "phone_photo", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 拍摄技巧
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let shooting_skills = Rswift.StringResource(key: "shooting_skills", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 推荐摄影师
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -493,6 +517,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("focus", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 人像
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func portrait(_: Void = ()) -> String {
+        return NSLocalizedString("portrait", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 人喜欢
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -512,6 +543,20 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func cancel_button_title(_: Void = ()) -> String {
         return NSLocalizedString("cancel_button_title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 后期修图
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func post_revision(_: Void = ()) -> String {
+        return NSLocalizedString("post_revision", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 器材应用
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func equipment_application(_: Void = ()) -> String {
+        return NSLocalizedString("equipment_application", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 圈子
@@ -540,6 +585,27 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func user(_: Void = ()) -> String {
         return NSLocalizedString("user", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 所有
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func all(_: Void = ()) -> String {
+        return NSLocalizedString("all", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 手机拍照
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func phone_photo(_: Void = ()) -> String {
+        return NSLocalizedString("phone_photo", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 拍摄技巧
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func shooting_skills(_: Void = ()) -> String {
+        return NSLocalizedString("shooting_skills", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 推荐摄影师

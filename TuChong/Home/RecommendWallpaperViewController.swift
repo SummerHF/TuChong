@@ -82,7 +82,7 @@ class RecommendWallpaperViewController: RecommendBaseViewController {
     
     /// First add nav data
     override func loadData() {
-        Network.request(target: TuChong.homepage(path: path, parameters: nil), success: { (response) in
+        Network.request(target: TuChong.homepage(baseURL: nil, path: path, parameters: nil), success: { (response) in
             guard let navarray = HomePage_Wallpaper_Nav.build(with: response) else { return }
             self.navArray = navarray
             self.navView = WallpaperNavNode(data: navarray, delegate: self)
@@ -136,7 +136,7 @@ extension RecommendWallpaperViewController: WallpaperNavNodeProtocol {
         let parameters = [RequestparameterKey.page: self.initialPage,
                           RequestparameterKey.tag: tagID
                           ]
-        Network.request(target: .homepage(path: path, parameters: parameters), success: { (response) in
+        Network.request(target: .homepage(baseURL: nil, path: path, parameters: parameters), success: { (response) in
             guard let model = HomePage_Wallpaper.deserialize(from: response) else { return }
             self.feedList = model.feedList
             self.banner = model.banner

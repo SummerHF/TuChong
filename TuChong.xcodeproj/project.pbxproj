@@ -58,6 +58,9 @@
 		C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */; };
 		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
 		C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavNode.swift */; };
+		C4C8F465226DA250000D1231 /* RecommendTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8F464226DA250000D1231 /* RecommendTutorialViewController.swift */; };
+		C4C8F467226DB07E000D1231 /* TutorialNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8F466226DB07E000D1231 /* TutorialNavNode.swift */; };
+		C4C8F469226DB170000D1231 /* TutorialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8F468226DB170000D1231 /* TutorialModel.swift */; };
 		C4CBE21C2255A9260074F58A /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21B2255A9260074F58A /* SearchModel.swift */; };
 		C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */; };
 		C4DC5C19225DDEDE00985CE3 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC5C18225DDEDE00985CE3 /* ScrollView.swift */; };
@@ -128,6 +131,9 @@
 		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		C4B9825C2242172900F65C0E /* HomeNavNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavNode.swift; sourceTree = "<group>"; };
 		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
+		C4C8F464226DA250000D1231 /* RecommendTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTutorialViewController.swift; sourceTree = "<group>"; };
+		C4C8F466226DB07E000D1231 /* TutorialNavNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialNavNode.swift; sourceTree = "<group>"; };
+		C4C8F468226DB170000D1231 /* TutorialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialModel.swift; sourceTree = "<group>"; };
 		C4CBE21B2255A9260074F58A /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellNode.swift; sourceTree = "<group>"; };
 		C4DC5C18225DDEDE00985CE3 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
@@ -173,6 +179,7 @@
 			children = (
 				530410702268A64000EB1AE5 /* HomePageModel.swift */,
 				530410712268A64100EB1AE5 /* RecommendModel.swift */,
+				C4C8F468226DB170000D1231 /* TutorialModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,6 +276,7 @@
 				C4B9825C2242172900F65C0E /* HomeNavNode.swift */,
 				535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */,
 				C402B23F2269755F007746EB /* WallpaperNavNode.swift */,
+				C4C8F466226DB07E000D1231 /* TutorialNavNode.swift */,
 				C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */,
 			);
 			path = View;
@@ -315,6 +323,7 @@
 				C462C002225F39C700AB91F1 /* CategoryViewController.swift */,
 				5304106D2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift */,
 				C402B23D22696D64007746EB /* RecommendWallpaperViewController.swift */,
+				C4C8F464226DA250000D1231 /* RecommendTutorialViewController.swift */,
 				C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */,
 			);
 			path = Home;
@@ -575,6 +584,7 @@
 				C43B9A52225C2FFA00C15872 /* TabBar.swift in Sources */,
 				C4827C3A2266BC1D009E94C5 /* UserManager.swift in Sources */,
 				C41A32C422601E09009AF4CF /* RecommendCellNode.swift in Sources */,
+				C4C8F469226DB170000D1231 /* TutorialModel.swift in Sources */,
 				C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */,
 				C4827C3F2266BD60009E94C5 /* FollowViewUserLoginNode.swift in Sources */,
 				C462C003225F39C700AB91F1 /* CategoryViewController.swift in Sources */,
@@ -588,6 +598,7 @@
 				C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */,
 				C462BFFC225EE64700AB91F1 /* HomeSubViewController.swift in Sources */,
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
+				C4C8F465226DA250000D1231 /* RecommendTutorialViewController.swift in Sources */,
 				C402B23E22696D64007746EB /* RecommendWallpaperViewController.swift in Sources */,
 				C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */,
 				C4893B602268127E00B2AE01 /* RecommendCategoryCellNode.swift in Sources */,
@@ -606,6 +617,7 @@
 				C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
 				C402B2402269755F007746EB /* WallpaperNavNode.swift in Sources */,
+				C4C8F467226DB07E000D1231 /* TutorialNavNode.swift in Sources */,
 				530410722268A64100EB1AE5 /* HomePageModel.swift in Sources */,
 				C4AD3C40224098B40095BC97 /* Extension.swift in Sources */,
 				C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */,

@@ -78,9 +78,11 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
     public func create(subviewControll withIndex: Int) -> BaseViewControlle {
         let model = navArray[withIndex]
         /// build parameters
+        var baseURL: String = ""
         var path: String = ""
         var parameters: [String: Any] = [:]
         let page = 1
+        let count = 10
         var viewController: BaseViewControlle
         switch model.itemType {
         case .follow:
@@ -107,9 +109,11 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
             path = "/2/app-video-nav"
             viewController = RecommendVideoPlayerController(model: model, index: withIndex, path: path)
         case .rn:
-            print("rn To do")
         //  https://tuchong.com/rest/sites/1615439,1615432,1615443,1615461,1615437/posts?page=1&count=10
-            viewController = HomeSubViewController(model: model, index: withIndex)
+            baseURL = "https://tuchong.com"
+            path = "/rest/sites/1615439,1615432,1615443,1615461,1615437/posts"
+            parameters = [RequestparameterKey.page: page, RequestparameterKey.count: count]
+            viewController = RecommendTutorialViewController(model: model, index: withIndex, baseURL: baseURL, path: path, parameters: parameters)
         case .none:
             printLog("none")
             viewController = HomeSubViewController(model: model, index: withIndex)
