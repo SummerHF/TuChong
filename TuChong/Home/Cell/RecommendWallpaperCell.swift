@@ -33,21 +33,28 @@ class RecommendWallpaperCell: ASCellNode {
     let index: Int
     let photoImageNode: ASNetworkImageNode
     let gifImageNode: ASNetworkImageNode
+    let hotImageNode: ASImageNode
     
     private let insetForPhotoImageNode = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
-    
+    private let insetForHotImageNode = UIEdgeInsets(top: 4, left: 4, bottom: CGFloat.infinity, right: CGFloat.infinity)
+
     init(with postListItem: Recommend_Feedlist_Model, at index: Int) {
         self.postListItem = postListItem
         self.index = index
         self.photoImageNode = ASNetworkImageNode()
         self.gifImageNode = ASNetworkImageNode()
+        self.hotImageNode = ASImageNode()
         super.init()
+        self.hotImageNode.isLayerBacked = true
+        self.photoImageNode.isLayerBacked = true 
         self.automaticallyManagesSubnodes = true
     }
     
     override func didLoad() {
         super.didLoad()
+        self.hotImageNode.image = R.image.hot()
         if postListItem.stageType == .video {
+            /// need to fix gif issue
             self.gifImageNode.url = URL(string: postListItem.entry.gif_cover)
         } else {
             self.photoImageNode.url = URL(string: postListItem.entry.image_cover)
@@ -59,6 +66,19 @@ class RecommendWallpaperCell: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec(insets: insetForPhotoImageNode, child: ASRatioLayoutSpec(ratio: WallpaperLayout.ration, child: postListItem.stageType == .video ? self.gifImageNode : self.photoImageNode))
+        /// whether hot
+        return postListItem.entry.is_hot ? ASBackgroundLayoutSpec(child: ASInsetLayoutSpec(insets: insetForHotImageNode, child:
+            self.hotImageNode.styled({ (style) in
+                style.preferredSize = CGSize(width: 18, height: 18)
+            })
+        ), background: createPhotoLayoutSpec()) : createPhotoLayoutSpec()
+    }
+    
+    /// Photo layout spec, Gif or normal photo
+    private func createPhotoLayoutSpec() -> ASLayoutSpec {
+        return ASInsetLayoutSpec(insets: insetForPhotoImageNode, child: ASRatioLayoutSpec(ratio: WallpaperLayout.ration, child: postListItem.stageType == .video ?
+            self.gifImageNode :
+            self.photoImageNode
+        ))
     }
 }
