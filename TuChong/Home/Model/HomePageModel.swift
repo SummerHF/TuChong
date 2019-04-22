@@ -176,6 +176,10 @@ struct HomePage_Wallpaper_Banner: HandyJSON {
     var src: String = ""
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
+    
+    var ratio: CGFloat {
+        return height / width
+    }
 }
 
 // MARK: - 首页, 壁纸

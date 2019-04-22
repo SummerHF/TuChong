@@ -27,6 +27,35 @@
 
 import AsyncDisplayKit
 
+// MARK: - RecommendWallpaperHeadNode
+
+class RecommendWallpaperHeadNode: ASCellNode {
+    
+    private let bannerModel: HomePage_Wallpaper_Banner
+    private let imageNode: ASNetworkImageNode
+    
+    private let insetForPhotoImageNode = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+
+    init(with banner: HomePage_Wallpaper_Banner) {
+        self.bannerModel = banner
+        self.imageNode = ASNetworkImageNode()
+        super.init()
+        self.automaticallyManagesSubnodes = true
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        self.imageNode.url = URL(string: bannerModel.src)
+        self.imageNode.add(cornerRadius: 4.0)
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASRatioLayoutSpec(ratio: bannerModel.ratio, child: ASInsetLayoutSpec(insets: insetForPhotoImageNode, child: self.imageNode))
+    }
+}
+
+// MARK: - RecommendWallpaperCell
+
 class RecommendWallpaperCell: ASCellNode {
     
     let postListItem: Recommend_Feedlist_Model

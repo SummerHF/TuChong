@@ -50,6 +50,8 @@ class RecommendWallpaperViewController: RecommendBaseViewController {
         collectionNode.contentInset = collectionNodeInset
         collectionNode.backgroundColor = Color.backGroundColor
         collectionNode.dataSource = self
+        collectionNode.delegate = self
+        collectionNode.registerSupplementaryNode(ofKind: UICollectionView.elementKindSectionHeader)
         return collectionNode
     }()
     
@@ -94,7 +96,7 @@ class RecommendWallpaperViewController: RecommendBaseViewController {
 
 // MARK: - Datasource
 
-extension RecommendWallpaperViewController: ASCollectionDataSource {
+extension RecommendWallpaperViewController: ASCollectionDataSource, ASCollectionDelegate, ASCollectionDelegateFlowLayout {
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
         return feedList.count
@@ -102,6 +104,25 @@ extension RecommendWallpaperViewController: ASCollectionDataSource {
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
         return RecommendWallpaperCell(with: feedList[indexPath.row], at: indexPath.row)
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> ASCellNode {
+        if let banner = self.banner {
+            return RecommendWallpaperHeadNode(with: banner)
+        } else {
+            return ASCellNode()
+        }
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, sizeRangeForHeaderInSection section: Int) -> ASSizeRange {
+        if let banner = self.banner {
+            let width: CGFloat = self.collectionNode.view.width - collectionNodeInset.left - collectionNodeInset.right
+            let height = width * banner.ratio
+            let size = CGSize(width: width, height: height)
+            return ASSizeRange(min: size, max: size)
+        } else {
+            return ASSizeRangeZero
+        }
     }
 }
 
@@ -119,7 +140,7 @@ extension RecommendWallpaperViewController: WallpaperNavNodeProtocol {
             guard let model = HomePage_Wallpaper.deserialize(from: response) else { return }
             self.feedList = model.feedList
             self.banner = model.banner
-            self.collectionNode.setContentOffset(CGPoint(x: -self.collectionNodeInset.left, y: -self.collectionNodeInset.top), animated: false)
+            self.collectionNode.scrollToTop(animate: false)
             self.collectionNode.reloadData()
         }, error: { (_) in
             

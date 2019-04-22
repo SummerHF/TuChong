@@ -209,6 +209,14 @@ extension ASDisplayNode {
         self.view.clipsToBounds = true
     }
     
+    /// This method is efficiently add rounded corners
+    /// Suitable for cell content
+    func add(cornerRadius: CGFloat = 0.0, backgroundColor: UIColor = Color.backGroundColor) {
+        self.backgroundColor = backgroundColor
+        self.cornerRadius = cornerRadius
+        self.cornerRoundingType = .clipping
+    }
+    
     /// use this method to change `ScrollView` contetOffset to adjust subItem's location
     func scrollAnimate(with selectedBtn: NavItemButton, scrollView: UIScrollView, containerView: UIView) {
         guard scrollView.contentSize.width > containerView.width else { return }
@@ -224,6 +232,16 @@ extension ASDisplayNode {
             let x = selectedBtn.frame.minX - offsetX
             scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
         }
+    }
+}
+
+// MARK: - Method
+
+extension ASCollectionNode {
+    
+    /// scroll to top
+    func scrollToTop(animate: Bool) {
+        self.setContentOffset(CGPoint(x: -self.contentInset.left, y: -self.contentInset.left), animated: animate)
     }
 }
 

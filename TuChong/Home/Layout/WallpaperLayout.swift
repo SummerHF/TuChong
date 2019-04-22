@@ -47,7 +47,6 @@ class WallpaperLayout: UICollectionViewFlowLayout {
         let width = collectionView.width - collectionView.contentInset.left - collectionView.contentInset.right
         let itemWidth = (width - (numberOfLines - 1.0) * lineSpacing) / numberOfLines
         let itemHeight = itemWidth * WallpaperLayout.ration
-        
         self.minimumLineSpacing = 6.0
         self.minimumInteritemSpacing = 6.0
         self.itemSize = CGSize(width: itemWidth, height: itemHeight)
