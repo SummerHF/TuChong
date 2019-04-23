@@ -26,11 +26,74 @@
 //
 
 import AsyncDisplayKit
+import WebKit
 
 class TutorialDetailViewController: BaseViewControlle {
+    
+    private let post_id: String
+    private let tableNode: ASTableNode
+    
+    /// user profile model
+    private var profile_model: Tutorial_Detail_Profile_Model = Tutorial_Detail_Profile_Model()
+    /**
+     /// 用户
+     https://api.tuchong.com/app-posts/31264361
+     /// 打赏
+     https://api.tuchong.com/posts/31264361/rewards
+     /// 评论
+     https://api.tuchong.com/2/posts/30972658/comments?count=20&page=1&sort_by=0
+     /// 网页
+     https://tuchong.com/462420/at/28478061/
+     */
+    private var _webView: WKWebView?
+
+    /// Create `TutorialDetailViewController`
+    init(post_id: String) {
+        self.post_id = post_id
+        self.tableNode = ASTableNode(style: .grouped)
+        super.init(node: tableNode)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = R.string.localizable.detail()
+        self.configureTableNode()
+        self.loadData()
+    }
+    
+    override func configureTableNode() {
+        self.tableNode.dataSource = self
+    }
+    
+    override func loadData() {
+        /// load user Data
+        Network.request(target: TuChong.tutorial_profile(post_id: post_id), success: { (responseData) in
+            guard let model = Tutorial_Detail_Profile_Model.deserialize(from: responseData) else { return }
+            self.profile_model = model
+            self.tableNode.reloadData()
+        }, error: { (_) in
+            
+        }) { (_) in
+            
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+}
+
+extension TutorialDetailViewController: ASTableDataSource {
+    
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+        return TutorialDetailProfileCell(post: profile_model.post, indexPath: indexPath)
     }
 }

@@ -86,9 +86,11 @@ class RecommendTutorialViewController: RecommendBaseViewController {
     override func loadData() {
         self.showLoadingView(with: tableNodeFrame)
         Network.request(target: .tutorial(baseURL: baseURL, path: path, parameters: paramerers), success: { (responseData) in
-            self.removeLoadingView()
             self.feedList = Tutorial_Model.build(with: responseData)
-            self.tableNode.reloadData()
+            self.tableNode.reloadData(completion: { [weak self] in
+                guard let `self` = self else { return }
+                self.removeLoadingView()
+            })
         }, error: { (_) in
             self.removeLoadingView()
         }) { (_) in
@@ -111,7 +113,8 @@ extension RecommendTutorialViewController: ASTableDataSource, ASTableDelegate {
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
-        let tutorialDetail = TutorialDetailViewController()
+        let post_id = feedList[indexPath.row].post.post_id
+        let tutorialDetail = TutorialDetailViewController(post_id: post_id)
         self.navigationController?.pushViewController(tutorialDetail, animated: true)
     }
 }

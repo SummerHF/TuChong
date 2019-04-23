@@ -59,6 +59,9 @@ enum TuChong {
     case search_hot(page: Int)
     /// 首页 ---- 教程
     case tutorial(baseURL: String, path: String, parameters: [String: Any])
+    /// 教程 ---- 用户信息
+    case tutorial_profile(post_id: String)
+    
 }
 
 extension TuChong: TargetType {
@@ -117,12 +120,15 @@ extension TuChong: TargetType {
             return path
         case let .tutorial(_, path, _):
             return path
+        case let .tutorial_profile(post_id):
+            return "/app-posts/\(post_id)"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .tutorial,
+             .tutorial_profile,
              .homepage,
              .search_hot,
              .activity_event,
@@ -138,7 +144,7 @@ extension TuChong: TargetType {
     
     var task: Task {
         switch self {
-        case .home_more, .home_nav, .homepage_attention, .activity:
+        case .home_more, .home_nav, .homepage_attention, .activity, .tutorial_profile:
             return .requestPlain
         case let .homepage(_, _, parameters):
             if let para = parameters {
@@ -174,6 +180,7 @@ extension TuChong: TargetType {
              .home_nav,
              .homepage_attention,
              .tutorial,
+             .tutorial_profile,
              .homepage_recommend:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         }

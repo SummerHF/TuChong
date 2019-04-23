@@ -12,6 +12,8 @@
 		530410722268A64100EB1AE5 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530410702268A64000EB1AE5 /* HomePageModel.swift */; };
 		530410732268A64100EB1AE5 /* RecommendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530410712268A64100EB1AE5 /* RecommendModel.swift */; };
 		53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317321F224130F600B6C10B /* BaseContainerViewController.swift */; };
+		5358B10C226F5451006229CB /* TutorialDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358B10B226F5451006229CB /* TutorialDetailModel.swift */; };
+		5358B10E226F5C55006229CB /* TutorialDetailProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358B10D226F5C55006229CB /* TutorialDetailProfileCell.swift */; };
 		535BC19D2268B4B00095B6C6 /* VideoNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */; };
 		53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53679354224132DE00C93C76 /* AppDelegate+Extension.swift */; };
 		53CC8C66226DF5D1007EE8D3 /* LoadingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CC8C65226DF5D1007EE8D3 /* LoadingNode.swift */; };
@@ -80,6 +82,8 @@
 		530410702268A64000EB1AE5 /* HomePageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		530410712268A64100EB1AE5 /* RecommendModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendModel.swift; sourceTree = "<group>"; };
 		5317321F224130F600B6C10B /* BaseContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseContainerViewController.swift; sourceTree = "<group>"; };
+		5358B10B226F5451006229CB /* TutorialDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailModel.swift; sourceTree = "<group>"; };
+		5358B10D226F5C55006229CB /* TutorialDetailProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailProfileCell.swift; sourceTree = "<group>"; };
 		535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoNavNode.swift; sourceTree = "<group>"; };
 		53679354224132DE00C93C76 /* AppDelegate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extension.swift"; sourceTree = "<group>"; };
 		53CC8C65226DF5D1007EE8D3 /* LoadingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingNode.swift; sourceTree = "<group>"; };
@@ -232,7 +236,9 @@
 		C437F355226EE6EC0017445F /* TutorialDetail */ = {
 			isa = PBXGroup;
 			children = (
+				5358B10B226F5451006229CB /* TutorialDetailModel.swift */,
 				C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */,
+				5358B10D226F5C55006229CB /* TutorialDetailProfileCell.swift */,
 			);
 			path = TutorialDetail;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
 				C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */,
+				5358B10E226F5C55006229CB /* TutorialDetailProfileCell.swift in Sources */,
 				C402B24522699B3A007746EB /* WallpaperLayout.swift in Sources */,
 				C4EB9FEF2266F074008747C7 /* RecommendTopicCellNode.swift in Sources */,
 				53CC8C66226DF5D1007EE8D3 /* LoadingNode.swift in Sources */,
@@ -642,6 +649,7 @@
 				C43AEA09225442BC00C2CFE7 /* SearchBar.swift in Sources */,
 				5304106E2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
+				5358B10C226F5451006229CB /* TutorialDetailModel.swift in Sources */,
 				C43B9A56225C617100C15872 /* UserViewController.swift in Sources */,
 				C437F354226EA2D80017445F /* RecommendTutorialCell.swift in Sources */,
 				C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */,

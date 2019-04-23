@@ -86,7 +86,6 @@ extension HomeContainerViewController: UIPageViewControllerDataSource, UIPageVie
         var viewController: BaseViewControlle
         switch model.itemType {
         case .follow:
-            print("follow")
             // need to login in
             viewController = FollowViewController(model: navArray[withIndex], index: withIndex)
         case .recommend:
