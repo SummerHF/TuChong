@@ -110,6 +110,7 @@ extension RecommendTutorialViewController: ASTableDataSource, ASTableDelegate {
     }
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
         let tutorialDetail = TutorialDetailViewController()
         self.navigationController?.pushViewController(tutorialDetail, animated: true)
     }
@@ -119,4 +120,8 @@ extension RecommendTutorialViewController: ASTableDataSource, ASTableDelegate {
 
 extension RecommendTutorialViewController: TutorialNavNodeProtocol {
     
+    func tutorialNav(node: TutorialNavNode, selectedBtn: TutorialNavItemButton, with index: Int, and tutorialId: String) {
+        path = "/rest/sites/\(tutorialId)/posts"
+        self.loadData()
+    }
 }

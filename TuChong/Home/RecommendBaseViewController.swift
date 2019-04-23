@@ -29,9 +29,9 @@ import AsyncDisplayKit
 
 class RecommendBaseViewController: BaseViewControlle {
     
-    let index: Int
+    var index: Int
     let model: HomePageNav_Data_Model
-    let path: String
+    var path: String
     var paramerers: [String: Any]
     var page: Int = 2
     var initialPage: Int = 1

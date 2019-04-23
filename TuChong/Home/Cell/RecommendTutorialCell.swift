@@ -64,7 +64,8 @@ class RecommendTutorialCell: ASCellNode {
         self.nameTextNode = ASTextNode()
         self.viewCountBtnNode = ASButtonNode()
         super.init()
-        self.selectionStyle = .none
+        self.selectionStyle = .default
+        self.neverShowPlaceholders = true
         self.automaticallyManagesSubnodes = true
         self.imageNode.isLayerBacked = true
         self.titleNode.isLayerBacked = true

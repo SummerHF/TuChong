@@ -52,10 +52,21 @@ open class BaseNavigationBar: ASDisplayNode {
     }
 }
 
-/// 全局公用导航条
+/// 每一个控制器对应一个导航条
+
+// MARK: - CommenNavigationBarDelegate
+
+@objc protocol CommenNavigationBarDelegate: class {
+    @objc optional func leftBackItemEvent(navgationBar: BaseNavigationBar)
+}
+
+// MARK: - CommenNavigationBar
+
 open class CommenNavigationBar: BaseNavigationBar {
     
     let leftMargin: CGFloat = 5.0
+    
+    weak var delegate: CommenNavigationBarDelegate?
     
     /// 设置标题
     open var title: String? {
@@ -80,10 +91,14 @@ open class CommenNavigationBar: BaseNavigationBar {
     private let titleLable = UILabel()
     private let leftBackItem = UIImageView(image: R.image.bc_back())
     
+    /// Size
+    private let leftBackItemSize = CGSize(width: 40, height: 40)
+    
     override init() {
         super.init()
         titleLable.numberOfLines = 1
         leftBackItem.isUserInteractionEnabled = true
+        leftBackItem.contentMode = .bottom
         self.view.addSubview(titleLable)
         self.view.addSubview(leftBackItem)
         titleLable.snp.makeConstraints { (make) in
@@ -98,14 +113,14 @@ open class CommenNavigationBar: BaseNavigationBar {
             } else {
                 make.bottom.equalToSuperview().offset(macro.bottomMargin)
             }
-            make.size.equalTo(CGSize(width: R.image.bc_back()!.size.width, height: R.image.bc_back()!.size.height))
+            make.size.equalTo(leftBackItemSize)
         }
     }
     
     open override func didLoad() {
         super.didLoad()
         leftBackItem.addGestureRecognizer(UITapGestureRecognizer(actionBlock: { _ in
-            
+            self.delegate?.leftBackItemEvent?(navgationBar: self)
         }))
     }
 }

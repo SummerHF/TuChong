@@ -57,7 +57,11 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
     }
     
     /// 全局共用的navigationBar
-    lazy var navigationBar = CommenNavigationBar()
+    lazy var navigationBar: CommenNavigationBar = {
+        let bar = CommenNavigationBar()
+        bar.delegate = self
+        return bar
+    }()
     
     init() {
         super.init(node: ASDisplayNode())
@@ -94,8 +98,9 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
         /// 是否使用自定义导航条
         if let navigationBar = self.createCustomeNavigationBar() {
             self.node.addSubnode(navigationBar)
+        } else {
+            self.node.addSubnode(navigationBar)
         }
-        self.node.addSubnode(navigationBar)
     }
     
     /// Base method, subclass to implement it
@@ -105,7 +110,7 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
     func addSubviews() { }
 }
 
-extension BaseViewControlle: NavigationBarManagerMent {
+extension BaseViewControlle: NavigationBarManagerMent, CommenNavigationBarDelegate {
     
     func createCustomeNavigationBar() -> BaseNavigationBar? {
         /// subclass to overrid
@@ -119,6 +124,11 @@ extension BaseViewControlle: NavigationBarManagerMent {
     func initialHidden() -> Bool {
         /// default false, subclass to override
         return false
+    }
+    
+    func leftBackItemEvent(navgationBar: BaseNavigationBar) {
+        /// subclass can override it to implement different react
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

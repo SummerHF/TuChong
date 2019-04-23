@@ -28,7 +28,7 @@
 import AsyncDisplayKit
 
 @objc protocol TutorialNavNodeProtocol {
-    @objc optional func wllpaperNav(node: TutorialNavNode, selectedBtn: TutorialNavItemButton, with index: Int, and tutorialId: String)
+    @objc optional func tutorialNav(node: TutorialNavNode, selectedBtn: TutorialNavItemButton, with index: Int, and tutorialId: String)
 }
 
 class TutorialNavNode: ASDisplayNode {
@@ -105,7 +105,7 @@ class TutorialNavNode: ASDisplayNode {
         selectedButton.selected(isSelected: true)
         defaultSelectedButton = selectedButton
         /// nofify delegate
-        self.delegate?.wllpaperNav?(node: self, selectedBtn: selectedButton, with: selectedButton.index, and: selectedButton.itemModel.tutorial_id)
+        self.delegate?.tutorialNav?(node: self, selectedBtn: selectedButton, with: selectedButton.index, and: selectedButton.itemModel.tutorial_id)
         /// animate
         self.scrollAnimate(with: selectedButton, scrollView: scrollView, containerView: self.view)
     }
