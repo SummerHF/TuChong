@@ -57,30 +57,44 @@ enum TuChong {
     case activity_event(page: Int)
     /// 搜索
     case search_hot(page: Int)
-    /// 点击关注后推荐
-//    /site-recommend/1350538/?page=1&count=10
+    /// 首页 ---- 教程
+    case tutorial(baseURL: String, path: String, parameters: [String: Any])
 }
 
 extension TuChong: TargetType {
+    
     var headers: [String : String]? {
         /// 请求头处内容写死
-        return ["content-type": "application/json",
-                "platform": "ios",
-                "version": "5.0.1",
-                "device": "51857464990",
-                "language": macro.language
-        ]
+        switch self {
+        case .tutorial:
+            return ["content-type": "application/json",
+                    "version": "5.0.1",
+                    "device": "51857464990",
+                    "language": macro.language
+            ]
+        default:
+            return ["content-type": "application/json",
+                    "platform": "ios",
+                    "version": "5.0.1",
+                    "device": "51857464990",
+                    "language": macro.language
+            ]
+        }
     }
+    
     var baseURL: URL {
         switch self {
         case .home_more:
             return URL(string: "https://tuchong.com")!
         case let .homepage(baseURL, _, _):
             return URL(string: baseURL ?? "https://api.tuchong.com")!
+        case let .tutorial(baseURL, _, _):
+            return URL(string: baseURL)!
         default:
             return URL(string: "https://api.tuchong.com")!
         }
     }
+    
     var path: String {
         switch self {
         case .home_more:
@@ -101,12 +115,23 @@ extension TuChong: TargetType {
             return "/users/hot"
         case let .homepage(_, path, _):
             return path
+        case let .tutorial(_, path, _):
+            return path
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .homepage, .search_hot, .activity_event, .activity, .home_more, .launch_ad, .home_nav, .homepage_attention, .homepage_recommend:
+        case .tutorial,
+             .homepage,
+             .search_hot,
+             .activity_event,
+             .activity,
+             .home_more,
+             .launch_ad,
+             .home_nav,
+             .homepage_attention,
+             .homepage_recommend:
             return .get
         }
     }
@@ -121,10 +146,10 @@ extension TuChong: TargetType {
             } else {
                 return .requestPlain
             }
+        case let .tutorial(_, _, parameters):
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .activity_event(page: let page):
-            if page == 0 {
-                return .requestPlain
-            }
+            if page == 0 { return .requestPlain }
             return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
         case .launch_ad:
             /// 启动图, 此处宽高写死
@@ -148,6 +173,7 @@ extension TuChong: TargetType {
              .launch_ad,
              .home_nav,
              .homepage_attention,
+             .tutorial,
              .homepage_recommend:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         }

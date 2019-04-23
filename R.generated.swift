@@ -130,8 +130,6 @@ struct R: Rswift.Validatable {
     static let share_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "share_right")
     /// Image `share`.
     static let share = Rswift.ImageResource(bundle: R.hostingBundle, name: "share")
-    /// Image `test`.
-    static let test = Rswift.ImageResource(bundle: R.hostingBundle, name: "test")
     /// Image `third`.
     static let third = Rswift.ImageResource(bundle: R.hostingBundle, name: "third")
     /// Image `triangle_bottom`.
@@ -148,6 +146,8 @@ struct R: Rswift.Validatable {
     static let verifications_green = Rswift.ImageResource(bundle: R.hostingBundle, name: "verifications_green")
     /// Image `verifications`.
     static let verifications = Rswift.ImageResource(bundle: R.hostingBundle, name: "verifications")
+    /// Image `view_count`.
+    static let view_count = Rswift.ImageResource(bundle: R.hostingBundle, name: "view_count")
     
     /// `UIImage(named: "activity", bundle: ..., traitCollection: ...)`
     static func activity(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -334,11 +334,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.share_right, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "test", bundle: ..., traitCollection: ...)`
-    static func test(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.test, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "third", bundle: ..., traitCollection: ...)`
     static func third(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.third, compatibleWith: traitCollection)
@@ -377,6 +372,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "verifications_green", bundle: ..., traitCollection: ...)`
     static func verifications_green(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.verifications_green, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "view_count", bundle: ..., traitCollection: ...)`
+    static func view_count(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.view_count, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}

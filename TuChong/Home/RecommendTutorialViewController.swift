@@ -46,6 +46,9 @@ class RecommendTutorialViewController: RecommendBaseViewController {
     /// 列表
     private lazy var tableNode: ASTableNode = {
         let tableNode = ASTableNode(style: .plain)
+        tableNode.dataSource = self
+        tableNode.delegate = self
+        tableNode.view.separatorStyle = .none
         return tableNode
     }()
     
@@ -82,10 +85,10 @@ class RecommendTutorialViewController: RecommendBaseViewController {
     
     override func loadData() {
         self.showLoadingView(with: tableNodeFrame)
-        Network.request(target: .homepage(baseURL: baseURL, path: path, parameters: paramerers), success: { (responseData) in
+        Network.request(target: .tutorial(baseURL: baseURL, path: path, parameters: paramerers), success: { (responseData) in
             self.removeLoadingView()
-            let model = Tutorial_Model.build(with: responseData)
-            self.feedList = model
+            self.feedList = Tutorial_Model.build(with: responseData)
+            self.tableNode.reloadData()
         }, error: { (_) in
             self.removeLoadingView()
         }) { (_) in
@@ -93,6 +96,25 @@ class RecommendTutorialViewController: RecommendBaseViewController {
         }
     }
 }
+
+// MARK: - Method
+
+extension RecommendTutorialViewController: ASTableDataSource, ASTableDelegate {
+    
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return self.feedList.count
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+        return RecommendTutorialCell(with: self.feedList[indexPath.row], at: indexPath.row)
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+// MARK: - TutorialNavNodeProtocol
 
 extension RecommendTutorialViewController: TutorialNavNodeProtocol {
     

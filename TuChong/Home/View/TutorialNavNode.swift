@@ -48,6 +48,13 @@ class TutorialNavNode: ASDisplayNode {
         return scrollView
     }()
     
+    /// bottom spearot line
+    private lazy var bottomLineNode: ASDisplayNode = {
+        let node = ASDisplayNode()
+        node.backgroundColor = Color.flatGray
+        return node
+    }()
+    
     init(delegate: TutorialNavNodeProtocol) {
         self.dataArray = Tutorial_Data_Model.allTutorial()
         self.delegate = delegate
@@ -57,13 +64,16 @@ class TutorialNavNode: ASDisplayNode {
     
     private func addNavItems() {
         self.view.addSubview(scrollView)
+        /// add bottom line
+        self.addSubnode(bottomLineNode)
     }
     
     override func didLoad() {
         self.backgroundColor = Color.backGroundColor
         self.frame = CGRect(x: 0, y: macro.videoNavTop, width: macro.screenWidth, height: macro.videonavHeight)
         self.scrollView.frame = self.bounds
-        
+        let height: CGFloat = 0.8
+        self.bottomLineNode.frame = CGRect(x: 0, y: self.frame.height - height, width: macro.screenWidth, height: height)
         /// add subBtn
         var lastView = UIView()
         for (index, model) in dataArray.enumerated() {

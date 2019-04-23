@@ -230,6 +230,9 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var equip: Recommend_Feedlist_Equip_Model?
     var images: [Recommend_Feedlist_Images_Model] = []
     var image_srcs: [String] = []
+    var image_srcs_cover: String {
+        return image_srcs.first ?? ""
+    }
     var title_image: HomePage_Entry_TitleImage_Model = HomePage_Entry_TitleImage_Model()
     /// Take the first photo as the cover
     var image_cover: String {

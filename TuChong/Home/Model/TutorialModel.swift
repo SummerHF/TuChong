@@ -61,35 +61,39 @@ struct Tutorial_Data_Model {
     }
 }
 
-// MARK: - 首页, 推荐
+// MARK: - 首页, 教程
 
 struct Tutorial_List_Model {
     
     var post: Recommend_Feedlist_Eentry_Model
-    var site: Recommend_Feedlist_Site_Model
     
     init(post: Recommend_Feedlist_Eentry_Model, site: Recommend_Feedlist_Site_Model) {
         self.post = post
-        self.site = site
+        self.post.site = site
     }
 }
 
 struct Tutorial_Model: HandyJSON {
     var result: String = ""
+    var before_timestamp: String = ""
     var posts: [Recommend_Feedlist_Eentry_Model] = []
     
     /// 快速的从字典构建模型
     static func build(with dict: [String: Any]) -> [Tutorial_List_Model] {
         var listArray: [Tutorial_List_Model] = []
-        guard let model = Tutorial_Model.deserialize(from: dict), let sites = dict["sites"] as? [String: Any] else { return listArray }
+        guard let model = Tutorial_Model.deserialize(from: dict), let dict = dict["sites"] as? [String: Any] else { return listArray }
         for post in model.posts {
-            for (key, value) in sites {
-            if key == post.site_id, let result = value as? [String: Any] {
-                guard let site = Recommend_Feedlist_Site_Model.deserialize(from: result) else { return listArray }
-                listArray.append(Tutorial_List_Model(post: post, site: site))
+            for (key, value) in dict {
+                if key == post.site_id, let result = value as? [String: Any], let site = Recommend_Feedlist_Site_Model.deserialize(from: result) {
+                    /// 文字区域
+                    let textValue = Tutorial_List_Model(post: post, site: site)
+                    /// 个人信息区域
+                    let profileValue = Tutorial_List_Model(post: post, site: site)
+                    listArray.append(textValue)
+                    listArray.append(profileValue)
+                }
             }
-          }
-      }
+        }
         return listArray
     }
 }

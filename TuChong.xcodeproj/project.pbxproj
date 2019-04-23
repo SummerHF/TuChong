@@ -28,6 +28,8 @@
 		C41E0CD2224CB0700032E12A /* GenerateResource.sh in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CD1224CB0700032E12A /* GenerateResource.sh */; };
 		C41E0CDC224CBB900032E12A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E0CDB224CBB900032E12A /* R.generated.swift */; };
 		C41E0CE2224CC0D40032E12A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CE4224CC0D40032E12A /* Localizable.strings */; };
+		C437F354226EA2D80017445F /* RecommendTutorialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437F353226EA2D80017445F /* RecommendTutorialCell.swift */; };
+		C437F357226EE6FB0017445F /* TutorialDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */; };
 		C43AEA09225442BC00C2CFE7 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43AEA08225442BC00C2CFE7 /* SearchBar.swift */; };
 		C43AEA0B225482D200C2CFE7 /* SearchTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43AEA0A225482D200C2CFE7 /* SearchTableNode.swift */; };
 		C43B9A52225C2FFA00C15872 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A51225C2FFA00C15872 /* TabBar.swift */; };
@@ -99,6 +101,8 @@
 		C41E0CE3224CC0D40032E12A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C41E0CE5224CC0D90032E12A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C41E0CE6224CC1500032E12A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C437F353226EA2D80017445F /* RecommendTutorialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTutorialCell.swift; sourceTree = "<group>"; };
+		C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailViewController.swift; sourceTree = "<group>"; };
 		C43AEA08225442BC00C2CFE7 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C43AEA0A225482D200C2CFE7 /* SearchTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableNode.swift; sourceTree = "<group>"; };
 		C43B9A51225C2FFA00C15872 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -225,6 +229,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C437F355226EE6EC0017445F /* TutorialDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */,
+			);
+			path = TutorialDetail;
+			sourceTree = "<group>";
+		};
 		C43AEA07225442AA00C2CFE7 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +305,7 @@
 				C41A32C322601E09009AF4CF /* RecommendCellNode.swift */,
 				C4893B5F2268127E00B2AE01 /* RecommendCategoryCellNode.swift */,
 				C402B24622699C95007746EB /* RecommendWallpaperCell.swift */,
+				C437F353226EA2D80017445F /* RecommendTutorialCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -360,6 +373,7 @@
 				C4AD3C41224098BD0095BC97 /* Service */,
 				C4AD3C3E224098B40095BC97 /* Helper */,
 				C4AC63CD2241BB4100324C23 /* Home */,
+				C437F355226EE6EC0017445F /* TutorialDetail */,
 				C43B9A54225C614F00C15872 /* Film */,
 				C43B9A59225C621A00C15872 /* Plus */,
 				C4E57B3B224DB43D00F9D511 /* Activity */,
@@ -629,6 +643,7 @@
 				5304106E2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
 				C43B9A56225C617100C15872 /* UserViewController.swift in Sources */,
+				C437F354226EA2D80017445F /* RecommendTutorialCell.swift in Sources */,
 				C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */,
 				C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */,
 				C402B23C22694C6D007746EB /* NavItemButton.swift in Sources */,
@@ -638,6 +653,7 @@
 				53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */,
 				C41E0CC4224CA6260032E12A /* Color.swift in Sources */,
 				C402B24722699C95007746EB /* RecommendWallpaperCell.swift in Sources */,
+				C437F357226EE6FB0017445F /* TutorialDetailViewController.swift in Sources */,
 				53D1F5B52268A7340046F0FE /* RecommendBaseViewController.swift in Sources */,
 				C462C001225F35AE00AB91F1 /* RecommendViewController.swift in Sources */,
 			);
