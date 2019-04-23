@@ -64,16 +64,17 @@ class RecommendTutorialCell: ASCellNode {
         self.nameTextNode = ASTextNode()
         self.viewCountBtnNode = ASButtonNode()
         super.init()
+        self.selectionStyle = .none
+        self.automaticallyManagesSubnodes = true
         self.imageNode.isLayerBacked = true
         self.titleNode.isLayerBacked = true
-        self.automaticallyManagesSubnodes = true
         self.avatorImageNode.isLayerBacked = true
         self.nameTextNode.isLayerBacked = true 
     }
     
     override func didLoad() {
         super.didLoad()
-        
+        /// cell tyoe
         if self.cellType == .text {
             self.imageNode.url = URL(string: postListItem.post.image_srcs_cover)
             self.titleNode.setAttributdWith(string: postListItem.post.title, font: UIFont.normalFont_18())

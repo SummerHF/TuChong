@@ -110,7 +110,8 @@ extension RecommendTutorialViewController: ASTableDataSource, ASTableDelegate {
     }
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        
+        let tutorialDetail = TutorialDetailViewController()
+        self.navigationController?.pushViewController(tutorialDetail, animated: true)
     }
 }
 
