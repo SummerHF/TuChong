@@ -38,6 +38,7 @@
 		C43B9A56225C617100C15872 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A55225C617100C15872 /* UserViewController.swift */; };
 		C43B9A58225C61E100C15872 /* PhotoFilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */; };
 		C43B9A5B225C62D600C15872 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A5A225C62D600C15872 /* AlbumViewController.swift */; };
+		C45496E22270434000D14FD8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45496E12270434000D14FD8 /* WebView.swift */; };
 		C462BFFC225EE64700AB91F1 /* HomeSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */; };
 		C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */; };
 		C462C001225F35AE00AB91F1 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462C000225F35AE00AB91F1 /* RecommendViewController.swift */; };
@@ -113,6 +114,7 @@
 		C43B9A55225C617100C15872 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilmViewController.swift; sourceTree = "<group>"; };
 		C43B9A5A225C62D600C15872 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		C45496E12270434000D14FD8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSubViewController.swift; sourceTree = "<group>"; };
 		C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeContainerViewController+UIPageViewController.swift"; sourceTree = "<group>"; };
 		C462C000225F35AE00AB91F1 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				C43B9A51225C2FFA00C15872 /* TabBar.swift */,
 				C4827C392266BC1D009E94C5 /* UserManager.swift */,
 				53CC8C65226DF5D1007EE8D3 /* LoadingNode.swift */,
+				C45496E12270434000D14FD8 /* WebView.swift */,
 			);
 			path = APP;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				C462C003225F39C700AB91F1 /* CategoryViewController.swift in Sources */,
 				C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */,
 				535BC19D2268B4B00095B6C6 /* VideoNavNode.swift in Sources */,
+				C45496E22270434000D14FD8 /* WebView.swift in Sources */,
 				C402B24322699AE5007746EB /* CategoryFlowLayout.swift in Sources */,
 				C43B9A58225C61E100C15872 /* PhotoFilmViewController.swift in Sources */,
 				C4CBE21C2255A9260074F58A /* SearchModel.swift in Sources */,

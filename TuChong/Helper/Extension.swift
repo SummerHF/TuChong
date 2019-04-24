@@ -74,6 +74,39 @@ public extension UILabel {
     }
 }
 
+// MARK: - String
+
+extension String {
+    
+    /// 发布时间与当前时间相隔多久
+    func offsetTime() -> String {
+        guard self.count > 0 else { return "" }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+        let publishDate = dateFormatter.date(from: self) ?? Date()
+        let currentDate = Date()
+        let time = currentDate.timeIntervalSince(publishDate)
+        
+        _ = time.truncatingRemainder(dividingBy: 60)
+        _ = (time / 60).truncatingRemainder(dividingBy: 60)
+        /// 向下取整不保留小数点
+        let hour = Int(floor((time / 3600).truncatingRemainder(dividingBy: 24)))
+        let day = Int(floor(time / 3600 / 24))
+        
+        var timeStr: String
+        if day == 0 {
+            timeStr = "\(hour) 小时前"
+        } else if day <= 10 {
+            timeStr = "\(day) 天前"
+        } else {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "YYYY-MM-dd"
+            timeStr = dateFormatter.string(from: publishDate)
+        }
+        return timeStr
+    }
+}
+
 // MARK: - UIButton
 
 extension UIButton {

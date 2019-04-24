@@ -31,7 +31,22 @@ import WebKit
 class TutorialDetailViewController: BaseViewControlle {
     
     private let post_id: String
+    private let app_url: String
+    private let webView: WebView
+    
+    /// webViewNode
+    lazy var webViewNode: ASDisplayNode = {
+        let webViewNode = ASDisplayNode(viewBlock: { () -> UIView in
+            return self.webView
+        })
+        return webViewNode
+    }()
+    
+    /// tableNode
     private let tableNode: ASTableNode
+    
+    /// using group to manager request
+    let group = DispatchGroup()
     
     /// user profile model
     private var profile_model: Tutorial_Detail_Profile_Model = Tutorial_Detail_Profile_Model()
@@ -48,9 +63,11 @@ class TutorialDetailViewController: BaseViewControlle {
     private var _webView: WKWebView?
 
     /// Create `TutorialDetailViewController`
-    init(post_id: String) {
+    init(post_id: String, app_url: String) {
         self.post_id = post_id
-        self.tableNode = ASTableNode(style: .grouped)
+        self.app_url = app_url
+        self.tableNode = ASTableNode(style: .plain)
+        self.webView = WebView()
         super.init(node: tableNode)
     }
     
@@ -66,11 +83,13 @@ class TutorialDetailViewController: BaseViewControlle {
     }
     
     override func configureTableNode() {
+        self.tableNode.backgroundColor = Color.backGroundColor
         self.tableNode.dataSource = self
+        self.tableNode.view.separatorStyle = .none
     }
     
     override func loadData() {
-        /// load user Data
+        /// load user profile
         Network.request(target: TuChong.tutorial_profile(post_id: post_id), success: { (responseData) in
             guard let model = Tutorial_Detail_Profile_Model.deserialize(from: responseData) else { return }
             self.profile_model = model
@@ -78,6 +97,9 @@ class TutorialDetailViewController: BaseViewControlle {
         }, error: { (_) in
             
         }) { (_) in
+            
+        }
+        self.webView.load(with: app_url) { (result) in
             
         }
     }
@@ -90,10 +112,16 @@ class TutorialDetailViewController: BaseViewControlle {
 extension TutorialDetailViewController: ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        return TutorialDetailProfileCell(post: profile_model.post, indexPath: indexPath)
+        let cellType = Tutorial(index: indexPath.row)
+        switch cellType {
+        case .head:
+            return TutorialDetailProfileCell(post: profile_model.post, indexPath: indexPath)
+        default:
+            return ASCellNode()
+        }
     }
 }

@@ -114,7 +114,8 @@ extension RecommendTutorialViewController: ASTableDataSource, ASTableDelegate {
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
         let post_id = feedList[indexPath.row].post.post_id
-        let tutorialDetail = TutorialDetailViewController(post_id: post_id)
+        let app_url = feedList[indexPath.row].post.app_url
+        let tutorialDetail = TutorialDetailViewController(post_id: post_id, app_url: app_url)
         self.navigationController?.pushViewController(tutorialDetail, animated: true)
     }
 }
