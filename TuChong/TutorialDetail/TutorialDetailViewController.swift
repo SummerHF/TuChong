@@ -33,14 +33,8 @@ class TutorialDetailViewController: BaseViewControlle {
     private let post_id: String
     private let app_url: String
     private let webView: WebView
-    
-    /// webViewNode
-    lazy var webViewNode: ASDisplayNode = {
-        let webViewNode = ASDisplayNode(viewBlock: { () -> UIView in
-            return self.webView
-        })
-        return webViewNode
-    }()
+    private var webViewHeight: CGFloat = 0
+    private var requestFinished: Bool = false
     
     /// tableNode
     private let tableNode: ASTableNode
@@ -90,17 +84,33 @@ class TutorialDetailViewController: BaseViewControlle {
     
     override func loadData() {
         /// load user profile
+        self.group.enter()
         Network.request(target: TuChong.tutorial_profile(post_id: post_id), success: { (responseData) in
+            self.group.leave()
             guard let model = Tutorial_Detail_Profile_Model.deserialize(from: responseData) else { return }
             self.profile_model = model
             self.tableNode.reloadData()
         }, error: { (_) in
-            
+            self.group.leave()
         }) { (_) in
-            
+            self.group.leave()
         }
+        /// load webpage
+        self.group.enter()
         self.webView.load(with: app_url) { (result) in
-            
+            self.group.leave()
+            switch result {
+            case let .success(height):
+                printLog(height)
+                self.webViewHeight = height
+            case let .failure(error):
+                printLog(error)
+            }
+        }
+        /// notify
+        self.group.notify(queue: DispatchQueue.main) {
+            self.requestFinished = true
+            self.tableNode.reloadData()
         }
     }
     
@@ -112,7 +122,7 @@ class TutorialDetailViewController: BaseViewControlle {
 extension TutorialDetailViewController: ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.requestFinished ? 2 : 0
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
@@ -121,7 +131,7 @@ extension TutorialDetailViewController: ASTableDataSource {
         case .head:
             return TutorialDetailProfileCell(post: profile_model.post, indexPath: indexPath)
         default:
-            return ASCellNode()
+            return TutorialDetailWebViewCell(webView: self.webView, height: self.webViewHeight)
         }
     }
 }

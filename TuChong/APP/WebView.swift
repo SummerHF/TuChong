@@ -41,8 +41,10 @@ typealias Completion = (_ result: WebViewRequestResult) -> Void
 
 class WebView: WKWebView {
     
-    let keyPath = "scrollView.contentSize"
-    let caculateHeightJS = "document.body.offsetHeight"
+    private let keyPath = "scrollView.contentSize"
+    private let caculateHeightJS = "document.body.offsetHeight"
+    private let prompt = "Load webpage failure"
+    private let webViewFrame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: 0)
 
     private var completion: Completion?
 
@@ -52,10 +54,13 @@ class WebView: WKWebView {
     
     init() {
         let configuration = WKWebViewConfiguration()
-        super.init(frame: CGRect.zero, configuration: configuration)
-        self.backgroundColor = Color.themeColor
+        configuration.preferences.minimumFontSize = 0.0
+        super.init(frame: webViewFrame, configuration: configuration)
+        self.backgroundColor = Color.lineColor
         self.navigationDelegate = self
-        self.addObserver(self, forKeyPath: keyPath, options: NSKeyValueObservingOptions.new, context: nil)
+        self.scrollView.isScrollEnabled = false
+        self.scrollView.bounces = false
+//        self.addObserver(self, forKeyPath: keyPath, options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     /// Load request for webpage
@@ -69,27 +74,31 @@ class WebView: WKWebView {
         self.load(URLRequest(url: URL(string: url)!))
     }
     
-    deinit {
-        self.removeObserver(self, forKeyPath: keyPath)
-    }
+//    deinit {
+//        self.removeObserver(self, forKeyPath: keyPath)
+//    }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if let path = keyPath, path == keyPath {
-            printLog(change)
-            printLog("observeValue: \(self.scrollView.contentSize)")
-        }
-    }
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if let path = keyPath, path == keyPath {
+//            printLog(change)
+//            printLog("observeValue: \(self.scrollView.contentSize)")
+//        }
+//    }
 }
 
 extension WebView: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.evaluateJavaScript(caculateHeightJS) { (result, _) in
-            printLog("didFinish \(result)")
+            if let height = result as? CGFloat {
+                self.completion?(.success(height: height))
+            } else {
+                self.completion?(.failure(error: self.prompt))
+            }
         }
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        printLog("error:\(error)")
+        self.completion?(.failure(error: prompt))
     }
 }
