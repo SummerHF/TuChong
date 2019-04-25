@@ -121,7 +121,7 @@ class TutorialDetailViewController: BaseViewControlle {
 extension TutorialDetailViewController: ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return self.requestFinished ? 2 : 0
+        return self.requestFinished ? 3 : 0
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
@@ -129,8 +129,12 @@ extension TutorialDetailViewController: ASTableDataSource {
         switch cellType {
         case .head:
             return TutorialDetailProfileCell(post: profile_model.post, indexPath: indexPath)
-        default:
+        case .webView:
             return TutorialDetailWebViewCell(webView: self.webView, height: self.webViewHeight)
+        case .info:
+            return TutoriaDetailInfoCell(post: profile_model.post, indexPath: indexPath)
+        case .unknow:
+            return ASCellNode()
         }
     }
 }

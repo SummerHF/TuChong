@@ -1,7 +1,7 @@
-//  TutorialDetailModel.swift
+//  TutorialDetailInfoTagBtnNode.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/4/23.
+//  Created by SummerHF on 2019/4/25.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -25,30 +25,39 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-import HandyJSON
+import AsyncDisplayKit
 
-enum Tutorial {
-    case head
-    case webView
-    case info
-    case unknow
+class TutorialDetailInfoTagBtnNode: ASButtonNode {
     
-    init(index: Int) {
-        switch index {
-        case 0:
-            self = .head
-        case 1:
-            self = .webView
-        case 2:
-            self = .info
-        default:
-            self = .unknow
+    override var isHighlighted: Bool {
+        set {
+            
+        }
+        get {
+            return false
         }
     }
-}
+    
+    private let item: Recommend_Feedlist_Tags_Model
+    private let index: Int
+    
+    private let floatWidth: CGFloat = 28
+    private let fontSize: UIFont = UIFont.normalFont_14()
+    private let btnNodeHeight: CGFloat = 24
+    
+    private var btnNodeWidth: CGFloat {
+        return item.tag_name.size(withAttributes: [NSAttributedString.Key.font: fontSize]).width + floatWidth
+    }
 
-struct Tutorial_Detail_Profile_Model: HandyJSON {
-    var result: String = ""
-    var post: Recommend_Feedlist_Eentry_Model = Recommend_Feedlist_Eentry_Model()
+    var nodeSize: CGSize {
+        return CGSize(width: btnNodeWidth, height: btnNodeHeight)
+    }
+    
+    init(tag: Recommend_Feedlist_Tags_Model, index: Int) {
+        self.item = tag
+        self.index = index
+        super.init()
+        self.setAttributdWith(string: tag.tag_name, font: fontSize, color: Color.lightGray, state: .normal)
+        self.backgroundColor = Color.thinGray
+    }
 }

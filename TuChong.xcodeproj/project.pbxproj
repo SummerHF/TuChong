@@ -35,6 +35,8 @@
 		C437F357226EE6FB0017445F /* TutorialDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */; };
 		C43AEA09225442BC00C2CFE7 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43AEA08225442BC00C2CFE7 /* SearchBar.swift */; };
 		C43AEA0B225482D200C2CFE7 /* SearchTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43AEA0A225482D200C2CFE7 /* SearchTableNode.swift */; };
+		C43B47982271A02100D2B970 /* TutoriaDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B47972271A02100D2B970 /* TutoriaDetailInfoCell.swift */; };
+		C43B479A2271A32500D2B970 /* TutorialDetailInfoTagBtnNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B47992271A32500D2B970 /* TutorialDetailInfoTagBtnNode.swift */; };
 		C43B9A52225C2FFA00C15872 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A51225C2FFA00C15872 /* TabBar.swift */; };
 		C43B9A56225C617100C15872 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A55225C617100C15872 /* UserViewController.swift */; };
 		C43B9A58225C61E100C15872 /* PhotoFilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */; };
@@ -112,6 +114,8 @@
 		C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailViewController.swift; sourceTree = "<group>"; };
 		C43AEA08225442BC00C2CFE7 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C43AEA0A225482D200C2CFE7 /* SearchTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableNode.swift; sourceTree = "<group>"; };
+		C43B47972271A02100D2B970 /* TutoriaDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutoriaDetailInfoCell.swift; sourceTree = "<group>"; };
+		C43B47992271A32500D2B970 /* TutorialDetailInfoTagBtnNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailInfoTagBtnNode.swift; sourceTree = "<group>"; };
 		C43B9A51225C2FFA00C15872 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		C43B9A55225C617100C15872 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilmViewController.swift; sourceTree = "<group>"; };
@@ -240,10 +244,12 @@
 		C437F355226EE6EC0017445F /* TutorialDetail */ = {
 			isa = PBXGroup;
 			children = (
-				53AF47992270958200C96A96 /* TutorialDetailWebViewCell.swift */,
 				5358B10B226F5451006229CB /* TutorialDetailModel.swift */,
-				C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */,
 				5358B10D226F5C55006229CB /* TutorialDetailProfileCell.swift */,
+				53AF47992270958200C96A96 /* TutorialDetailWebViewCell.swift */,
+				C43B47972271A02100D2B970 /* TutoriaDetailInfoCell.swift */,
+				C43B47992271A32500D2B970 /* TutorialDetailInfoTagBtnNode.swift */,
+				C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */,
 			);
 			path = TutorialDetail;
 			sourceTree = "<group>";
@@ -624,7 +630,9 @@
 				C43B9A58225C61E100C15872 /* PhotoFilmViewController.swift in Sources */,
 				53AF479A2270958200C96A96 /* TutorialDetailWebViewCell.swift in Sources */,
 				C4CBE21C2255A9260074F58A /* SearchModel.swift in Sources */,
+				C43B479A2271A32500D2B970 /* TutorialDetailInfoTagBtnNode.swift in Sources */,
 				C43B9A5B225C62D600C15872 /* AlbumViewController.swift in Sources */,
+				C43B47982271A02100D2B970 /* TutoriaDetailInfoCell.swift in Sources */,
 				C4A5024B2267035700867EBE /* RecommedTopicCollectionCellNode.swift in Sources */,
 				C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */,
 				C462BFFC225EE64700AB91F1 /* HomeSubViewController.swift in Sources */,
