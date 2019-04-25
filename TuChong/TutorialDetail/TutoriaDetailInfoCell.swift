@@ -51,8 +51,8 @@ class TutoriaDetailInfoCell: BaseAScellNode {
     
     /// Main layout spec
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: ., children: [
-                   createTagsLayoutSpec(),
+        return ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
+                   test(),  
                    self.likeCountBtnNode.styled({ (style) in
                         style.spacingBefore = spaceing
                    })
@@ -93,5 +93,13 @@ class TutoriaDetailInfoCell: BaseAScellNode {
     /// Tag node event
     @objc private func tagNodeEvent(node: TutorialDetailInfoTagBtnNode) {
         printLog(">")
+    }
+    
+    private func test() -> ASLayoutSpec {
+        let tagNodeArray = TutorialDetailInfoTagBtnNode.createTagsLayoutSpec(with: model.tags)
+        let stack = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .start, children: tagNodeArray)
+        stack.flexWrap = .wrap
+        stack.lineSpacing = spaceing
+        return stack
     }
 }
