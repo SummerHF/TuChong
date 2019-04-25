@@ -38,15 +38,24 @@ class TutorialDetailInfoTagBtnNode: ASButtonNode {
         }
     }
     
-    private let item: Recommend_Feedlist_Tags_Model
-    private let index: Int
+    let item: Recommend_Feedlist_Tags_Model
+    let index: Int
     
     private let floatWidth: CGFloat = 28
     private let fontSize: UIFont = UIFont.normalFont_14()
     private let btnNodeHeight: CGFloat = 24
+    private let maxWidth: CGFloat = 200
+    private let minWidth: CGFloat = 56.56
     
     private var btnNodeWidth: CGFloat {
-        return item.tag_name.size(withAttributes: [NSAttributedString.Key.font: fontSize]).width + floatWidth
+        let width: CGFloat = item.tag_name.size(withAttributes: [NSAttributedString.Key.font: fontSize]).width + floatWidth
+        if width > maxWidth {
+            return maxWidth
+        } else if width < minWidth {
+            return minWidth
+        } else {
+            return width
+        }
     }
 
     var nodeSize: CGSize {
@@ -59,5 +68,18 @@ class TutorialDetailInfoTagBtnNode: ASButtonNode {
         super.init()
         self.setAttributdWith(string: tag.tag_name, font: fontSize, color: Color.lightGray, state: .normal)
         self.backgroundColor = Color.thinGray
+    }
+    
+    /// Creaete tag button node
+    static func createTagsLayoutSpec(with tags: [Recommend_Feedlist_Tags_Model]) -> [TutorialDetailInfoTagBtnNode] {
+        var tagNodeArray: [TutorialDetailInfoTagBtnNode] = []
+        for (index, tag) in tags.enumerated() {
+            let btnNode = TutorialDetailInfoTagBtnNode(tag: tag, index: index)
+            btnNode.style.preferredSize = btnNode.nodeSize
+            btnNode.cornerRoundingType = .defaultSlowCALayer
+            btnNode.cornerRadius = btnNode.nodeSize.height / 2.0
+            tagNodeArray.append(btnNode)
+        }
+        return tagNodeArray
     }
 }

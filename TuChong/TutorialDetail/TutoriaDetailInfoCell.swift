@@ -33,6 +33,7 @@ class TutoriaDetailInfoCell: ASCellNode {
     private let model: Recommend_Feedlist_Eentry_Model
     private let index: IndexPath
     private let insetForTags = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    private let spaceing: CGFloat = 10
     
     init(post model: Recommend_Feedlist_Eentry_Model, indexPath: IndexPath) {
         self.model = model
@@ -47,20 +48,42 @@ class TutoriaDetailInfoCell: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return createTagsLayoutSpec()
+        return ASInsetLayoutSpec(insets: insetForTags, child: createTagsLayoutSpec())
     }
     
     /// Tags layout spec
     private func createTagsLayoutSpec() -> ASLayoutSpec {
-        var tagNodeArray: [TutorialDetailInfoTagBtnNode] = []
-        for tag in model.tags {
-            let btnNode = TutorialDetailInfoTagBtnNode(tag: tag, index: 0)
-            btnNode.style.preferredSize = btnNode.nodeSize
-            btnNode.cornerRoundingType = .defaultSlowCALayer
-            btnNode.cornerRadius = btnNode.nodeSize.height / 2.0
-            tagNodeArray.append(btnNode)
+        let tagNodeArray = TutorialDetailInfoTagBtnNode.createTagsLayoutSpec(with: model.tags)
+        let width: CGFloat = macro.screenWidth - insetForTags.left - insetForTags.right
+        var lastNode: TutorialDetailInfoTagBtnNode?
+        var tagNodeX: CGFloat = 0
+        var tagNodeY: CGFloat = 0
+        for tagNode in tagNodeArray {
+            if lastNode != nil {
+                /// need to change line
+                if tagNodeX + tagNode.nodeSize.width > width {
+                    tagNodeY += tagNode.nodeSize.height + spaceing
+                    tagNodeX = tagNode.nodeSize.width + spaceing
+                    tagNode.style.layoutPosition = CGPoint(x: 0, y: tagNodeY)
+                } else {
+                    tagNode.style.layoutPosition = CGPoint(x: tagNodeX, y: tagNodeY)
+                    tagNodeX += tagNode.nodeSize.width + spaceing
+                }
+                lastNode = tagNode
+            } else {
+                tagNode.style.layoutPosition = CGPoint(x: 0, y: 0)
+                tagNodeX = tagNode.nodeSize.width + spaceing
+                tagNodeY = 0
+                lastNode = tagNode
+            }
+            /// add tagNode event
+            tagNode.addTarget(self, action: #selector(tagNodeEvent(node:)), forControlEvents: .touchUpInside)
         }
-        
-        return ASInsetLayoutSpec(insets: insetForTags, child: ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .start, children: ASRelativeLayoutSpec(horizontalPosition: ASRelativeLayoutSpecPosition, verticalPosition: <#T##ASRelativeLayoutSpecPosition#>, sizingOption: <#T##ASRelativeLayoutSpecSizingOption#>, child: <#T##ASLayoutElement#>)))
+        return ASAbsoluteLayoutSpec(children: tagNodeArray)
+    }
+    
+    /// Tag node event
+    @objc private func tagNodeEvent(node: TutorialDetailInfoTagBtnNode) {
+        printLog(node.index)
     }
 }
