@@ -28,7 +28,19 @@
 import UIKit
 import AsyncDisplayKit
 
-// MARK: - ASDK
+// MARK: - BaseAScellNode
+
+class BaseAScellNode: ASCellNode {
+    
+    override init() {
+        super.init()
+        self.selectionStyle = .none
+        self.automaticallyManagesSubnodes = true
+        self.backgroundColor = Color.backGroundColor
+    }
+}
+
+// MARK: - BaseViewControlle
 
 class BaseViewControlle: ASViewController<ASDisplayNode> {
     

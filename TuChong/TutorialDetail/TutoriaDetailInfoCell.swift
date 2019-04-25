@@ -28,27 +28,35 @@
 import AsyncDisplayKit
 
 /// 教程详情 ---- tags, likes, rewards
-class TutoriaDetailInfoCell: ASCellNode {
+class TutoriaDetailInfoCell: BaseAScellNode {
     
     private let model: Recommend_Feedlist_Eentry_Model
     private let index: IndexPath
     private let insetForTags = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     private let spaceing: CGFloat = 10
     
+    private let likeCountBtnNode: ASButtonNode
+    
     init(post model: Recommend_Feedlist_Eentry_Model, indexPath: IndexPath) {
         self.model = model
         self.index = indexPath
+        self.likeCountBtnNode = ASButtonNode()
         super.init()
-        self.automaticallyManagesSubnodes = true
-    }
-
-    override func didLoad() {
-        super.didLoad()
-        self.backgroundColor = Color.backGroundColor
     }
     
+    override func didLoad() {
+        super.didLoad()
+        self.likeCountBtnNode.setAttributedTitle(model.favorites_desc, for: .normal)
+    }
+    
+    /// Main layout spec
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec(insets: insetForTags, child: createTagsLayoutSpec())
+        return ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: ., children: [
+                   createTagsLayoutSpec(),
+                   self.likeCountBtnNode.styled({ (style) in
+                        style.spacingBefore = spaceing
+                   })
+            ])
     }
     
     /// Tags layout spec
@@ -79,11 +87,11 @@ class TutoriaDetailInfoCell: ASCellNode {
             /// add tagNode event
             tagNode.addTarget(self, action: #selector(tagNodeEvent(node:)), forControlEvents: .touchUpInside)
         }
-        return ASAbsoluteLayoutSpec(children: tagNodeArray)
+        return ASInsetLayoutSpec(insets: insetForTags, child: ASAbsoluteLayoutSpec(children: tagNodeArray))
     }
     
     /// Tag node event
     @objc private func tagNodeEvent(node: TutorialDetailInfoTagBtnNode) {
-        printLog(node.index)
+        printLog(">")
     }
 }

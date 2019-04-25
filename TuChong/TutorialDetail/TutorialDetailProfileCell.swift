@@ -28,7 +28,7 @@
 import AsyncDisplayKit
 
 /// 教程详情 ---- 用户信息
-class TutorialDetailProfileCell: ASCellNode {
+class TutorialDetailProfileCell: BaseAScellNode {
     
     private let model: Recommend_Feedlist_Eentry_Model
     private let index: IndexPath
@@ -52,7 +52,6 @@ class TutorialDetailProfileCell: ASCellNode {
         self.publishTimeTextNode = ASTextNode()
         self.viewCountBtnNode = ASButtonNode()
         super.init()
-        self.automaticallyManagesSubnodes = true
         self.publishTimeTextNode.isLayerBacked = true
         self.nameTextNode.isLayerBacked = true
         self.vertificationImageNode.isLayerBacked = true

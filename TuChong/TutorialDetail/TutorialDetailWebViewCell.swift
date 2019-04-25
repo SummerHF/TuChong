@@ -28,7 +28,7 @@
 import AsyncDisplayKit
 
 /// 教程详情 ---- 用户信息
-class TutorialDetailWebViewCell: ASCellNode {
+class TutorialDetailWebViewCell: BaseAScellNode {
     
     private let webView: WebView
     private let webViewHeight: CGFloat
@@ -48,13 +48,6 @@ class TutorialDetailWebViewCell: ASCellNode {
         self.webView = webView
         self.webViewHeight = height
         super.init()
-        self.automaticallyManagesSubnodes = true
-        self.selectionStyle = .none
-    }
-    
-    override func didLoad() {
-        super.didLoad()
-        self.backgroundColor = Color.backGroundColor
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

@@ -33,8 +33,10 @@ class TutorialDetailViewController: BaseViewControlle {
     private let post_id: String
     private let app_url: String
     private let webView: WebView
-    private var webViewHeight: CGFloat = 0
     private var requestFinished: Bool = false
+    
+    private var webViewHeight: CGFloat = 0
+    private let tableNodeFrame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.screenHeight - macro.topHeight)
     
     /// tableNode
     private let tableNode: ASTableNode
@@ -83,6 +85,7 @@ class TutorialDetailViewController: BaseViewControlle {
     }
     
     override func loadData() {
+        self.showLoadingView(with: tableNodeFrame)
         /// load user profile
         self.group.enter()
         Network.request(target: TuChong.tutorial_profile(post_id: post_id), success: { (responseData) in
@@ -100,7 +103,6 @@ class TutorialDetailViewController: BaseViewControlle {
             self.group.leave()
             switch result {
             case let .success(height):
-                printLog(height)
                 self.webViewHeight = height
             case let .failure(error):
                 printLog(error)
@@ -109,7 +111,9 @@ class TutorialDetailViewController: BaseViewControlle {
         /// notify
         self.group.notify(queue: DispatchQueue.main) {
             self.requestFinished = true
-            self.tableNode.reloadData()
+            self.tableNode.reloadData(completion: {
+                self.removeLoadingView()
+            })
         }
     }
     
