@@ -89,7 +89,6 @@ class TutorialDetailViewController: BaseViewControlle {
             self.group.leave()
             guard let model = Tutorial_Detail_Profile_Model.deserialize(from: responseData) else { return }
             self.profile_model = model
-            self.tableNode.reloadData()
         }, error: { (_) in
             self.group.leave()
         }) { (_) in

@@ -33,7 +33,7 @@ class TutorialDetailWebViewCell: ASCellNode {
     private let webView: WebView
     private let webViewHeight: CGFloat
     
-    private let insetForWebView = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+    private let insetForWebView = UIEdgeInsets(top: -40, left: 0, bottom: 0, right: 0)
 
     /// using this container to wrap webView
     lazy var webViewNode: ASDisplayNode = {
@@ -59,6 +59,6 @@ class TutorialDetailWebViewCell: ASCellNode {
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         self.webViewNode.style.maxHeight = ASDimension(unit: .points, value: self.webViewHeight)
-        return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: self.webViewNode)
+        return ASInsetLayoutSpec(insets: insetForWebView, child: self.webViewNode)
     }
 }

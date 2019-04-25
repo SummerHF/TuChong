@@ -60,7 +60,6 @@ class WebView: WKWebView {
         self.navigationDelegate = self
         self.scrollView.isScrollEnabled = false
         self.scrollView.bounces = false
-//        self.addObserver(self, forKeyPath: keyPath, options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     /// Load request for webpage
@@ -73,17 +72,6 @@ class WebView: WKWebView {
         self.completion = completion
         self.load(URLRequest(url: URL(string: url)!))
     }
-    
-//    deinit {
-//        self.removeObserver(self, forKeyPath: keyPath)
-//    }
-    
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        if let path = keyPath, path == keyPath {
-//            printLog(change)
-//            printLog("observeValue: \(self.scrollView.contentSize)")
-//        }
-//    }
 }
 
 extension WebView: WKNavigationDelegate {
