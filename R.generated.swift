@@ -397,7 +397,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 34 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 36 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -471,6 +471,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let reward_title = Rswift.StringResource(key: "reward_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 最新
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let newest = Rswift.StringResource(key: "newest", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 最热
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let hotest = Rswift.StringResource(key: "hotest", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 查看更多
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -660,6 +668,20 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func reward_title(_: Void = ()) -> String {
         return NSLocalizedString("reward_title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 最新
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func newest(_: Void = ()) -> String {
+        return NSLocalizedString("newest", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 最热
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func hotest(_: Void = ()) -> String {
+        return NSLocalizedString("hotest", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 查看更多

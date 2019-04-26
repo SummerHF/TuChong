@@ -145,4 +145,7 @@ struct RequestparameterKey {
     static let first_refresh = "first_refresh"
     static let type = "type"
     static let count = "count"
+    static let sort_by = "sort_by"
+    static let hotest = 0
+    static let newest = 1
 }

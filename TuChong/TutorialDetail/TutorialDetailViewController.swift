@@ -48,6 +48,8 @@ class TutorialDetailViewController: BaseViewControlle {
     private var profile_model: Tutorial_Detail_Profile_Model = Tutorial_Detail_Profile_Model()
     /// tutorial reward info
     private var reward_model: Tutorial_Detail_Reward_Post_Model?
+    /// tutorial comments model
+    private var comments_model: Tutorial_Detail_Comment_Model = Tutorial_Detail_Comment_Model()
     /**
      /// 用户
      https://api.tuchong.com/app-posts/31264361
@@ -59,12 +61,29 @@ class TutorialDetailViewController: BaseViewControlle {
      https://tuchong.com/462420/at/28478061/
      */
     private var _webView: WKWebView?
+    
+    /// comments request parameters
+    private var page = 1
+    /// 默认是最热
+    private var commentType = RequestparameterKey.hotest
+    private var commentsParameters: [String: Any] {
+        return [RequestparameterKey.count: 20,
+                RequestparameterKey.page: page,
+                RequestparameterKey.sort_by: commentType
+        ]
+    }
+    
+    private lazy var headerView: TutorialDetailHeadView = {
+        let headerView = TutorialDetailHeadView()
+        headerView.delegate = self
+        return headerView
+    }()
 
     /// Create `TutorialDetailViewController`
     init(post_id: String, app_url: String) {
         self.post_id = post_id
         self.app_url = app_url
-        self.tableNode = ASTableNode(style: .plain)
+        self.tableNode = ASTableNode(style: .grouped)
         self.webView = WebView()
         super.init(node: tableNode)
     }
@@ -83,10 +102,12 @@ class TutorialDetailViewController: BaseViewControlle {
     override func configureTableNode() {
         self.tableNode.backgroundColor = Color.backGroundColor
         self.tableNode.dataSource = self
+        self.tableNode.delegate = self
         self.tableNode.view.separatorStyle = .none
     }
     
     override func loadData() {
+        
         self.showLoadingView(with: tableNodeFrame)
         /// load user profile
         self.group.enter()
@@ -99,6 +120,7 @@ class TutorialDetailViewController: BaseViewControlle {
         }) { (_) in
             self.group.leave()
         }
+        
         /// load webpage
         self.group.enter()
         self.webView.load(with: app_url) { (result) in
@@ -110,6 +132,7 @@ class TutorialDetailViewController: BaseViewControlle {
                 printLog(error)
             }
         }
+        
         /// load reward info
         self.group.enter()
         Network.request(target: TuChong.tutorial_reward(post_id: post_id), success: { (responseData) in
@@ -120,6 +143,18 @@ class TutorialDetailViewController: BaseViewControlle {
         }) { (_) in
             self.group.leave()
         }
+        
+        /// load user comment
+        self.group.enter()
+        Network.request(target: TuChong.tutorial_comments(post_id: post_id, parameters: commentsParameters), success: { (responseData) in
+            self.group.leave()
+            self.comments_model = Tutorial_Detail_Comment_Model.build(with: responseData)
+        }, error: { (_) in
+            self.group.leave()
+        }) { (_) in
+            self.group.leave()
+        }
+        
         /// notify
         self.group.notify(queue: DispatchQueue.main) {
             self.requestFinished = true
@@ -134,27 +169,69 @@ class TutorialDetailViewController: BaseViewControlle {
     }
 }
 
-extension TutorialDetailViewController: ASTableDataSource {
+extension TutorialDetailViewController: ASTableDataSource, ASTableDelegate {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return self.requestFinished ? 2 : 0
+        return TutorialGroup.numOfSection(isRequestFinished: self.requestFinished)
     }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return self.requestFinished ? 3 : 0
+        return TutorialGroup.numOfRows(in: section, isRequestFinished: self.requestFinished)
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        let cellType = Tutorial(index: indexPath.row)
-        switch cellType {
-        case .head:
-            return TutorialDetailProfileCell(post: profile_model.post, indexPath: indexPath)
-        case .webView:
-            return TutorialDetailWebViewCell(webView: self.webView, height: self.webViewHeight)
-        case .info:
-            return TutoriaDetailInfoCell(post: profile_model.post, reward: self.reward_model, indexPath: indexPath)
-        case .unknow:
+        switch TutorialGroup(section: indexPath.section) {
+        case .top:
+            let cellType = Tutorial(index: indexPath.row)
+            switch cellType {
+            case .head:
+                return TutorialDetailProfileCell(post: profile_model.post, indexPath: indexPath)
+            case .webView:
+                return TutorialDetailWebViewCell(webView: self.webView, height: self.webViewHeight)
+            case .info:
+                return TutoriaDetailInfoCell(post: profile_model.post, reward: self.reward_model, indexPath: indexPath)
+            case .unknow:
+                return ASCellNode()
+            }
+        case .comment:
             return ASCellNode()
+        default:
+            return ASCellNode()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return TutorialGroup.footerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return TutorialGroup.heightFotHeader(at: section, isRequestFinished: self.requestFinished, commentCount: self.comments_model.comment_count)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if self.requestFinished && self.comments_model.comment_count > 0 && TutorialGroup(section: section) == .comment {
+            headerView.configure(with: self.comments_model.comment_count, commentType: self.commentType)
+            return headerView
+        } else {
+            return nil
+        }
+    }
+}
+
+extension TutorialDetailViewController: TutorialDetailHeadViewProtocol {
+    
+    func headView(view: TutorialDetailHeadView, selected type: Int) {
+        self.loadUserCommentBy(type: type)
+    }
+    
+    private func loadUserCommentBy(type: Int) {
+        self.commentType = type
+        Network.request(target: .tutorial_comments(post_id: post_id, parameters: commentsParameters), success: { (responseData) in
+            self.comments_model = Tutorial_Detail_Comment_Model.build(with: responseData)
+            let indexSet = IndexSet(integer: TutorialGroup.groupOne)
+            self.tableNode.reloadSections(indexSet, with: .none)
+        }, error: { (_) in
+        }) { (_) in
         }
     }
 }

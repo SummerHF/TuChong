@@ -46,6 +46,7 @@
 		C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */; };
 		C462C001225F35AE00AB91F1 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462C000225F35AE00AB91F1 /* RecommendViewController.swift */; };
 		C462C003225F39C700AB91F1 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462C002225F39C700AB91F1 /* CategoryViewController.swift */; };
+		C479F2862272DF41002C7D53 /* TutorialDetailHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479F2852272DF41002C7D53 /* TutorialDetailHeadView.swift */; };
 		C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BDC352249B26F001032DC /* LaunchViewController.swift */; };
 		C4827C382266B828009E94C5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C372266B828009E94C5 /* FollowViewController.swift */; };
 		C4827C3A2266BC1D009E94C5 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C392266BC1D009E94C5 /* UserManager.swift */; };
@@ -125,6 +126,7 @@
 		C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeContainerViewController+UIPageViewController.swift"; sourceTree = "<group>"; };
 		C462C000225F35AE00AB91F1 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		C462C002225F39C700AB91F1 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		C479F2852272DF41002C7D53 /* TutorialDetailHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailHeadView.swift; sourceTree = "<group>"; };
 		C47BDC352249B26F001032DC /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		C4827C372266B828009E94C5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		C4827C392266BC1D009E94C5 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				C43B47972271A02100D2B970 /* TutoriaDetailInfoCell.swift */,
 				C43B47992271A32500D2B970 /* TutorialDetailInfoTagBtnNode.swift */,
 				C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */,
+				C479F2852272DF41002C7D53 /* TutorialDetailHeadView.swift */,
 			);
 			path = TutorialDetail;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
 				C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */,
+				C479F2862272DF41002C7D53 /* TutorialDetailHeadView.swift in Sources */,
 				5358B10E226F5C55006229CB /* TutorialDetailProfileCell.swift in Sources */,
 				C402B24522699B3A007746EB /* WallpaperLayout.swift in Sources */,
 				C4EB9FEF2266F074008747C7 /* RecommendTopicCellNode.swift in Sources */,

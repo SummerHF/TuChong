@@ -107,6 +107,19 @@ extension String {
     }
 }
 
+// MARK: - UILabel
+
+extension UILabel {
+    
+    func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, aligment: NSTextAlignment? = .center) {
+        self.attributedText = NSAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+            ])
+        self.textAlignment = aligment ?? .center
+    }
+}
+
 // MARK: - UIButton
 
 extension UIButton {
@@ -116,6 +129,11 @@ extension UIButton {
             NSAttributedString.Key.font: font,
             NSAttributedString.Key.foregroundColor: color
             ]), for: state)
+    }
+    
+    func set(title: String, font: UIFont) {
+        self.titleLabel?.font = font
+        self.setTitle(title, for: .normal)
     }
 }
 

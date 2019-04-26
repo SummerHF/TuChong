@@ -130,11 +130,21 @@ struct Recommend_Feedlist_Users_Model: HandyJSON {
     var icon: String = ""
 }
 
+struct Recommend_Feedlist_Site_Appearence_Model: HandyJSON {
+    var color: String = ""
+    var image: String = ""
+}
+
 struct Recommend_Feedlist_Site_Model: HandyJSON {
+    var posts: Int = 0
+    var intro: String = ""
     var site_id: String = ""
     var type: String = ""
     var name: String = ""
     var domain: String = ""
+    var has_everphoto_note: Bool = false
+    var recommend_reason: String = ""
+    var appearance: Recommend_Feedlist_Site_Appearence_Model = Recommend_Feedlist_Site_Appearence_Model()
     var description: String = ""
     var followers: Int = 0
     var url: String = ""

@@ -63,7 +63,8 @@ enum TuChong {
     case tutorial_profile(post_id: String)
     /// 教程 ---- 用户打赏
     case tutorial_reward(post_id: String)
-    
+    /// 教程 ---- 用户评论
+    case tutorial_comments(post_id: String, parameters: [String: Any])
 }
 
 extension TuChong: TargetType {
@@ -126,6 +127,8 @@ extension TuChong: TargetType {
             return "/app-posts/\(post_id)"
         case let .tutorial_reward(post_id):
             return "/posts/\(post_id)/rewards"
+        case let .tutorial_comments(post_id, _):
+            return "/2/posts/\(post_id)/comments"
         }
     }
     
@@ -134,6 +137,7 @@ extension TuChong: TargetType {
         case .tutorial,
              .tutorial_profile,
              .tutorial_reward,
+             .tutorial_comments,
              .homepage,
              .search_hot,
              .activity_event,
@@ -158,6 +162,8 @@ extension TuChong: TargetType {
                 return .requestPlain
             }
         case let .tutorial(_, _, parameters):
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        case let .tutorial_comments(_, parameters):
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .activity_event(page: let page):
             if page == 0 { return .requestPlain }
@@ -187,6 +193,7 @@ extension TuChong: TargetType {
              .tutorial,
              .tutorial_profile,
              .tutorial_reward,
+             .tutorial_comments,
              .homepage_recommend:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         }

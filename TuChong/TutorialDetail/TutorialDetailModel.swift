@@ -28,7 +28,11 @@
 import Foundation
 import HandyJSON
 
+// MARK: - enum
+
 enum Tutorial {
+    
+    static let count = 3
     case head
     case webView
     case info
@@ -47,6 +51,67 @@ enum Tutorial {
         }
     }
 }
+
+enum TutorialGroup {
+    /// section count
+    static let section = 2
+    static let groupOne = 1
+    static let footerHeight: CGFloat = 0.00001
+    static let headerHeight: CGFloat = 64.0
+
+    case top
+    case comment
+    case unknow
+    
+    init(section: Int) {
+        switch section {
+        case 0:
+            self = .top
+        case 1:
+            self = .comment
+        default:
+            self = .unknow
+        }
+    }
+    
+    /// num of section
+    static func numOfSection(isRequestFinished: Bool) -> Int {
+        return isRequestFinished ? TutorialGroup.section : 0
+    }
+    
+    /// num of rows
+    static func numOfRows(in section: Int, isRequestFinished: Bool) -> Int {
+        if isRequestFinished {
+            switch TutorialGroup(section: section) {
+            case .top:
+                return Tutorial.count
+            case .comment:
+                return 1
+            case .unknow:
+                return 0
+            }
+        } else {
+            return 0
+        }
+    }
+    
+    static func heightFotHeader(at section: Int, isRequestFinished: Bool, commentCount: Int) -> CGFloat {
+        if isRequestFinished && commentCount > 0 {
+        switch TutorialGroup(section: section) {
+        case .top:
+            return TutorialGroup.footerHeight
+        case .comment:
+            return TutorialGroup.headerHeight
+        default:
+            return TutorialGroup.footerHeight
+            }
+        } else {
+            return TutorialGroup.footerHeight
+        }
+    }
+}
+
+// MARK: - Tutorial_Detail_Profile_Model
 
 struct Tutorial_Detail_Profile_Model: HandyJSON {
     var result: String = ""
@@ -94,5 +159,50 @@ struct Tutorial_Detail_Reward_Model: HandyJSON {
     static func build(with dict: [String: Any]) -> Tutorial_Detail_Reward_Post_Model? {
         guard let model = Tutorial_Detail_Reward_Model.deserialize(from: dict) else { return nil }
         return model.data.post.reward_list.count > 0 ? model.data.post : nil
+    }
+}
+
+// MARK: - Tutorial_Detail_Comment_Model
+
+struct Tutorial_Comment_Item_Model: HandyJSON {
+    var note_id: String = ""
+    var post_id: String = ""
+    var type: String = ""
+    var content: String = ""
+    var created_at: String = ""
+    var delete: Bool = false
+    var reply: Bool = false
+    var author_id: String = ""
+    var anonymous: Int = 0
+    var likes: Int = 0
+    var sub_notes_count: Int = 0
+    var parent_note_id: String = ""
+    var reply_to_note_id: String = ""
+    var liked: Bool = false
+    var author: Recommend_Feedlist_Site_Model = Recommend_Feedlist_Site_Model()
+    /// 最后回复
+    var last_replied: Recommend_Feedlist_Site_Model = Recommend_Feedlist_Site_Model()
+    var reply_to: [Recommend_Feedlist_Site_Model] = []
+    var reply_to_array: [String] = []
+    var sub_notes: [Tutorial_Comment_Item_Model] = []
+}
+
+struct Tutorial_Detail_Comment_Model: HandyJSON {
+    var before_timestamp: String = ""
+    var comments: String = ""
+    var parent_comments: String = ""
+    var more: Bool = false
+    var baseUrl: String = ""
+    var result: String = ""
+    var commentlist: [Tutorial_Comment_Item_Model] = []
+    
+    /// comments count
+    var comment_count: Int {
+        return NSString(string: comments).integerValue
+    }
+    
+    static func build(with dict: [String: Any]) -> Tutorial_Detail_Comment_Model {
+        guard let model = Tutorial_Detail_Comment_Model.deserialize(from: dict)  else { return  Tutorial_Detail_Comment_Model() }
+        return model
     }
 }
