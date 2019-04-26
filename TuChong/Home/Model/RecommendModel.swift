@@ -245,6 +245,9 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
         return image.height / image.width
     }
     var tags: [Recommend_Feedlist_Tags_Model] = []
+    var favorites_description: String {
+        return "\(favorites)" + R.string.localizable.likes() + " >"
+    }
     var favorites_desc: NSMutableAttributedString {
         let string = "\(favorites)" + R.string.localizable.likes()
         let mutableAttr = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.font: UIFont.normalFont_13(),

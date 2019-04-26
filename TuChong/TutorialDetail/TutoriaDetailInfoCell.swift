@@ -32,74 +32,91 @@ class TutoriaDetailInfoCell: BaseAScellNode {
     
     private let model: Recommend_Feedlist_Eentry_Model
     private let index: IndexPath
-    private let insetForTags = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    
+    private let insetForTagsLayout = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    private let rewardBtnNodeSize = CGSize(width: 86, height: 30)
     private let spaceing: CGFloat = 10
     
     private let likeCountBtnNode: ASButtonNode
+    private let rewardTitleTextNode: ASTextNode
+    private let rewardBtnNode: ASButtonNode
+    private let rewardPromptTextNode: ASTextNode
     
     init(post model: Recommend_Feedlist_Eentry_Model, indexPath: IndexPath) {
         self.model = model
         self.index = indexPath
         self.likeCountBtnNode = ASButtonNode()
+        self.rewardTitleTextNode = ASTextNode()
+        self.rewardBtnNode = ASButtonNode()
+        self.rewardPromptTextNode = ASTextNode()
         super.init()
     }
     
     override func didLoad() {
         super.didLoad()
-        self.likeCountBtnNode.setAttributedTitle(model.favorites_desc, for: .normal)
+        self.likeCountBtnNode.setAttributdWith(string: model.favorites_description, font: UIFont.normalFont_13(), color: Color.lightGray, state: .normal)
+        self.likeCountBtnNode.contentHorizontalAlignment = .left
+        let string = "\" \(R.string.localizable.reward_title()) \""
+        self.rewardTitleTextNode.setAttributdWith(string: string, originalString: R.string.localizable.reward_title(), font: UIFont.normalFont_14(), orignaleFont: UIFont.boldFont_20())
+        self.rewardBtnNode.setAttributdWith(string: R.string.localizable.reward(), font: UIFont.boldFont_15(), color: Color.flatWhite, state: .normal)
+        self.rewardBtnNode.backgroundColor = Color.lineColor
+        self.rewardBtnNode.style.preferredSize = rewardBtnNodeSize
+        self.rewardBtnNode.cornerRadius = rewardBtnNodeSize.height / 2.0
+        self.rewardBtnNode.cornerRoundingType = .defaultSlowCALayer
+        self.rewardPromptTextNode.setAttributdWith(string: "给作者加个鸡腿吧", font: UIFont.normalFont_14(), color: Color.lightGray, aligement: .center)
     }
-    
     /// Main layout spec
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
-                   test(),  
-                   self.likeCountBtnNode.styled({ (style) in
-                        style.spacingBefore = spaceing
-                   })
-            ])
+           return ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
+            createTagsLayoutSpec(),
+            createLikesLayoutSpec(),
+            createRewardLayoutSpec()
+        ])
     }
     
-    /// Tags layout spec
+    /// Tag node layout spec
     private func createTagsLayoutSpec() -> ASLayoutSpec {
         let tagNodeArray = TutorialDetailInfoTagBtnNode.createTagsLayoutSpec(with: model.tags)
-        let width: CGFloat = macro.screenWidth - insetForTags.left - insetForTags.right
-        var lastNode: TutorialDetailInfoTagBtnNode?
-        var tagNodeX: CGFloat = 0
-        var tagNodeY: CGFloat = 0
         for tagNode in tagNodeArray {
-            if lastNode != nil {
-                /// need to change line
-                if tagNodeX + tagNode.nodeSize.width > width {
-                    tagNodeY += tagNode.nodeSize.height + spaceing
-                    tagNodeX = tagNode.nodeSize.width + spaceing
-                    tagNode.style.layoutPosition = CGPoint(x: 0, y: tagNodeY)
-                } else {
-                    tagNode.style.layoutPosition = CGPoint(x: tagNodeX, y: tagNodeY)
-                    tagNodeX += tagNode.nodeSize.width + spaceing
-                }
-                lastNode = tagNode
-            } else {
-                tagNode.style.layoutPosition = CGPoint(x: 0, y: 0)
-                tagNodeX = tagNode.nodeSize.width + spaceing
-                tagNodeY = 0
-                lastNode = tagNode
-            }
             /// add tagNode event
             tagNode.addTarget(self, action: #selector(tagNodeEvent(node:)), forControlEvents: .touchUpInside)
         }
-        return ASInsetLayoutSpec(insets: insetForTags, child: ASAbsoluteLayoutSpec(children: tagNodeArray))
+        let stack = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .start, children: tagNodeArray)
+        stack.flexWrap = .wrap
+        stack.lineSpacing = spaceing
+        return ASInsetLayoutSpec(insets: insetForTagsLayout, child: stack)
     }
     
     /// Tag node event
     @objc private func tagNodeEvent(node: TutorialDetailInfoTagBtnNode) {
-        printLog(">")
+        printLog("tagNodeEvent")
     }
     
-    private func test() -> ASLayoutSpec {
-        let tagNodeArray = TutorialDetailInfoTagBtnNode.createTagsLayoutSpec(with: model.tags)
-        let stack = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .start, children: tagNodeArray)
-        stack.flexWrap = .wrap
-        stack.lineSpacing = spaceing
-        return stack
+    /// Likes layout spec
+    private func createLikesLayoutSpec() -> ASLayoutSpec {
+        return ASInsetLayoutSpec(insets: insetForTagsLayout, child: self.likeCountBtnNode)
+    }
+    
+    /// Reward layout spec
+    private func createRewardLayoutSpec() -> ASLayoutSpec {
+        return ASStackLayoutSpec(direction: .vertical, spacing: 15, justifyContent: .start, alignItems: .stretch, children: [
+            /// line
+            createSeparotLine(),
+            /// reward title
+            self.rewardTitleTextNode,
+            /// rewardBtnNode
+            ASCenterLayoutSpec(centeringOptions: .X, sizingOptions: .minimumXY, child: self.rewardBtnNode),
+            /// rewardPromptTextNode
+            self.rewardPromptTextNode,
+            /// line
+            createSeparotLine()
+        ])
+    }
+    
+    private func createSeparotLine() -> ASDisplayNode {
+        let node = ASDisplayNode()
+        node.backgroundColor = Color.lineGray
+        node.style.maxHeight = ASDimension(unit: .points, value: 0.1)
+        return node
     }
 }

@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 47 images.
+  /// This `R.image` struct is generated, and contains static references to 46 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -130,8 +130,6 @@ struct R: Rswift.Validatable {
     static let share_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "share_right")
     /// Image `share`.
     static let share = Rswift.ImageResource(bundle: R.hostingBundle, name: "share")
-    /// Image `test`.
-    static let test = Rswift.ImageResource(bundle: R.hostingBundle, name: "test")
     /// Image `third`.
     static let third = Rswift.ImageResource(bundle: R.hostingBundle, name: "third")
     /// Image `triangle_bottom`.
@@ -336,11 +334,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.share_right, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "test", bundle: ..., traitCollection: ...)`
-    static func test(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.test, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "third", bundle: ..., traitCollection: ...)`
     static func third(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.third, compatibleWith: traitCollection)
@@ -404,7 +397,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 32 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 34 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -474,6 +467,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let photography_tutorial = Rswift.StringResource(key: "photography_tutorial", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 支持原创, 作者将收到全额赞赏
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let reward_title = Rswift.StringResource(key: "reward_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 查看更多
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -526,6 +523,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let detail = Rswift.StringResource(key: "detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 赞助
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let reward = Rswift.StringResource(key: "reward", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 首页
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -654,6 +655,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("photography_tutorial", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 支持原创, 作者将收到全额赞赏
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func reward_title(_: Void = ()) -> String {
+        return NSLocalizedString("reward_title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 查看更多
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -743,6 +751,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func detail(_: Void = ()) -> String {
         return NSLocalizedString("detail", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 赞助
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func reward(_: Void = ()) -> String {
+        return NSLocalizedString("reward", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 首页

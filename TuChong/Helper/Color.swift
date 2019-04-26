@@ -38,6 +38,7 @@ struct Color {
     static var themeColor = UIColor.white
     static var backGroundColor = UIColor.white
     static var black = UIColor.black
+    static var lineGray = RGBA(R: 210, G: 210, B: 210, A: 0.5)
     static var lightGray = RGBA(R: 133, G: 133, B: 135)
     static var thinGray = RGBA(R: 245, G: 245, B: 245)
     static var flatWhite = RGBA(R: 255, G: 255, B: 255, A: 0.9)

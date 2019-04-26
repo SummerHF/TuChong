@@ -169,6 +169,11 @@ public extension UIFont {
         return UIFont.boldSystemFont(ofSize: 15)
     }
     
+    /// 20号粗体
+    static func boldFont_20() -> UIFont {
+        return UIFont.boldSystemFont(ofSize: 20)
+    }
+    
     static func normalFont_10() -> UIFont {
         return UIFont.systemFont(ofSize: 10)
     }
@@ -311,6 +316,33 @@ extension ASTextNode {
         self.attributedText = attr
         self.maximumNumberOfLines = 1
         self.truncationMode = .byTruncatingTail
+    }
+    
+    ///
+    /// setting `ASTextNode` attributed
+    ///
+    ///
+    /// - parameter string:   string
+    /// - parameter originalString:  originalString
+    /// - parameter font:  font
+    /// - parameter orignaleFont:   orignaleFont
+    /// - parameter color:  color
+    /// - parameter originalColor:  originalColor
+    /// - parameter aligment:  text aligment, if nil, using `center`
+    
+    func setAttributdWith(string: String, originalString: String, font: UIFont, orignaleFont: UIFont, color: UIColor = UIColor.black, originalColor: UIColor = Color.lightGray, aligment: NSTextAlignment? = nil) {
+        let style = NSMutableParagraphStyle()
+        style.alignment = aligment ?? .center
+        let attr = NSMutableAttributedString(string: string, attributes: [
+                NSAttributedString.Key.font: orignaleFont,
+                NSAttributedString.Key.foregroundColor: originalColor,
+                NSAttributedString.Key.paragraphStyle: style
+            ])
+        attr.addAttributes([
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+            ], range: NSString(string: string).range(of: originalString))
+        self.attributedText = attr
     }
     
     func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, aligement: NSTextAlignment? = nil) {
