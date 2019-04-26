@@ -31,6 +31,7 @@ import AsyncDisplayKit
 class TutoriaDetailInfoCell: BaseAScellNode {
     
     private let model: Recommend_Feedlist_Eentry_Model
+    private var rewardModel: Tutorial_Detail_Reward_Post_Model?
     private let index: IndexPath
     
     private let insetForTagsLayout = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -42,8 +43,9 @@ class TutoriaDetailInfoCell: BaseAScellNode {
     private let rewardBtnNode: ASButtonNode
     private let rewardPromptTextNode: ASTextNode
     
-    init(post model: Recommend_Feedlist_Eentry_Model, indexPath: IndexPath) {
+    init(post model: Recommend_Feedlist_Eentry_Model, reward: Tutorial_Detail_Reward_Post_Model?, indexPath: IndexPath) {
         self.model = model
+        self.rewardModel = reward
         self.index = indexPath
         self.likeCountBtnNode = ASButtonNode()
         self.rewardTitleTextNode = ASTextNode()
@@ -63,7 +65,12 @@ class TutoriaDetailInfoCell: BaseAScellNode {
         self.rewardBtnNode.style.preferredSize = rewardBtnNodeSize
         self.rewardBtnNode.cornerRadius = rewardBtnNodeSize.height / 2.0
         self.rewardBtnNode.cornerRoundingType = .defaultSlowCALayer
-        self.rewardPromptTextNode.setAttributdWith(string: "给作者加个鸡腿吧", font: UIFont.normalFont_14(), color: Color.lightGray, aligement: .center)
+        if let reward = self.rewardModel {
+            self.rewardPromptTextNode.attributedText = reward.reward_desc
+        } else {
+            self.rewardPromptTextNode.setAttributdWith(string: "给作者加个鸡腿吧", font: UIFont.normalFont_14(), color: Color.lightGray, aligement: .center)
+        }
+        
     }
     /// Main layout spec
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -99,7 +106,7 @@ class TutoriaDetailInfoCell: BaseAScellNode {
     
     /// Reward layout spec
     private func createRewardLayoutSpec() -> ASLayoutSpec {
-        return ASStackLayoutSpec(direction: .vertical, spacing: 15, justifyContent: .start, alignItems: .stretch, children: [
+        return ASStackLayoutSpec(direction: .vertical, spacing: 18, justifyContent: .start, alignItems: .stretch, children: [
             /// line
             createSeparotLine(),
             /// reward title

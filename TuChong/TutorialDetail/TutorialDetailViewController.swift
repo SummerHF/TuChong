@@ -46,6 +46,8 @@ class TutorialDetailViewController: BaseViewControlle {
     
     /// user profile model
     private var profile_model: Tutorial_Detail_Profile_Model = Tutorial_Detail_Profile_Model()
+    /// tutorial reward info
+    private var reward_model: Tutorial_Detail_Reward_Post_Model?
     /**
      /// 用户
      https://api.tuchong.com/app-posts/31264361
@@ -88,7 +90,7 @@ class TutorialDetailViewController: BaseViewControlle {
         self.showLoadingView(with: tableNodeFrame)
         /// load user profile
         self.group.enter()
-        Network.request(target: TuChong.tutorial_profile(post_id: post_id), success: { (responseData) in
+        Network.request(target: .tutorial_profile(post_id: post_id), success: { (responseData) in
             self.group.leave()
             guard let model = Tutorial_Detail_Profile_Model.deserialize(from: responseData) else { return }
             self.profile_model = model
@@ -108,6 +110,16 @@ class TutorialDetailViewController: BaseViewControlle {
                 printLog(error)
             }
         }
+        /// load reward info
+        self.group.enter()
+        Network.request(target: TuChong.tutorial_reward(post_id: post_id), success: { (responseData) in
+            self.group.leave()
+            self.reward_model = Tutorial_Detail_Reward_Model.build(with: responseData)
+        }, error: { (_) in
+            self.group.leave()
+        }) { (_) in
+            self.group.leave()
+        }
         /// notify
         self.group.notify(queue: DispatchQueue.main) {
             self.requestFinished = true
@@ -124,6 +136,10 @@ class TutorialDetailViewController: BaseViewControlle {
 
 extension TutorialDetailViewController: ASTableDataSource {
     
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
+        return self.requestFinished ? 2 : 0
+    }
+    
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return self.requestFinished ? 3 : 0
     }
@@ -136,7 +152,7 @@ extension TutorialDetailViewController: ASTableDataSource {
         case .webView:
             return TutorialDetailWebViewCell(webView: self.webView, height: self.webViewHeight)
         case .info:
-            return TutoriaDetailInfoCell(post: profile_model.post, indexPath: indexPath)
+            return TutoriaDetailInfoCell(post: profile_model.post, reward: self.reward_model, indexPath: indexPath)
         case .unknow:
             return ASCellNode()
         }
