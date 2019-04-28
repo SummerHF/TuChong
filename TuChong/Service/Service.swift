@@ -55,6 +55,8 @@ enum TuChong {
     case activity
     /// 活动 - 底部的热门活动
     case activity_event(page: Int)
+    /// 活动 - Banner - 推荐摄影师
+    case activity_recommend_photographer(page: Int)
     /// 搜索
     case search_hot(page: Int)
     /// 首页 ---- 教程
@@ -117,6 +119,8 @@ extension TuChong: TargetType {
             return "/discover-app"
         case .activity_event:
             return "/4/events"
+        case .activity_recommend_photographer:
+            return "/users/hot"
         case .search_hot:
             return "/users/hot"
         case let .homepage(_, path, _):
@@ -142,6 +146,7 @@ extension TuChong: TargetType {
              .search_hot,
              .activity_event,
              .activity,
+             .activity_recommend_photographer,
              .home_more,
              .launch_ad,
              .home_nav,
@@ -167,16 +172,18 @@ extension TuChong: TargetType {
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .activity_event(page: let page):
             if page == 0 { return .requestPlain }
-            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
+            return .requestParameters(parameters: [RequestparameterKey.page: page], encoding: URLEncoding.default)
+        case .activity_recommend_photographer(page: let page):
+            return .requestParameters(parameters: [RequestparameterKey.page: page], encoding: URLEncoding.default)
         case .launch_ad:
             /// 启动图, 此处宽高写死
             return .requestParameters(parameters: ["height": "750", "width": "1334"], encoding: URLEncoding.default)
         case let .homepage_recommend(page, type):
-            let type = type == .refresh ? "refresh" : "loadmore"
-            return .requestParameters(parameters: ["page": page, "type": type], encoding: URLEncoding.default)
+            let type = type == .refresh ? RequestparameterKey.refresh : RequestparameterKey.loadmore
+            return .requestParameters(parameters: [RequestparameterKey.page: page, RequestparameterKey.type: type], encoding: URLEncoding.default)
             /// 搜索
         case let .search_hot(page):
-            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
+            return .requestParameters(parameters: [RequestparameterKey.page: page], encoding: URLEncoding.default)
         }
     }
 
@@ -186,6 +193,7 @@ extension TuChong: TargetType {
              .search_hot,
              .activity_event,
              .activity,
+             .activity_recommend_photographer,
              .home_more,
              .launch_ad,
              .home_nav,

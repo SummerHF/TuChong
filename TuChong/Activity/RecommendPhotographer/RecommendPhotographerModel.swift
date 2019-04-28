@@ -1,4 +1,4 @@
-//  RecommendPhotographerViewController.swift
+//  RecommendPhotographerModel.swift
 //  TuChong
 //
 //  Created by SummerHF on 2019/3/29.
@@ -24,42 +24,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
-import AsyncDisplayKit
 
-class RecommendPhotographerViewController: BaseViewControlle {
+import Foundation
+import HandyJSON
 
-    private let tableNode: ASTableNode
-    private var feedList: [Recommend_Feedlist_Site_Model] = []
-    private var page = 1
+struct Recommend_Photographer_Model: HandyJSON {
+    var hot_day: String = ""
+    var result: String = ""
+    var author_list: [Recommend_Feedlist_Site_Model] = []
     
-    override init() {
-        tableNode = ASTableNode(style: .plain)
-        super.init(node: tableNode)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.loadData()
-    }
-    
-    override func configureTableNode() {
-        tableNode.view.separatorStyle = .none
-//        tableNode.dataSource = self
-    }
-    
-    override func loadData() {
-        Network.request(target: TuChong.activity_recommend_photographer(page: page), success: { (responseData) in
-            self.feedList = Recommend_Photographer_Model.build(with: responseData)
-            let model = self.feedList
-            printLog(model)
-        }, error: { (_) in
-            
-        }) { (_) in
-            
-        }
+    static func build(with dict: [String: Any]) -> [Recommend_Feedlist_Site_Model] {
+        guard let model = Recommend_Photographer_Model.deserialize(from: dict) else { return [] }
+        return model.author_list
     }
 }

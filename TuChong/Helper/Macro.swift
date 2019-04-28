@@ -163,4 +163,6 @@ struct RequestparameterKey {
     static let sort_by = "sort_by"
     static let hotest = 0
     static let newest = 1
+    static let refresh = "refresh"
+    static let loadmore = "loadmore"
 }

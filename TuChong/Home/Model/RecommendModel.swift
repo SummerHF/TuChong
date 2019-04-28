@@ -143,6 +143,7 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
     var comment_name: String {
         return "\(name):"
     }
+    var images: [String] = []
     var name: String = ""
     var domain: String = ""
     var has_everphoto_note: Bool = false
