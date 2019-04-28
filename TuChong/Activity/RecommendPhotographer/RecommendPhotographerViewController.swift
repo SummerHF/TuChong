@@ -43,23 +43,35 @@ class RecommendPhotographerViewController: BaseViewControlle {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureTableNode()
         self.loadData()
     }
     
     override func configureTableNode() {
         tableNode.view.separatorStyle = .none
-//        tableNode.dataSource = self
+        tableNode.dataSource = self
     }
     
     override func loadData() {
         Network.request(target: TuChong.activity_recommend_photographer(page: page), success: { (responseData) in
             self.feedList = Recommend_Photographer_Model.build(with: responseData)
-            let model = self.feedList
-            printLog(model)
+            self.tableNode.reloadData()
         }, error: { (_) in
             
         }) { (_) in
             
         }
+    }
+}
+
+extension RecommendPhotographerViewController: ASTableDataSource {
+    
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return self.feedList.count
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+        let row = indexPath.row
+        return RecommendPhotographerCell(author: feedList[row], index: row)
     }
 }
