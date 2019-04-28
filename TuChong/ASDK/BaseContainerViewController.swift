@@ -30,7 +30,7 @@ import AsyncDisplayKit
 
 // MARK: - BaseAScellNode
 
-class BaseAScellNode: ASCellNode {
+class BaseCellNode: ASCellNode {
     
     override init() {
         super.init()

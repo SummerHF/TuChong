@@ -28,7 +28,7 @@
 import AsyncDisplayKit
 
 /// 教程详情 ---- 用户信息
-class TutorialDetailWebViewCell: BaseAScellNode {
+class TutorialDetailWebViewCell: BaseCellNode {
     
     private let webView: WebView
     private let webViewHeight: CGFloat

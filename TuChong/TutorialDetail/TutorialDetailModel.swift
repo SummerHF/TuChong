@@ -80,13 +80,13 @@ enum TutorialGroup {
     }
     
     /// num of rows
-    static func numOfRows(in section: Int, isRequestFinished: Bool) -> Int {
+    static func numOfRows(in section: Int, isRequestFinished: Bool, comments: Int) -> Int {
         if isRequestFinished {
             switch TutorialGroup(section: section) {
             case .top:
                 return Tutorial.count
             case .comment:
-                return 1
+                return comments
             case .unknow:
                 return 0
             }
@@ -185,6 +185,12 @@ struct Tutorial_Comment_Item_Model: HandyJSON {
     var reply_to: [Recommend_Feedlist_Site_Model] = []
     var reply_to_array: [String] = []
     var sub_notes: [Tutorial_Comment_Item_Model] = []
+    var likes_desc: String {
+        return likes != 0 ? "\(likes)": R.string.localizable.favories()
+    }
+    var created_at_desc: String {
+        return "\(created_at.offsetTime()) · 回复"
+    }
 }
 
 struct Tutorial_Detail_Comment_Model: HandyJSON {
@@ -198,7 +204,7 @@ struct Tutorial_Detail_Comment_Model: HandyJSON {
     
     /// comments count
     var comment_count: Int {
-        return NSString(string: comments).integerValue
+        return commentlist.count
     }
     
     static func build(with dict: [String: Any]) -> Tutorial_Detail_Comment_Model {

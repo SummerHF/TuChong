@@ -140,6 +140,9 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
     var intro: String = ""
     var site_id: String = ""
     var type: String = ""
+    var comment_name: String {
+        return "\(name):"
+    }
     var name: String = ""
     var domain: String = ""
     var has_everphoto_note: Bool = false
@@ -158,7 +161,11 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
     var is_following: Bool = false
     var is_follower: Bool = false
     var iconURL: URL? {
-        return URL(string: icon)
+        if icon == macro.staticAvatorPlaceHolderSf6URL || icon == macro.staticAvatorPlaceHolderLf6URL {
+            return URL(string: macro.staticReplaceAvatorPlaceHolderURL)
+        } else {
+            return URL(string: icon)
+        }
     }
     var verified_image: UIImage? {
         if 11 == verified_type {

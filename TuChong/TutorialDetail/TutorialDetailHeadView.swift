@@ -27,11 +27,13 @@
 
 import UIKit
 
-// MARK: - TutorialDetailHeadViewDelegate
+// MARK: - TutorialDetailHeadViewProtocol
 
 @objc protocol TutorialDetailHeadViewProtocol: class {
     @objc optional func headView(view: TutorialDetailHeadView, selected type: Int)
 }
+
+// MARK: - TutorialDetailHeadView
 
 class TutorialDetailHeadView: UIView {
     

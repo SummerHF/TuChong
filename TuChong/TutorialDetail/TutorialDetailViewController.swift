@@ -73,12 +73,9 @@ class TutorialDetailViewController: BaseViewControlle {
         ]
     }
     
-    private lazy var headerView: TutorialDetailHeadView = {
-        let headerView = TutorialDetailHeadView()
-        headerView.delegate = self
-        return headerView
-    }()
-
+    /// comments headerView
+    private let  headerView: TutorialDetailHeadView = TutorialDetailHeadView()
+    
     /// Create `TutorialDetailViewController`
     init(post_id: String, app_url: String) {
         self.post_id = post_id
@@ -104,6 +101,7 @@ class TutorialDetailViewController: BaseViewControlle {
         self.tableNode.dataSource = self
         self.tableNode.delegate = self
         self.tableNode.view.separatorStyle = .none
+        self.headerView.delegate = self
     }
     
     override func loadData() {
@@ -169,6 +167,8 @@ class TutorialDetailViewController: BaseViewControlle {
     }
 }
 
+// MARK: - ASTableDataSource, ASTableDelegate
+
 extension TutorialDetailViewController: ASTableDataSource, ASTableDelegate {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
@@ -176,7 +176,7 @@ extension TutorialDetailViewController: ASTableDataSource, ASTableDelegate {
     }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return TutorialGroup.numOfRows(in: section, isRequestFinished: self.requestFinished)
+        return TutorialGroup.numOfRows(in: section, isRequestFinished: self.requestFinished, comments: self.comments_model.comment_count)
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
@@ -194,7 +194,7 @@ extension TutorialDetailViewController: ASTableDataSource, ASTableDelegate {
                 return ASCellNode()
             }
         case .comment:
-            return ASCellNode()
+            return UserCommentCell(comment: self.comments_model.commentlist[indexPath.row], index: indexPath.row)
         default:
             return ASCellNode()
         }
@@ -217,6 +217,8 @@ extension TutorialDetailViewController: ASTableDataSource, ASTableDelegate {
         }
     }
 }
+
+// MARK: - TutorialDetailHeadViewProtocol
 
 extension TutorialDetailViewController: TutorialDetailHeadViewProtocol {
     

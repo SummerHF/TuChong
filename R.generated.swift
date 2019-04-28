@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 46 images.
+  /// This `R.image` struct is generated, and contains static references to 48 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -76,6 +76,10 @@ struct R: Rswift.Validatable {
     static let dot = Rswift.ImageResource(bundle: R.hostingBundle, name: "dot")
     /// Image `favorite`.
     static let favorite = Rswift.ImageResource(bundle: R.hostingBundle, name: "favorite")
+    /// Image `favorites_selected`.
+    static let favorites_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "favorites_selected")
+    /// Image `favorites`.
+    static let favorites = Rswift.ImageResource(bundle: R.hostingBundle, name: "favorites")
     /// Image `film_play_selected`.
     static let film_play_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "film_play_selected")
     /// Image `film_play`.
@@ -197,6 +201,16 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "favorite", bundle: ..., traitCollection: ...)`
     static func favorite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.favorite, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "favorites", bundle: ..., traitCollection: ...)`
+    static func favorites(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.favorites, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "favorites_selected", bundle: ..., traitCollection: ...)`
+    static func favorites_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.favorites_selected, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "film_play", bundle: ..., traitCollection: ...)`
@@ -397,7 +411,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 36 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 37 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -531,6 +545,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let detail = Rswift.StringResource(key: "detail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 赞
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let favories = Rswift.StringResource(key: "favories", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 赞助
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -773,6 +791,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func detail(_: Void = ()) -> String {
         return NSLocalizedString("detail", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 赞
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func favories(_: Void = ()) -> String {
+        return NSLocalizedString("favories", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 赞助

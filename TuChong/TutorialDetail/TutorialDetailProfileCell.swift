@@ -28,7 +28,7 @@
 import AsyncDisplayKit
 
 /// 教程详情 ---- 用户信息
-class TutorialDetailProfileCell: BaseAScellNode {
+class TutorialDetailProfileCell: BaseCellNode {
     
     private let model: Recommend_Feedlist_Eentry_Model
     private let index: IndexPath

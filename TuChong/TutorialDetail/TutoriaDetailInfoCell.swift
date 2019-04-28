@@ -28,7 +28,7 @@
 import AsyncDisplayKit
 
 /// 教程详情 ---- tags, likes, rewards
-class TutoriaDetailInfoCell: BaseAScellNode {
+class TutoriaDetailInfoCell: BaseCellNode {
     
     private let model: Recommend_Feedlist_Eentry_Model
     private var rewardModel: Tutorial_Detail_Reward_Post_Model?
@@ -70,7 +70,6 @@ class TutoriaDetailInfoCell: BaseAScellNode {
         } else {
             self.rewardPromptTextNode.setAttributdWith(string: "给作者加个鸡腿吧", font: UIFont.normalFont_14(), color: Color.lightGray, aligement: .center)
         }
-        
     }
     /// Main layout spec
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

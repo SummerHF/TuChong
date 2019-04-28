@@ -414,6 +414,12 @@ extension ASDisplayNode {
         self.cornerRoundingType = .clipping
     }
     
+    func add(cornerRadius: CGFloat = 0.0, backgroundColor: UIColor = Color.backGroundColor, cornerRoundingType: ASCornerRoundingType) {
+        self.backgroundColor = backgroundColor
+        self.cornerRadius = cornerRadius
+        self.cornerRoundingType = cornerRoundingType
+    }
+    
     /// use this method to change `ScrollView` contetOffset to adjust subItem's location
     func scrollAnimate(with selectedBtn: NavItemButton, scrollView: UIScrollView, containerView: UIView) {
         guard scrollView.contentSize.width > containerView.width else { return }

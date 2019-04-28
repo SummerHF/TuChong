@@ -132,6 +132,21 @@ struct Macro {
     var videoNavTop: CGFloat {
         return 0.0
     }
+    
+    /// 用户未设置图像时, 其占位图, 原图为gif
+    var staticAvatorPlaceHolderLf6URL: String {
+        return "http://lf6-tccdn-tos.pstatp.com/obj/tuchong-avatar/l_u_0"
+    }
+    
+    var staticAvatorPlaceHolderSf6URL: String {
+        return "http://sf6-tccdn-tos.pstatp.com/obj/tuchong-avatar/l_u_0"
+    }
+    
+    /// 用户未设置图像时, 其占位图, 原图为gif, 替换为jpeg
+    var staticReplaceAvatorPlaceHolderURL: String {
+        return "https://ws4.sinaimg.cn/large/006tNc79ly1g2i48swxpjj301c01c0es.jpg"
+    }
+
 }
 
 let macro = Macro()

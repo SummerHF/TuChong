@@ -31,6 +31,7 @@
 		C41E0CD2224CB0700032E12A /* GenerateResource.sh in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CD1224CB0700032E12A /* GenerateResource.sh */; };
 		C41E0CDC224CBB900032E12A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E0CDB224CBB900032E12A /* R.generated.swift */; };
 		C41E0CE2224CC0D40032E12A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CE4224CC0D40032E12A /* Localizable.strings */; };
+		C43433CA2275362400255883 /* UserCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43433C92275362400255883 /* UserCommentCell.swift */; };
 		C437F354226EA2D80017445F /* RecommendTutorialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437F353226EA2D80017445F /* RecommendTutorialCell.swift */; };
 		C437F357226EE6FB0017445F /* TutorialDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */; };
 		C43AEA09225442BC00C2CFE7 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43AEA08225442BC00C2CFE7 /* SearchBar.swift */; };
@@ -111,6 +112,7 @@
 		C41E0CE3224CC0D40032E12A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C41E0CE5224CC0D90032E12A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C41E0CE6224CC1500032E12A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C43433C92275362400255883 /* UserCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentCell.swift; sourceTree = "<group>"; };
 		C437F353226EA2D80017445F /* RecommendTutorialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTutorialCell.swift; sourceTree = "<group>"; };
 		C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailViewController.swift; sourceTree = "<group>"; };
 		C43AEA08225442BC00C2CFE7 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -241,6 +243,14 @@
 				C41E0CE4224CC0D40032E12A /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C43433C82275361900255883 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				C43433C92275362400255883 /* UserCommentCell.swift */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 		C437F355226EE6EC0017445F /* TutorialDetail */ = {
@@ -387,6 +397,7 @@
 		C4AD3C2B224097CB0095BC97 /* TuChong */ = {
 			isa = PBXGroup;
 			children = (
+				C43433C82275361900255883 /* Comment */,
 				C41E0CC5224CAE680032E12A /* Resources */,
 				53F43F97224509DD007027AD /* Launch */,
 				C4AC63CC2241B80100324C23 /* APP */,
@@ -635,6 +646,7 @@
 				C4CBE21C2255A9260074F58A /* SearchModel.swift in Sources */,
 				C43B479A2271A32500D2B970 /* TutorialDetailInfoTagBtnNode.swift in Sources */,
 				C43B9A5B225C62D600C15872 /* AlbumViewController.swift in Sources */,
+				C43433CA2275362400255883 /* UserCommentCell.swift in Sources */,
 				C43B47982271A02100D2B970 /* TutoriaDetailInfoCell.swift in Sources */,
 				C4A5024B2267035700867EBE /* RecommedTopicCollectionCellNode.swift in Sources */,
 				C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */,
