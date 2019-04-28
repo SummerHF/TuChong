@@ -191,6 +191,39 @@ struct Tutorial_Comment_Item_Model: HandyJSON {
     var created_at_desc: String {
         return "\(created_at.offsetTime()) · 回复"
     }
+
+    /// get comment str
+    func getReplyAttributedString(with authorID: String) -> NSMutableAttributedString {
+        if let replied_user_model = self.reply_to.first, replied_user_model.site_id != authorID {
+            let reply_user_name = author.name
+            let replied_user_name = "\(replied_user_model.name):"
+            let reply_user_cotent = content
+            let str = "\(reply_user_name) 回复 \(replied_user_name) \(reply_user_cotent)"
+            let attr = NSMutableAttributedString(string: str, attributes: [
+                NSAttributedString.Key.font: UIFont.normalFont_14(),
+                NSAttributedString.Key.foregroundColor: Color.lightGray
+                ])
+            attr.addAttributes([NSAttributedString.Key.foregroundColor: Color.blueColor,
+                                NSAttributedString.Key.font: UIFont.normalFont_14()
+                                ], range: NSString(string: str).range(of: reply_user_name))
+            attr.addAttributes([NSAttributedString.Key.foregroundColor: Color.blueColor,
+                                NSAttributedString.Key.font: UIFont.normalFont_14()
+                                ], range: NSString(string: str).range(of: replied_user_name))
+            return attr
+        } else {
+            let reply_user_name = "\(author.name):"
+            let reply_user_cotent = content
+            let str = "\(reply_user_name) \(reply_user_cotent)"
+            let attr = NSMutableAttributedString(string: str, attributes: [
+                NSAttributedString.Key.font: UIFont.normalFont_14(),
+                NSAttributedString.Key.foregroundColor: Color.lightGray
+                ])
+            attr.addAttributes([NSAttributedString.Key.foregroundColor: Color.blueColor,
+                                NSAttributedString.Key.font: UIFont.normalFont_14()
+                                ], range: NSString(string: str).range(of: reply_user_name))
+            return attr
+        }
+    }
 }
 
 struct Tutorial_Detail_Comment_Model: HandyJSON {

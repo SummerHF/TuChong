@@ -42,9 +42,17 @@ class UserCommentCell: BaseCellNode {
     /// size
     private let avatorSize = CGSize(width: 24, height: 24)
     private let insetForHeader = UIEdgeInsets(top: 10, left: 20, bottom: 0, right: 20)
+    
     private var insetForComment: UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: avatorSize.width + 10, bottom: 0, right: 5)
     }
+    private var insetForReply: UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: avatorSize.width + 15, bottom: 5, right: 10)
+    }
+    
+    private lazy var replyTextNodeArray: [ASTextNode] = {
+        return self.createReplyTextNodes()
+    }()
 
     init(comment: Tutorial_Comment_Item_Model, index: Int) {
         self.comment = comment
@@ -79,7 +87,9 @@ class UserCommentCell: BaseCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         return ASInsetLayoutSpec(insets: insetForHeader, child: ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
             createHeaderLayoutSpec(),
-            createContentLayoutSpec()
+            createContentLayoutSpec(),
+            createReplyLayoutSpec(),
+            createBottomLineLayoutSpec()
             ]))
     }
     
@@ -103,9 +113,38 @@ class UserCommentCell: BaseCellNode {
     private func createContentLayoutSpec() -> ASLayoutSpec {
         return ASInsetLayoutSpec(insets: insetForComment, child: ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
                 self.contentTextNode,
-                self.publishTimeTextNode,
-                self.createSeparotLine()
+                self.publishTimeTextNode
             ]))
+    }
+    
+    /// Reply layout area
+    private func createReplyLayoutSpec() -> ASLayoutSpec {
+        if replyTextNodeArray.count > 0 {
+            let backGroundNode = ASDisplayNode()
+            backGroundNode.backgroundColor = Color.thinGray
+            let backgroundLayoutSpec = ASInsetLayoutSpec(insets: insetForComment, child: backGroundNode)
+            return ASBackgroundLayoutSpec(child: ASInsetLayoutSpec(insets: insetForReply, child: ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: replyTextNodeArray)), background: backgroundLayoutSpec)
+        } else {
+            return ASLayoutSpec().styled({ (style) in
+                style.flexShrink = 1.0
+            })
+        }
+    }
+    
+    /// User reply textnode arrat
+    private func createReplyTextNodes() -> [ASTextNode] {
+        var replyTextNodeArray = [ASTextNode]()
+        for item in comment.sub_notes {
+            let textNode = ASTextNode()
+            textNode.attributedText = item.getReplyAttributedString(with: comment.author_id)
+            replyTextNodeArray.append(textNode)
+        }
+        return replyTextNodeArray
+    }
+    
+    /// Bottom Line
+    private func createBottomLineLayoutSpec() -> ASLayoutSpec {
+        return ASInsetLayoutSpec(insets: insetForComment, child: createSeparotLine())
     }
     
     private func createSeparotLine() -> ASDisplayNode {

@@ -161,7 +161,7 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
     var is_following: Bool = false
     var is_follower: Bool = false
     var iconURL: URL? {
-        if icon == macro.staticAvatorPlaceHolderSf6URL || icon == macro.staticAvatorPlaceHolderLf6URL {
+        if NSString(string: icon).contains("l_u_0") {
             return URL(string: macro.staticReplaceAvatorPlaceHolderURL)
         } else {
             return URL(string: icon)
