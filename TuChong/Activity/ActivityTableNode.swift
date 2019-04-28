@@ -93,6 +93,37 @@ extension ActivityBannerCollectionNode: ASCollectionDataSource, ASCollectionDele
     }
 }
 
+// MARK: - ActivityCategoryType
+
+enum ActivityCategoryType {
+    case club
+    case photographer
+    case lecture
+    case tutorial
+    case unknown
+    
+    init(with index: Int) {
+        switch index {
+        case 0:
+            self = .club
+        case 1:
+            self = .photographer
+        case 2:
+            self = .lecture
+        case 3:
+            self = .tutorial
+        default:
+            self = .unknown
+        }
+    }
+}
+
+// MARK: - ActivityCategoryNodeProtocol
+
+protocol ActivityCategoryNodeProtocol: NSObjectProtocol {
+    func category(node: ActivityCategoryNode, hasSelcted categoryType: ActivityCategoryType)
+}
+
 // MARK: - ActivityCategoryNode
 
 /// 4个分类
@@ -104,6 +135,8 @@ class ActivityCategoryNode: ASDisplayNode {
     var images = [R.image.photography_club(), R.image.recommend_Cameraman(), R.image.lecture(), R.image.photography_tutorial()]
     /// 按钮
     var buttons: [ASButtonNode] = []
+    
+    weak var delegate: ActivityCategoryNodeProtocol?
     
     override init() {
         super.init()
@@ -147,7 +180,7 @@ class ActivityCategoryNode: ASDisplayNode {
 
     /// button event
     @objc private func handleTapEvent(button: ASButtonNode) {
-        print(button.view.tag)
+        self.delegate?.category(node: self, hasSelcted: ActivityCategoryType(with: button.view.tag))
     }
 }
 
@@ -183,7 +216,13 @@ class ActivityTitileNode: ASDisplayNode {
     }
 }
 
-// MARK: - ActivityTableNode
+// MARK: - ActivityBannerViewProtocol
+
+protocol ActivityBannerViewProtocol: NSObjectProtocol {
+    func banner(view: ActivityBannerView, categoryNode: ActivityCategoryNode, hasSelcted categoryType: ActivityCategoryType)
+}
+
+// MARK: - ActivityBannerView
 
 class ActivityBannerView: UIView {
     
@@ -205,6 +244,7 @@ class ActivityBannerView: UIView {
     private var collectionNode: ActivityBannerCollectionNode
     private var titleNode: ActivityTitileNode
     private var categoryNode: ActivityCategoryNode
+    weak var delegate: ActivityBannerViewProtocol?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -229,11 +269,19 @@ class ActivityBannerView: UIView {
         collectionNode.frame = CGRect(x: 0, y: 0, width: self.width, height: collectionNodeHeight)
         titleNode.frame = CGRect(x: 0, y: heights - titleNodeHeight, width: self.width, height: titleNodeHeight)
         categoryNode.frame = CGRect(x: 0, y: collectionNode.view.bottom, width: self.width, height: categoryNodeHeight)
+        categoryNode.delegate = self
         collectionNode.view.isPagingEnabled = true
     }
     
     func configureTopBanner(with data: [Activity_Top_Banner_Model]) {
         collectionNode.bannerModel = data
+    }
+}
+
+extension ActivityBannerView: ActivityCategoryNodeProtocol {
+    
+    func category(node: ActivityCategoryNode, hasSelcted categoryType: ActivityCategoryType) {
+        self.delegate?.banner(view: self, categoryNode: node, hasSelcted: categoryType)
     }
 }
 
@@ -388,6 +436,11 @@ class ActivityTableCell: ASCellNode {
     }
 }
 
+// MARK: - ActivityTableNodeProtocol
+protocol ActivityTableNodeProtocol: NSObjectProtocol {
+    func tableNode(node: ActivityTableNode, hasSelcted categoryType: ActivityCategoryType)
+}
+
 // MARK: - ActivityTableNode
 
 class ActivityTableNode: ASTableNode {
@@ -399,6 +452,8 @@ class ActivityTableNode: ASTableNode {
         }
     }
     
+    weak var tableNodeDelegate: ActivityTableNodeProtocol?
+    
     override init(style: UITableView.Style) {
         super.init(style: style)
         self.dataSource = self
@@ -409,6 +464,7 @@ class ActivityTableNode: ASTableNode {
     
     override func didLoad() {
         super.didLoad()
+        self.bannerView.delegate = self
     }
     
     func reload(topBanner: [Activity_Top_Banner_Model], bottomEvents: [Activity_Events_Model]) {
@@ -439,5 +495,14 @@ extension ActivityTableNode: ASTableDataSource, ASTableDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return bannerView.heights
+    }
+}
+
+// MARK: - ActivityBannerViewProtocol
+
+extension ActivityTableNode: ActivityBannerViewProtocol {
+    
+    func banner(view: ActivityBannerView, categoryNode: ActivityCategoryNode, hasSelcted categoryType: ActivityCategoryType) {
+        self.tableNodeDelegate?.tableNode(node: self, hasSelcted: categoryType)
     }
 }

@@ -12,6 +12,7 @@
 		530410722268A64100EB1AE5 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530410702268A64000EB1AE5 /* HomePageModel.swift */; };
 		530410732268A64100EB1AE5 /* RecommendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530410712268A64100EB1AE5 /* RecommendModel.swift */; };
 		53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317321F224130F600B6C10B /* BaseContainerViewController.swift */; };
+		5351010D2275DC2B0008B7AE /* RecommendPhotographerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5351010C2275DC2B0008B7AE /* RecommendPhotographerViewController.swift */; };
 		5358B10C226F5451006229CB /* TutorialDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358B10B226F5451006229CB /* TutorialDetailModel.swift */; };
 		5358B10E226F5C55006229CB /* TutorialDetailProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358B10D226F5C55006229CB /* TutorialDetailProfileCell.swift */; };
 		535BC19D2268B4B00095B6C6 /* VideoNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */; };
@@ -88,6 +89,7 @@
 		530410702268A64000EB1AE5 /* HomePageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		530410712268A64100EB1AE5 /* RecommendModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendModel.swift; sourceTree = "<group>"; };
 		5317321F224130F600B6C10B /* BaseContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseContainerViewController.swift; sourceTree = "<group>"; };
+		5351010C2275DC2B0008B7AE /* RecommendPhotographerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendPhotographerViewController.swift; sourceTree = "<group>"; };
 		5358B10B226F5451006229CB /* TutorialDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailModel.swift; sourceTree = "<group>"; };
 		5358B10D226F5C55006229CB /* TutorialDetailProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailProfileCell.swift; sourceTree = "<group>"; };
 		535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoNavNode.swift; sourceTree = "<group>"; };
@@ -214,6 +216,14 @@
 				C4DC5C18225DDEDE00985CE3 /* ScrollView.swift */,
 			);
 			path = ASDK;
+			sourceTree = "<group>";
+		};
+		5341BFC72275DBED0095A6ED /* RecommendPhotographer */ = {
+			isa = PBXGroup;
+			children = (
+				5351010C2275DC2B0008B7AE /* RecommendPhotographerViewController.swift */,
+			);
+			path = RecommendPhotographer;
 			sourceTree = "<group>";
 		};
 		53F43F97224509DD007027AD /* Launch */ = {
@@ -442,6 +452,7 @@
 		C4E57B3B224DB43D00F9D511 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				5341BFC72275DBED0095A6ED /* RecommendPhotographer */,
 				C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */,
 				C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */,
 				C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */,
@@ -695,6 +706,7 @@
 				C402B24722699C95007746EB /* RecommendWallpaperCell.swift in Sources */,
 				C437F357226EE6FB0017445F /* TutorialDetailViewController.swift in Sources */,
 				53D1F5B52268A7340046F0FE /* RecommendBaseViewController.swift in Sources */,
+				5351010D2275DC2B0008B7AE /* RecommendPhotographerViewController.swift in Sources */,
 				C462C001225F35AE00AB91F1 /* RecommendViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

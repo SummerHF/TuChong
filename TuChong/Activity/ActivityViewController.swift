@@ -49,6 +49,7 @@ class ActivityViewController: BaseViewControlle {
     override init() {
         tableNode = ActivityTableNode(style: .grouped)
         super.init(node: tableNode)
+        tableNode.tableNodeDelegate = self
     }
     
     override func viewDidLoad() {
@@ -109,5 +110,21 @@ extension ActivityViewController: SearchBarProtocol {
     
     func searchBarDidEndEditing(searchBar: SearchBar) {
         searchTableNode.dissmiss()
+    }
+}
+
+extension ActivityViewController: ActivityTableNodeProtocol {
+    
+    func tableNode(node: ActivityTableNode, hasSelcted categoryType: ActivityCategoryType) {
+        switch categoryType {
+        case .club:
+            break
+        case .photographer:
+            let destination = RecommendPhotographerViewController()
+            destination.title = R.string.localizable.recommended_photographer()
+            self.navigationController?.pushViewController(destination, animated: true)
+        default:
+            break
+        }
     }
 }
