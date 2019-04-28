@@ -231,7 +231,7 @@ extension TutorialDetailViewController: TutorialDetailHeadViewProtocol {
         Network.request(target: .tutorial_comments(post_id: post_id, parameters: commentsParameters), success: { (responseData) in
             self.comments_model = Tutorial_Detail_Comment_Model.build(with: responseData)
             let indexSet = IndexSet(integer: TutorialGroup.groupOne)
-            self.tableNode.reloadSections(indexSet, with: .none)
+            self.tableNode.reloadSections(indexSet, with: .automatic)
         }, error: { (_) in
         }) { (_) in
         }
