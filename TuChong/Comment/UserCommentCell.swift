@@ -72,16 +72,11 @@ class UserCommentCell: BaseCellNode {
         self.avatorImageNode.imageModificationBlock = { image in
             image.byRoundCornerRadius(image.size.width / 2.0)
         }
-        self.userNameTextNode.setAttributdWith(string: comment.author.comment_name, font: UIFont.normalFont_14(), color: Color.blueColor)
         self.favoritesBtnNode.setImage(R.image.favorites(), for: .normal)
         self.favoritesBtnNode.setImage(R.image.favorites_selected(), for: .selected)
         self.favoritesBtnNode.setTitle(comment.likes_desc, with: UIFont.normalFont_14(), with: Color.lightGray, for: .normal)
         self.favoritesBtnNode.contentSpacing = 4.0
         self.favoritesBtnNode.contentVerticalAlignment = .top
-        
-        /// comment
-        self.contentTextNode.setAttributdWith(string: comment.content, font: UIFont.normalFont_14(), color: Color.thinBlack)
-        self.publishTimeTextNode.setAttributdWith(string: comment.created_at_desc, font: UIFont.normalFont_12(), color: Color.lightGray)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -96,7 +91,8 @@ class UserCommentCell: BaseCellNode {
     /// Header layout area
     private func createHeaderLayoutSpec() -> ASLayoutSpec {
         self.avatorImageNode.style.preferredSize = avatorSize
-        
+        self.userNameTextNode.setAttributdWith(string: comment.author.comment_name, font: UIFont.normalFont_14(), color: Color.blueColor)
+
         return ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [
             self.avatorImageNode,
             self.userNameTextNode,
@@ -111,6 +107,10 @@ class UserCommentCell: BaseCellNode {
     
     /// Content layout area
     private func createContentLayoutSpec() -> ASLayoutSpec {
+        /// comment
+        self.contentTextNode.setAttributdWith(string: comment.content, font: UIFont.normalFont_14(), color: Color.thinBlack)
+        self.publishTimeTextNode.setAttributdWith(string: comment.created_at_desc, font: UIFont.normalFont_12(), color: Color.lightGray)
+        
         return ASInsetLayoutSpec(insets: insetForComment, child: ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
                 self.contentTextNode,
                 self.publishTimeTextNode

@@ -68,6 +68,8 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
         }
     }
     
+    var loadingViewFrame: CGRect = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.screenHeight - macro.topHeight)
+    
     /// 全局共用的navigationBar
     lazy var navigationBar: CommenNavigationBar = {
         let bar = CommenNavigationBar()

@@ -177,6 +177,31 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
             return nil
         }
     }
+    
+    var recommend_photographer_verified: Bool {
+        return verification_list.count > 0
+    }
+    
+    var recommend_photographer_verified_reason: String? {
+        if let model = verification_list.first {
+            return model.verification_reason
+        } else {
+            return nil
+        }
+    }
+
+    var recommend_photographer_verified_image: UIImage? {
+        if let model = verification_list.first {
+            if 11 == model.verification_type {
+                return R.image.verifications_green()
+            } else if 13 == model.verification_type {
+                return R.image.verifications()
+            } else {
+                return nil
+            }
+        }
+        return nil
+    }
 }
 
 struct Recommend_Feedlist_RecomType_Model {

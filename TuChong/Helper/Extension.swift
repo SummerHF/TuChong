@@ -475,7 +475,7 @@ extension ASViewController where DisplayNodeType == ASDisplayNode {
     }
     
     /// use this method to add loading load
-    open func showLoadingView(with Frame: CGRect) {
+    open func showLoadingView(with Frame: CGRect? = CGRect.zero) {
         self.loadingNode = LoadingNode(frame: Frame)
     }
     

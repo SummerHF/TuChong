@@ -42,7 +42,7 @@ class RecommendPhotographerCell: BaseCellNode {
     /// size
     let avatorWidth: CGFloat = 32
     let vertificationWidth: CGFloat = 12
-    let insetForHeader = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    let insetForHeader = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     
     init(author: Recommend_Feedlist_Site_Model, index: Int) {
         self.author = author
@@ -62,18 +62,56 @@ class RecommendPhotographerCell: BaseCellNode {
         self.avatorImageNode.imageModificationBlock = { image in
             image.byRoundCornerRadius(image.size.width / 2.0)
         }
+        self.vertificationImageNode.image = author.recommend_photographer_verified_image
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec(insets: insetForHeader, child: ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
+        return ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [
                 createHeaderLayoutSpec()
-            ]))
+            ])
     }
     
     private func createHeaderLayoutSpec() -> ASLayoutSpec {
         self.avatorImageNode.style.preferredSize = CGSize(width: avatorWidth, height: avatorWidth)
-        return ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [
-                self.avatorImageNode
+        self.vertificationImageNode.style.preferredSize = CGSize(width: vertificationWidth, height: vertificationWidth)
+        return ASInsetLayoutSpec(insets: insetForHeader, child:
+            ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [
+            /// Whether verified
+            author.recommend_photographer_verified ? (avatorCornerLayoutSpec()) : avatorImageNode,
+            userProfileLayoutSpec()
             ])
+        )
+    }
+    
+    /// Avator corner layout spec
+    func avatorCornerLayoutSpec() -> ASCornerLayoutSpec {
+        let layoutSpec = ASCornerLayoutSpec(child: avatorImageNode, corner: vertificationImageNode, location: ASCornerLayoutLocation.bottomRight)
+        layoutSpec.offset = CGPoint(x: -5, y: -5)
+        return layoutSpec
+    }
+    
+    /// User name and verified area
+    func userProfileLayoutSpec() -> ASLayoutSpec {
+        self.nameTextNode.setAttributdWith(string: author.name, font: UIFont.normalFont_14())
+        self.verifiedTextNode.setAttributdWith(string: author.recommend_photographer_verified_reason ?? "", font: UIFont.normalFont_13(), color: Color.lightGray)
+        if author.recommend_photographer_verified_reason != nil {
+            return ASStackLayoutSpec(direction: .vertical, spacing: 1.0, justifyContent: .start, alignItems: .stretch, children: [
+                 self.nameTextNode.styled({ (style) in
+                    style.flexShrink = 1.0
+                    style.maxWidth = ASDimension(unit: ASDimensionUnit.points, value: 200)
+                 }),
+                  ASLayoutSpec().styled({ (style) in
+                    style.flexGrow = 1.0
+                  }),
+                  self.verifiedTextNode.styled({ (style) in
+                    style.maxWidth = ASDimension(unit: ASDimensionUnit.points, value: 200)
+                    style.flexShrink = 1.0
+                  })
+                ])
+        } else {
+            return ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .center, children: [
+                self.nameTextNode
+           ])
+        }
     }
 }
