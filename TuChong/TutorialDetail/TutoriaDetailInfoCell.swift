@@ -54,8 +54,17 @@ class TutoriaDetailInfoCell: BaseCellNode {
         super.init()
     }
     
-    override func didLoad() {
-        super.didLoad()
+    /// Main layout spec
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+           self.setPropertys()
+           return ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
+            createTagsLayoutSpec(),
+            createLikesLayoutSpec(),
+            createRewardLayoutSpec()
+        ])
+    }
+    
+    override func setPropertys() {
         self.likeCountBtnNode.setAttributdWith(string: model.favorites_description, font: UIFont.normalFont_13(), color: Color.lightGray, state: .normal)
         self.likeCountBtnNode.contentHorizontalAlignment = .left
         let string = "\" \(R.string.localizable.reward_title()) \""
@@ -70,14 +79,6 @@ class TutoriaDetailInfoCell: BaseCellNode {
         } else {
             self.rewardPromptTextNode.setAttributdWith(string: "给作者加个鸡腿吧", font: UIFont.normalFont_14(), color: Color.lightGray, aligement: .center)
         }
-    }
-    /// Main layout spec
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-           return ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
-            createTagsLayoutSpec(),
-            createLikesLayoutSpec(),
-            createRewardLayoutSpec()
-        ])
     }
     
     /// Tag node layout spec

@@ -67,17 +67,20 @@ class TutorialDetailProfileCell: BaseCellNode {
             image.byRoundCornerRadius(image.size.width / 2.0)
         }
         self.vertificationImageNode.image = model.site.verified_image
+        self.viewCountBtnNode.setAttributdWith(string: "\(model.views) 阅读", font: UIFont.normalFont_13(), color: Color.lightGray, state: .normal)
+    }
+    
+    override func setPropertys() {
+        self.avatorImageNode.style.preferredSize = CGSize(width: self.avatorWidth, height: self.avatorWidth)
+        self.vertificationImageNode.style.preferredSize = CGSize(width: self.vertificationWidth, height: self.vertificationWidth)
         self.nameTextNode.setAttributdWith(string: model.site.name, font: UIFont.normalFont_15())
         self.nameTextNode.truncationMode = .byTruncatingTail
         self.nameTextNode.maximumNumberOfLines = 1
         self.publishTimeTextNode.setAttributdWith(string: model.published_at.offsetTime(), font: UIFont.normalFont_14(), color: Color.lightGray)
-        self.viewCountBtnNode.setAttributdWith(string: "\(model.views) 阅读", font: UIFont.normalFont_13(), color: Color.lightGray, state: .normal)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        self.avatorImageNode.style.preferredSize = CGSize(width: self.avatorWidth, height: self.avatorWidth)
-        self.vertificationImageNode.style.preferredSize = CGSize(width: self.vertificationWidth, height: self.vertificationWidth)
-        
+        self.setPropertys()
         return ASInsetLayoutSpec(insets: insetForHeader, child:
             /// Header stack with inset
                 ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [

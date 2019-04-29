@@ -38,6 +38,11 @@ class BaseCellNode: ASCellNode {
         self.automaticallyManagesSubnodes = true
         self.backgroundColor = Color.backGroundColor
     }
+    
+    /// set value for property
+    func setPropertys() {
+        /// subclass to override it
+    }
 }
 
 // MARK: - BaseViewControlle
