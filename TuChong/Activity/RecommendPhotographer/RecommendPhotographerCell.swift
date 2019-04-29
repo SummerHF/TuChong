@@ -42,8 +42,9 @@ class RecommendPhotographerCell: BaseCellNode {
     /// size
     let avatorWidth: CGFloat = 32
     let vertificationWidth: CGFloat = 12
-    let insetForHeader = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-    
+    let insetForHeader = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
+    let insetForImages = UIEdgeInsets(top: 20, left: 20, bottom: 15, right: 20)
+
     init(author: Recommend_Feedlist_Site_Model, index: Int) {
         self.author = author
         self.index = index
@@ -67,7 +68,8 @@ class RecommendPhotographerCell: BaseCellNode {
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         return ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [
-                createHeaderLayoutSpec()
+                createHeaderLayoutSpec(),
+                createImageLayoutSpec()
             ])
     }
     
@@ -81,6 +83,18 @@ class RecommendPhotographerCell: BaseCellNode {
             userProfileLayoutSpec()
             ])
         )
+    }
+    
+    private func createImageLayoutSpec() -> ASLayoutSpec {
+        var imageNodes: [ASNetworkImageNode] = []
+        let width = (macro.screenWidth - (insetForHeader.left + insetForHeader.right + CGFloat(author.images.count - 1) * 10.0)) / CGFloat(author.images.count)
+        for url in author.images {
+            let imageNode = ASNetworkImageNode()
+            imageNode.style.preferredSize = CGSize(width: width, height: width)
+            imageNode.url = URL(string: url)
+            imageNodes.append(imageNode)
+        }
+        return ASInsetLayoutSpec(insets: insetForImages, child: ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .stretch, children: imageNodes))
     }
     
     /// Avator corner layout spec

@@ -3,5 +3,6 @@ Texture
 
 TO DO:
 1. 首页-壁纸-动态壁纸-滚动消失
+2. 首页-推荐-可能存在的文字抖动问题
 
 https://github.com/facebookarchive/AsyncDisplayKit/issues/616

@@ -53,14 +53,9 @@ class RecommendPhotographerViewController: BaseViewControlle {
     }
     
     override func loadData() {
-//        self.showLoadingView(with: loadingViewFrame)
         Network.request(target: TuChong.activity_recommend_photographer(page: page), success: { (responseData) in
             self.feedList = Recommend_Photographer_Model.build(with: responseData)
-            self.tableNode.performBatch(animated: false, updates: {
-                self.tableNode.reloadData()
-            }, completion: { (finished) in
-//               self.removeLoadingView()
-            })
+            self.tableNode.reloadData()
         }, error: { (_) in
             
         }) { (_) in
