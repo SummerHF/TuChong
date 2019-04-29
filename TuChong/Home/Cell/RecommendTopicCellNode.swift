@@ -50,8 +50,6 @@ class RecommendTopicCellNode: RecommendBaseCellNode {
     
     override func didLoad() {
         super.didLoad()
-        self.titleNameTextNode.setAttributdWith(string: R.string.localizable.circle(), font: UIFont.boldFont_14())
-        self.moreTextNode.setAttributdWith(string: R.string.localizable.to_view_more(), font: UIFont.normalFont_13(), color: Color.lightGray)
         self.collectionNode.backgroundColor = Color.backGroundColor
         self.collectionNode.dataSource = self
         self.collectionNode.delegate = self
@@ -61,7 +59,13 @@ class RecommendTopicCellNode: RecommendBaseCellNode {
         self.collectionNode.reloadData()
     }
     
+    override func setPropertys() {
+        self.titleNameTextNode.setAttributdWith(string: R.string.localizable.circle(), font: UIFont.boldFont_14())
+        self.moreTextNode.setAttributdWith(string: R.string.localizable.to_view_more(), font: UIFont.normalFont_13(), color: Color.lightGray)
+    }
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        self.setPropertys()
         return ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .stretch, children: [
                 ASInsetLayoutSpec(insets: insetForHeader, child:
                     ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [

@@ -103,6 +103,11 @@ class RecommendBaseCellNode: ASCellNode {
         self.backgroundColor = Color.backGroundColor
     }
     
+    /// set value for property
+    func setPropertys() {
+        /// subclass to override it
+    }
+    
     // MARK: - LayoutSpec
     
     /// Avator corner layout spec
