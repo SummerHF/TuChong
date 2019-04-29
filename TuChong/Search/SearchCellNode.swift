@@ -27,7 +27,7 @@
 
 import AsyncDisplayKit
 
-class SearchCellNode: ASCellNode {
+class SearchCellNode: BaseCellNode {
     
     let index: Int
     let model: Search_Hot_Photographer_User
@@ -59,8 +59,6 @@ class SearchCellNode: ASCellNode {
         followNode = ASButtonNode()
         bottomLine = ASDisplayNode()
         super.init()
-        self.selectionStyle = .none
-        self.automaticallyManagesSubnodes = true
         self.rankingNode.isLayerBacked = true
         self.indexNode.isLayerBacked = true
         self.avatorNode.isLayerBacked = true
@@ -70,27 +68,24 @@ class SearchCellNode: ASCellNode {
         self.bottomLine.isLayerBacked = true
     }
     
-    override func didLoad() {
-        super.didLoad()
-        self.backgroundColor = Color.backGroundColor
+    override func setPropertys() {
         /// Ranking
         let style = NSMutableParagraphStyle()
         style.alignment = .center
         /// Make text vertical aligment `center`: use baselineOffset
         indexNode.attributedText = NSAttributedString(string: "\(index + 1)", attributes: [NSAttributedString.Key.font: UIFont.normalFont_13(),
-                                                                                       NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                                       NSAttributedString.Key.paragraphStyle : style,
-                                                                                       NSAttributedString.Key.baselineOffset: -8])
+                                                                                           NSAttributedString.Key.foregroundColor: UIColor.black,
+                                                                                           NSAttributedString.Key.paragraphStyle : style,
+                                                                                           NSAttributedString.Key.baselineOffset: -8])
         
         authorNameNode.attributedText = NSAttributedString(string: model.name, attributes: [NSAttributedString.Key.font: UIFont.boldFont_15(),
                                                                                             NSAttributedString.Key.foregroundColor: UIColor.black])
         authorNameNode.truncationMode = .byTruncatingTail
         authorNameNode.maximumNumberOfLines = 1
         authorVertificationNode.attributedText = NSAttributedString(string: model.description, attributes: [NSAttributedString.Key.font: UIFont.normalFont_12(),
-                                                                                            NSAttributedString.Key.foregroundColor: UIColor.black])
+                                                                                                            NSAttributedString.Key.foregroundColor: UIColor.black])
         authorVertificationNode.truncationMode = .byTruncatingTail
         authorVertificationNode.maximumNumberOfLines = 1
-
         /// Set rank image
         switch index {
         case 0:
@@ -118,7 +113,7 @@ class SearchCellNode: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
+        self.setPropertys()
         bottomLine.style.flexGrow = 1.0
         indexNode.style.preferredSize = CGSize(width: rankWidth, height: rankWidth)
         rankingNode.style.preferredSize = CGSize(width: rankWidth, height: rankWidth)
