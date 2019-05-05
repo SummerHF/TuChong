@@ -41,12 +41,12 @@ class TutorialDetailInfoTagBtnNode: ASButtonNode {
     let item: Recommend_Feedlist_Tags_Model
     let index: Int
     
-    private let floatWidth: CGFloat = 28
     private let fontSize: UIFont = UIFont.normalFont_14()
     private let btnNodeHeight: CGFloat = 24
     private let maxWidth: CGFloat = 200
     private let minWidth: CGFloat = 56.56
-    
+    private let floatWidth: CGFloat = 28
+
     private var btnNodeWidth: CGFloat {
         let width: CGFloat = item.tag_name.size(withAttributes: [NSAttributedString.Key.font: fontSize]).width + floatWidth
         if width > maxWidth {

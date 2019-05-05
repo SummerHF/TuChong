@@ -91,7 +91,7 @@ class SearchTableNode: ASTableNode {
         Network.request(target: .activity_event(page: 0), success: { response in
             group.leave()
             guard let model = Activity_Bottom_List_Model.deserialize(from: response) else { return }
-            self.hotEventList = Array(model.eventList[0...3])
+            self.hotEventList = Array(model.eventList[0...2])
         }, error: { _ in
             group.leave()
         }) { _ in
@@ -127,7 +127,7 @@ extension SearchTableNode: ASTableDataSource, ASTableDelegate {
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
         switch indexPath.section {
         case 0:
-            return ASCellNode()
+            return SearchHotCellNode(events: hotEventList, index: indexPath.row)
         default:
             return SearchCellNode(with: authorList[indexPath.row], index: indexPath.row)
         }
@@ -148,9 +148,12 @@ extension SearchTableNode: ASTableDataSource, ASTableDelegate {
         return TableSectionHeaderView.headerHeight
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return TableSectionHeaderView.footerHeight
+    }
+    
     /// When scrollView begin drag, end editing
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         _ = self.search?.endEditing(true)
-
     }
 }

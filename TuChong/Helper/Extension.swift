@@ -200,6 +200,10 @@ public extension UIFont {
         return UIFont.systemFont(ofSize: 12)
     }
     
+    static func thinFont_12() -> UIFont {
+        return UIFont.systemFont(ofSize: 12, weight: .thin)
+    }
+    
     static func normalFont_13() -> UIFont {
         return UIFont.systemFont(ofSize: 13)
     }

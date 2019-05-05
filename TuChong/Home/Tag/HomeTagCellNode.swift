@@ -99,7 +99,8 @@ class CollectionSectionHeaderNode: ASCellNode {
 class TableSectionHeaderView: UIView {
     
     static let headerHeight: CGFloat = 44
-    
+    static let footerHeight: CGFloat = 0.000001
+
     let headerTitle: String
     let titleNode: ASTextNode
     let separator: ASImageNode

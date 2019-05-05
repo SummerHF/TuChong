@@ -27,6 +27,73 @@
 
 import AsyncDisplayKit
 
+// MARK: - SearchHotCellNode
+
+class SearchHotCellNode: BaseCellNode {
+
+    private let events: [Activity_Events_Model]
+    private let index: Int
+    
+    private let spacing: CGFloat = 10
+    private let maxWidth: CGFloat = 200
+    private let minWidth: CGFloat = 56.56
+    private let floatWidth: CGFloat = 20
+    private let btnNodeHeight: CGFloat = 26
+    private let fontSize: UIFont = UIFont.normalFont_12()
+    
+    let insetForNodes: UIEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 0, right: 10)
+
+    init(events: [Activity_Events_Model], index: Int) {
+        self.events = events
+        self.index = index
+        super.init()
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let stack = ASStackLayoutSpec(direction: .horizontal, spacing: spacing, justifyContent: .start, alignItems: .start, children: createEventsNode())
+        stack.flexWrap = .wrap
+        stack.lineSpacing = spacing
+        return ASInsetLayoutSpec(insets: insetForNodes, child: stack)
+    }
+    
+    private func createEventsNode() -> [ASTextNode] {
+        var textNodeArray: [ASTextNode] = []
+        for item in events {
+            let textNode = ASTextNode()
+            let style = NSMutableParagraphStyle()
+            style.alignment = .center
+            textNode.attributedText = NSMutableAttributedString(string: item.tag_name, attributes: [
+                NSAttributedString.Key.font: fontSize,
+                NSAttributedString.Key.foregroundColor: Color.orangerColor,
+                NSAttributedString.Key.baselineOffset: -6,
+                NSAttributedString.Key.paragraphStyle: style
+                ])
+            textNode.style.preferredSize = CGSize(width: btnNodeWidth(tagname: item.tag_name), height: btnNodeHeight)
+            textNode.borderColor = Color.orangerColor.cgColor
+            textNode.borderWidth = 0.4
+            textNode.cornerRadius = btnNodeHeight / 2.0
+            textNode.cornerRoundingType = .defaultSlowCALayer
+            textNode.backgroundColor = Color.backGroundColor
+            textNodeArray.append(textNode)
+        }
+        return textNodeArray
+    }
+    
+    /// Caculate node width
+    private func btnNodeWidth(tagname: String) -> CGFloat {
+        let width: CGFloat = tagname.size(withAttributes: [NSAttributedString.Key.font: fontSize]).width + floatWidth
+        if width > maxWidth {
+            return maxWidth
+        } else if width < minWidth {
+            return minWidth
+        } else {
+            return width
+        }
+    }
+}
+
+// MARK: - SearchCellNode
+
 class SearchCellNode: BaseCellNode {
     
     let index: Int
@@ -82,7 +149,7 @@ class SearchCellNode: BaseCellNode {
                                                                                             NSAttributedString.Key.foregroundColor: UIColor.black])
         authorNameNode.truncationMode = .byTruncatingTail
         authorNameNode.maximumNumberOfLines = 1
-        authorVertificationNode.attributedText = NSAttributedString(string: model.description, attributes: [NSAttributedString.Key.font: UIFont.normalFont_12(),
+        authorVertificationNode.attributedText = NSAttributedString(string: model.description, attributes: [NSAttributedString.Key.font: UIFont.thinFont_12(),
                                                                                                             NSAttributedString.Key.foregroundColor: UIColor.black])
         authorVertificationNode.truncationMode = .byTruncatingTail
         authorVertificationNode.maximumNumberOfLines = 1
