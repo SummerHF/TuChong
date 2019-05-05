@@ -123,6 +123,10 @@ extension ActivityViewController: ActivityTableNodeProtocol {
             let destination = RecommendPhotographerViewController()
             destination.title = R.string.localizable.recommended_photographer()
             self.navigationController?.pushViewController(destination, animated: true)
+        case .lecture:
+            let destination = LectureViewController()
+            destination.title = R.string.localizable.lecture()
+            self.navigationController?.pushViewController(destination, animated: true)
         default:
             break
         }

@@ -41,8 +41,8 @@ class TutorialDetailProfileCell: BaseCellNode {
     
     private let avatorWidth: CGFloat = 36
     private let vertificationWidth: CGFloat = 12
-    private let insetForHeader = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-
+    private let insetForHeader = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    
     init(post model: Recommend_Feedlist_Eentry_Model, indexPath: IndexPath) {
         self.model = model
         self.index = indexPath
@@ -67,7 +67,6 @@ class TutorialDetailProfileCell: BaseCellNode {
             image.byRoundCornerRadius(image.size.width / 2.0)
         }
         self.vertificationImageNode.image = model.site.verified_image
-        self.viewCountBtnNode.setAttributdWith(string: "\(model.views) 阅读", font: UIFont.normalFont_13(), color: Color.lightGray, state: .normal)
     }
     
     override func setPropertys() {
@@ -77,6 +76,7 @@ class TutorialDetailProfileCell: BaseCellNode {
         self.nameTextNode.truncationMode = .byTruncatingTail
         self.nameTextNode.maximumNumberOfLines = 1
         self.publishTimeTextNode.setAttributdWith(string: model.published_at.offsetTime(), font: UIFont.normalFont_14(), color: Color.lightGray)
+        self.viewCountBtnNode.setAttributdWith(string: "\(model.views) 阅读", font: UIFont.normalFont_13(), color: Color.lightGray, state: .normal)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

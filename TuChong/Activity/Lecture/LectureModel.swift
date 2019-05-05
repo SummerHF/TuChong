@@ -1,7 +1,7 @@
-//  TutorialDetailWebViewCell.swift
+//  LectureModel.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/4/23.
+//  Created by SummerHF on 2019/5/5.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -25,33 +25,20 @@
 //  THE SOFTWARE.
 //
 
-import AsyncDisplayKit
+import Foundation
+import HandyJSON
 
-/// 教程详情 ---- 用户信息
-class TutorialDetailWebViewCell: BaseCellNode {
-    
-    private let webView: WebView
-    private let webViewHeight: CGFloat
-    
-    private let insetForWebView = UIEdgeInsets(top: -60, left: 0, bottom: 0, right: 0)
+struct Lecture_Vision_Tab_Model: HandyJSON {
+    var name: String = ""
+    var site_ids: String = ""
+}
 
-    /// using this container to wrap webView
-    lazy var webViewNode: ASDisplayNode = {
-        let webViewNode = ASDisplayNode(viewBlock: { [weak self] () -> UIView in
-            guard let `self` = self else { return UIView() }
-            return self.webView
-        })
-        return webViewNode
-    }()
+struct Lecture_Vision_Model: HandyJSON {
+    var result: String = ""
+    var tabs: [Lecture_Vision_Tab_Model] = []
     
-    init(webView: WebView, height: CGFloat) {
-        self.webView = webView
-        self.webViewHeight = height
-        super.init()
-    }
-    
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        self.webViewNode.style.maxHeight = ASDimension(unit: .points, value: self.webViewHeight)
-        return ASInsetLayoutSpec(insets: insetForWebView, child: self.webViewNode)
+    static func build(with dict: [String: Any]) -> Lecture_Vision_Tab_Model? {
+        guard let model = Lecture_Vision_Model.deserialize(from: dict) else { return nil }
+        return model.tabs.first
     }
 }

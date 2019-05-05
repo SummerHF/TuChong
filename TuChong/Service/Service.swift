@@ -57,6 +57,8 @@ enum TuChong {
     case activity_event(page: Int)
     /// 活动 - Banner - 推荐摄影师
     case activity_recommend_photographer(page: Int)
+    /// 活动 - Banner - 胶囊演讲
+    case activity_lecture_vision
     /// 搜索
     case search_hot(page: Int)
     /// 首页 ---- 教程
@@ -121,6 +123,8 @@ extension TuChong: TargetType {
             return "/4/events"
         case .activity_recommend_photographer:
             return "/users/hot"
+        case .activity_lecture_vision:
+            return "/vision/tabs"
         case .search_hot:
             return "/users/hot"
         case let .homepage(_, path, _):
@@ -147,6 +151,7 @@ extension TuChong: TargetType {
              .activity_event,
              .activity,
              .activity_recommend_photographer,
+             .activity_lecture_vision,
              .home_more,
              .launch_ad,
              .home_nav,
@@ -158,7 +163,7 @@ extension TuChong: TargetType {
     
     var task: Task {
         switch self {
-        case .home_more, .home_nav, .homepage_attention, .activity, .tutorial_profile, .tutorial_reward:
+        case .home_more, .home_nav, .homepage_attention, .activity, .tutorial_profile, .tutorial_reward, .activity_lecture_vision:
             return .requestPlain
         case let .homepage(_, _, parameters):
             if let para = parameters {
@@ -194,6 +199,7 @@ extension TuChong: TargetType {
              .activity_event,
              .activity,
              .activity_recommend_photographer,
+             .activity_lecture_vision,
              .home_more,
              .launch_ad,
              .home_nav,
@@ -213,7 +219,6 @@ extension TuChong: TargetType {
 struct Network {
     
     static let service = MoyaProvider<TuChong>()
-    
     /**
      Sending request with parameters.
      
