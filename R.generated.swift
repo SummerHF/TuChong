@@ -411,7 +411,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 37 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 38 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -429,6 +429,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let search_bar_placeholder = Rswift.StringResource(key: "search_bar_placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 关注
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let attention = Rswift.StringResource(key: "attention", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 取消
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -588,6 +592,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func search_bar_placeholder(_: Void = ()) -> String {
         return NSLocalizedString("search_bar_placeholder", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 关注
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func attention(_: Void = ()) -> String {
+        return NSLocalizedString("attention", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 取消

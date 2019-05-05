@@ -37,13 +37,15 @@ class RecommendPhotographerCell: BaseCellNode {
     let vertificationImageNode: ASImageNode
     let nameTextNode: ASTextNode
     let verifiedTextNode: ASTextNode
-    let focusBtnNode: ASButtonNode
+    let followNode: ASButtonNode
     
     /// size
     let avatorWidth: CGFloat = 32
     let vertificationWidth: CGFloat = 12
     let insetForHeader = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
     let insetForImages = UIEdgeInsets(top: 20, left: 20, bottom: 15, right: 20)
+    let followNodeWidth: CGFloat = 72
+    let followNodeHeight: CGFloat = 24
 
     init(author: Recommend_Feedlist_Site_Model, index: Int) {
         self.author = author
@@ -52,9 +54,9 @@ class RecommendPhotographerCell: BaseCellNode {
         self.vertificationImageNode = ASImageNode()
         self.nameTextNode = ASTextNode()
         self.verifiedTextNode = ASTextNode()
-        self.focusBtnNode = ASButtonNode()
+        self.followNode = ASButtonNode()
         super.init()
-        self.selectionStyle = .default
+        self.selectionStyle = .none
     }
     
     override func didLoad() {
@@ -64,6 +66,8 @@ class RecommendPhotographerCell: BaseCellNode {
             image.byRoundCornerRadius(image.size.width / 2.0)
         }
         self.vertificationImageNode.image = author.recommend_photographer_verified_image
+        self.followNode.setAttributdWith(string: R.string.localizable.attention(), font: UIFont.normalFont_13(), color: Color.flatWhite, state: .normal)
+        self.followNode.backgroundColor = Color.lineColor
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -76,15 +80,25 @@ class RecommendPhotographerCell: BaseCellNode {
     private func createHeaderLayoutSpec() -> ASLayoutSpec {
         self.avatorImageNode.style.preferredSize = CGSize(width: avatorWidth, height: avatorWidth)
         self.vertificationImageNode.style.preferredSize = CGSize(width: vertificationWidth, height: vertificationWidth)
+        self.followNode.add(cornerRadius: followNodeHeight / 2.0, backgroundColor: Color.backGroundColor, cornerRoundingType: .clipping)
+        
         return ASInsetLayoutSpec(insets: insetForHeader, child:
             ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [
             /// Whether verified
             author.recommend_photographer_verified ? (avatorCornerLayoutSpec()) : avatorImageNode,
-            userProfileLayoutSpec()
-            ])
-        )
+            userProfileLayoutSpec(),
+            ASLayoutSpec().styled({ (style) in
+                style.flexGrow = 1.0
+            }),
+            followNode.styled({ (style) in
+                style.preferredSize = CGSize(width: followNodeWidth, height: followNodeHeight)
+                style.spacingAfter = 0.0
+            })
+         ])
+       )
     }
     
+    /// Images layout
     private func createImageLayoutSpec() -> ASLayoutSpec {
         var imageNodes: [ASNetworkImageNode] = []
         let width = (macro.screenWidth - (insetForHeader.left + insetForHeader.right + CGFloat(author.images.count - 1) * 10.0)) / CGFloat(author.images.count)
