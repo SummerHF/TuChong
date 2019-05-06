@@ -79,6 +79,9 @@
 		C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */; };
 		C4DA8455227EB926007879EB /* LectureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA8454227EB926007879EB /* LectureViewController.swift */; };
 		C4DA8457227EBC69007879EB /* LectureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA8456227EBC69007879EB /* LectureModel.swift */; };
+		C4DA845A227EC9F1007879EB /* PhotographyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA8459227EC9F1007879EB /* PhotographyGroupViewController.swift */; };
+		C4DA845C227ED0F2007879EB /* PhotographyGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA845B227ED0F2007879EB /* PhotographyGroupModel.swift */; };
+		C4DA845E227ED683007879EB /* PhotographyGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA845D227ED683007879EB /* PhotographyGroupCell.swift */; };
 		C4DC5C19225DDEDE00985CE3 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC5C18225DDEDE00985CE3 /* ScrollView.swift */; };
 		C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */; };
 		C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */; };
@@ -168,6 +171,9 @@
 		C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellNode.swift; sourceTree = "<group>"; };
 		C4DA8454227EB926007879EB /* LectureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureViewController.swift; sourceTree = "<group>"; };
 		C4DA8456227EBC69007879EB /* LectureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureModel.swift; sourceTree = "<group>"; };
+		C4DA8459227EC9F1007879EB /* PhotographyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographyGroupViewController.swift; sourceTree = "<group>"; };
+		C4DA845B227ED0F2007879EB /* PhotographyGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographyGroupModel.swift; sourceTree = "<group>"; };
+		C4DA845D227ED683007879EB /* PhotographyGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographyGroupCell.swift; sourceTree = "<group>"; };
 		C4DC5C18225DDEDE00985CE3 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
@@ -468,9 +474,20 @@
 			path = Lecture;
 			sourceTree = "<group>";
 		};
+		C4DA8458227EC9E0007879EB /* PhotographyGroup */ = {
+			isa = PBXGroup;
+			children = (
+				C4DA8459227EC9F1007879EB /* PhotographyGroupViewController.swift */,
+				C4DA845B227ED0F2007879EB /* PhotographyGroupModel.swift */,
+				C4DA845D227ED683007879EB /* PhotographyGroupCell.swift */,
+			);
+			path = PhotographyGroup;
+			sourceTree = "<group>";
+		};
 		C4E57B3B224DB43D00F9D511 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				C4DA8458227EC9E0007879EB /* PhotographyGroup */,
 				C4DA8453227EB912007879EB /* Lecture */,
 				5341BFC72275DBED0095A6ED /* RecommendPhotographer */,
 				C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */,
@@ -668,6 +685,7 @@
 				C41A32C422601E09009AF4CF /* RecommendCellNode.swift in Sources */,
 				C4C8F469226DB170000D1231 /* TutorialModel.swift in Sources */,
 				C4F658A52249F0D700297EF4 /* HomeTagCellNode.swift in Sources */,
+				C4DA845A227EC9F1007879EB /* PhotographyGroupViewController.swift in Sources */,
 				C4827C3F2266BD60009E94C5 /* FollowViewUserLoginNode.swift in Sources */,
 				C462C003225F39C700AB91F1 /* CategoryViewController.swift in Sources */,
 				C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */,
@@ -685,6 +703,7 @@
 				C4A5024B2267035700867EBE /* RecommedTopicCollectionCellNode.swift in Sources */,
 				C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */,
 				C462BFFC225EE64700AB91F1 /* HomeSubViewController.swift in Sources */,
+				C4DA845C227ED0F2007879EB /* PhotographyGroupModel.swift in Sources */,
 				53F43F99224509DD007027AD /* LaunchManager.swift in Sources */,
 				C4C8F465226DA250000D1231 /* RecommendTutorialViewController.swift in Sources */,
 				C402B23E22696D64007746EB /* RecommendWallpaperViewController.swift in Sources */,
@@ -718,6 +737,7 @@
 				5358B10C226F5451006229CB /* TutorialDetailModel.swift in Sources */,
 				C43B9A56225C617100C15872 /* UserViewController.swift in Sources */,
 				C437F354226EA2D80017445F /* RecommendTutorialCell.swift in Sources */,
+				C4DA845E227ED683007879EB /* PhotographyGroupCell.swift in Sources */,
 				C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */,
 				C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */,
 				C402B23C22694C6D007746EB /* NavItemButton.swift in Sources */,

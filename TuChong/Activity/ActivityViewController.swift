@@ -118,7 +118,9 @@ extension ActivityViewController: ActivityTableNodeProtocol {
     func tableNode(node: ActivityTableNode, hasSelcted categoryType: ActivityCategoryType) {
         switch categoryType {
         case .club:
-            break
+            let destination = PhotographyGroupViewController()
+            destination.title = R.string.localizable.photography_club()
+            self.navigationController?.pushViewController(destination, animated: true)
         case .photographer:
             let destination = RecommendPhotographerViewController()
             destination.title = R.string.localizable.recommended_photographer()

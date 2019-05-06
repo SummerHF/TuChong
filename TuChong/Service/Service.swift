@@ -59,6 +59,8 @@ enum TuChong {
     case activity_recommend_photographer(page: Int)
     /// 活动 - Banner - 胶囊演讲
     case activity_lecture_vision
+    /// 活动 - Banner - 摄影小组
+    case activity_photography_group(parameters: [String: Any])
     /// 搜索
     case search_hot(page: Int)
     /// 首页 ---- 教程
@@ -94,7 +96,7 @@ extension TuChong: TargetType {
     
     var baseURL: URL {
         switch self {
-        case .home_more:
+        case .home_more, .activity_photography_group:
             return URL(string: "https://tuchong.com")!
         case let .homepage(baseURL, _, _):
             return URL(string: baseURL ?? "https://api.tuchong.com")!
@@ -125,6 +127,8 @@ extension TuChong: TargetType {
             return "/users/hot"
         case .activity_lecture_vision:
             return "/vision/tabs"
+        case .activity_photography_group:
+            return "/rest/groups-app/all"
         case .search_hot:
             return "/users/hot"
         case let .homepage(_, path, _):
@@ -152,6 +156,7 @@ extension TuChong: TargetType {
              .activity,
              .activity_recommend_photographer,
              .activity_lecture_vision,
+             .activity_photography_group,
              .home_more,
              .launch_ad,
              .home_nav,
@@ -180,6 +185,8 @@ extension TuChong: TargetType {
             return .requestParameters(parameters: [RequestparameterKey.page: page], encoding: URLEncoding.default)
         case .activity_recommend_photographer(page: let page):
             return .requestParameters(parameters: [RequestparameterKey.page: page], encoding: URLEncoding.default)
+        case let .activity_photography_group(parameters):
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .launch_ad:
             /// 启动图, 此处宽高写死
             return .requestParameters(parameters: ["height": "750", "width": "1334"], encoding: URLEncoding.default)
@@ -200,6 +207,7 @@ extension TuChong: TargetType {
              .activity,
              .activity_recommend_photographer,
              .activity_lecture_vision,
+             .activity_photography_group,
              .home_more,
              .launch_ad,
              .home_nav,
