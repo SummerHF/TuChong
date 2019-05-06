@@ -31,7 +31,7 @@ class PhotographyGroupViewController: BaseViewControlle {
     
     private let tableNode: ASTableNode
     
-    private var feedList: [Photography_Group_Item_ModeL] = []
+    private var feedList: [Photography_Group_Item_Model] = []
     private var page = 1
     private let count = 20
     
@@ -40,7 +40,7 @@ class PhotographyGroupViewController: BaseViewControlle {
     }()
     
     override init() {
-        tableNode = ASTableNode()
+        tableNode = ASTableNode(style: .grouped)
         super.init(node: tableNode)
     }
     
@@ -57,11 +57,13 @@ class PhotographyGroupViewController: BaseViewControlle {
     override func configureTableNode() {
         tableNode.view.separatorStyle = .none
         tableNode.dataSource = self
+        tableNode.delegate = self
+        tableNode.view.showsVerticalScrollIndicator = false
     }
     
     override func loadData() {
         Network.request(target: TuChong.activity_photography_group(parameters: parameters), success: { (responseData) in
-            self.feedList = Photography_Group_ModeL.build(with: responseData)
+            self.feedList = Photography_Group_Model.build(with: responseData)
             self.tableNode.reloadData()
         }, error: { (_) in
             
@@ -71,7 +73,7 @@ class PhotographyGroupViewController: BaseViewControlle {
     }
 }
 
-extension PhotographyGroupViewController: ASTableDataSource {
+extension PhotographyGroupViewController: ASTableDataSource, ASTableDelegate {
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return self.feedList.count
@@ -79,5 +81,17 @@ extension PhotographyGroupViewController: ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
         return PhotographyGroupCell(item: self.feedList[indexPath.row], index: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return TableSectionHeaderView(with: R.string.localizable.hot_group())
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return TableSectionHeaderView.headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return TableSectionHeaderView.footerHeight
     }
 }

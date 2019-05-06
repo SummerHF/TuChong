@@ -411,7 +411,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 38 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 40 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -433,6 +433,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let attention = Rswift.StringResource(key: "attention", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 加入
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let join = Rswift.StringResource(key: "join", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 取消
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -521,6 +525,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let hot_search_photographer_title = Rswift.StringResource(key: "hot_search_photographer_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 热门小组
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let hot_group = Rswift.StringResource(key: "hot_group", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 热门活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -599,6 +607,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func attention(_: Void = ()) -> String {
         return NSLocalizedString("attention", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 加入
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func join(_: Void = ()) -> String {
+        return NSLocalizedString("join", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 取消
@@ -753,6 +768,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func hot_search_photographer_title(_: Void = ()) -> String {
         return NSLocalizedString("hot_search_photographer_title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 热门小组
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func hot_group(_: Void = ()) -> String {
+        return NSLocalizedString("hot_group", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 热门活动

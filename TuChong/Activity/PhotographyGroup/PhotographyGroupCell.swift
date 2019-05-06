@@ -29,11 +29,15 @@ import AsyncDisplayKit
 
 class PhotographyGroupCell: BaseCellNode {
     
-    private let item: Photography_Group_Item_ModeL
+    private let item: Photography_Group_Item_Model
     private let index: Int
+    /// header
     private let imageNode: ASNetworkImageNode
     private let groupNameTextNode: ASTextNode
     private let groupInfoTextNode: ASTextNode
+    private let joinBtnNode: ASButtonNode
+    /// intro
+    private let introTextNode: ASTextNode
 
     var group_intro: String {
         return "\(item.members)成员  \(item.group_posts)作品"
@@ -42,42 +46,63 @@ class PhotographyGroupCell: BaseCellNode {
     private let groupNameTextNodeMaxWidth: CGFloat = 200
     private let imageNodeSize = CGSize(width: 40, height: 40)
     private let insetForInfo: UIEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+    private let joinBtnNodeSize: CGSize = CGSize(width: 60, height: 24)
 
-    init(item: Photography_Group_Item_ModeL, index: Int) {
+    init(item: Photography_Group_Item_Model, index: Int) {
         self.item = item
         self.index = index
         self.imageNode = ASNetworkImageNode()
         self.groupNameTextNode = ASTextNode()
         self.groupInfoTextNode = ASTextNode()
+        self.joinBtnNode = ASButtonNode()
+        self.introTextNode = ASTextNode()
         super.init()
+        self.selectionStyle = .none
         self.setPropertys()
     }
     
     override func setPropertys() {
         imageNode.style.preferredSize = imageNodeSize
         groupNameTextNode.setAttributdWith(string: item.name, font: UIFont.normalFont_16())
-        groupInfoTextNode.setAttributdWith(string: group_intro, font: UIFont.normalFont_13(), color: Color.lightGray)
+        groupInfoTextNode.setAttributdWith(string: group_intro, font: UIFont.normalFont_14(), color: Color.lightGray)
         groupNameTextNode.maximumNumberOfLines = 2
         groupNameTextNode.style.maxWidth = ASDimensionMakeWithPoints(groupNameTextNodeMaxWidth)
+        
+        /// intro
+        introTextNode.setAttributdWith(string: item.description, font: UIFont.normalFont_13(), color: Color.lightGray)
+        introTextNode.maximumNumberOfLines = 2
+        introTextNode.truncationMode = .byTruncatingTail
     }
     
     override func didLoad() {
         super.didLoad()
-        self.imageNode.url = URL(string: item.icon)
+        self.imageNode.url = URL(string: item.icon_url)
+        self.joinBtnNode.setAttributdWith(string: R.string.localizable.join(), font: UIFont.normalFont_14(), color: Color.backGroundColor, state: .normal)
+        self.joinBtnNode.backgroundColor = Color.lineColor
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let stackLayoutSpec = ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
-            createLayoutForHeader()
+            createLayoutForHeader(),
+            introTextNode,
+            createImageLayoutSpec()
             ])
         return ASInsetLayoutSpec(insets: insetForInfo, child: stackLayoutSpec)
     }
     
     /// Header layout
     private func createLayoutForHeader() -> ASLayoutSpec {
+        joinBtnNode.add(cornerRadius: joinBtnNodeSize.height / 2.0, backgroundColor: Color.backGroundColor, cornerRoundingType: .clipping)
         return ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [
                 self.imageNode,
-                self.createLayoutForGroupInfo()
+                self.createLayoutForGroupInfo(),
+                ASLayoutSpec().styled({ (style) in
+                    style.flexGrow = 1.0
+                }),
+                self.joinBtnNode.styled({ (style) in
+                    style.spacingAfter = 0.0
+                    style.preferredSize = joinBtnNodeSize
+                })
             ])
     }
     
@@ -93,5 +118,20 @@ class PhotographyGroupCell: BaseCellNode {
             })
             ]
         )
+    }
+    
+    /// Images layout
+    private func createImageLayoutSpec() -> ASLayoutSpec {
+        let spacing: CGFloat = 4.0
+        let count = 3
+        var imageNodes: [ASNetworkImageNode] = []
+        let width = (macro.screenWidth - (insetForInfo.left + insetForInfo.right + CGFloat(count - 1) * spacing)) / CGFloat(count)
+        for item in item.posts_list {
+            let imageNode = ASNetworkImageNode()
+            imageNode.style.preferredSize = CGSize(width: width, height: width)
+            imageNode.url = URL(string: item.cover_image.url)
+            imageNodes.append(imageNode)
+        }
+        return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: ASStackLayoutSpec(direction: .horizontal, spacing: spacing, justifyContent: .start, alignItems: .stretch, children: imageNodes))
     }
 }

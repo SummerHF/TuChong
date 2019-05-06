@@ -28,7 +28,7 @@
 import Foundation
 import HandyJSON
 
-struct Photography_Group_Post_Image_ModeL: HandyJSON {
+struct Photography_Group_Post_Image_Model: HandyJSON {
     var img_id: Int = 0
     var user_id: Int = 0
     var title: String = ""
@@ -39,7 +39,7 @@ struct Photography_Group_Post_Image_ModeL: HandyJSON {
     var url: String = ""
 }
 
-struct Photography_Group_Post_ModeL: HandyJSON {
+struct Photography_Group_Post_Model: HandyJSON {
     var post_id: String = ""
     var type: String = ""
     var url: String = ""
@@ -58,11 +58,11 @@ struct Photography_Group_Post_ModeL: HandyJSON {
     var shares: Int = 0
     var title: String = ""
     var image_count: Int = 0
-    var cover_image: Photography_Group_Post_Image_ModeL = Photography_Group_Post_Image_ModeL()
-    var images: [Photography_Group_Post_Image_ModeL] = []
+    var cover_image: Photography_Group_Post_Image_Model = Photography_Group_Post_Image_Model()
+    var images: [Photography_Group_Post_Image_Model] = []
 }
 
-struct Photography_Group_Item_ModeL: HandyJSON {
+struct Photography_Group_Item_Model: HandyJSON {
     var site_id: String = ""
     var type: String = ""
     var name: String = ""
@@ -85,22 +85,26 @@ struct Photography_Group_Item_ModeL: HandyJSON {
     var verifications: Int = 0
     var verification_list: [String] = []
     var joined: Bool = false
-    var post_list: [Photography_Group_Post_ModeL] = []
+    var posts_list: [Photography_Group_Post_Model] = []
+    
+    var icon_url: String {
+        return NSString(string: icon).contains("l_n_0") ? macro.staticReplaceAvatorPlaceHolderForGroupURL : icon
+    }
 }
 
-struct Photography_Group_Info_ModeL: HandyJSON {
+struct Photography_Group_Info_Model: HandyJSON {
     var more: Bool = false
     var before_timestamp: String = ""
-    var group_list: [Photography_Group_Item_ModeL] = []
+    var group_list: [Photography_Group_Item_Model] = []
 }
 
-struct Photography_Group_ModeL: HandyJSON {
+struct Photography_Group_Model: HandyJSON {
     var message: String = ""
     var result: String = ""
-    var data: Photography_Group_Info_ModeL = Photography_Group_Info_ModeL()
+    var data: Photography_Group_Info_Model = Photography_Group_Info_Model()
     
-    static func build(with dict: [String: Any]) -> [Photography_Group_Item_ModeL] {
-        guard let model = Photography_Group_ModeL.deserialize(from: dict) else { return [] }
+    static func build(with dict: [String: Any]) -> [Photography_Group_Item_Model] {
+        guard let model = Photography_Group_Model.deserialize(from: dict) else { return [] }
         return model.data.group_list
     }
 }

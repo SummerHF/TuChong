@@ -136,7 +136,7 @@ class TableSectionHeaderView: UIView {
             make.left.equalTo(separator.view.snp.right).offset(8)
             make.centerY.equalTo(separator.view)
             make.right.equalToSuperview().offset(-10)
-            make.height.equalTo(separator.view.snp.height)
+            make.height.equalTo(14)
         }
     }
 }

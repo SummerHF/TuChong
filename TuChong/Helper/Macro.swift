@@ -147,6 +147,10 @@ struct Macro {
         return "https://ws4.sinaimg.cn/large/006tNc79ly1g2i48swxpjj301c01c0es.jpg"
     }
 
+    /// 用户未设置图像时, 其占位图, 原图为gif, 替换为jpeg
+    var staticReplaceAvatorPlaceHolderForGroupURL: String {
+        return "https://ws3.sinaimg.cn/large/006tNc79ly1g2rdd80bqsj30230230mi.jpg"
+    }
 }
 
 let macro = Macro()
