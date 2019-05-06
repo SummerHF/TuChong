@@ -50,10 +50,4 @@ class ProfileCoverCollectionNodeCell: BaseCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: self.imageNode)
     }
-    
-    override func didEnterVisibleState() {
-        super.didEnterVisibleState()
-        printLog(UIScreen.main.bounds)
-        printLog(self.frame)
-    }
 }

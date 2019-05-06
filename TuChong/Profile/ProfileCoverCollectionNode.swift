@@ -62,25 +62,13 @@ class ProfileCoverCollectionNode: ASCollectionNode {
         "https://photo.tuchong.com/5651394/f/227542664.jpg",
         "https://photo.tuchong.com/5651394/f/443156084.jpg"
         ]
-        /// Whether need to launch `Timer`
-        if self.cover.images.count > 1 {
-            let timer = Timer(timeInterval: 2.0, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
-            /// add timer to runloop
-            RunLoop.current.add(timer, forMode: .common)
-            timer.fire()
-            self.timer = timer
-        }
         self.reloadData()
-    }
-    
-    /// Close Timer
-    func shutdownTimerImmediate() {
-        self.timer?.invalidate()
-        self.timer = nil
     }
     
     /// Change cover
     @objc private func timerEvent() {
+        /// if imageCount less than `1`, shut down `Timer`
+        guard self.cover.images.count > 1 else { return }
         cover_index += 1
         if cover_index < self.cover.images.count {
             self.scrollToItem(at: IndexPath(row: cover_index, section: 0), at: UICollectionView.ScrollPosition.left, animated: true)
@@ -88,6 +76,21 @@ class ProfileCoverCollectionNode: ASCollectionNode {
             cover_index = 0
             self.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.right, animated: false)
         }
+    }
+    
+    override func didEnterVisibleState() {
+        super.didEnterVisibleState()
+        /// Create Timer
+        let timer = Timer(timeInterval: 2.0, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
+        /// add timer to runloop
+        RunLoop.current.add(timer, forMode: .common)
+        self.timer = timer
+    }
+    
+    /// Close Timer
+    func shutdownTimerImmediate() {
+        self.timer?.invalidate()
+        self.timer = nil
     }
 }
 
