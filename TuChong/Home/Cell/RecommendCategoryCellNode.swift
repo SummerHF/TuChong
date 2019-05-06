@@ -27,7 +27,18 @@
 
 import AsyncDisplayKit
 
-class RecommendCategoryCellNode: ASCellNode {
+// MARK: - RecommendCategoryCellNodeProtocol
+
+protocol RecommendCategoryCellNodeProtocol: NSObjectProtocol {
+    /// user has touched avator image node
+    func avatorImageNodeTouchEvent(with site_id: String)
+}
+
+// MARK: - RecommendCategoryCellNode
+
+class RecommendCategoryCellNode: BaseCellNode {
+    
+    weak var delegate: RecommendCategoryCellNodeProtocol?
     
     let postListItem: Recommend_Feedlist_Eentry_Model
     let index: Int
@@ -43,9 +54,10 @@ class RecommendCategoryCellNode: ASCellNode {
     let insetForImageCountBtnNode: UIEdgeInsets = UIEdgeInsets(top: 5, left: CGFloat.infinity, bottom: CGFloat.infinity, right: 5)
     let imageCountBtnNodeBackgroundImageSize = CGSize(width: 18, height: 18)
     
-    init(with postListItem: Recommend_Feedlist_Eentry_Model, at index: Int) {
+    init(with postListItem: Recommend_Feedlist_Eentry_Model, at index: Int, with delegate: RecommendCategoryCellNodeProtocol) {
         self.postListItem = postListItem
         self.index = index
+        self.delegate = delegate
         self.imageNode = ASNetworkImageNode()
         self.avatorImageNode = ASNetworkImageNode()
         self.vertificationImageNode = ASImageNode()
@@ -53,7 +65,6 @@ class RecommendCategoryCellNode: ASCellNode {
         self.favoriteBtnNode = ASButtonNode()
         self.imageCountBtnNode = ASButtonNode()
         super.init()
-        self.automaticallyManagesSubnodes = true
         self.nameTextNode.isLayerBacked = true
         self.vertificationImageNode.isLayerBacked = true
     }
@@ -79,12 +90,13 @@ class RecommendCategoryCellNode: ASCellNode {
         if postListItem.favorites > 0 {
             self.favoriteBtnNode.setAttributdWith(string: "\(postListItem.favorites)", font: UIFont.normalFont_10(), state: .normal)
         }
-        
         if postListItem.image_count > 0 {
             let image = UIImage.init(color: RGBA(R: 0, G: 0, B: 0, A: 0.5), size: imageCountBtnNodeBackgroundImageSize)?.byRoundCornerRadius(imageCountBtnNodeBackgroundImageSize.width / 2.0)
             self.imageCountBtnNode.setAttributdWith(string: "\(postListItem.image_count)", font: UIFont.normalFont_10(), color:Color.flatWhite,  state: .normal)
             self.imageCountBtnNode.setBackgroundImage(image, for: .normal)
         }
+        /// add target events
+        self.avatorImageNode.addTarget(self, action: #selector(avatorImageNodeTouchEvent), forControlEvents: .touchUpInside)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -140,5 +152,9 @@ class RecommendCategoryCellNode: ASCellNode {
         let layoutSpec = ASCornerLayoutSpec(child: avatorImageNode, corner: vertificationImageNode, location: ASCornerLayoutLocation.bottomRight)
         layoutSpec.offset = CGPoint(x: -5, y: -5)
         return layoutSpec
+    }
+    
+    @objc private func avatorImageNodeTouchEvent() {
+        self.delegate?.avatorImageNodeTouchEvent(with: postListItem.site_id)
     }
 }

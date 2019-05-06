@@ -96,10 +96,18 @@ extension CategoryViewController: ASCollectionDataSource, CategoryFlowLayoutDele
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
-        return RecommendCategoryCellNode(with: post_list[indexPath.row], at: indexPath.row)
+        return RecommendCategoryCellNode(with: post_list[indexPath.row], at: indexPath.row, with: self)
     }
     
     func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
         return 1
+    }
+}
+
+extension CategoryViewController: RecommendCategoryCellNodeProtocol {
+    
+    func avatorImageNodeTouchEvent(with site_id: String) {
+        let profile = ProfileViewController(with: site_id)
+        self.navigationController?.pushViewController(profile, animated: true)
     }
 }
