@@ -71,6 +71,8 @@ enum TuChong {
     case tutorial_reward(post_id: String)
     /// 教程 ---- 用户评论
     case tutorial_comments(post_id: String, parameters: [String: Any])
+    /// 用户 ---- Site
+    case profile_site(site_id: String)
 }
 
 extension TuChong: TargetType {
@@ -141,6 +143,8 @@ extension TuChong: TargetType {
             return "/posts/\(post_id)/rewards"
         case let .tutorial_comments(post_id, _):
             return "/2/posts/\(post_id)/comments"
+        case let .profile_site(site_id):
+            return "/2/sites/\(site_id)"
         }
     }
     
@@ -161,14 +165,15 @@ extension TuChong: TargetType {
              .launch_ad,
              .home_nav,
              .homepage_attention,
-             .homepage_recommend:
+             .homepage_recommend,
+             .profile_site:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .home_more, .home_nav, .homepage_attention, .activity, .tutorial_profile, .tutorial_reward, .activity_lecture_vision:
+        case .home_more, .home_nav, .homepage_attention, .activity, .tutorial_profile, .tutorial_reward, .activity_lecture_vision, .profile_site:
             return .requestPlain
         case let .homepage(_, _, parameters):
             if let para = parameters {
@@ -216,8 +221,9 @@ extension TuChong: TargetType {
              .tutorial_profile,
              .tutorial_reward,
              .tutorial_comments,
-             .homepage_recommend:
-            return "Half measures are as bad as nothing at all.".utf8Encoded
+             .homepage_recommend,
+             .profile_site:
+             return "Half measures are as bad as nothing at all.".utf8Encoded
         }
     }
 }

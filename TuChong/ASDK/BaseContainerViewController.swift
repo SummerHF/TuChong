@@ -130,6 +130,15 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
     
     /// Base method, subclass to implement it
     func configureTableNode() { }
+    
+    /// Base method, subclass to implement it
+    func addSubNodes() { }
+    
+    /// Base method, subclass to implement it
+    func layoutSubNodes() { }
+    
+    /// Base method, subclass to implement it
+    func configuration() { }
 }
 
 extension BaseViewControlle: NavigationBarManagerMent, CommenNavigationBarDelegate {

@@ -30,12 +30,23 @@ import AsyncDisplayKit
 class ProfileViewController: BaseViewControlle {
     
     private let site_id: String
+    private var profile: ProfileModel = ProfileModel()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    /// cover node
+    lazy var coverCollectionNode: ProfileCoverCollectionNode = {
+        let coverCollectionNode = ProfileCoverCollectionNode(site_id: site_id)
+        return coverCollectionNode
+    }()
     
     /// Create `Profile` with site_id
     init(with site_id: String) {
         self.site_id = site_id
         super.init()
-//        https://api.tuchong.com/2/sites/1474557
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,10 +54,42 @@ class ProfileViewController: BaseViewControlle {
     }
     
     override func viewDidLoad() {
-      super.viewDidLoad()
+       super.viewDidLoad()
+       self.addSubNodes()
+       self.loadData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.coverCollectionNode.shutdownTimerImmediate()
+    }
+    
+    override func addSubNodes() {
+        self.node.addSubnode(coverCollectionNode)
+    }
+    
+    override func loadData() {
+        Network.request(target: TuChong.profile_site(site_id: site_id), success: { (responseData) in
+            guard let model = ProfileModel.deserialize(from: responseData) else { return }
+            self.profile = model
+            self.configuration()
+        }, error: { (_) in
+            
+        }) { (_) in
+            
+        }
+    }
+    
+    override func configuration() {
+        self.coverCollectionNode.configureWith(cover: self.profile.cover)
     }
     
     override func initialHidden() -> Bool {
         return true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.coverCollectionNode.frame = self.node.bounds
     }
 }

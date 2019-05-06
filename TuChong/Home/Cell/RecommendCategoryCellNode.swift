@@ -155,6 +155,6 @@ class RecommendCategoryCellNode: BaseCellNode {
     }
     
     @objc private func avatorImageNodeTouchEvent() {
-        self.delegate?.avatorImageNodeTouchEvent(with: postListItem.site_id)
+        self.delegate?.avatorImageNodeTouchEvent(with: postListItem.site.site_id)
     }
 }
