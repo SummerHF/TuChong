@@ -87,7 +87,7 @@ class ProfileCoverCollectionNode: ASCollectionNode {
                 section_index = 0
                 self.scrollToItem(at: IndexPath(item: cover_index, section: section_index), at: UICollectionView.ScrollPosition.left, animated: false)
             } else {
-                self.scrollToItem(at: IndexPath(item: cover_index, section: section_index), at: UICollectionView.ScrollPosition.right, animated: true)
+                self.scrollToItem(at: IndexPath(item: cover_index, section: section_index), at: UICollectionView.ScrollPosition.left, animated: true)
             }
         }
     }
