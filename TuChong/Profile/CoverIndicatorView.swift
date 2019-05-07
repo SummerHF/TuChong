@@ -36,7 +36,7 @@ class CoverIndicatorView: UIView {
     
     var bgColor: UIColor {
         get {
-            return RGBA(R: 190, G: 180, B: 180)
+            return RGBA(R: 133, G: 133, B: 135, A: 0.6)
         }
         set {
             self.backgroundColor = newValue
@@ -45,7 +45,7 @@ class CoverIndicatorView: UIView {
     
     var indicatorBgColor: UIColor {
         get {
-            return RGBA(R: 222, G: 199, B: 182)
+            return Color.flatWhite
         }
         set {
             self.indicator.backgroundColor = newValue
@@ -60,6 +60,19 @@ class CoverIndicatorView: UIView {
         super.init(frame: frame)
         self.backgroundColor = bgColor
         self.indicator.backgroundColor = indicatorBgColor
+        self.indicator.frame = CGRect(x: 0, y: 0, width: 0, height: frame.size.height)
         self.addSubview(indicator)
+        self.layer.cornerRadius = frame.size.height / 2.0
+        self.clipsToBounds = true
+    }
+    
+    func triggerAnimation(with percent: CGFloat, animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.5) {
+                self.indicator.width = self.width * percent
+            }
+        } else {
+            self.indicator.width = self.width * percent
+        }
     }
 }

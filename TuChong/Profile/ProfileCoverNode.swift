@@ -17,7 +17,7 @@ class ProfileCoverNode: ASDisplayNode {
     
     var cover: Profile_Cover_Model = Profile_Cover_Model()
     var timer: Timer?
-    var index: Int = 0
+    var index: Int = 1
     
     /// only have one image
     lazy var imageNode: ASNetworkImageNode = {
@@ -34,8 +34,18 @@ class ProfileCoverNode: ASDisplayNode {
     
     /// indicator
     lazy var indicator: CoverIndicatorView = {
-        let indicator = CoverIndicatorView(frame: CGRect(x: 0, y: macro.statusBarHeight, width: macro.screenWidth, height: 1.0))
+        let x: CGFloat = 20
+        let y: CGFloat = macro.statusBarHeight + 1.0
+        let width: CGFloat = macro.screenWidth - x * 2
+        let indicator = CoverIndicatorView(frame: CGRect(x: x, y: y, width: width, height: 1.8))
         return indicator
+    }()
+    
+    /// shadowImage
+    lazy var shadowImage: ASImageNode = {
+        let shadowImage = ASImageNode()
+        shadowImage.contentMode = .scaleAspectFill
+        return shadowImage
     }()
     
     init(site_id: String) {
@@ -75,6 +85,11 @@ class ProfileCoverNode: ASDisplayNode {
             self.collectionNode.configureWith(covers: self.cover.images)
             self.collectionNode.frame = UIScreen.main.bounds
             self.addSubnode(collectionNode)
+            /// add shadow
+//            self.shadowImage.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.topHeight)
+//            self.addSubnode(shadowImage)
+            /// add indicator
+            self.view.addSubview(indicator)
             /// set timer
             let timer = Timer(timeInterval: 1.5, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
             /// add timer to runloop
@@ -86,6 +101,17 @@ class ProfileCoverNode: ASDisplayNode {
     /// Change cover image
     @objc private func timerEvent() {
         self.collectionNode.triggerAnimation()
+        /// indcator
+        index += 1
+        let count = self.cover.images.count
+        if index <= count {
+            let percent = CGFloat(index) / CGFloat(count)
+            self.indicator.triggerAnimation(with: percent, animated: true)
+        } else {
+            index = 1
+            let percent = CGFloat(index) / CGFloat(count)
+            self.indicator.triggerAnimation(with: percent, animated: false)
+        }
     }
     
     /// Close Timer

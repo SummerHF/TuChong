@@ -34,7 +34,7 @@ class ProfileCoverCollectionNode: ASCollectionNode {
     let flowLayout: UICollectionViewFlowLayout
     
     /// infinite scroll
-    private let section: Int = 20000
+    private let section: Int = 400
     private var cover_index: Int = 0
     private var section_index: Int = 0
 
@@ -61,17 +61,6 @@ class ProfileCoverCollectionNode: ASCollectionNode {
     
     func configureWith(covers: [String]) {
         self.covers = covers
-        self.covers = [
-        "https://photo.tuchong.com/5651394/f/110495284.jpg",
-        "https://photo.tuchong.com/5651394/f/519964289.jpg",
-        "https://photo.tuchong.com/5651394/f/92735104.jpg",
-        "https://photo.tuchong.com/5651394/f/631899724.jpg",
-        "https://photo.tuchong.com/5651394/f/382273140.jpg",
-        "https://photo.tuchong.com/5651394/f/262801012.jpg",
-        "https://photo.tuchong.com/5651394/f/326043254.jpg",
-        "https://photo.tuchong.com/5651394/f/227542664.jpg",
-        "https://photo.tuchong.com/5651394/f/443156084.jpg"
-        ]
         self.reloadData()
     }
     
