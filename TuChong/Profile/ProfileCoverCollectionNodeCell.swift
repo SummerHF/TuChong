@@ -26,28 +26,30 @@
 //
 
 import AsyncDisplayKit
+import Kingfisher
 
 class ProfileCoverCollectionNodeCell: BaseCellNode {
     
     private let cover: String
     private let index: Int
     
-    private let imageNode: ASNetworkImageNode
+    private let imageView: UIImageView
+    private let placeHolderImage: UIImage = UIImage.init(color: Color.thinGray)!
     
     init(with cover: String, index: Int) {
         self.cover = cover
         self.index = index
-        self.imageNode = ASNetworkImageNode()
+        self.imageView = UIImageView()
         super.init()
         self.backgroundColor = Color.backGroundColor
-    }
-    
-    override func didLoad() {
-        self.imageNode.url = URL(string: cover)
-        self.imageNode.contentMode = .scaleAspectFill
+        self.imageView.contentMode = .scaleAspectFill
+        self.imageView.kf.setImage(with: URL(string: cover))
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: self.imageNode)
+        let imageNode = ASDisplayNode { () -> UIView in
+            return self.imageView
+        }
+        return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: imageNode)
     }
 }

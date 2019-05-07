@@ -80,6 +80,7 @@
 		C4C8F469226DB170000D1231 /* TutorialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8F468226DB170000D1231 /* TutorialModel.swift */; };
 		C4CBE21C2255A9260074F58A /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21B2255A9260074F58A /* SearchModel.swift */; };
 		C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */; };
+		C4D91A092281139A00D7D197 /* CoverIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D91A082281139A00D7D197 /* CoverIndicatorView.swift */; };
 		C4DA8455227EB926007879EB /* LectureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA8454227EB926007879EB /* LectureViewController.swift */; };
 		C4DA8457227EBC69007879EB /* LectureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA8456227EBC69007879EB /* LectureModel.swift */; };
 		C4DA845A227EC9F1007879EB /* PhotographyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA8459227EC9F1007879EB /* PhotographyGroupViewController.swift */; };
@@ -177,6 +178,7 @@
 		C4C8F468226DB170000D1231 /* TutorialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialModel.swift; sourceTree = "<group>"; };
 		C4CBE21B2255A9260074F58A /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		C4CBE21D2255F3E10074F58A /* SearchCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellNode.swift; sourceTree = "<group>"; };
+		C4D91A082281139A00D7D197 /* CoverIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverIndicatorView.swift; sourceTree = "<group>"; };
 		C4DA8454227EB926007879EB /* LectureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureViewController.swift; sourceTree = "<group>"; };
 		C4DA8456227EBC69007879EB /* LectureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureModel.swift; sourceTree = "<group>"; };
 		C4DA8459227EC9F1007879EB /* PhotographyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographyGroupViewController.swift; sourceTree = "<group>"; };
@@ -235,11 +237,12 @@
 		531051A0227F113D00DDF968 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C4F3A5FC227FD6D6006614D1 /* ProfileModel.swift */,
+				C4D91A082281139A00D7D197 /* CoverIndicatorView.swift */,
 				53EF8E82228065BD00347ECA /* ProfileCoverNode.swift */,
+				53DD615A227F128500FA969E /* ProfileViewController.swift */,
 				C4B2714A2280070800EA9131 /* ProfileCoverCollectionNodeCell.swift */,
 				C4F3A5FE227FE3AA006614D1 /* ProfileCoverCollectionNode.swift */,
-				53DD615A227F128500FA969E /* ProfileViewController.swift */,
-				C4F3A5FC227FD6D6006614D1 /* ProfileModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
@@ -645,6 +649,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
@@ -727,6 +732,7 @@
 				C43B47982271A02100D2B970 /* TutoriaDetailInfoCell.swift in Sources */,
 				C4F3A5FD227FD6D6006614D1 /* ProfileModel.swift in Sources */,
 				C4A5024B2267035700867EBE /* RecommedTopicCollectionCellNode.swift in Sources */,
+				C4D91A092281139A00D7D197 /* CoverIndicatorView.swift in Sources */,
 				C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */,
 				C462BFFC225EE64700AB91F1 /* HomeSubViewController.swift in Sources */,
 				C4DA845C227ED0F2007879EB /* PhotographyGroupModel.swift in Sources */,
@@ -933,7 +939,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G6WGUJ4M73;
 				INFOPLIST_FILE = TuChong/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -956,7 +962,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G6WGUJ4M73;
 				INFOPLIST_FILE = TuChong/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -30,11 +30,16 @@ import AsyncDisplayKit
 class ProfileCoverCollectionNode: ASCollectionNode {
     
     let site_id: String
-    var cover: Profile_Cover_Model = Profile_Cover_Model()
+    var covers: [String] = []
     var cover_index: Int = 0
     let flowLayout: UICollectionViewFlowLayout
     
-    var timer: Timer?
+    lazy var rangeTuningParameters: ASRangeTuningParameters = {
+        var rangeTuningParameters = ASRangeTuningParameters()
+        rangeTuningParameters.leadingBufferScreenfuls = 1.0
+        rangeTuningParameters.trailingBufferScreenfuls = 0.5
+        return rangeTuningParameters
+    }()
     
     init(site_id: String) {
         self.site_id = site_id
@@ -47,11 +52,12 @@ class ProfileCoverCollectionNode: ASCollectionNode {
         self.delegate = self
         self.showsHorizontalScrollIndicator = false
         self.view.isScrollEnabled = false
+        self.setTuningParameters(rangeTuningParameters, for: .display)
     }
     
-    func configureWith(cover: Profile_Cover_Model) {
-        self.cover = cover
-        self.cover.images = [
+    func configureWith(covers: [String]) {
+        self.covers = covers
+        self.covers = [
         "https://photo.tuchong.com/5651394/f/110495284.jpg",
         "https://photo.tuchong.com/5651394/f/519964289.jpg",
         "https://photo.tuchong.com/5651394/f/92735104.jpg",
@@ -65,44 +71,26 @@ class ProfileCoverCollectionNode: ASCollectionNode {
         self.reloadData()
     }
     
-    /// Change cover
-    @objc private func timerEvent() {
-        /// if imageCount less than `1`, shut down `Timer`
-        guard self.cover.images.count > 1 else { return }
+    /// `Timer` trigger animation
+    func triggerAnimation() {
         cover_index += 1
-        if cover_index < self.cover.images.count {
-            self.scrollToItem(at: IndexPath(row: cover_index, section: 0), at: UICollectionView.ScrollPosition.left, animated: true)
+        if cover_index < self.covers.count {
+            self.scrollToItem(at: IndexPath(item: cover_index, section: 0), at: UICollectionView.ScrollPosition.left, animated: true)
         } else {
             cover_index = 0
-            self.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.right, animated: false)
+            self.scrollToItem(at: IndexPath(item: cover_index, section: 0), at: UICollectionView.ScrollPosition.left, animated: true)
         }
-    }
-    
-    override func didEnterVisibleState() {
-        super.didEnterVisibleState()
-        /// Create Timer
-        let timer = Timer(timeInterval: 2.0, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
-        /// add timer to runloop
-        RunLoop.current.add(timer, forMode: .common)
-        self.timer = timer
-    }
-    
-    /// Close Timer
-    func shutdownTimerImmediate() {
-        self.timer?.invalidate()
-        self.timer = nil
     }
 }
 
 extension ProfileCoverCollectionNode: ASCollectionDataSource, ASCollectionDelegate, ASCollectionDelegateFlowLayout {
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        return self.cover.images.count
-
+        return self.covers.count
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
-        return ProfileCoverCollectionNodeCell(with: self.cover.images[indexPath.row], index: indexPath.row)
+        return ProfileCoverCollectionNodeCell(with: self.covers[indexPath.row], index: indexPath.row)
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {

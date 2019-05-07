@@ -37,9 +37,9 @@ class ProfileViewController: BaseViewControlle {
     }
     
     /// cover node
-    lazy var coverCollectionNode: ProfileCoverCollectionNode = {
-        let coverCollectionNode = ProfileCoverCollectionNode(site_id: site_id)
-        return coverCollectionNode
+    lazy var profileCoverNode: ProfileCoverNode = {
+        let profileCoverNode = ProfileCoverNode(site_id: site_id)
+        return profileCoverNode
     }()
     
     /// Create `Profile` with site_id
@@ -61,11 +61,11 @@ class ProfileViewController: BaseViewControlle {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.coverCollectionNode.shutdownTimerImmediate()
+        self.profileCoverNode.shutdownTimerImmediate()
     }
     
     override func addSubNodes() {
-        self.node.addSubnode(coverCollectionNode)
+        self.node.addSubnode(profileCoverNode)
     }
     
     override func loadData() {
@@ -81,7 +81,7 @@ class ProfileViewController: BaseViewControlle {
     }
     
     override func configuration() {
-        self.coverCollectionNode.configureWith(cover: self.profile.cover)
+        self.profileCoverNode.configureWith(cover: self.profile.cover)
     }
     
     override func initialHidden() -> Bool {
@@ -90,6 +90,6 @@ class ProfileViewController: BaseViewControlle {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.coverCollectionNode.frame = self.node.bounds
+        self.profileCoverNode.frame = self.node.bounds
     }
 }

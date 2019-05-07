@@ -19,16 +19,25 @@ class ProfileCoverNode: ASDisplayNode {
     var timer: Timer?
     var index: Int = 0
     
-    lazy var firstImageNode: ASNetworkImageNode = {
+    /// only have one image
+    lazy var imageNode: ASNetworkImageNode = {
         let imageNode = ASNetworkImageNode()
+        imageNode.frame = UIScreen.main.bounds
         return imageNode
     }()
     
-    lazy var secondImageNode: ASNetworkImageNode = {
-        let imageNode = ASNetworkImageNode()
-        return imageNode
+    /// have more than one picture
+    lazy var collectionNode: ProfileCoverCollectionNode = {
+        let collectionNode = ProfileCoverCollectionNode(site_id: site_id)
+        return collectionNode
     }()
-
+    
+    /// indicator
+    lazy var indicator: CoverIndicatorView = {
+        let indicator = CoverIndicatorView(frame: CGRect(x: 0, y: macro.statusBarHeight, width: macro.screenWidth, height: 1.0))
+        return indicator
+    }()
+    
     init(site_id: String) {
         self.site_id = site_id
         super.init()
@@ -53,25 +62,21 @@ class ProfileCoverNode: ASDisplayNode {
     
     private func reloadData() {
         if self.cover.images.count == 0 {
+            /// do nothing
             printLog("cover iamge cont == 0")
         } else if self.cover.images.count == 1 {
             /// only have one picture
             /// 判断是否高大于宽, 是否有拉伸效果
             /// add subnode and set frame
-            self.addSubnode(firstImageNode)
-            firstImageNode.frame = UIScreen.main.bounds
+            imageNode.url = URL(string: self.cover.images.first!)
+            self.addSubnode(imageNode)
         } else {
-            /// add subnode and set frame
-            self.addSubnode(firstImageNode)
-            self.addSubnode(secondImageNode)
-            firstImageNode.frame = UIScreen.main.bounds
-            secondImageNode.frame = CGRect(x: macro.screenWidth, y: 0, width: macro.screenWidth, height: macro.screenHeight)
-            /// have more than one picture
-            self.firstImageNode.url = URL(string: self.cover.images[index])
-            index += 1
-            self.secondImageNode.url = URL(string: self.cover.images[index])
+            /// add collectionNode
+            self.collectionNode.configureWith(covers: self.cover.images)
+            self.collectionNode.frame = UIScreen.main.bounds
+            self.addSubnode(collectionNode)
             /// set timer
-            let timer = Timer(timeInterval: 1.0, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
+            let timer = Timer(timeInterval: 1.5, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
             /// add timer to runloop
             RunLoop.current.add(timer, forMode: .common)
             self.timer = timer
@@ -80,22 +85,7 @@ class ProfileCoverNode: ASDisplayNode {
     
     /// Change cover image
     @objc private func timerEvent() {
-        UIView.animate(withDuration: 1.0, animations: {
-            if self.firstImageNode.view.left > self.secondImageNode.view.left {
-                self.firstImageNode.view.left -= macro.screenWidth
-                self.secondImageNode.view.left -= macro.screenWidth
-            } else {
-                self.secondImageNode.view.left -= macro.screenWidth
-                self.firstImageNode.view.left -= macro.screenWidth
-            }
-        }) { _ in
-            if self.firstImageNode.view.left == -macro.screenWidth {
-                self.firstImageNode.view.left = macro.screenWidth
-            }
-            if self.secondImageNode.view.left == -macro.screenWidth {
-                self.secondImageNode.view.left = macro.screenWidth
-            }
-        }
+        self.collectionNode.triggerAnimation()
     }
     
     /// Close Timer

@@ -1,12 +1,12 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'TuChong' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   inhibit_all_warnings!
 
-pod 'Texture'
+pod 'Texture', '~> 2.8.1'
 # 网络
 pod 'Moya/RxSwift', '~> 12.0', :inhibit_warnings => true
 
@@ -21,5 +21,6 @@ pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chamel
 # 改用R.swift
 pod 'R.swift'
 pod 'pop'
+pod 'Kingfisher', '~> 5.4.0'
 
 end
