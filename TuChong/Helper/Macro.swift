@@ -83,6 +83,11 @@ struct Macro {
         return navigationBarHeight + statusBarHeight
     }
     
+    /// shadow height
+    var shadowHeight: CGFloat {
+        return 180
+    }
+    
     /// homenavHeight
     var homenavHeight: CGFloat {
         return 40

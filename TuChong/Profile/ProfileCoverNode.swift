@@ -44,7 +44,7 @@ class ProfileCoverNode: ASDisplayNode {
     /// shadowImage
     lazy var shadowImage: ASImageNode = {
         let shadowImage = ASImageNode()
-        shadowImage.contentMode = .scaleAspectFill
+//        shadowImage.image = R.image.cover()
         return shadowImage
     }()
     
@@ -86,7 +86,7 @@ class ProfileCoverNode: ASDisplayNode {
             self.collectionNode.frame = UIScreen.main.bounds
             self.addSubnode(collectionNode)
             /// add shadow
-//            self.shadowImage.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.topHeight)
+//            self.shadowImage.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.shadowHeight)
 //            self.addSubnode(shadowImage)
             /// add indicator
             self.view.addSubview(indicator)
