@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 48 images.
+  /// This `R.image` struct is generated, and contains static references to 51 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -118,6 +118,12 @@ struct R: Rswift.Validatable {
     static let plus_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus_white")
     /// Image `plus`.
     static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
+    /// Image `profile_back_black`.
+    static let profile_back_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_back_black")
+    /// Image `profile_back_white`.
+    static let profile_back_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_back_white")
+    /// Image `profile_dot`.
+    static let profile_dot = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_dot")
     /// Image `recommend_ cameraman`.
     static let recommend_Cameraman = Rswift.ImageResource(bundle: R.hostingBundle, name: "recommend_ cameraman")
     /// Image `red_envelopes`.
@@ -306,6 +312,21 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "plus_white", bundle: ..., traitCollection: ...)`
     static func plus_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.plus_white, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_back_black", bundle: ..., traitCollection: ...)`
+    static func profile_back_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_back_black, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_back_white", bundle: ..., traitCollection: ...)`
+    static func profile_back_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_back_white, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_dot", bundle: ..., traitCollection: ...)`
+    static func profile_dot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_dot, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "recommend_ cameraman", bundle: ..., traitCollection: ...)`

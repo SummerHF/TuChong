@@ -73,6 +73,8 @@ class BaseViewControlle: ASViewController<ASDisplayNode> {
         }
     }
     
+    var isRequestFinished: Bool = false
+    
     var loadingViewFrame: CGRect = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.screenHeight - macro.topHeight)
     
     /// 全局共用的navigationBar

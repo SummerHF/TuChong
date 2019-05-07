@@ -34,7 +34,7 @@ class ProfileCoverCollectionNode: ASCollectionNode {
     let flowLayout: UICollectionViewFlowLayout
     
     /// infinite scroll
-    private let section: Int = 400
+    private let section: Int = 50
     private var cover_index: Int = 0
     private var section_index: Int = 0
 

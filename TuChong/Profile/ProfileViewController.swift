@@ -33,13 +33,19 @@ class ProfileViewController: BaseViewControlle {
     private var profile: ProfileModel = ProfileModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return isRequestFinished ? .lightContent : .default
     }
     
     /// cover node
     lazy var profileCoverNode: ProfileCoverNode = {
         let profileCoverNode = ProfileCoverNode(site_id: site_id)
         return profileCoverNode
+    }()
+    
+    /// nav node
+    lazy var navBar: ProfileNavBar = {
+        let navBar = ProfileNavBar()
+        return navBar
     }()
     
     /// Create `Profile` with site_id
@@ -66,6 +72,7 @@ class ProfileViewController: BaseViewControlle {
     
     override func addSubNodes() {
         self.node.addSubnode(profileCoverNode)
+        self.view.addSubview(navBar)
     }
     
     override func loadData() {
@@ -81,7 +88,10 @@ class ProfileViewController: BaseViewControlle {
     }
     
     override func configuration() {
+        self.isRequestFinished = true
+        self.setNeedsStatusBarAppearanceUpdate()
         self.profileCoverNode.configureWith(cover: self.profile.cover)
+        self.navBar.configure(with: self.profile)
     }
     
     override func initialHidden() -> Bool {
@@ -91,5 +101,6 @@ class ProfileViewController: BaseViewControlle {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.profileCoverNode.frame = self.node.bounds
+        self.navBar.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.topHeight)
     }
 }
