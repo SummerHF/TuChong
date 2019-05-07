@@ -31,9 +31,13 @@ class ProfileCoverCollectionNode: ASCollectionNode {
     
     let site_id: String
     var covers: [String] = []
-    var cover_index: Int = 0
     let flowLayout: UICollectionViewFlowLayout
     
+    /// infinite scroll
+    private let section: Int = 20000
+    private var cover_index: Int = 0
+    private var section_index: Int = 0
+
     lazy var rangeTuningParameters: ASRangeTuningParameters = {
         var rangeTuningParameters = ASRangeTuningParameters()
         rangeTuningParameters.leadingBufferScreenfuls = 1.0
@@ -75,15 +79,25 @@ class ProfileCoverCollectionNode: ASCollectionNode {
     func triggerAnimation() {
         cover_index += 1
         if cover_index < self.covers.count {
-            self.scrollToItem(at: IndexPath(item: cover_index, section: 0), at: UICollectionView.ScrollPosition.left, animated: true)
+            self.scrollToItem(at: IndexPath(item: cover_index, section: section_index), at: UICollectionView.ScrollPosition.left, animated: true)
         } else {
             cover_index = 0
-            self.scrollToItem(at: IndexPath(item: cover_index, section: 0), at: UICollectionView.ScrollPosition.left, animated: true)
+            section_index += 1
+            if section_index >= self.section {
+                section_index = 0
+                self.scrollToItem(at: IndexPath(item: cover_index, section: section_index), at: UICollectionView.ScrollPosition.left, animated: false)
+            } else {
+                self.scrollToItem(at: IndexPath(item: cover_index, section: section_index), at: UICollectionView.ScrollPosition.right, animated: true)
+            }
         }
     }
 }
 
 extension ProfileCoverCollectionNode: ASCollectionDataSource, ASCollectionDelegate, ASCollectionDelegateFlowLayout {
+    
+    func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
+        return self.section
+    }
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
         return self.covers.count
