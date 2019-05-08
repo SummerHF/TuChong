@@ -27,13 +27,25 @@
 
 import AsyncDisplayKit
 
+enum ProfileBarStyle {
+    case light
+    case dark
+}
+
 class ProfileViewController: BaseViewControlle {
     
     private let site_id: String
     private var profile: ProfileModel = ProfileModel()
+    private var barStyle: ProfileBarStyle?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return isRequestFinished ? .lightContent : .default
+        if let barStyle = self.barStyle {
+            return barStyle == .light ? .lightContent : .default
+        } else if self.isRequestFinished {
+            return .lightContent
+        } else {
+            return .default
+        }
     }
     
     /// profile cover node
@@ -45,12 +57,14 @@ class ProfileViewController: BaseViewControlle {
     /// profile scrollView
     lazy var profileScrollView: ProfileScrollView = {
         let profileScrollView = ProfileScrollView()
+        profileScrollView.profileScrollViewDelegate = self
         return profileScrollView
     }()
     
     /// profile nav node
     lazy var navBar: ProfileNavBar = {
         let navBar = ProfileNavBar()
+        navBar.delegate = self
         return navBar
     }()
     
@@ -110,5 +124,23 @@ class ProfileViewController: BaseViewControlle {
         self.profileCoverNode.frame = self.node.bounds
         self.navBar.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.topHeight)
         self.profileScrollView.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.screenHeight)
+    }
+}
+
+// MARK: - ProfileScrollViewProtocol
+
+extension ProfileViewController: ProfileScrollViewProtocol {
+    
+    func scrollViewNeedToChange(_ barStyle: ProfileBarStyle) {
+        self.barStyle = barStyle
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.navBar.configureWith(statusBarStyle: barStyle)
+    }
+}
+
+extension ProfileViewController: ProfileNavBarProtocol {
+    
+    func navBarBackEvent(bar: ProfileNavBar) {
+        self.navigationController?.popViewController(animated: true)
     }
 }

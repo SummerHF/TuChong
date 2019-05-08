@@ -27,9 +27,12 @@
 
 import UIKit
 
+// MARK: - ProfileContainer
+
 class ProfileContainer: UIView {
     
     let topOffSet: CGFloat = macro.screenHeight * 0.75
+    let topMargin: CGFloat = macro.statusBarHeight + 20
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -43,17 +46,32 @@ class ProfileContainer: UIView {
     }
     
     private func setPropertys() {
-        let lable = UILabel(frame: CGRect(x: 0, y: 0, width: macro.screenWidth, height: 44))
+        let lable = UILabel(frame: CGRect(x: 0, y: 100, width: macro.screenWidth, height: 44))
         lable.text = "哈哈"
         lable.textColor = Color.thinBlack
         self.addSubview(lable)
     }
 }
 
+// MARK: - ProfileScrollViewDelegate
+
+protocol ProfileScrollViewProtocol: NSObjectProtocol {
+    func scrollViewNeedToChange(_ barStyle: ProfileBarStyle)
+}
+
+// MARK: - ProfileScrollView
+
 class ProfileScrollView: UIScrollView {
+    
+    weak var profileScrollViewDelegate: ProfileScrollViewProtocol?
+    
+    private var defaultBarStyle: ProfileBarStyle = .light
+    private var profile: ProfileModel = ProfileModel()
     
     private lazy var container: ProfileContainer = {
         let container = ProfileContainer()
+        container.layer.cornerRadius = 15.0
+        container.clipsToBounds = true
         return container
     }()
     
@@ -67,31 +85,41 @@ class ProfileScrollView: UIScrollView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setPropertys()
         self.delegate = self
+        self.setPropertys()
     }
     
     private func setPropertys() {
         self.addSubview(container)
         self.contentSize = scrollViewContentSize
-        self.alwaysBounceVertical = false
     }
 }
 
+// MARK: - Method UIScrollViewDelegate
+
 extension ProfileScrollView: UIScrollViewDelegate {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y <= self.container.topOffSet {
+    /// 改变状态栏样式
+    private func needToChangeBarStyleWith(contentOffSetY: CGFloat) {
+        /// disable scroll
+        if contentOffSetY <= self.container.topOffSet {
             self.isScrollEnabled = true
         } else {
             self.isScrollEnabled = false
         }
-        printLog(self.container.topOffSet)
-        printLog(scrollView.contentOffset.y)
-        printLog(scrollView.contentInset)
-        printLog(scrollView.contentSize)
-        printLog(scrollViewContentSize)
-        printLog(self.container.frame)
-        printLog(self.frame)
+        /// change bar style
+        if contentOffSetY >= self.container.topOffSet - self.container.topMargin {
+            guard defaultBarStyle != .dark else { return }
+            self.profileScrollViewDelegate?.scrollViewNeedToChange(.dark)
+            self.defaultBarStyle = .dark
+        } else {
+            guard defaultBarStyle != .light else { return }
+            self.profileScrollViewDelegate?.scrollViewNeedToChange(.light)
+            self.defaultBarStyle = .light
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.needToChangeBarStyleWith(contentOffSetY: scrollView.contentOffset.y)
     }
 }

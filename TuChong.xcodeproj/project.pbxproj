@@ -244,13 +244,13 @@
 			isa = PBXGroup;
 			children = (
 				C422D97B228278D5002530F6 /* ProfileScrollView.swift */,
+				53D7A77B2281B83C0008D6A6 /* ProfileNavBar.swift */,
 				53DD615A227F128500FA969E /* ProfileViewController.swift */,
 				C4F3A5FC227FD6D6006614D1 /* ProfileModel.swift */,
 				C4D91A082281139A00D7D197 /* CoverIndicatorView.swift */,
 				C4C8FD332281716600BE55CF /* CoverShadowView.swift */,
 				53EF8E82228065BD00347ECA /* ProfileCoverNode.swift */,
 				C4F3A5FE227FE3AA006614D1 /* ProfileCoverCollectionNode.swift */,
-				53D7A77B2281B83C0008D6A6 /* ProfileNavBar.swift */,
 				C4B2714A2280070800EA9131 /* ProfileCoverCollectionNodeCell.swift */,
 			);
 			path = Profile;
