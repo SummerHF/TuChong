@@ -27,7 +27,39 @@
 
 import UIKit
 
+class ProfileContainer: UIView {
+    
+    let topOffSet: CGFloat = macro.screenHeight * 0.75
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(frame: CGRect) {
+        let frame = CGRect(x: 0, y: topOffSet , width: macro.screenWidth, height: macro.screenHeight)
+        super.init(frame: frame)
+        self.backgroundColor = Color.backGroundColor
+        self.setPropertys()
+    }
+    
+    private func setPropertys() {
+        let lable = UILabel(frame: CGRect(x: 0, y: 0, width: macro.screenWidth, height: 44))
+        lable.text = "哈哈"
+        lable.textColor = Color.thinBlack
+        self.addSubview(lable)
+    }
+}
+
 class ProfileScrollView: UIScrollView {
+    
+    private lazy var container: ProfileContainer = {
+        let container = ProfileContainer()
+        return container
+    }()
+    
+    private lazy var scrollViewContentSize: CGSize = {
+        return CGSize(width: macro.screenWidth, height: macro.screenHeight + self.container.topOffSet)
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -35,16 +67,31 @@ class ProfileScrollView: UIScrollView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Color.backGroundColor
         self.setPropertys()
+        self.delegate = self
     }
     
     private func setPropertys() {
-        let lable = UILabel(frame: CGRect(x: 0, y: macro.screenHeight, width: macro.screenWidth, height: 44))
-        lable.text = "哈哈"
-        lable.textColor = Color.thinBlack
-        self.addSubview(lable)
-        self.contentSize = CGSize(width: macro.screenWidth, height: macro.screenHeight + 800)
-        self.setContentOffset(CGPoint(x: 0, y: 300), animated: false)
+        self.addSubview(container)
+        self.contentSize = scrollViewContentSize
+        self.alwaysBounceVertical = false
+    }
+}
+
+extension ProfileScrollView: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= self.container.topOffSet {
+            self.isScrollEnabled = true
+        } else {
+            self.isScrollEnabled = false
+        }
+        printLog(self.container.topOffSet)
+        printLog(scrollView.contentOffset.y)
+        printLog(scrollView.contentInset)
+        printLog(scrollView.contentSize)
+        printLog(scrollViewContentSize)
+        printLog(self.container.frame)
+        printLog(self.frame)
     }
 }
