@@ -36,13 +36,19 @@ class ProfileViewController: BaseViewControlle {
         return isRequestFinished ? .lightContent : .default
     }
     
-    /// cover node
+    /// profile cover node
     lazy var profileCoverNode: ProfileCoverNode = {
         let profileCoverNode = ProfileCoverNode(site_id: site_id)
         return profileCoverNode
     }()
     
-    /// nav node
+    /// profile scrollView
+    lazy var profileScrollView: ProfileScrollView = {
+        let profileScrollView = ProfileScrollView()
+        return profileScrollView
+    }()
+    
+    /// profile nav node
     lazy var navBar: ProfileNavBar = {
         let navBar = ProfileNavBar()
         return navBar
@@ -72,6 +78,7 @@ class ProfileViewController: BaseViewControlle {
     
     override func addSubNodes() {
         self.node.addSubnode(profileCoverNode)
+        self.view.addSubview(profileScrollView)
         self.view.addSubview(navBar)
     }
     
@@ -102,5 +109,6 @@ class ProfileViewController: BaseViewControlle {
         super.viewDidLayoutSubviews()
         self.profileCoverNode.frame = self.node.bounds
         self.navBar.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.topHeight)
+        self.profileScrollView.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.screenHeight)
     }
 }

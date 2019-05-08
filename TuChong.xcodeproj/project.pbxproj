@@ -37,6 +37,7 @@
 		C41E0CD2224CB0700032E12A /* GenerateResource.sh in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CD1224CB0700032E12A /* GenerateResource.sh */; };
 		C41E0CDC224CBB900032E12A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E0CDB224CBB900032E12A /* R.generated.swift */; };
 		C41E0CE2224CC0D40032E12A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CE4224CC0D40032E12A /* Localizable.strings */; };
+		C422D97C228278D5002530F6 /* ProfileScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422D97B228278D5002530F6 /* ProfileScrollView.swift */; };
 		C43433CA2275362400255883 /* UserCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43433C92275362400255883 /* UserCommentCell.swift */; };
 		C437F354226EA2D80017445F /* RecommendTutorialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437F353226EA2D80017445F /* RecommendTutorialCell.swift */; };
 		C437F357226EE6FB0017445F /* TutorialDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */; };
@@ -134,6 +135,7 @@
 		C41E0CE3224CC0D40032E12A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C41E0CE5224CC0D90032E12A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C41E0CE6224CC1500032E12A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C422D97B228278D5002530F6 /* ProfileScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScrollView.swift; sourceTree = "<group>"; };
 		C43433C92275362400255883 /* UserCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentCell.swift; sourceTree = "<group>"; };
 		C437F353226EA2D80017445F /* RecommendTutorialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTutorialCell.swift; sourceTree = "<group>"; };
 		C437F356226EE6FB0017445F /* TutorialDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		531051A0227F113D00DDF968 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C422D97B228278D5002530F6 /* ProfileScrollView.swift */,
 				53DD615A227F128500FA969E /* ProfileViewController.swift */,
 				C4F3A5FC227FD6D6006614D1 /* ProfileModel.swift */,
 				C4D91A082281139A00D7D197 /* CoverIndicatorView.swift */,
@@ -789,6 +792,7 @@
 				53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */,
 				C41E0CC4224CA6260032E12A /* Color.swift in Sources */,
 				53295BCE2275EBE90019554D /* RecommendPhotographerModel.swift in Sources */,
+				C422D97C228278D5002530F6 /* ProfileScrollView.swift in Sources */,
 				C402B24722699C95007746EB /* RecommendWallpaperCell.swift in Sources */,
 				C437F357226EE6FB0017445F /* TutorialDetailViewController.swift in Sources */,
 				53D1F5B52268A7340046F0FE /* RecommendBaseViewController.swift in Sources */,

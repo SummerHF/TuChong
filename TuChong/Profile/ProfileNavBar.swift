@@ -33,11 +33,16 @@ class ProfileNavBar: UIView {
     
     private let backBtnNode: ASButtonNode
     private let actionBtnNode: ASButtonNode
+    private let shareBtnNode: ASButtonNode
+    private let messageBtnNode: ASButtonNode
 
     private let margin: CGFloat = 20.0
-    private let backBtnNodeSize = CGSize(width: 40, height: 40)
-    private let btnNodeSize = CGSize(width: 60, height: 40)
-
+    private let backBtnNodeSize = CGSize(width: 30, height: 30)
+    private let btnNodeSize = CGSize(width: 40, height: 40)
+    private let actionBtnNodeSize = CGSize(width: 30, height: 40)
+    
+    private let backBtnNodeBgColor: UIColor = RGBA(R: 182, G: 182, B: 182, A: 0.2)
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -45,30 +50,48 @@ class ProfileNavBar: UIView {
     override init(frame: CGRect) {
         self.backBtnNode = ASButtonNode()
         self.actionBtnNode = ASButtonNode()
+        self.shareBtnNode = ASButtonNode()
+        self.messageBtnNode = ASButtonNode()
         super.init(frame: frame)
         self.setPropertys()
     }
     
     private func setPropertys() {
         backBtnNode.setImage(R.image.profile_back_black(), for: .normal)
-        actionBtnNode.setImage(R.image.profile_dot(), for: .normal)
-        
+        actionBtnNode.setImage(R.image.profile_dot_white(), for: .normal)
+        shareBtnNode.setImage(R.image.profile_share_white(), for: .normal)
+        messageBtnNode.setImage(R.image.profile_message_white(), for: .normal)
+
         self.addSubview(backBtnNode.view)
         self.addSubview(actionBtnNode.view)
-        self.backBtnNode.view.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(margin)
-            make.bottom.equalToSuperview()
-            make.size.equalTo(backBtnNodeSize)
-        }
+        self.addSubview(shareBtnNode.view)
+        self.addSubview(messageBtnNode.view)
+        
         self.actionBtnNode.view.snp.makeConstraints { (make) in
             make.right.equalToSuperview().offset(-margin)
             make.bottom.equalToSuperview()
+            make.size.equalTo(actionBtnNodeSize)
+        }
+        self.shareBtnNode.view.snp.makeConstraints { (make) in
+            make.right.equalTo(actionBtnNode.view.snp.left).offset(-margin * 0.5)
+            make.bottom.equalToSuperview()
             make.size.equalTo(btnNodeSize)
+        }
+        self.messageBtnNode.view.snp.makeConstraints { (make) in
+            make.right.equalTo(shareBtnNode.view.snp.left).offset(-margin * 0.5)
+            make.bottom.equalToSuperview()
+            make.size.equalTo(btnNodeSize)
+        }
+        self.backBtnNode.view.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(margin)
+            make.centerY.equalTo(actionBtnNode.view)
+            make.size.equalTo(backBtnNodeSize)
         }
     }
     
     func configure(with profile: ProfileModel) {
         self.profile = profile
         backBtnNode.setImage(R.image.profile_back_white(), for: .normal)
+        backBtnNode.add(cornerRadius: backBtnNodeSize.width / 2.0, backgroundColor: backBtnNodeBgColor, cornerRoundingType: .defaultSlowCALayer)
     }
 }
