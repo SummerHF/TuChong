@@ -26,30 +26,70 @@
 //
 
 import UIKit
+import Kingfisher
+import AsyncDisplayKit
 
 // MARK: - ProfileContainer
 
 class ProfileContainer: UIView {
     
-    let topOffSet: CGFloat = macro.screenHeight * 0.75
-    let topMargin: CGFloat = macro.statusBarHeight + 20
+    private let bgImageView: UIImageView
+    private let avatorImageNode: ASNetworkImageNode
+    private let margin: CGFloat = 20.0
+    private let avatorImageViewSize = CGSize(width: 72, height: 72)
     
+    let topMargin: CGFloat = macro.statusBarHeight + 20
+
+    var topOffSet: CGFloat {
+        switch profile.coverType {
+        case .none:
+            return topMargin
+        case let .singleImage(showType):
+            if showType == .horizental {
+                return macro.screenHeight * 0.4
+            } else {
+                return macro.screenHeight * 0.6
+            }
+        case .moreImage:
+            return macro.screenHeight * 0.6
+        }
+    }
+    
+    private var profile: ProfileModel = ProfileModel()
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override init(frame: CGRect) {
-        let frame = CGRect(x: 0, y: topOffSet , width: macro.screenWidth, height: macro.screenHeight)
-        super.init(frame: frame)
-        self.backgroundColor = Color.backGroundColor
+        self.bgImageView = UIImageView()
+        self.avatorImageNode = ASNetworkImageNode()
+        super.init(frame: CGRect.zero)
         self.setPropertys()
     }
     
     private func setPropertys() {
-        let lable = UILabel(frame: CGRect(x: 0, y: 100, width: macro.screenWidth, height: 44))
-        lable.text = "哈哈"
-        lable.textColor = Color.thinBlack
-        self.addSubview(lable)
+        self.addSubview(bgImageView)
+        self.addSubview(avatorImageNode.view)
+        self.bgImageView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        self.avatorImageNode.view.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(margin)
+            make.centerY.equalTo(self.snp.top)
+            make.size.equalTo(avatorImageViewSize)
+        }
+        self.bgImageView.image = UIImage(color: UIColor.white)?.byResize(to: UIScreen.main.bounds.size)?.byRoundCornerRadius(15.0)
+    }
+    
+    func configureWith(profile: ProfileModel) {
+        self.profile = profile
+        self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
+        self.avatorImageNode.url = URL(string: profile.site.icon)
+        self.avatorImageNode.imageModificationBlock = {
+            image in
+            image.byRoundCornerRadius(image.size.width / 2.0, borderWidth: 2.0, borderColor: Color.backGroundColor)
+        }
     }
 }
 
@@ -70,8 +110,6 @@ class ProfileScrollView: UIScrollView {
     
     private lazy var container: ProfileContainer = {
         let container = ProfileContainer()
-        container.layer.cornerRadius = 15.0
-        container.clipsToBounds = true
         return container
     }()
     
@@ -91,6 +129,11 @@ class ProfileScrollView: UIScrollView {
     
     private func setPropertys() {
         self.addSubview(container)
+    }
+    
+    func configureWith(profile: ProfileModel) {
+        self.profile = profile
+        self.container.configureWith(profile: profile)
         self.contentSize = scrollViewContentSize
     }
 }

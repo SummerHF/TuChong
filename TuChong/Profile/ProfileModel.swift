@@ -99,10 +99,37 @@ struct Profile_Relationship_Model: HandyJSON {
 
 // MARK: - ProfileModel
 
+enum ProfileCoverSingleImageShowType {
+    case vertical
+    case horizental
+}
+
+enum ProfileCoverType {
+    case none
+    case singleImage(showType: ProfileCoverSingleImageShowType)
+    case moreImage
+}
+
 struct ProfileModel: HandyJSON {
     var result: String = ""
     var site: Profile_Site_Model = Profile_Site_Model()
     var cover: Profile_Cover_Model = Profile_Cover_Model()
     var statistics: Profile_Statistics_Model = Profile_Statistics_Model()
     var relationship: Profile_Relationship_Model = Profile_Relationship_Model()
+
+    /// 图片的显示类型
+    var coverType: ProfileCoverType {
+        if cover.images.count == 0 {
+            return .none
+        } else if cover.images.count == 1 {
+            let size = cover.sizes.first!
+            if size.width >= size.height {
+                return .singleImage(showType: .horizental)
+            } else {
+                return .singleImage(showType: .vertical)
+            }
+        } else {
+            return .moreImage
+        }
+    }
 }
