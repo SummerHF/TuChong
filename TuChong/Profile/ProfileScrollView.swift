@@ -48,10 +48,10 @@ class ProfileContainer: UIView {
             if showType == .horizental {
                 return macro.screenHeight * 0.4
             } else {
-                return macro.screenHeight * 0.6
+                return macro.screenHeight * 0.721
             }
         case .moreImage:
-            return macro.screenHeight * 0.6
+            return macro.screenHeight * 0.721
         }
     }
     
@@ -84,12 +84,12 @@ class ProfileContainer: UIView {
     
     func configureWith(profile: ProfileModel) {
         self.profile = profile
-        self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
         self.avatorImageNode.url = URL(string: profile.site.icon)
         self.avatorImageNode.imageModificationBlock = {
             image in
             image.byRoundCornerRadius(image.size.width / 2.0, borderWidth: 2.0, borderColor: Color.backGroundColor)
         }
+        self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
     }
 }
 
