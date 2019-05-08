@@ -72,7 +72,11 @@ class ProfileViewController: BaseViewControlle {
     init(with site_id: String) {
         self.site_id = site_id
         super.init()
-        self.automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            self.profileScrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

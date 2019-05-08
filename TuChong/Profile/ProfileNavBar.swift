@@ -56,7 +56,7 @@ class ProfileNavBar: UIView {
     private let btnNodeSize = CGSize(width: 40, height: 40)
     private let actionBtnNodeSize = CGSize(width: 30, height: 40)
     private let profileAvatorImageNodeSize = CGSize(width: 36, height: 36)
-    private let focusBtnNodeSize = CGSize(width: 72, height: 28)
+    private let focusBtnNodeSize = CGSize(width: 70, height: 28)
 
     private let backBtnNodeBgColor: UIColor = RGBA(R: 182, G: 182, B: 182, A: 0.2)
     
@@ -82,7 +82,7 @@ class ProfileNavBar: UIView {
         shareBtnNode.setImage(R.image.profile_share_white(), for: .normal)
         messageBtnNode.setImage(R.image.profile_message_white(), for: .normal)
         focusBtnNode.add(cornerRadius: focusBtnNodeSize.height / 2.0, backgroundColor: Color.lineColor, cornerRoundingType: .defaultSlowCALayer)
-        focusBtnNode.setAttributdWith(string: R.string.localizable.focus(), font: UIFont.normalFont_14(), color: Color.backGroundColor, state: .normal)
+        focusBtnNode.setAttributdWith(string: R.string.localizable.focus(), font: UIFont.normalFont_12(), color: Color.backGroundColor, state: .normal)
         
         self.addSubview(backBtnNode.view)
         self.addSubview(actionBtnNode.view)

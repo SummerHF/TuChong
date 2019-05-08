@@ -36,8 +36,15 @@ class ProfileContainer: UIView {
     private let bgImageView: UIImageView
     private let avatorImageNode: ASNetworkImageNode
     private let margin: CGFloat = 20.0
-    private let avatorImageViewSize = CGSize(width: 72, height: 72)
-    
+    private let avatorImageViewSize = CGSize(width: 70, height: 70)
+    private let focusBtnNodeSize = CGSize(width: 70, height: 28)
+    private let focusBtnNode: ASButtonNode
+
+    private let nameLable: UILabel = UILabel()
+    private let vertificationImageView: UIImageView = UIImageView()
+    private let vertificationImageViewWidth: CGFloat = 12.0
+    private let vertificationReasonLable: UILabel = UILabel()
+
     let topMargin: CGFloat = macro.statusBarHeight + 20
 
     var topOffSet: CGFloat {
@@ -48,10 +55,10 @@ class ProfileContainer: UIView {
             if showType == .horizental {
                 return macro.screenHeight * 0.4
             } else {
-                return macro.screenHeight * 0.721
+                return macro.screenHeight * 0.732
             }
         case .moreImage:
-            return macro.screenHeight * 0.721
+            return macro.screenHeight * 0.732
         }
     }
     
@@ -64,6 +71,7 @@ class ProfileContainer: UIView {
     override init(frame: CGRect) {
         self.bgImageView = UIImageView()
         self.avatorImageNode = ASNetworkImageNode()
+        self.focusBtnNode = ASButtonNode()
         super.init(frame: CGRect.zero)
         self.setPropertys()
     }
@@ -71,24 +79,59 @@ class ProfileContainer: UIView {
     private func setPropertys() {
         self.addSubview(bgImageView)
         self.addSubview(avatorImageNode.view)
+        self.addSubview(nameLable)
+        self.addSubview(focusBtnNode.view)
         self.bgImageView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        self.bgImageView.image = UIImage(color: UIColor.white)?.byResize(to: UIScreen.main.bounds.size)?.byRoundCornerRadius(15.0)
+        
+        /// user info
         self.avatorImageNode.view.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(margin)
-            make.centerY.equalTo(self.snp.top)
+            make.centerY.equalTo(self.snp.top).offset(margin * 0.5)
             make.size.equalTo(avatorImageViewSize)
         }
-        self.bgImageView.image = UIImage(color: UIColor.white)?.byResize(to: UIScreen.main.bounds.size)?.byRoundCornerRadius(15.0)
+        self.nameLable.snp.makeConstraints { (make) in
+            make.left.equalTo(avatorImageNode.view)
+            make.top.equalToSuperview().offset(margin * 3.10)
+        }
+        self.focusBtnNode.view.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().offset(-margin)
+            make.centerY.equalTo(nameLable)
+            make.size.equalTo(focusBtnNodeSize)
+        }
     }
     
     func configureWith(profile: ProfileModel) {
         self.profile = profile
-        self.avatorImageNode.url = URL(string: profile.site.icon)
+        self.avatorImageNode.url = profile.site.iconURL
         self.avatorImageNode.imageModificationBlock = {
             image in
             image.byRoundCornerRadius(image.size.width / 2.0, borderWidth: 2.0, borderColor: Color.backGroundColor)
         }
+        self.nameLable.set(title: profile.site.name, font: UIFont.boldFont_20(), color: Color.black)
+        self.focusBtnNode.setAttributdWith(string: R.string.localizable.focus(), font: UIFont.normalFont_12(), color: Color.backGroundColor, state: .normal)
+        self.focusBtnNode.add(cornerRadius: focusBtnNodeSize.height / 2.0, backgroundColor: Color.lineColor, cornerRoundingType: .defaultSlowCALayer)
+        /// intro
+        if profile.site.recommend_photographer_verified {
+            self.addSubview(vertificationImageView)
+            self.addSubview(vertificationReasonLable)
+            self.vertificationImageView.snp.makeConstraints { (make) in
+                make.left.equalTo(nameLable)
+                make.top.equalTo(nameLable.snp.bottom).offset(margin)
+                make.size.equalTo(CGSize(width: vertificationImageViewWidth, height: vertificationImageViewWidth))
+            }
+            self.vertificationReasonLable.snp.makeConstraints { (make) in
+                make.left.equalTo(vertificationImageView.snp.right).offset(margin * 0.2)
+                make.centerY.equalTo(vertificationImageView)
+            }
+            self.vertificationImageView.image = profile.site.verified_image
+            self.vertificationReasonLable.set(title: profile.site.verified_reason, font: UIFont.thinFont_12(), color: Color.black)
+        } else {
+            
+        }
+        /// frame
         self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
     }
 }
@@ -135,6 +178,7 @@ class ProfileScrollView: UIScrollView {
         self.profile = profile
         self.container.configureWith(profile: profile)
         self.contentSize = scrollViewContentSize
+        self.alwaysBounceVertical = false
     }
 }
 
@@ -163,6 +207,10 @@ extension ProfileScrollView: UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        printLog(scrollView.contentOffset.y)
+        printLog(scrollView.contentSize)
+        printLog(scrollView.frame)
+        printLog(container.frame)
         self.needToChangeBarStyleWith(contentOffSetY: scrollView.contentOffset.y)
     }
 }

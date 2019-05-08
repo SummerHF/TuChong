@@ -53,7 +53,7 @@ struct Profile_Site_Model: HandyJSON {
     var verified_type: Int = 0
     var verified_reason: String = ""
     var verifications: Int = 0
-    var verification_list: [String] = []
+    var verification_list: [Recommend_Feedlist_Verification_List_Model] = []
     var point_level: Int = 0
     var is_following: Bool = false
     var is_follower: Bool = false
@@ -67,6 +67,48 @@ struct Profile_Site_Model: HandyJSON {
     var user_location: String = ""
     var tags: [HomePage_Entry_Tags_Model] = []
     var cover_url: String = ""
+    
+    var iconURL: URL? {
+        if NSString(string: icon).contains("l_u_0") {
+            return URL(string: macro.staticReplaceAvatorPlaceHolderURL)
+        } else {
+            return URL(string: icon)
+        }
+    }
+    var verified_image: UIImage? {
+        if 11 == verified_type {
+            return R.image.verifications_green()
+        } else if 13 == verified_type {
+            return R.image.verifications()
+        } else {
+            return nil
+        }
+    }
+    
+    var recommend_photographer_verified: Bool {
+        return verification_list.count > 0
+    }
+    
+    var recommend_photographer_verified_reason: String? {
+        if let model = verification_list.first {
+            return model.verification_reason
+        } else {
+            return nil
+        }
+    }
+    
+    var recommend_photographer_verified_image: UIImage? {
+        if let model = verification_list.first {
+            if 11 == model.verification_type {
+                return R.image.verifications_green()
+            } else if 13 == model.verification_type {
+                return R.image.verifications()
+            } else {
+                return nil
+            }
+        }
+        return nil
+    }
 }
 
 // MARK: - Profile Cover

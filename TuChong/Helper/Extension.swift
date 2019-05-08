@@ -118,6 +118,12 @@ extension UILabel {
             ])
         self.textAlignment = aligment ?? .center
     }
+    
+    func set(title: String, font: UIFont, color: UIColor) {
+        self.text = title
+        self.font = font
+        self.textColor = color
+    }
 }
 
 // MARK: - UIButton
