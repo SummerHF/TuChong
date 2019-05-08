@@ -44,6 +44,10 @@ class ProfileContainer: UIView {
     private let vertificationImageView: UIImageView = UIImageView()
     private let vertificationImageViewWidth: CGFloat = 12.0
     private let vertificationReasonLable: UILabel = UILabel()
+    private let introLable: UILabel = UILabel()
+    private let introLableMaxWidth: CGFloat = macro.screenWidth - 4.8 * 20
+    private let moreBtnNode: ASButtonNode = ASButtonNode()
+    private let moreBtnNodeSize = CGSize(width: 44, height: 14)
 
     let topMargin: CGFloat = macro.statusBarHeight + 20
 
@@ -74,6 +78,7 @@ class ProfileContainer: UIView {
         self.focusBtnNode = ASButtonNode()
         super.init(frame: CGRect.zero)
         self.setPropertys()
+        self.addEvents()
     }
     
     private func setPropertys() {
@@ -105,6 +110,7 @@ class ProfileContainer: UIView {
     
     func configureWith(profile: ProfileModel) {
         self.profile = profile
+        /// avator
         self.avatorImageNode.url = profile.site.iconURL
         self.avatorImageNode.imageModificationBlock = {
             image in
@@ -113,7 +119,9 @@ class ProfileContainer: UIView {
         self.nameLable.set(title: profile.site.name, font: UIFont.boldFont_20(), color: Color.black)
         self.focusBtnNode.setAttributdWith(string: R.string.localizable.focus(), font: UIFont.normalFont_12(), color: Color.backGroundColor, state: .normal)
         self.focusBtnNode.add(cornerRadius: focusBtnNodeSize.height / 2.0, backgroundColor: Color.lineColor, cornerRoundingType: .defaultSlowCALayer)
+        
         /// intro
+        self.addSubview(introLable)
         if profile.site.recommend_photographer_verified {
             self.addSubview(vertificationImageView)
             self.addSubview(vertificationReasonLable)
@@ -126,13 +134,55 @@ class ProfileContainer: UIView {
                 make.left.equalTo(vertificationImageView.snp.right).offset(margin * 0.2)
                 make.centerY.equalTo(vertificationImageView)
             }
+            self.introLable.snp.makeConstraints { (make) in
+                make.top.equalTo(vertificationImageView.snp.bottom).offset(margin * 0.3)
+                make.left.equalTo(vertificationImageView)
+                make.width.equalTo(introLableMaxWidth)
+            }
             self.vertificationImageView.image = profile.site.verified_image
-            self.vertificationReasonLable.set(title: profile.site.verified_reason, font: UIFont.thinFont_12(), color: Color.black)
+            self.vertificationReasonLable.set(title: profile.site.verified_reason, font: UIFont.normalFont_12(), color: Color.black)
         } else {
-            
+            self.introLable.snp.makeConstraints { (make) in
+                make.left.equalTo(nameLable)
+                make.top.equalTo(nameLable.snp.bottom).offset(margin)
+                make.width.equalTo(introLableMaxWidth)
+            }
+        }
+        self.introLable.numberOfLines = 1
+//        self.profile.site.intro = """
+//        哈哈哈哈哈哈哈哈哈哈
+//        哈哈哈哈哈哈哈哈哈哈哈哈哈
+//        哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+//        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+//        """
+        self.introLable.set(title: profile.site.intro, font: UIFont.normalFont_12(), color: Color.lightGray)
+        
+        /// need to show more button
+        if profile.site.intro.size(withAttributes: [NSAttributedString.Key.font: UIFont.normalFont_12()]).width > introLableMaxWidth {
+            self.addSubview(moreBtnNode.view)
+            moreBtnNode.view.snp.makeConstraints { (make) in
+                make.right.equalToSuperview().offset(-margin)
+                make.bottom.equalTo(introLable)
+                make.size.equalTo(moreBtnNodeSize)
+            }
+            moreBtnNode.setAttributdWith(string: R.string.localizable.profile_more(), font: UIFont.normalFont_12(), color: Color.lineColor, state: .normal)
         }
         /// frame
         self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
+    }
+    
+    private func addEvents() {
+        self.moreBtnNode.addTarget(self, action: #selector(moreBtnNodeEvent), forControlEvents: .touchUpInside)
+    }
+    
+    @objc private func moreBtnNodeEvent() {
+        if self.introLable.numberOfLines == 0 {
+           self.introLable.numberOfLines = 1
+           self.layoutIfNeeded()
+        } else {
+            self.introLable.numberOfLines = 0
+            self.layoutIfNeeded()
+        }
     }
 }
 
