@@ -39,3 +39,7 @@
 "join" = "Join";
 "hot_group" = "Hot Group";
 "profile_more" = "More";
+"profile_less" = "Less";
+"profile_work" = "Works";
+"profile_like" = "Likes";
+"profile_activity" = "Activity";

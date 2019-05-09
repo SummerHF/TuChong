@@ -54,6 +54,7 @@
 		C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */; };
 		C462C001225F35AE00AB91F1 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462C000225F35AE00AB91F1 /* RecommendViewController.swift */; };
 		C462C003225F39C700AB91F1 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462C002225F39C700AB91F1 /* CategoryViewController.swift */; };
+		C4650C3022840F0600215D85 /* ProfileDetailTopItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4650C2F22840F0600215D85 /* ProfileDetailTopItemView.swift */; };
 		C479F2862272DF41002C7D53 /* TutorialDetailHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479F2852272DF41002C7D53 /* TutorialDetailHeadView.swift */; };
 		C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BDC352249B26F001032DC /* LaunchViewController.swift */; };
 		C4827C382266B828009E94C5 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4827C372266B828009E94C5 /* FollowViewController.swift */; };
@@ -152,6 +153,7 @@
 		C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeContainerViewController+UIPageViewController.swift"; sourceTree = "<group>"; };
 		C462C000225F35AE00AB91F1 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		C462C002225F39C700AB91F1 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		C4650C2F22840F0600215D85 /* ProfileDetailTopItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailTopItemView.swift; sourceTree = "<group>"; };
 		C479F2852272DF41002C7D53 /* TutorialDetailHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailHeadView.swift; sourceTree = "<group>"; };
 		C47BDC352249B26F001032DC /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		C4827C372266B828009E94C5 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		531051A0227F113D00DDF968 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C4650C2F22840F0600215D85 /* ProfileDetailTopItemView.swift */,
 				C422D97B228278D5002530F6 /* ProfileScrollView.swift */,
 				53D7A77B2281B83C0008D6A6 /* ProfileNavBar.swift */,
 				53DD615A227F128500FA969E /* ProfileViewController.swift */,
@@ -757,6 +760,7 @@
 				C4AD3C45224098BE0095BC97 /* Service.swift in Sources */,
 				C4827C382266B828009E94C5 /* FollowViewController.swift in Sources */,
 				C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */,
+				C4650C3022840F0600215D85 /* ProfileDetailTopItemView.swift in Sources */,
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
 				C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */,

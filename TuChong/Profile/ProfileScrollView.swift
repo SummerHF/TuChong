@@ -33,7 +33,6 @@ import AsyncDisplayKit
 
 class ProfileContainerBottomView: UIView {
     
-    private let topArea: UIView = UIView()
     private var profile: ProfileModel = ProfileModel()
     private let attentionLable: UILabel = UILabel()
     private let fansLable: UILabel = UILabel()
@@ -52,20 +51,15 @@ class ProfileContainerBottomView: UIView {
     }
     
     private func setPropertys() {
-        self.addSubview(topArea)
         self.addSubview(sepatorView)
-        topArea.snp.makeConstraints { (make) in
-            make.left.right.top.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.6)
-        }
-        sepatorView.snp.makeConstraints { (make) in
+        self.sepatorView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-margin)
+            make.bottom.equalToSuperview()
             make.height.equalTo(1.0)
         }
-        topArea.addSubview(attentionLable)
-        topArea.addSubview(fansLable)
-        topArea.addSubview(likesLable)
+        self.addSubview(attentionLable)
+        self.addSubview(fansLable)
+        self.addSubview(likesLable)
     }
     
     func configureWith(profile: ProfileModel) {
@@ -88,6 +82,139 @@ class ProfileContainerBottomView: UIView {
     }
 }
 
+// MARK: - ProfileDetailType
+
+enum ProfileDetailType {
+    case work
+    case like
+    case activity
+    case none
+    
+    var rawValue: Int {
+        switch self {
+        case .work:
+            return 0
+        case .like:
+            return 1
+        case .activity:
+            return 2
+        case .none:
+            return 3
+        }
+    }
+}
+
+// MARK: - ProfileDetailTopView
+
+class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
+    
+    private var statistics = Profile_Statistics_Model()
+    
+    private let itemWidth: CGFloat = 80
+    private let worksItemView = ProfileDetailTopItemView()
+    private let likesItemView = ProfileDetailTopItemView()
+    private let activityItemView = ProfileDetailTopItemView()
+    private let separoterView = UIView()
+    private var itemArray: [ProfileDetailTopItemView] = []
+    private var previousType: ProfileDetailType?
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setPropertys()
+    }
+    
+    private func setPropertys() {
+        self.addSubview(worksItemView)
+        self.addSubview(likesItemView)
+        self.addSubview(activityItemView)
+        self.addSubview(separoterView)
+        
+        self.worksItemView.snp.makeConstraints { (make) in
+            make.left.top.bottom.equalToSuperview()
+            make.width.equalTo(itemWidth)
+        }
+        
+        self.likesItemView.snp.makeConstraints { (make) in
+            make.top.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalTo(itemWidth)
+        }
+        
+        self.activityItemView.snp.makeConstraints { (make) in
+            make.right.top.bottom.equalToSuperview()
+            make.width.equalTo(itemWidth)
+        }
+        self.separoterView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.height.equalTo(0.5)
+        }
+        
+        itemArray = [self.worksItemView, self.likesItemView, self.activityItemView]
+    }
+    
+    func configureWith(statistics: Profile_Statistics_Model, defaultType: ProfileDetailType) {
+        self.statistics = statistics
+        self.worksItemView.configureWith(title: R.string.localizable.profile_work(), count: statistics.works, type: .work, delegate: self)
+        self.likesItemView.configureWith(title: R.string.localizable.profile_like(), count: statistics.favorites, type: .like, delegate: self)
+        self.activityItemView.configureWith(title: R.string.localizable.profile_activity(), count: statistics.events, type: .activity, delegate: self)
+        self.separoterView.backgroundColor = Color.lineGray
+        self.setSelectedWith(type: defaultType)
+    }
+    
+    private func setSelectedWith(type: ProfileDetailType) {
+        if let defaultType = self.previousType, defaultType != type {
+            /// 当前选中
+            let currentItemView = self.itemArray[type.rawValue]
+            currentItemView.isSelected = true
+            let previousItemView = self.itemArray[defaultType.rawValue]
+            previousItemView.isSelected = false
+            self.previousType = type
+        } else {
+            let itemView = self.itemArray[type.rawValue]
+            itemView.isSelected = true
+            self.previousType = type
+        }
+    }
+    
+    func hasSelected(view: ProfileDetailTopItemView, type: ProfileDetailType) {
+        self.setSelectedWith(type: type)
+    }
+}
+
+// MARK: - ProfileDetailView
+
+class ProfileDetailView: UIView {
+    
+    private let topView: ProfileDetailTopView = ProfileDetailTopView()
+    private let topViewHeight: CGFloat = 80
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = Color.backGroundColor
+        self.setPropertys()
+    }
+    
+    private func setPropertys() {
+        self.addSubview(topView)
+        self.topView.snp.makeConstraints { (make) in
+            make.left.top.right.equalToSuperview()
+            make.height.equalTo(topViewHeight)
+        }
+    }
+    
+    func configureWith(profile: ProfileModel) {
+        self.topView.configureWith(statistics: profile.statistics, defaultType: .work)
+    }
+}
+
 // MARK: - ProfileContainer
 
 class ProfileContainer: UIView {
@@ -107,6 +234,7 @@ class ProfileContainer: UIView {
     private let introLableMaxWidth: CGFloat = macro.screenWidth - 4.8 * 20
     private let moreBtnNode: ASButtonNode = ASButtonNode()
     private let moreBtnNodeSize = CGSize(width: 44, height: 14)
+    private let bottomViewHeight: CGFloat = 56
     
     let topMargin: CGFloat = macro.statusBarHeight + 20
 
@@ -129,6 +257,8 @@ class ProfileContainer: UIView {
     
     /// bottom view
     private let bottomView: ProfileContainerBottomView = ProfileContainerBottomView(frame: CGRect.zero)
+    /// detail view
+    private let detailView: ProfileDetailView = ProfileDetailView(frame: CGRect.zero)
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -211,12 +341,6 @@ class ProfileContainer: UIView {
             }
         }
         self.introLable.numberOfLines = 1
-//        self.profile.site.intro = """
-//        哈哈哈哈哈哈哈哈哈哈
-//        哈哈哈哈哈哈哈哈哈哈哈哈哈
-//        哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-//        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-//        """
         self.introLable.set(title: profile.site.intro_desc, font: UIFont.normalFont_12(), color: Color.lightGray)
         
         /// need to show more button
@@ -233,11 +357,18 @@ class ProfileContainer: UIView {
         /// add bottomView
         self.addSubview(bottomView)
         self.bottomView.snp.makeConstraints { (make) in
-            make.top.equalTo(introLable.snp.bottom).offset(margin)
+            make.top.equalTo(introLable.snp.bottom).offset(margin * 0.5)
             make.left.right.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.1)
+            make.height.equalTo(bottomViewHeight)
         }
         self.bottomView.configureWith(profile: profile)
+        /// add detailView
+        self.addSubview(detailView)
+        self.detailView.snp.makeConstraints { (make) in
+            make.top.equalTo(bottomView.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
+        }
+        self.detailView.configureWith(profile: profile)
         /// frame
         self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
     }
@@ -249,9 +380,11 @@ class ProfileContainer: UIView {
     @objc private func moreBtnNodeEvent() {
         if self.introLable.numberOfLines == 0 {
            self.introLable.numberOfLines = 1
+           self.moreBtnNode.setAttributdWith(string: R.string.localizable.profile_more(), font: UIFont.normalFont_12(), color: Color.lineColor, state: .normal)
            self.layoutIfNeeded()
         } else {
             self.introLable.numberOfLines = 0
+            self.moreBtnNode.setAttributdWith(string: R.string.localizable.profile_less(), font: UIFont.normalFont_12(), color: Color.lineColor, state: .normal)
             self.layoutIfNeeded()
         }
     }

@@ -124,6 +124,13 @@ extension UILabel {
         self.font = font
         self.textColor = color
     }
+    
+    func set(title: String, font: UIFont, color: UIColor, aligment: NSTextAlignment) {
+        self.text = title
+        self.font = font
+        self.textColor = color
+        self.textAlignment = aligment
+    }
 }
 
 // MARK: - UIButton

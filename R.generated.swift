@@ -474,7 +474,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 41 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 45 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -488,6 +488,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let likes = Rswift.StringResource(key: "likes", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 作品
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let profile_work = Rswift.StringResource(key: "profile_work", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 作品, 教程, 摄影师，搜搜看
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -508,6 +512,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let post_revision = Rswift.StringResource(key: "post_revision", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 喜欢
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let profile_like = Rswift.StringResource(key: "profile_like", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 器材应用
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -556,6 +564,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let reward_title = Rswift.StringResource(key: "reward_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 收起
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let profile_less = Rswift.StringResource(key: "profile_less", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 更多
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -584,6 +596,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let avtivity = Rswift.StringResource(key: "avtivity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 活动
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let profile_activity = Rswift.StringResource(key: "profile_activity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 活动
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -662,6 +678,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("likes", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 作品
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func profile_work(_: Void = ()) -> String {
+        return NSLocalizedString("profile_work", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 作品, 教程, 摄影师，搜搜看
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -695,6 +718,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func post_revision(_: Void = ()) -> String {
         return NSLocalizedString("post_revision", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 喜欢
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func profile_like(_: Void = ()) -> String {
+        return NSLocalizedString("profile_like", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 器材应用
@@ -781,6 +811,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("reward_title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 收起
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func profile_less(_: Void = ()) -> String {
+        return NSLocalizedString("profile_less", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 更多
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -828,6 +865,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func avtivity(_: Void = ()) -> String {
         return NSLocalizedString("avtivity", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 活动
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func profile_activity(_: Void = ()) -> String {
+        return NSLocalizedString("profile_activity", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 活动

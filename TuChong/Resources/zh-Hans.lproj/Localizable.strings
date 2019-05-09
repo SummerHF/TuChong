@@ -39,3 +39,7 @@
 "join" = "加入";
 "hot_group" = "热门小组";
 "profile_more" = "更多";
+"profile_less" = "收起";
+"profile_work" = "作品";
+"profile_like" = "喜欢";
+"profile_activity" = "活动";
