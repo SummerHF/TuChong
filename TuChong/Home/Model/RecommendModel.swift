@@ -171,10 +171,8 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
     var verified_image: UIImage? {
         if 11 == verified_type {
             return R.image.verifications_green()
-        } else if 13 == verified_type {
-            return R.image.verifications()
         } else {
-            return nil
+             return R.image.verifications()
         }
     }
     
@@ -194,10 +192,8 @@ struct Recommend_Feedlist_Site_Model: HandyJSON {
         if let model = verification_list.first {
             if 11 == model.verification_type {
                 return R.image.verifications_green()
-            } else if 13 == model.verification_type {
-                return R.image.verifications()
             } else {
-                return nil
+                return R.image.verifications()
             }
         }
         return nil

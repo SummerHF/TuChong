@@ -68,6 +68,10 @@ struct Profile_Site_Model: HandyJSON {
     var tags: [HomePage_Entry_Tags_Model] = []
     var cover_url: String = ""
     
+    var intro_desc: String {
+        return intro.count > 0 ? intro : "他注定是个低调的大侠, 所以什么都没写"
+    }
+    
     var iconURL: URL? {
         if NSString(string: icon).contains("l_u_0") {
             return URL(string: macro.staticReplaceAvatorPlaceHolderURL)
@@ -78,10 +82,9 @@ struct Profile_Site_Model: HandyJSON {
     var verified_image: UIImage? {
         if 11 == verified_type {
             return R.image.verifications_green()
-        } else if 13 == verified_type {
-            return R.image.verifications()
         } else {
-            return nil
+            /// 12, 13, 14
+            return R.image.verifications()
         }
     }
     
@@ -101,10 +104,8 @@ struct Profile_Site_Model: HandyJSON {
         if let model = verification_list.first {
             if 11 == model.verification_type {
                 return R.image.verifications_green()
-            } else if 13 == model.verification_type {
-                return R.image.verifications()
             } else {
-                return nil
+                 return R.image.verifications()
             }
         }
         return nil

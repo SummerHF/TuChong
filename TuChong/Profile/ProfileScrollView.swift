@@ -29,6 +29,32 @@ import UIKit
 import Kingfisher
 import AsyncDisplayKit
 
+// MARK: - ProfileContainerBottomView
+
+class ProfileContainerBottomView: UIView {
+    
+    private let topArea: UIView = UIView()
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = Color.lineColor
+        self.setPropertys()
+    }
+    
+    private func setPropertys() {
+        self.addSubview(topArea)
+        topArea.backgroundColor = UIColor.purple
+        topArea.snp.makeConstraints { (make) in
+            make.left.right.top.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.5)
+        }
+    }
+}
+
 // MARK: - ProfileContainer
 
 class ProfileContainer: UIView {
@@ -48,7 +74,7 @@ class ProfileContainer: UIView {
     private let introLableMaxWidth: CGFloat = macro.screenWidth - 4.8 * 20
     private let moreBtnNode: ASButtonNode = ASButtonNode()
     private let moreBtnNodeSize = CGSize(width: 44, height: 14)
-
+    
     let topMargin: CGFloat = macro.statusBarHeight + 20
 
     var topOffSet: CGFloat {
@@ -67,7 +93,10 @@ class ProfileContainer: UIView {
     }
     
     private var profile: ProfileModel = ProfileModel()
-
+    
+    /// bottom view
+    private let bottomView: ProfileContainerBottomView = ProfileContainerBottomView(frame: CGRect.zero)
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -155,10 +184,10 @@ class ProfileContainer: UIView {
 //        哈哈哈哈哈哈哈哈哈哈哈哈哈哈
 //        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
 //        """
-        self.introLable.set(title: profile.site.intro, font: UIFont.normalFont_12(), color: Color.lightGray)
+        self.introLable.set(title: profile.site.intro_desc, font: UIFont.normalFont_12(), color: Color.lightGray)
         
         /// need to show more button
-        if profile.site.intro.size(withAttributes: [NSAttributedString.Key.font: UIFont.normalFont_12()]).width > introLableMaxWidth {
+        if profile.site.intro_desc.size(withAttributes: [NSAttributedString.Key.font: UIFont.normalFont_12()]).width > introLableMaxWidth {
             self.addSubview(moreBtnNode.view)
             moreBtnNode.view.snp.makeConstraints { (make) in
                 make.right.equalToSuperview().offset(-margin)
@@ -167,6 +196,15 @@ class ProfileContainer: UIView {
             }
             moreBtnNode.setAttributdWith(string: R.string.localizable.profile_more(), font: UIFont.normalFont_12(), color: Color.lineColor, state: .normal)
         }
+        
+        /// add bottomView
+        self.addSubview(bottomView)
+        self.bottomView.snp.makeConstraints { (make) in
+            make.top.equalTo(introLable.snp.bottom).offset(margin)
+            make.left.right.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.1)
+        }
+        
         /// frame
         self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
     }
@@ -228,7 +266,6 @@ class ProfileScrollView: UIScrollView {
         self.profile = profile
         self.container.configureWith(profile: profile)
         self.contentSize = scrollViewContentSize
-        self.alwaysBounceVertical = false
     }
 }
 
