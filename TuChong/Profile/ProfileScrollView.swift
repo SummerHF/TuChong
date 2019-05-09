@@ -34,6 +34,12 @@ import AsyncDisplayKit
 class ProfileContainerBottomView: UIView {
     
     private let topArea: UIView = UIView()
+    private var profile: ProfileModel = ProfileModel()
+    private let attentionLable: UILabel = UILabel()
+    private let fansLable: UILabel = UILabel()
+    private let likesLable: UILabel = UILabel()
+    private let sepatorView: UIView = UIView()
+    private let margin: CGFloat = 20.0
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -41,17 +47,44 @@ class ProfileContainerBottomView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Color.lineColor
+        self.backgroundColor = Color.backGroundColor
         self.setPropertys()
     }
     
     private func setPropertys() {
         self.addSubview(topArea)
-        topArea.backgroundColor = UIColor.purple
+        self.addSubview(sepatorView)
         topArea.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.5)
+            make.height.equalToSuperview().multipliedBy(0.6)
         }
+        sepatorView.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-margin)
+            make.height.equalTo(1.0)
+        }
+        topArea.addSubview(attentionLable)
+        topArea.addSubview(fansLable)
+        topArea.addSubview(likesLable)
+    }
+    
+    func configureWith(profile: ProfileModel) {
+        attentionLable.attributedText = profile.site.intro_attributedtext(desc: "关注", count: profile.site.following)
+        fansLable.attributedText = profile.site.intro_attributedtext(desc: "粉丝", count: profile.site.followers)
+        likesLable.attributedText = profile.site.intro_attributedtext(desc: "获赞", count: profile.site.favorites)
+        self.attentionLable.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(margin)
+            make.top.bottom.equalToSuperview()
+        }
+        self.fansLable.snp.makeConstraints { (make) in
+            make.left.equalTo(attentionLable.snp.right).offset(margin)
+            make.top.bottom.equalToSuperview()
+        }
+        self.likesLable.snp.makeConstraints { (make) in
+            make.left.equalTo(fansLable.snp.right).offset(margin)
+            make.top.bottom.equalToSuperview()
+        }
+        self.sepatorView.backgroundColor = Color.lineGray
     }
 }
 
@@ -204,7 +237,7 @@ class ProfileContainer: UIView {
             make.left.right.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.1)
         }
-        
+        self.bottomView.configureWith(profile: profile)
         /// frame
         self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
     }

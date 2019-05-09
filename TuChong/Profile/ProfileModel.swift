@@ -110,6 +110,18 @@ struct Profile_Site_Model: HandyJSON {
         }
         return nil
     }
+    
+    func intro_attributedtext(desc: String, count: Int) -> NSMutableAttributedString {
+        let string = "\(desc) \(count)"
+        let attr = NSMutableAttributedString(string: string, attributes: [
+            NSAttributedString.Key.font: UIFont.thinFont_12(),
+            NSAttributedString.Key.foregroundColor: Color.black
+            ])
+        attr.addAttributes([NSAttributedString.Key.font: UIFont.boldFont_20(),
+            NSAttributedString.Key.baselineOffset: -1
+            ], range: NSString(string: string).range(of: "\(count)"))
+        return attr
+    }
 }
 
 // MARK: - Profile Cover
