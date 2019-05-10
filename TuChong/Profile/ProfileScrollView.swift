@@ -105,9 +105,15 @@ enum ProfileDetailType {
     }
 }
 
+protocol ProfileDetailTopViewProtocol: class {
+    func topView(view: ProfileDetailTopView, hasSelectedTypeIndex: Int)
+}
+
 // MARK: - ProfileDetailTopView
 
 class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
+    
+    weak var delegate: ProfileDetailTopViewProtocol?
     
     private var statistics = Profile_Statistics_Model()
     
@@ -184,8 +190,11 @@ class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
             itemView.isSelected = true
             self.previousType = type
         }
-        /// previousType must have value
-        self.indicatorAnimate(itemView: itemArray[self.previousType!.rawValue], animated: animated)
+        if let type = self.previousType {
+            self.indicatorAnimate(itemView: itemArray[type.rawValue], animated: animated)
+            /// notify delegate
+            self.delegate?.topView(view: self, hasSelectedTypeIndex: type.rawValue)
+        }
     }
     
     private func indicatorAnimate(itemView: ProfileDetailTopItemView, animated: Bool) {
@@ -218,6 +227,7 @@ class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
 class ProfileDetailView: UIView {
     
     private let topView: ProfileDetailTopView = ProfileDetailTopView()
+    private let scrollView: ProfileDetailScrollView = ProfileDetailScrollView()
     private let topViewHeight: CGFloat = 80
     
     required init?(coder aDecoder: NSCoder) {
@@ -232,14 +242,27 @@ class ProfileDetailView: UIView {
     
     private func setPropertys() {
         self.addSubview(topView)
+        self.addSubview(scrollView)
         self.topView.snp.makeConstraints { (make) in
             make.left.top.right.equalToSuperview()
             make.height.equalTo(topViewHeight)
         }
+        self.scrollView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(topView.snp.bottom)
+        }
     }
     
     func configureWith(profile: ProfileModel) {
+        self.topView.delegate = self
         self.topView.configureWith(statistics: profile.statistics, defaultType: .work)
+    }
+}
+
+extension ProfileDetailView: ProfileDetailTopViewProtocol {
+    
+    func topView(view: ProfileDetailTopView, hasSelectedTypeIndex: Int) {
+        self.scrollView.scrollTo(index: hasSelectedTypeIndex)
     }
 }
 
@@ -329,7 +352,10 @@ class ProfileContainer: UIView {
     }
     
     func configureWith(profile: ProfileModel) {
+        
         self.profile = profile
+        /// frame
+        self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
         /// avator
         self.avatorImageNode.url = profile.site.iconURL
         self.avatorImageNode.imageModificationBlock = {
@@ -370,7 +396,7 @@ class ProfileContainer: UIView {
         }
         self.introLable.numberOfLines = 1
         self.introLable.set(title: profile.site.intro_desc, font: UIFont.normalFont_12(), color: Color.lightGray)
-        
+
         /// need to show more button
         if profile.site.intro_desc.size(withAttributes: [NSAttributedString.Key.font: UIFont.normalFont_12()]).width > introLableMaxWidth {
             self.addSubview(moreBtnNode.view)
@@ -394,11 +420,10 @@ class ProfileContainer: UIView {
         self.addSubview(detailView)
         self.detailView.snp.makeConstraints { (make) in
             make.top.equalTo(bottomView.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         self.detailView.configureWith(profile: profile)
-        /// frame
-        self.frame = CGRect(x: 0, y: topOffSet, width: macro.screenWidth, height: macro.screenHeight)
     }
     
     private func addEvents() {
@@ -488,10 +513,10 @@ extension ProfileScrollView: UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        printLog(scrollView.contentOffset.y)
-        printLog(scrollView.contentSize)
-        printLog(scrollView.frame)
-        printLog(container.frame)
+//        printLog(scrollView.contentOffset.y)
+//        printLog(scrollView.contentSize)
+//        printLog(scrollView.frame)
+//        printLog(container.frame)
         self.needToChangeBarStyleWith(contentOffSetY: scrollView.contentOffset.y)
     }
 }
