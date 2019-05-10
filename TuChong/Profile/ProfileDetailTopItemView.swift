@@ -53,11 +53,11 @@ class ProfileDetailTopItemView: UIView {
     var isSelected: Bool = false {
         didSet {
             if isSelected {
-                self.countLable.font = UIFont.boldFont_15()
-                self.categoryNameLable.font = UIFont.normalFont_16()
+                self.countLable.font = UIFont.boldFont_16()
+                self.categoryNameLable.font = UIFont.boldFont_17()
             } else {
                 self.countLable.font = UIFont.boldFont_14()
-                self.categoryNameLable.font = UIFont.normalFont_15()
+                self.categoryNameLable.font = UIFont.boldFont_15()
             }
         }
     }

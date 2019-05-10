@@ -28,6 +28,7 @@
 import UIKit
 import Kingfisher
 import AsyncDisplayKit
+import SnapKit
 
 // MARK: - ProfileContainerBottomView
 
@@ -111,12 +112,16 @@ class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
     private var statistics = Profile_Statistics_Model()
     
     private let itemWidth: CGFloat = 80
+    private let indicatorViewSize = CGSize(width: 10, height: 3)
     private let worksItemView = ProfileDetailTopItemView()
     private let likesItemView = ProfileDetailTopItemView()
     private let activityItemView = ProfileDetailTopItemView()
     private let separoterView = UIView()
+    private let indicatorView = UIView()
     private var itemArray: [ProfileDetailTopItemView] = []
     private var previousType: ProfileDetailType?
+    
+    private var indicatorCenterYConstraint: Constraint?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -132,6 +137,7 @@ class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
         self.addSubview(likesItemView)
         self.addSubview(activityItemView)
         self.addSubview(separoterView)
+        self.addSubview(indicatorView)
         
         self.worksItemView.snp.makeConstraints { (make) in
             make.left.top.bottom.equalToSuperview()
@@ -162,10 +168,10 @@ class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
         self.likesItemView.configureWith(title: R.string.localizable.profile_like(), count: statistics.favorites, type: .like, delegate: self)
         self.activityItemView.configureWith(title: R.string.localizable.profile_activity(), count: statistics.events, type: .activity, delegate: self)
         self.separoterView.backgroundColor = Color.lineGray
-        self.setSelectedWith(type: defaultType)
+        self.setSelectedWith(type: defaultType, animated: false)
     }
     
-    private func setSelectedWith(type: ProfileDetailType) {
+    private func setSelectedWith(type: ProfileDetailType, animated: Bool) {
         if let defaultType = self.previousType, defaultType != type {
             /// 当前选中
             let currentItemView = self.itemArray[type.rawValue]
@@ -178,10 +184,32 @@ class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
             itemView.isSelected = true
             self.previousType = type
         }
+        /// previousType must have value
+        self.indicatorAnimate(itemView: itemArray[self.previousType!.rawValue], animated: animated)
+    }
+    
+    private func indicatorAnimate(itemView: ProfileDetailTopItemView, animated: Bool) {
+        self.indicatorView.backgroundColor = Color.lineColor
+        if animated {
+            self.indicatorCenterYConstraint?.deactivate()
+            self.indicatorView.snp.makeConstraints { (make) in
+                self.indicatorCenterYConstraint = make.centerX.equalTo(itemView).constraint
+            }
+            self.setNeedsUpdateConstraints()
+            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+                self.layoutIfNeeded()
+            }, completion: nil)
+        } else {
+            self.indicatorView.snp.makeConstraints { (make) in
+                make.bottom.equalTo(self.separoterView.snp.top)
+                make.size.equalTo(self.indicatorViewSize)
+                self.indicatorCenterYConstraint = make.centerX.equalTo(itemView).constraint
+            }
+        }
     }
     
     func hasSelected(view: ProfileDetailTopItemView, type: ProfileDetailType) {
-        self.setSelectedWith(type: type)
+        self.setSelectedWith(type: type, animated: true)
     }
 }
 

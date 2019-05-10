@@ -200,6 +200,14 @@ public extension UIFont {
         return UIFont.boldSystemFont(ofSize: 15)
     }
     
+    static func boldFont_16() -> UIFont {
+        return UIFont.boldSystemFont(ofSize: 16)
+    }
+    
+    static func boldFont_17() -> UIFont {
+        return UIFont.boldSystemFont(ofSize: 17)
+    }
+    
     /// 20号粗体
     static func boldFont_20() -> UIFont {
         return UIFont.boldSystemFont(ofSize: 20)
@@ -231,6 +239,10 @@ public extension UIFont {
     
     static func normalFont_16() -> UIFont {
         return UIFont.systemFont(ofSize: 16)
+    }
+    
+    static func normalFont_17() -> UIFont {
+        return UIFont.systemFont(ofSize: 17)
     }
     
     static func normalFont_18() -> UIFont {
