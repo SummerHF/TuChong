@@ -27,9 +27,17 @@
 
 import UIKit
 
+// MARK: - ProfileDetailScrollViewProtocol
+
+protocol ProfileDetailScrollViewProtocol: class {
+    func scrollView(view: ProfileDetailScrollView, scrollTo index: Int)
+}
+
 // MARK: - ProfileDetailScrollView
 
 class ProfileDetailScrollView: UIScrollView {
+    
+    weak var detailScrollViewDelegate: ProfileDetailScrollViewProtocol?
     
     private let itemCount: CGFloat = 3.0
     private let worksCollectionNode: ProfileCollectionNode = ProfileCollectionNode(type: .work)
@@ -85,11 +93,11 @@ class ProfileDetailScrollView: UIScrollView {
 
 extension ProfileDetailScrollView: UIScrollViewDelegate {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        printLog(scrollView.contentOffset.x)
-    }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        printLog(scrollView.contentOffset.x)
+        let contentOffSetX = self.contentOffset.x
+        let index = contentOffSetX / self.width
+        if index >= 0 && index <= itemCount - 1.0 {
+            self.detailScrollViewDelegate?.scrollView(view: self, scrollTo: Int(index))
+        }
     }
 }

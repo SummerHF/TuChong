@@ -91,6 +91,19 @@ enum ProfileDetailType {
     case activity
     case none
     
+    init(index: Int) {
+        switch index {
+        case 0:
+            self = .work
+        case 1:
+            self = .like
+        case 2:
+            self = .activity
+        default:
+            self = .none
+        }
+    }
+    
     var rawValue: Int {
         switch self {
         case .work:
@@ -177,7 +190,7 @@ class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
         self.setSelectedWith(type: defaultType, animated: false)
     }
     
-    private func setSelectedWith(type: ProfileDetailType, animated: Bool) {
+    func setSelectedWith(type: ProfileDetailType, animated: Bool) {
         if let defaultType = self.previousType, defaultType != type {
             /// 当前选中
             let currentItemView = self.itemArray[type.rawValue]
@@ -255,14 +268,19 @@ class ProfileDetailView: UIView {
     
     func configureWith(profile: ProfileModel) {
         self.topView.delegate = self
+        self.scrollView.detailScrollViewDelegate = self
         self.topView.configureWith(statistics: profile.statistics, defaultType: .work)
     }
 }
 
-extension ProfileDetailView: ProfileDetailTopViewProtocol {
+extension ProfileDetailView: ProfileDetailTopViewProtocol, ProfileDetailScrollViewProtocol {
     
     func topView(view: ProfileDetailTopView, hasSelectedTypeIndex: Int) {
         self.scrollView.scrollTo(index: hasSelectedTypeIndex)
+    }
+    
+    func scrollView(view: ProfileDetailScrollView, scrollTo index: Int) {
+        self.topView.setSelectedWith(type: ProfileDetailType(index: index), animated: true)
     }
 }
 
