@@ -270,6 +270,7 @@ class ProfileDetailView: UIView {
         self.topView.delegate = self
         self.scrollView.detailScrollViewDelegate = self
         self.topView.configureWith(statistics: profile.statistics, defaultType: .work)
+        self.scrollView.configureWith(site_id: profile.site.site_id)
     }
 }
 

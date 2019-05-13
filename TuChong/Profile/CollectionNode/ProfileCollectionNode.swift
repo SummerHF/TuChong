@@ -31,6 +31,8 @@ class ProfileCollectionNode: ASCollectionNode {
     
     let type: ProfileDetailType
     
+    private var site_id: String = ""
+    
     init(type: ProfileDetailType) {
         self.type = type
         super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout(), layoutFacilitator: nil)
@@ -39,5 +41,10 @@ class ProfileCollectionNode: ASCollectionNode {
     
     override func didLoad() {
         super.didLoad()
+    }
+    
+    func configureWith(site_id: String) {
+        self.site_id = site_id
+        printLog(site_id)
     }
 }

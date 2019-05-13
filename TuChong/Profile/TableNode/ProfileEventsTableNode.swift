@@ -31,6 +31,8 @@ class ProfileEventsTableNode: ASTableNode {
     
     let type: ProfileDetailType
     
+    private var site_id: String = ""
+    
     init(type: ProfileDetailType) {
         self.type = type
         super.init(style: .grouped)
@@ -39,5 +41,10 @@ class ProfileEventsTableNode: ASTableNode {
     
     override func didLoad() {
         super.didLoad()
+    }
+    
+    func configureWith(site_id: String) {
+        self.site_id = site_id
+        printLog(site_id)
     }
 }

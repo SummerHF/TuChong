@@ -39,6 +39,7 @@ class ProfileDetailScrollView: UIScrollView {
     
     weak var detailScrollViewDelegate: ProfileDetailScrollViewProtocol?
     
+    private var site_id: String = ""
     private let itemCount: CGFloat = 3.0
     private let worksCollectionNode: ProfileCollectionNode = ProfileCollectionNode(type: .work)
     private let likesCollectionNode: ProfileCollectionNode = ProfileCollectionNode(type: .like)
@@ -86,6 +87,14 @@ class ProfileDetailScrollView: UIScrollView {
     func scrollTo(index: Int) {
         let offset = CGPoint(x: self.width * CGFloat(index), y: 0)
         self.setContentOffset(offset, animated: false)
+    }
+    
+    /// set site_id
+    func configureWith(site_id: String) {
+        self.site_id = site_id
+        self.worksCollectionNode.configureWith(site_id: site_id)
+        self.likesCollectionNode.configureWith(site_id: site_id)
+        self.eventsTableNode.configureWith(site_id: site_id)
     }
 }
 
