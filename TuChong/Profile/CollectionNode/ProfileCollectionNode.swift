@@ -32,6 +32,7 @@ class ProfileCollectionNode: ASCollectionNode {
     let type: ProfileDetailType
     
     private var site_id: String = ""
+    private var page: Int = 0
     
     init(type: ProfileDetailType) {
         self.type = type

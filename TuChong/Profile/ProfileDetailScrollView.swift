@@ -69,10 +69,6 @@ class ProfileDetailScrollView: UIScrollView {
         self.likesCollectionNode.frame = CGRect(x: getXWith(type: likesCollectionNode.type), y: 0, width: self.width, height: self.height)
         self.eventsTableNode.frame = CGRect(x: getXWith(type: eventsTableNode.type), y: 0, width: self.width, height: self.height)
         self.contentSize = CGSize(width: self.width * itemCount, height: self.height)
-        
-        self.worksCollectionNode.backgroundColor = Color.lineGray
-        self.likesCollectionNode.backgroundColor = Color.orangerColor
-        self.eventsTableNode.backgroundColor = Color.lightGray
     }
     
     private func getXWith(type: ProfileDetailType) -> CGFloat {
@@ -103,8 +99,7 @@ class ProfileDetailScrollView: UIScrollView {
 extension ProfileDetailScrollView: UIScrollViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let contentOffSetX = self.contentOffset.x
-        let index = contentOffSetX / self.width
+        let index = self.contentOffset.x / self.width
         if index >= 0 && index <= itemCount - 1.0 {
             self.detailScrollViewDelegate?.scrollView(view: self, scrollTo: Int(index))
         }

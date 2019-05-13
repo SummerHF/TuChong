@@ -32,11 +32,13 @@ class ProfileEventsTableNode: ASTableNode {
     let type: ProfileDetailType
     
     private var site_id: String = ""
-    
+    private var page: Int = 1
+
     init(type: ProfileDetailType) {
         self.type = type
         super.init(style: .grouped)
-        self.backgroundColor = Color.backGroundColor
+        self.dataSource = self
+        self.backgroundColor = Color.lineGray
     }
     
     override func didLoad() {
@@ -45,6 +47,27 @@ class ProfileEventsTableNode: ASTableNode {
     
     func configureWith(site_id: String) {
         self.site_id = site_id
-        printLog(site_id)
+        self.loadData()
+    }
+    
+    private func loadData() {
+        Network.request(target: TuChong.profile_event(site_id: site_id, page: page), success: { (responseData) in
+            printLog(responseData)
+        }, error: { (_) in
+            
+        }) { (_) in
+            
+        }
+    }
+}
+
+extension ProfileEventsTableNode: ASTableDataSource {
+    
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+        return ASCellNode()
     }
 }
