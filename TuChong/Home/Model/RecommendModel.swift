@@ -225,6 +225,9 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var is_hot: Bool = false
     var passed_time: String = ""
     ///
+    var vote: Int = 0
+    var rank: Int = 0
+    var in_vote: Bool = false
     var post_id: String = ""
     var site_id: String = ""
     var excerpt: String = ""

@@ -30,6 +30,7 @@ import AsyncDisplayKit
 class ProfileEventsTableNode: ASTableNode {
     
     let type: ProfileDetailType
+    var feedList: [Profile_Events_List_Model] = []
     
     private var site_id: String = ""
     private var page: Int = 1
@@ -38,11 +39,13 @@ class ProfileEventsTableNode: ASTableNode {
         self.type = type
         super.init(style: .grouped)
         self.dataSource = self
+        self.delegate = self
         self.backgroundColor = Color.lineGray
     }
     
     override func didLoad() {
         super.didLoad()
+        self.view.separatorStyle = .none
     }
     
     func configureWith(site_id: String) {
@@ -52,7 +55,8 @@ class ProfileEventsTableNode: ASTableNode {
     
     private func loadData() {
         Network.request(target: TuChong.profile_event(site_id: site_id, page: page), success: { (responseData) in
-            printLog(responseData)
+            self.feedList = Profile_Events_Model.buildWith(dict: responseData)
+            self.reloadData()
         }, error: { (_) in
             
         }) { (_) in
@@ -61,13 +65,29 @@ class ProfileEventsTableNode: ASTableNode {
     }
 }
 
-extension ProfileEventsTableNode: ASTableDataSource {
+extension ProfileEventsTableNode: ASTableDataSource, ASTableDelegate {
+    
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
+        return self.feedList.count
+    }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.feedList[section].post_list.count
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        return ASCellNode()
+        return ProfileEventsCellNode(post_list: self.feedList[indexPath.section].post_list[indexPath.row], indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return ProfileEventsHeaderView(listItem: self.feedList[section])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return ProfileEventsHeaderView.headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return ProfileEventsHeaderView.footerHeight
     }
 }

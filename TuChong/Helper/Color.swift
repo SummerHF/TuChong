@@ -49,5 +49,6 @@ struct Color {
     static var flatGray = RGBA(R: 227, G: 227, B: 227)
     static var blueColor = RGBA(R: 100, G: 107, B: 137)
     static var thinBlack = RGBA(R: 73, G: 73, B: 73)
+    static var simpleGray = RGBA(R: 239, G: 238, B: 243, A: 0.9)
     static var clearColor = UIColor.clear
 }

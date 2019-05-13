@@ -13,7 +13,10 @@
 		530410732268A64100EB1AE5 /* RecommendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530410712268A64100EB1AE5 /* RecommendModel.swift */; };
 		53173220224130F600B6C10B /* BaseContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317321F224130F600B6C10B /* BaseContainerViewController.swift */; };
 		53295BCE2275EBE90019554D /* RecommendPhotographerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53295BCD2275EBE80019554D /* RecommendPhotographerModel.swift */; };
+		53463CFA22899E1100F6E581 /* ProfileEventsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53463CF922899E1100F6E581 /* ProfileEventsHeaderView.swift */; };
+		53463CFC2289A2D000F6E581 /* ProfileEventsCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53463CFB2289A2D000F6E581 /* ProfileEventsCellNode.swift */; };
 		5351010D2275DC2B0008B7AE /* RecommendPhotographerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5351010C2275DC2B0008B7AE /* RecommendPhotographerViewController.swift */; };
+		5351BA6F228999300056677E /* ProfileEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5351BA6E228999300056677E /* ProfileEventsModel.swift */; };
 		5358B10C226F5451006229CB /* TutorialDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358B10B226F5451006229CB /* TutorialDetailModel.swift */; };
 		5358B10E226F5C55006229CB /* TutorialDetailProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358B10D226F5C55006229CB /* TutorialDetailProfileCell.swift */; };
 		535BC19D2268B4B00095B6C6 /* VideoNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */; };
@@ -110,7 +113,10 @@
 		530410712268A64100EB1AE5 /* RecommendModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendModel.swift; sourceTree = "<group>"; };
 		5317321F224130F600B6C10B /* BaseContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseContainerViewController.swift; sourceTree = "<group>"; };
 		53295BCD2275EBE80019554D /* RecommendPhotographerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendPhotographerModel.swift; sourceTree = "<group>"; };
+		53463CF922899E1100F6E581 /* ProfileEventsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEventsHeaderView.swift; sourceTree = "<group>"; };
+		53463CFB2289A2D000F6E581 /* ProfileEventsCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEventsCellNode.swift; sourceTree = "<group>"; };
 		5351010C2275DC2B0008B7AE /* RecommendPhotographerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendPhotographerViewController.swift; sourceTree = "<group>"; };
+		5351BA6E228999300056677E /* ProfileEventsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEventsModel.swift; sourceTree = "<group>"; };
 		5358B10B226F5451006229CB /* TutorialDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailModel.swift; sourceTree = "<group>"; };
 		5358B10D226F5C55006229CB /* TutorialDetailProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDetailProfileCell.swift; sourceTree = "<group>"; };
 		535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoNavNode.swift; sourceTree = "<group>"; };
@@ -317,6 +323,9 @@
 		C404365C2285515100EE1742 /* TableNode */ = {
 			isa = PBXGroup;
 			children = (
+				53463CFB2289A2D000F6E581 /* ProfileEventsCellNode.swift */,
+				53463CF922899E1100F6E581 /* ProfileEventsHeaderView.swift */,
+				5351BA6E228999300056677E /* ProfileEventsModel.swift */,
 				C404365D2285516A00EE1742 /* ProfileEventsTableNode.swift */,
 			);
 			path = TableNode;
@@ -758,6 +767,7 @@
 				C47BDC362249B26F001032DC /* LaunchViewController.swift in Sources */,
 				535BC19D2268B4B00095B6C6 /* VideoNavNode.swift in Sources */,
 				C45496E22270434000D14FD8 /* WebView.swift in Sources */,
+				53463CFA22899E1100F6E581 /* ProfileEventsHeaderView.swift in Sources */,
 				C402B24322699AE5007746EB /* CategoryFlowLayout.swift in Sources */,
 				C43B9A58225C61E100C15872 /* PhotoFilmViewController.swift in Sources */,
 				53AF479A2270958200C96A96 /* TutorialDetailWebViewCell.swift in Sources */,
@@ -793,6 +803,7 @@
 				C479F2862272DF41002C7D53 /* TutorialDetailHeadView.swift in Sources */,
 				C404365E2285516A00EE1742 /* ProfileEventsTableNode.swift in Sources */,
 				5358B10E226F5C55006229CB /* TutorialDetailProfileCell.swift in Sources */,
+				53463CFC2289A2D000F6E581 /* ProfileEventsCellNode.swift in Sources */,
 				C402B24522699B3A007746EB /* WallpaperLayout.swift in Sources */,
 				C4EB9FEF2266F074008747C7 /* RecommendTopicCellNode.swift in Sources */,
 				53CC8C66226DF5D1007EE8D3 /* LoadingNode.swift in Sources */,
@@ -809,6 +820,7 @@
 				5304106E2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift in Sources */,
 				C4F3A5FF227FE3AA006614D1 /* ProfileCoverCollectionNode.swift in Sources */,
 				53D7A77C2281B83C0008D6A6 /* ProfileNavBar.swift in Sources */,
+				5351BA6F228999300056677E /* ProfileEventsModel.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
 				5358B10C226F5451006229CB /* TutorialDetailModel.swift in Sources */,
 				C43B9A56225C617100C15872 /* UserViewController.swift in Sources */,
