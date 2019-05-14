@@ -299,6 +299,12 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
                                    NSAttributedString.Key.foregroundColor: UIColor.black], range: NSString(string: string).range(of: "\(favorites)"))
         return mutableAttr
     }
+    
+    /// Profile activity cover image url
+    func setCoverUrl(with decorate: String) -> URL? {
+        guard let image = images.first else { return nil }
+        return URL(string: "https://photo.tuchong.com/\(image.user_id)/\(decorate)/\(image.img_id).jpg")
+    }
 }
 
 // MARK: - Feedlist

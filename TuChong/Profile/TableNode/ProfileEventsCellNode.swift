@@ -31,10 +31,31 @@ class ProfileEventsCellNode: BaseCellNode {
     
     private let post_list: Recommend_Feedlist_Eentry_Model
     private let index: IndexPath
+    private let imageNode: ASNetworkImageNode
     
+    private let margin: CGFloat = 10.0
+    private let insetForImageNode = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+    private let imageNodeSize = CGSize(width: 72, height: 72)
+
     init(post_list: Recommend_Feedlist_Eentry_Model, indexPath: IndexPath) {
         self.post_list = post_list
         self.index = indexPath
+        self.imageNode = ASNetworkImageNode()
         super.init()
+        self.selectionStyle = .default
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        self.imageNode.url = post_list.setCoverUrl(with: "g")
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        self.imageNode.style.preferredSize = imageNodeSize
+        
+        let stack = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
+                self.imageNode
+            ])
+        return ASInsetLayoutSpec(insets: insetForImageNode, child: stack)
     }
 }

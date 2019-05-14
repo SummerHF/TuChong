@@ -40,7 +40,7 @@ class ProfileEventsTableNode: ASTableNode {
         super.init(style: .grouped)
         self.dataSource = self
         self.delegate = self
-        self.backgroundColor = Color.lineGray
+        self.backgroundColor = Color.simpleGray
     }
     
     override func didLoad() {

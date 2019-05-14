@@ -34,8 +34,9 @@ class ProfileEventsHeaderView: UIView {
 
     private let listItem: Profile_Events_List_Model
     /// size
-    private let margin: CGFloat = 10.0
-    
+    private let margin: CGFloat = 8.0
+    private let edgue: CGFloat = 15.0
+
     lazy var container: UIView = {
         let container = UIView()
         container.backgroundColor = Color.backGroundColor
@@ -50,6 +51,12 @@ class ProfileEventsHeaderView: UIView {
     lazy var subTitleLable: UILabel = {
         let subTitleLable = UILabel()
         return subTitleLable
+    }()
+    
+    lazy var lineView: UIView = {
+        let lineView = UIView()
+        lineView.backgroundColor = Color.lineGray
+        return lineView
     }()
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,22 +81,25 @@ class ProfileEventsHeaderView: UIView {
         /// add subview to container
         self.container.addSubview(titleLable)
         self.container.addSubview(subTitleLable)
+        self.container.addSubview(lineView)
         
         self.titleLable.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(margin)
-            make.right.equalToSuperview().offset(-2 * margin)
+            make.left.equalToSuperview().offset(edgue)
+            make.right.equalToSuperview().offset(-2 * edgue)
             make.top.equalToSuperview()
-            make.bottom.equalTo(container.snp.centerY)
         }
-        
         self.subTitleLable.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(margin)
-            make.top.equalTo(container.snp.centerY)
-            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(edgue)
+            make.top.equalTo(titleLable.snp.bottom).offset(margin)
         }
-        
+        self.lineView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(edgue)
+            make.right.equalToSuperview().offset(-edgue)
+            make.bottom.equalToSuperview().offset(-margin)
+            make.height.equalTo(0.5)
+        }
         /// set values
-        self.titleLable.set(title: listItem.tag_name, font: UIFont.boldFont_20(), color: Color.orangerColor)
-        self.subTitleLable.set(title: listItem.posts, font: UIFont.normalFont_15(), color: Color.lightGray)
+        self.titleLable.set(title: listItem.tag_name, font: UIFont.boldFont_16(), color: Color.orangerColor)
+        self.subTitleLable.set(title: listItem.posts, font: UIFont.normalFont_13(), color: Color.lightGray)
     }
 }
