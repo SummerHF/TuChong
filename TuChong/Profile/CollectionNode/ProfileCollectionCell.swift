@@ -49,6 +49,8 @@ class ProfileCollectionCell: BaseCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        /// set corner radius
+        self.imageNode.add(cornerRadius: 4.0, backgroundColor: Color.backGroundColor, cornerRoundingType: .clipping)
         return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: self.imageNode)
     }
 }

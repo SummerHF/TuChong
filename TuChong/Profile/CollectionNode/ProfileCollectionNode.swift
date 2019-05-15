@@ -50,7 +50,7 @@ class ProfileCollectionNode: ASCollectionNode {
     init(type: ProfileDetailType) {
         self.type = type
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 15
+        layout.minimumLineSpacing = 12
         self.layouts = layout
         super.init(frame: CGRect.zero, collectionViewLayout: layout, layoutFacilitator: nil)
         self.backgroundColor = Color.backGroundColor
@@ -91,7 +91,7 @@ extension ProfileCollectionNode: ASCollectionDataSource, ASCollectionDelegate, A
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
-        let paddding: CGFloat =  15
+        let paddding: CGFloat =  12
         let column: CGFloat = 2
         let oneItemWidth = (self.view.width - (column - 1.0) * paddding - self.contentInset.left * 2.0 ) / column
         let size = CGSize(width: oneItemWidth, height: oneItemWidth)
