@@ -56,7 +56,7 @@ class ProfileContainerBottomView: UIView {
         self.sepatorView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.height.equalTo(1.0)
+            make.height.equalTo(0.6)
         }
         self.addSubview(attentionLable)
         self.addSubview(fansLable)
