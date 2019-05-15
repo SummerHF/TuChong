@@ -33,6 +33,8 @@ class ProfileCollectionNode: ASCollectionNode {
 
     private var site_id: String = ""
     private var page: Int = 0
+    private var work_model = Profile_Work_Model()
+    private var layouts: UICollectionViewFlowLayout
     
     var path: String {
         switch type {
@@ -47,8 +49,14 @@ class ProfileCollectionNode: ASCollectionNode {
     
     init(type: ProfileDetailType) {
         self.type = type
-        super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout(), layoutFacilitator: nil)
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 15
+        self.layouts = layout
+        super.init(frame: CGRect.zero, collectionViewLayout: layout, layoutFacilitator: nil)
         self.backgroundColor = Color.backGroundColor
+        self.dataSource = self
+        self.delegate = self
+        self.contentInset = UIEdgeInsets(top: 15, left: 15, bottom: 0, right: 15)
     }
     
     override func didLoad() {
@@ -62,11 +70,31 @@ class ProfileCollectionNode: ASCollectionNode {
     
     private func loadData() {
         Network.request(target: TuChong.profile_work(path: path), success: { (responseData) in
-            printLog(responseData)
+            self.work_model = Profile_Work_Model.buildWith(dict: responseData)
+            self.reloadData()
         }, error: { (_) in
             
         }) { (_) in
             
         }
+    }
+}
+
+extension ProfileCollectionNode: ASCollectionDataSource, ASCollectionDelegate, ASCollectionDelegateFlowLayout {
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
+        return self.work_model.work_list.count
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
+        return ProfileCollectionCell(work_list: self.work_model.work_list[indexPath.row], index: indexPath.row)
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
+        let paddding: CGFloat =  15
+        let column: CGFloat = 2
+        let oneItemWidth = (self.view.width - (column - 1.0) * paddding - self.contentInset.left * 2.0 ) / column
+        let size = CGSize(width: oneItemWidth, height: oneItemWidth)
+        return ASSizeRange(min: size, max: size)
     }
 }

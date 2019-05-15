@@ -22,11 +22,13 @@
 		535BC19D2268B4B00095B6C6 /* VideoNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */; };
 		53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53679354224132DE00C93C76 /* AppDelegate+Extension.swift */; };
 		53A00EFD2275EF02008916CE /* RecommendPhotographerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A00EFC2275EF02008916CE /* RecommendPhotographerCell.swift */; };
+		53ADF3AE228C47B5000A941D /* ProfileCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ADF3AD228C47B5000A941D /* ProfileCollectionCell.swift */; };
 		53AF479A2270958200C96A96 /* TutorialDetailWebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AF47992270958200C96A96 /* TutorialDetailWebViewCell.swift */; };
 		53CC8C66226DF5D1007EE8D3 /* LoadingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CC8C65226DF5D1007EE8D3 /* LoadingNode.swift */; };
 		53D1F5B52268A7340046F0FE /* RecommendBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1F5B42268A7340046F0FE /* RecommendBaseViewController.swift */; };
 		53D7A77C2281B83C0008D6A6 /* ProfileNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7A77B2281B83C0008D6A6 /* ProfileNavBar.swift */; };
 		53DD615B227F128500FA969E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DD615A227F128500FA969E /* ProfileViewController.swift */; };
+		53E29036228C407F008A0242 /* ProfileFeedListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E29035228C407F008A0242 /* ProfileFeedListModel.swift */; };
 		53EF8E83228065BD00347ECA /* ProfileCoverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF8E82228065BD00347ECA /* ProfileCoverNode.swift */; };
 		53F43F99224509DD007027AD /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F43F98224509DD007027AD /* LaunchManager.swift */; };
 		C402B23C22694C6D007746EB /* NavItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B23B22694C6D007746EB /* NavItemButton.swift */; };
@@ -122,11 +124,13 @@
 		535BC19C2268B4B00095B6C6 /* VideoNavNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoNavNode.swift; sourceTree = "<group>"; };
 		53679354224132DE00C93C76 /* AppDelegate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extension.swift"; sourceTree = "<group>"; };
 		53A00EFC2275EF02008916CE /* RecommendPhotographerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendPhotographerCell.swift; sourceTree = "<group>"; };
+		53ADF3AD228C47B5000A941D /* ProfileCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionCell.swift; sourceTree = "<group>"; };
 		53AF47992270958200C96A96 /* TutorialDetailWebViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailWebViewCell.swift; sourceTree = "<group>"; };
 		53CC8C65226DF5D1007EE8D3 /* LoadingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingNode.swift; sourceTree = "<group>"; };
 		53D1F5B42268A7340046F0FE /* RecommendBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendBaseViewController.swift; sourceTree = "<group>"; };
 		53D7A77B2281B83C0008D6A6 /* ProfileNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavBar.swift; sourceTree = "<group>"; };
 		53DD615A227F128500FA969E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		53E29035228C407F008A0242 /* ProfileFeedListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileFeedListModel.swift; sourceTree = "<group>"; };
 		53EF8E82228065BD00347ECA /* ProfileCoverNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCoverNode.swift; sourceTree = "<group>"; };
 		53F43F98224509DD007027AD /* LaunchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		827E6D5469BAD6EADF9335D1 /* Pods_TuChong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuChong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +319,8 @@
 		C404365B2285514C00EE1742 /* CollectionNode */ = {
 			isa = PBXGroup;
 			children = (
+				53ADF3AD228C47B5000A941D /* ProfileCollectionCell.swift */,
+				53E29035228C407F008A0242 /* ProfileFeedListModel.swift */,
 				C404365F228551AB00EE1742 /* ProfileCollectionNode.swift */,
 			);
 			path = CollectionNode;
@@ -797,6 +803,7 @@
 				C4827C382266B828009E94C5 /* FollowViewController.swift in Sources */,
 				C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */,
 				C4650C3022840F0600215D85 /* ProfileDetailTopItemView.swift in Sources */,
+				53E29036228C407F008A0242 /* ProfileFeedListModel.swift in Sources */,
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
 				C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */,
@@ -810,6 +817,7 @@
 				C4A502492266F49C00867EBE /* RecommendBaseCellNode.swift in Sources */,
 				C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,
+				53ADF3AE228C47B5000A941D /* ProfileCollectionCell.swift in Sources */,
 				C402B2402269755F007746EB /* WallpaperNavNode.swift in Sources */,
 				C4C8F467226DB07E000D1231 /* TutorialNavNode.swift in Sources */,
 				C421367F228545030081B532 /* ProfileDetailScrollView.swift in Sources */,
