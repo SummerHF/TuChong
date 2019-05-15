@@ -32,30 +32,53 @@ class ProfileEventsCellNode: BaseCellNode {
     private let post_list: Recommend_Feedlist_Eentry_Model
     private let index: IndexPath
     private let imageNode: ASNetworkImageNode
-    
+    private let titleTextNode: ASTextNode
+    private let publishTimeTextNode: ASTextNode
+    /// 喜欢 + 评论
+    private let summaryTextNode: ASTextNode
+
     private let margin: CGFloat = 10.0
     private let insetForImageNode = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
     private let imageNodeSize = CGSize(width: 72, height: 72)
-
+    
     init(post_list: Recommend_Feedlist_Eentry_Model, indexPath: IndexPath) {
         self.post_list = post_list
         self.index = indexPath
         self.imageNode = ASNetworkImageNode()
+        self.titleTextNode = ASTextNode()
+        self.publishTimeTextNode = ASTextNode()
+        self.summaryTextNode = ASTextNode()
         super.init()
         self.selectionStyle = .default
     }
     
     override func didLoad() {
         super.didLoad()
+        self.titleTextNode.maximumNumberOfLines = 1
         self.imageNode.url = post_list.setCoverUrl(with: "g")
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         self.imageNode.style.preferredSize = imageNodeSize
-        
         let stack = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
-                self.imageNode
+                self.imageNode,
+                self.createImageDescLayoutSpec()
             ])
         return ASInsetLayoutSpec(insets: insetForImageNode, child: stack)
+    }
+    
+    private func createImageDescLayoutSpec() -> ASLayoutSpec {
+        self.titleTextNode.setAttributdWith(string: post_list.title, font: UIFont.normalFont_14())
+        self.publishTimeTextNode.setAttributdWith(string: post_list.published_at.offsetTime(), font: UIFont.normalFont_12(), color: Color.lightGray)
+        self.summaryTextNode.setAttributdWith(string: post_list.summary_desc, font: UIFont.normalFont_12(), color: Color.lightGray)
+        
+        let verticalStack = ASStackLayoutSpec(direction: .vertical, spacing: 15, justifyContent: .start, alignItems: .stretch, children: [
+            self.titleTextNode.styled({ (style) in
+                style.maxWidth = ASDimensionMake(200)
+            }),
+            self.publishTimeTextNode,
+            self.summaryTextNode
+        ])
+        return verticalStack
     }
 }

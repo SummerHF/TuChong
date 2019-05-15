@@ -29,14 +29,15 @@ import Foundation
 
 class ProfileEventsHeaderView: UIView {
     
-    static let headerHeight: CGFloat = 80.0
+    static let headerHeight: CGFloat = 72.0
     static let footerHeight: CGFloat = 0.0001
 
     private let listItem: Profile_Events_List_Model
     /// size
     private let margin: CGFloat = 8.0
     private let edgue: CGFloat = 15.0
-
+    private let rightArrayImageViewSize = CGSize(width: 20, height: 20)
+    
     lazy var container: UIView = {
         let container = UIView()
         container.backgroundColor = Color.backGroundColor
@@ -57,6 +58,12 @@ class ProfileEventsHeaderView: UIView {
         let lineView = UIView()
         lineView.backgroundColor = Color.lineGray
         return lineView
+    }()
+    
+    lazy var rightArrowImageView: UIImageView = {
+        let rightArrowImageView = UIImageView(image: R.image.right_arrow_gray())
+        rightArrowImageView.contentMode = .center
+        return rightArrowImageView
     }()
     
     required init?(coder aDecoder: NSCoder) {
@@ -82,11 +89,12 @@ class ProfileEventsHeaderView: UIView {
         self.container.addSubview(titleLable)
         self.container.addSubview(subTitleLable)
         self.container.addSubview(lineView)
+        self.container.addSubview(rightArrowImageView)
         
         self.titleLable.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(edgue)
             make.right.equalToSuperview().offset(-2 * edgue)
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(margin)
         }
         self.subTitleLable.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(edgue)
@@ -95,11 +103,16 @@ class ProfileEventsHeaderView: UIView {
         self.lineView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(edgue)
             make.right.equalToSuperview().offset(-edgue)
-            make.bottom.equalToSuperview().offset(-margin)
+            make.bottom.equalToSuperview().offset(-margin * 0.5)
             make.height.equalTo(0.5)
         }
+        self.rightArrowImageView.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-margin)
+            make.size.equalTo(rightArrayImageViewSize)
+        }
         /// set values
-        self.titleLable.set(title: listItem.tag_name, font: UIFont.boldFont_16(), color: Color.orangerColor)
-        self.subTitleLable.set(title: listItem.posts, font: UIFont.normalFont_13(), color: Color.lightGray)
+        self.titleLable.set(title: listItem.title, font: UIFont.boldFont_16(), color: listItem.title_color)
+        self.subTitleLable.set(title: listItem.post_desc, font: UIFont.normalFont_13(), color: Color.lightGray)
     }
 }

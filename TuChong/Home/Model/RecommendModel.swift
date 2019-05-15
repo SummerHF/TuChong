@@ -305,6 +305,10 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
         guard let image = images.first else { return nil }
         return URL(string: "https://photo.tuchong.com/\(image.user_id)/\(decorate)/\(image.img_id).jpg")
     }
+    
+    var summary_desc: String {
+        return "\(favorites)喜欢 \(comments)评论"
+    }
 }
 
 // MARK: - Feedlist

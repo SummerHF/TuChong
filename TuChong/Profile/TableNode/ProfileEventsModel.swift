@@ -42,6 +42,21 @@ struct Profile_Events_List_Model: HandyJSON {
     var prize_desc: String = ""
     var post_list: [Recommend_Feedlist_Eentry_Model] = []
     var remainingDays: Int = 0
+    
+    var title_color: UIColor {
+        return isClosed ? Color.lightGray : Color.orangerColor
+    }
+    
+    var isClosed: Bool {
+        return status == "closed" ? true : false
+    }
+    
+    var post_desc: String {
+        var description = "\(posts)投稿"
+        let remainDays =  remainingDays > 0 && remainingDays < 999 ? ",  距离结束\(remainingDays)天" : ""
+        description += isClosed ? ",  已结束": remainDays
+        return description
+    }
 }
 
 struct Profile_Events_Model: HandyJSON {
