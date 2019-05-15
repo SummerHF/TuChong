@@ -75,6 +75,8 @@ enum TuChong {
     case profile_site(site_id: String)
     /// 用户 ---- Event
     case profile_event(site_id: String, page: Int)
+    /// 用户 ---- Work and Favorites
+    case profile_work(path: String)
 }
 
 extension TuChong: TargetType {
@@ -149,6 +151,8 @@ extension TuChong: TargetType {
             return "/2/sites/\(site_id)"
         case let .profile_event(site_id, _):
             return "/users/\(site_id)/events"
+        case let .profile_work(path):
+            return path
         }
     }
     
@@ -171,7 +175,8 @@ extension TuChong: TargetType {
              .homepage_attention,
              .homepage_recommend,
              .profile_site,
-             .profile_event:
+             .profile_event,
+             .profile_work:
             return .get
         }
     }
@@ -188,6 +193,8 @@ extension TuChong: TargetType {
             }
         case let .profile_event(_, page):
             return .requestParameters(parameters: [RequestparameterKey.page: page], encoding: URLEncoding.default)
+        case .profile_work:
+            return .requestParameters(parameters: [RequestparameterKey.count: RequestparameterKey.default_count], encoding: URLEncoding.default)
         case let .tutorial(_, _, parameters):
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case let .tutorial_comments(_, parameters):
@@ -230,7 +237,8 @@ extension TuChong: TargetType {
              .tutorial_comments,
              .homepage_recommend,
              .profile_site,
-             .profile_event:
+             .profile_event,
+             .profile_work:
              return "Half measures are as bad as nothing at all.".utf8Encoded
         }
     }

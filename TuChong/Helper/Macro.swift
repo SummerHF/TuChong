@@ -174,4 +174,5 @@ struct RequestparameterKey {
     static let newest = 1
     static let refresh = "refresh"
     static let loadmore = "loadmore"
+    static let default_count = 20
 }

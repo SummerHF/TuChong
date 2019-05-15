@@ -30,9 +30,20 @@ import AsyncDisplayKit
 class ProfileCollectionNode: ASCollectionNode {
     
     let type: ProfileDetailType
-    
+
     private var site_id: String = ""
     private var page: Int = 0
+    
+    var path: String {
+        switch type {
+        case .work:
+            return "/sites/\(site_id)/works"
+        case .like:
+            return "/sites/\(site_id)/favorites"
+        default:
+            return ""
+        }
+    }
     
     init(type: ProfileDetailType) {
         self.type = type
@@ -46,6 +57,16 @@ class ProfileCollectionNode: ASCollectionNode {
     
     func configureWith(site_id: String) {
         self.site_id = site_id
-        printLog(site_id)
+        self.loadData()
+    }
+    
+    private func loadData() {
+        Network.request(target: TuChong.profile_work(path: path), success: { (responseData) in
+            printLog(responseData)
+        }, error: { (_) in
+            
+        }) { (_) in
+            
+        }
     }
 }
