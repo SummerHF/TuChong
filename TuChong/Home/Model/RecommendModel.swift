@@ -248,6 +248,13 @@ struct Recommend_Feedlist_Eentry_Model: HandyJSON {
     var rewards: Int = 0
     var wallpaper: Bool = false
     var views: Int = 0
+    
+    func text_length_with(count: Int, font: UIFont) -> CGFloat {
+        let contentSpacing: CGFloat = 4
+        let imageWidth: CGFloat = 15
+        return "\(count)".size(withAttributes: [NSAttributedString.Key.font: font]).width + contentSpacing + imageWidth
+    }
+    
     var collected: Bool = false
     var downloads: Int = 0
     var shares: Int = 0
