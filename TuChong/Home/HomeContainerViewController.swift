@@ -37,7 +37,7 @@ class HomeContainerViewController: BaseViewControlle {
     private var scrollView: UIScrollView?
     public var navArray: [HomePageNav_Data_Model] = []
     /// 搜索框
-    private let searchBar = SearchBar()
+    private let topBar = HomeTopBar()
     /// 头部的导航视图
     var navView: HomeNavNode? {
         didSet {
@@ -66,8 +66,8 @@ class HomeContainerViewController: BaseViewControlle {
     
     /// addSearchBar
     private func addSearchBar() {
-        self.navigationBar.view.addSubview(searchBar)
-        searchBar.snp.makeConstraints { (make) in
+        self.navigationBar.view.addSubview(topBar)
+        topBar.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(macro.bottomMargin)
             make.size.equalTo(macro.searchBarSize)

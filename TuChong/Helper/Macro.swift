@@ -26,9 +26,9 @@ struct Macro {
         return keyWindow?.rootViewController
     }
     
-    /// using navigation controller to present 
-    var presentViewController: UIViewController? {
-        return (rootViewController as? BaseTabBarController)?.selectedViewController
+    /// current selected navigation controller
+    var currentSelectedNavgationController: BaseNavigationController? {
+        return (rootViewController as? BaseTabBarController)?.selectedViewController as? BaseNavigationController
     }
     
     /// tabBar

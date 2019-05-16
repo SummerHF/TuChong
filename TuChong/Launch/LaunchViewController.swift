@@ -140,7 +140,7 @@ class LaunchAdView: ASDisplayNode {
         self.shutDownTimer()
         UIView.animate(withDuration: 0.2, animations: {
             self.launchViewController?.view.alpha = 0.0
-        }) { (isFinished) in
+        }) { (_) in
             self.launchViewController?.dismiss(animated: false, completion: {
                 macro.setTabBarHidden(hidden: false)
             })
