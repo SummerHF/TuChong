@@ -4,4 +4,4 @@
 
 # 仿"图虫"应用
 
-[![CircleCI](https://img.shields.io/circleci/project/github/Moya/Moya/master.svg)](https://circleci.com/gh/Moya/Moya/tree/master)
+
