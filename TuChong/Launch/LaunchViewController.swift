@@ -34,6 +34,10 @@ class LaunchAdView: ASDisplayNode {
     
     weak var launchViewController: LaunchViewController?
     
+    private var timer: Timer?
+    private var count: Int = 0
+    private var maximumTime: Int = 3
+    
     lazy var imageNode: ASImageNode = {
         let image = ASImageNode()
         return image
@@ -88,6 +92,10 @@ class LaunchAdView: ASDisplayNode {
         } else {
             self.separator.isHidden = true
         }
+        /// set timer
+        let timer = Timer(timeInterval: 1.0, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
+        self.timer = timer
     }
     
     private func layoutsubViews() {
@@ -115,10 +123,28 @@ class LaunchAdView: ASDisplayNode {
         }
     }
     
+    @objc private func timerEvent() {
+        if count >= maximumTime {
+            self.dismissLaunchAdview()
+        }
+        /// 超过5s 自动消失
+        count += 1
+    }
+    
+    @objc private func shutDownTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
     @objc private func dismissLaunchAdview() {
-        self.launchViewController?.dismiss(animated: false, completion: {
-            macro.setTabBarHidden(hidden: false)
-        })
+        self.shutDownTimer()
+        UIView.animate(withDuration: 0.2, animations: {
+            self.launchViewController?.view.alpha = 0.0
+        }) { (isFinished) in
+            self.launchViewController?.dismiss(animated: false, completion: {
+                macro.setTabBarHidden(hidden: false)
+            })
+        }
     }
 }
 
