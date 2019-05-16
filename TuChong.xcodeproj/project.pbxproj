@@ -39,6 +39,8 @@
 		C402B24722699C95007746EB /* RecommendWallpaperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B24622699C95007746EB /* RecommendWallpaperCell.swift */; };
 		C404365E2285516A00EE1742 /* ProfileEventsTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404365D2285516A00EE1742 /* ProfileEventsTableNode.swift */; };
 		C4043660228551AB00EE1742 /* ProfileCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404365F228551AB00EE1742 /* ProfileCollectionNode.swift */; };
+		C41375F3228D6063003D4EF5 /* HomeTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41375F2228D6063003D4EF5 /* HomeTopBar.swift */; };
+		C41375F6228D608F003D4EF5 /* HomeCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41375F5228D608F003D4EF5 /* HomeCircleController.swift */; };
 		C41A32C422601E09009AF4CF /* RecommendCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A32C322601E09009AF4CF /* RecommendCellNode.swift */; };
 		C41E0CC4224CA6260032E12A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E0CC3224CA6260032E12A /* Color.swift */; };
 		C41E0CD2224CB0700032E12A /* GenerateResource.sh in Resources */ = {isa = PBXBuildFile; fileRef = C41E0CD1224CB0700032E12A /* GenerateResource.sh */; };
@@ -144,6 +146,8 @@
 		C402B24622699C95007746EB /* RecommendWallpaperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendWallpaperCell.swift; sourceTree = "<group>"; };
 		C404365D2285516A00EE1742 /* ProfileEventsTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEventsTableNode.swift; sourceTree = "<group>"; };
 		C404365F228551AB00EE1742 /* ProfileCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionNode.swift; sourceTree = "<group>"; };
+		C41375F2228D6063003D4EF5 /* HomeTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopBar.swift; sourceTree = "<group>"; };
+		C41375F5228D608F003D4EF5 /* HomeCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleController.swift; sourceTree = "<group>"; };
 		C41A32C322601E09009AF4CF /* RecommendCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCellNode.swift; sourceTree = "<group>"; };
 		C41E0CC3224CA6260032E12A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C41E0CD1224CB0700032E12A /* GenerateResource.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = GenerateResource.sh; sourceTree = "<group>"; };
@@ -337,6 +341,14 @@
 			path = TableNode;
 			sourceTree = "<group>";
 		};
+		C41375F4228D6080003D4EF5 /* Circle */ = {
+			isa = PBXGroup;
+			children = (
+				C41375F5228D608F003D4EF5 /* HomeCircleController.swift */,
+			);
+			path = Circle;
+			sourceTree = "<group>";
+		};
 		C41E0CC5224CAE680032E12A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +437,7 @@
 				C402B23F2269755F007746EB /* WallpaperNavNode.swift */,
 				C4C8F466226DB07E000D1231 /* TutorialNavNode.swift */,
 				C4827C3E2266BD60009E94C5 /* FollowViewUserLoginNode.swift */,
+				C41375F2228D6063003D4EF5 /* HomeTopBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -460,6 +473,7 @@
 		C4AC63CD2241BB4100324C23 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C41375F4228D6080003D4EF5 /* Circle */,
 				C402B24122699AE5007746EB /* Layout */,
 				5304106F2268A64000EB1AE5 /* Model */,
 				C4A502472266F46A00867EBE /* Cell */,
@@ -826,6 +840,7 @@
 				C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */,
 				C43AEA09225442BC00C2CFE7 /* SearchBar.swift in Sources */,
 				5304106E2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift in Sources */,
+				C41375F6228D608F003D4EF5 /* HomeCircleController.swift in Sources */,
 				C4F3A5FF227FE3AA006614D1 /* ProfileCoverCollectionNode.swift in Sources */,
 				53D7A77C2281B83C0008D6A6 /* ProfileNavBar.swift in Sources */,
 				5351BA6F228999300056677E /* ProfileEventsModel.swift in Sources */,
@@ -834,6 +849,7 @@
 				C43B9A56225C617100C15872 /* UserViewController.swift in Sources */,
 				C437F354226EA2D80017445F /* RecommendTutorialCell.swift in Sources */,
 				C4DA845E227ED683007879EB /* PhotographyGroupCell.swift in Sources */,
+				C41375F3228D6063003D4EF5 /* HomeTopBar.swift in Sources */,
 				C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */,
 				C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */,
 				C402B23C22694C6D007746EB /* NavItemButton.swift in Sources */,

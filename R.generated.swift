@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 67 images.
+  /// This `R.image` struct is generated, and contains static references to 69 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -162,6 +162,10 @@ struct R: Rswift.Validatable {
     static let right_arrow_gray = Rswift.ImageResource(bundle: R.hostingBundle, name: "right_arrow_gray")
     /// Image `right_arrow`.
     static let right_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "right_arrow")
+    /// Image `sale_photo_background`.
+    static let sale_photo_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "sale_photo_background")
+    /// Image `sale_photo`.
+    static let sale_photo = Rswift.ImageResource(bundle: R.hostingBundle, name: "sale_photo")
     /// Image `searchBar_background`.
     static let searchBar_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "searchBar_background")
     /// Image `search_topic`.
@@ -454,6 +458,16 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "right_arrow_gray", bundle: ..., traitCollection: ...)`
     static func right_arrow_gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.right_arrow_gray, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "sale_photo", bundle: ..., traitCollection: ...)`
+    static func sale_photo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sale_photo, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "sale_photo_background", bundle: ..., traitCollection: ...)`
+    static func sale_photo_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sale_photo_background, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "searchBar_background", bundle: ..., traitCollection: ...)`
