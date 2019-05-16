@@ -29,10 +29,12 @@ import AsyncDisplayKit
 
 class ProfileCollectionCell: BaseCellNode {
     
-    private let work_list_model: Profile_Work_List_Model
+    private var work_list_model: Profile_Work_List_Model
     private let index: Int
     
     private let insetForWorkTypeLayoutSpec = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+    private let insetForTopImageNode = UIEdgeInsets(top: 0, left: 0, bottom: CGFloat.infinity, right: CGFloat.infinity)
+
     private let font: UIFont = UIFont.boldFont_12()
     
     private let imageNode: ASNetworkImageNode
@@ -42,6 +44,7 @@ class ProfileCollectionCell: BaseCellNode {
     private let lookCountBtnNode: ASButtonNode
     private let favoriteCountBtnNode: ASButtonNode
     private let commentCountBtnNode: ASButtonNode
+    private let topTextNode: ASTextNode
 
     init(work_list: Profile_Work_List_Model, index: Int) {
         self.work_list_model = work_list
@@ -52,7 +55,9 @@ class ProfileCollectionCell: BaseCellNode {
         self.lookCountBtnNode = ASButtonNode()
         self.favoriteCountBtnNode = ASButtonNode()
         self.commentCountBtnNode = ASButtonNode()
+        self.topTextNode = ASTextNode()
         super.init()
+        self.topTextNode.isLayerBacked = true
     }
     
     override func didLoad() {
@@ -62,12 +67,12 @@ class ProfileCollectionCell: BaseCellNode {
         self.shadowImageNode.contentMode = .scaleToFill
         self.imageNode.contentMode = .scaleAspectFill
         self.imageNode.url = work_list_model.cover_url
-        self.workTypeImageNode.image = R.image.hot()
+        self.workTypeImageNode.image = work_list_model.work_type_image
         
         self.lookCountBtnNode.contentSpacing = 4.0
         self.favoriteCountBtnNode.contentSpacing = 4.0
         self.commentCountBtnNode.contentSpacing = 4.0
-
+        self.topTextNode.backgroundColor = Color.lineColor
         self.lookCountBtnNode.setAttributdWith(string: "\(work_list_model.entry.views)", font: font, color: Color.backGroundColor, state: .normal)
         self.lookCountBtnNode.setImage(R.image.profile_look_count(), for: .normal)
         
@@ -81,7 +86,14 @@ class ProfileCollectionCell: BaseCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         /// set corner radius
         self.imageNode.add(cornerRadius: 4.0, backgroundColor: Color.backGroundColor, cornerRoundingType: .clipping)
-        return ASBackgroundLayoutSpec(child: createInfoLayoutSpec(), background: self.imageNode)
+        let backgroundLayoutSpec = ASBackgroundLayoutSpec(child: createInfoLayoutSpec(), background: self.imageNode)
+        if work_list_model.entry.is_top {
+            self.topTextNode.style.preferredSize = CGSize(width: 32, height: 16)
+            self.topTextNode.setAttributdWith(string: R.string.localizable.profile_top(), font: UIFont.normalFont_12(), color: Color.backGroundColor, aligement: .center)
+            return ASOverlayLayoutSpec(child: backgroundLayoutSpec, overlay: ASInsetLayoutSpec(insets: insetForTopImageNode, child: self.topTextNode))
+        } else {
+            return backgroundLayoutSpec
+        }
     }
     
     private func createInfoLayoutSpec() -> ASLayoutSpec {
@@ -96,7 +108,7 @@ class ProfileCollectionCell: BaseCellNode {
     }
     
     private func createOverLayoutSpec() -> ASLayoutSpec {
-        let stack = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [
+        let stack = ASStackLayoutSpec(direction: .horizontal, spacing: 5, justifyContent: .start, alignItems: .center, children: [
             self.lookCountBtnNode.styled({ (style) in
                 let width = work_list_model.entry.text_length_with(count: work_list_model.entry.views, font: font)
                 style.preferredSize = CGSize(width: width, height: 25)
@@ -111,7 +123,7 @@ class ProfileCollectionCell: BaseCellNode {
                 style.preferredSize = CGSize(width: width, height: 25)
             })
         ])
-        self.shadowImageNode.styled({ (style) in  style.maxHeight = ASDimensionMake(40) })
+        self.shadowImageNode.styled({ (style) in  style.maxHeight = ASDimensionMake(36) })
         return ASOverlayLayoutSpec(child: self.shadowImageNode, overlay: stack)
     }
     

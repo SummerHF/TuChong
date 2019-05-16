@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 62 images.
+  /// This `R.image` struct is generated, and contains static references to 67 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -118,6 +118,8 @@ struct R: Rswift.Validatable {
     static let plus_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus_white")
     /// Image `plus`.
     static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
+    /// Image `profile_album`.
+    static let profile_album = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_album")
     /// Image `profile_back_black`.
     static let profile_back_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_back_black")
     /// Image `profile_back_white`.
@@ -132,6 +134,8 @@ struct R: Rswift.Validatable {
     static let profile_dot = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_dot")
     /// Image `profile_favorite`.
     static let profile_favorite = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_favorite")
+    /// Image `profile_film`.
+    static let profile_film = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_film")
     /// Image `profile_look_count`.
     static let profile_look_count = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_look_count")
     /// Image `profile_message_black`.
@@ -144,6 +148,12 @@ struct R: Rswift.Validatable {
     static let profile_share_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_share_black")
     /// Image `profile_share_white`.
     static let profile_share_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_share_white")
+    /// Image `profile_text`.
+    static let profile_text = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_text")
+    /// Image `profile_top`.
+    static let profile_top = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_top")
+    /// Image `profile_video`.
+    static let profile_video = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_video")
     /// Image `recommend_ cameraman`.
     static let recommend_Cameraman = Rswift.ImageResource(bundle: R.hostingBundle, name: "recommend_ cameraman")
     /// Image `red_envelopes`.
@@ -336,6 +346,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.plus_white, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "profile_album", bundle: ..., traitCollection: ...)`
+    static func profile_album(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_album, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "profile_back_black", bundle: ..., traitCollection: ...)`
     static func profile_back_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_back_black, compatibleWith: traitCollection)
@@ -371,6 +386,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.profile_favorite, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "profile_film", bundle: ..., traitCollection: ...)`
+    static func profile_film(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_film, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "profile_look_count", bundle: ..., traitCollection: ...)`
     static func profile_look_count(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_look_count, compatibleWith: traitCollection)
@@ -399,6 +419,21 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "profile_share_white", bundle: ..., traitCollection: ...)`
     static func profile_share_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_share_white, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_text", bundle: ..., traitCollection: ...)`
+    static func profile_text(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_text, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_top", bundle: ..., traitCollection: ...)`
+    static func profile_top(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_top, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_video", bundle: ..., traitCollection: ...)`
+    static func profile_video(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_video, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "recommend_ cameraman", bundle: ..., traitCollection: ...)`
@@ -509,7 +544,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 45 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 46 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -667,6 +702,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let red_packet_activity = Rswift.StringResource(key: "red_packet_activity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 置顶
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let profile_top = Rswift.StringResource(key: "profile_top", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 胶囊演讲
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -963,6 +1002,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func red_packet_activity(_: Void = ()) -> String {
         return NSLocalizedString("red_packet_activity", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 置顶
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func profile_top(_: Void = ()) -> String {
+        return NSLocalizedString("profile_top", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 胶囊演讲

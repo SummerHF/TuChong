@@ -39,7 +39,7 @@ enum ProfileWorkType {
         if outType == "post" {
             if innerType == "text" {
                 self = .text
-            } else if innerType == "multi_photo" {
+            } else if innerType == "multi-photo" {
                 self = .multi_photo
             } else {
                 self = .none
@@ -70,6 +70,21 @@ struct Profile_Work_List_Model: HandyJSON {
             return URL(string: entry.cover)
         default:
             return entry.setCoverUrl(with: "g")
+        }
+    }
+    
+    var work_type_image: UIImage? {
+        switch workType {
+        case .multi_photo:
+            return R.image.profile_album()
+        case .film:
+            return R.image.profile_film()
+        case .text:
+            return R.image.profile_text()
+        case .video:
+            return R.image.profile_video()
+        default:
+            return nil
         }
     }
 }
