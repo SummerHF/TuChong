@@ -35,22 +35,28 @@ class ProfileCollectionCell: BaseCellNode {
     private let insetForImageNode = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
     private let imageNode: ASNetworkImageNode
+    private let shadowImageNode: ASImageNode
     
     init(work_list: Profile_Work_List_Model, index: Int) {
         self.work_list_model = work_list
         self.index = index
+        self.shadowImageNode = ASImageNode()
         self.imageNode = ASNetworkImageNode()
         super.init()
     }
     
     override func didLoad() {
         super.didLoad()
-        self.imageNode.url = work_list_model.entry.setCoverUrl(with: "g")
+        self.shadowImageNode.image = R.image.profile_cover()
+        self.shadowImageNode.contentMode = .scaleToFill
+        self.imageNode.contentMode = .scaleAspectFill
+        self.imageNode.url = work_list_model.cover_url
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         /// set corner radius
         self.imageNode.add(cornerRadius: 4.0, backgroundColor: Color.backGroundColor, cornerRoundingType: .clipping)
-        return ASInsetLayoutSpec(insets: UIEdgeInsets.zero, child: self.imageNode)
+        self.shadowImageNode.style.maxHeight = ASDimensionMake(60)
+        return ASBackgroundLayoutSpec(child: ASInsetLayoutSpec(insets: UIEdgeInsets(top: CGFloat.infinity, left: 0, bottom: 0, right: 0), child: self.shadowImageNode), background: self.imageNode)
     }
 }

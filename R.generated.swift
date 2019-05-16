@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 58 images.
+  /// This `R.image` struct is generated, and contains static references to 62 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -122,16 +122,24 @@ struct R: Rswift.Validatable {
     static let profile_back_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_back_black")
     /// Image `profile_back_white`.
     static let profile_back_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_back_white")
+    /// Image `profile_cover`.
+    static let profile_cover = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_cover")
     /// Image `profile_dot_black`.
     static let profile_dot_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_dot_black")
     /// Image `profile_dot_white`.
     static let profile_dot_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_dot_white")
     /// Image `profile_dot`.
     static let profile_dot = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_dot")
+    /// Image `profile_favorite`.
+    static let profile_favorite = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_favorite")
+    /// Image `profile_look_count`.
+    static let profile_look_count = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_look_count")
     /// Image `profile_message_black`.
     static let profile_message_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_message_black")
     /// Image `profile_message_white`.
     static let profile_message_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_message_white")
+    /// Image `profile_message`.
+    static let profile_message = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_message")
     /// Image `profile_share_black`.
     static let profile_share_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_share_black")
     /// Image `profile_share_white`.
@@ -338,6 +346,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.profile_back_white, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "profile_cover", bundle: ..., traitCollection: ...)`
+    static func profile_cover(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_cover, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "profile_dot", bundle: ..., traitCollection: ...)`
     static func profile_dot(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_dot, compatibleWith: traitCollection)
@@ -351,6 +364,21 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "profile_dot_white", bundle: ..., traitCollection: ...)`
     static func profile_dot_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_dot_white, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_favorite", bundle: ..., traitCollection: ...)`
+    static func profile_favorite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_favorite, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_look_count", bundle: ..., traitCollection: ...)`
+    static func profile_look_count(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_look_count, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_message", bundle: ..., traitCollection: ...)`
+    static func profile_message(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_message, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "profile_message_black", bundle: ..., traitCollection: ...)`

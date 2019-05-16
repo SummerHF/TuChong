@@ -61,6 +61,17 @@ struct Profile_Work_List_Model: HandyJSON {
     var workType: ProfileWorkType {
         return ProfileWorkType(outType: type, innerType: entry.type)
     }
+    
+    var cover_url: URL? {
+        switch workType {
+        case .text:
+            return URL(string: entry.title_image.url)
+        case .video:
+            return URL(string: entry.cover)
+        default:
+            return entry.setCoverUrl(with: "g")
+        }
+    }
 }
 
 struct Profile_Work_Model: HandyJSON {
