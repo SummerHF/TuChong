@@ -175,4 +175,8 @@ struct RequestparameterKey {
     static let refresh = "refresh"
     static let loadmore = "loadmore"
     static let default_count = 20
+    static let category = "category"
+    static let all = "all"
+    static let recommend = "recommend"
+    static let follow = "follow"
 }

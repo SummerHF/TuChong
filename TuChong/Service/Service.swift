@@ -51,6 +51,8 @@ enum TuChong {
     case homepage_recommend(page: Int, type: RequestType)
     /// 首页更多
     case home_more
+    /// 首页 - 圈子 - 更多
+    case home_circle_more(parameters: [String: Any])
     /// 活动 - 头部banner
     case activity
     /// 活动 - 底部的热门活动
@@ -86,14 +88,23 @@ extension TuChong: TargetType {
         switch self {
         case .tutorial:
             return ["content-type": "application/json",
-                    "version": "5.0.1",
+                    "version": "5.2.0",
                     "device": "51857464990",
                     "language": macro.language
+            ]
+        /// 首页 - 圈子 - 更多: 需要登录, 此处Token写死
+        case .home_circle_more:
+            return ["content-type": "application/json",
+                    "version": "5.2.0",
+                    "device": "51857464990",
+                    "token": "fc2770231dbc158a",
+                    "language": macro.language,
+                    "Cookie": "_ga=GA1.2.764396779.1557041063; token=fc2770231dbc158a; webp_enabled=0"
             ]
         default:
             return ["content-type": "application/json",
                     "platform": "ios",
-                    "version": "5.0.1",
+                    "version": "5.2.0",
                     "device": "51857464990",
                     "language": macro.language
             ]
@@ -117,6 +128,8 @@ extension TuChong: TargetType {
         switch self {
         case .home_more:
             return "/rest/app-tag-nav"
+        case .home_circle_more:
+            return "/tag-list"
         case .launch_ad:
             return "/2/welcome-images"
         case .home_nav:
@@ -163,6 +176,7 @@ extension TuChong: TargetType {
              .tutorial_reward,
              .tutorial_comments,
              .homepage,
+             .home_circle_more,
              .search_hot,
              .activity_event,
              .activity,
@@ -191,6 +205,8 @@ extension TuChong: TargetType {
             } else {
                 return .requestPlain
             }
+        case let .home_circle_more(parameters):
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case let .profile_event(_, page):
             return .requestParameters(parameters: [RequestparameterKey.page: page], encoding: URLEncoding.default)
         case .profile_work:
@@ -238,6 +254,7 @@ extension TuChong: TargetType {
              .homepage_recommend,
              .profile_site,
              .profile_event,
+             .home_circle_more,
              .profile_work:
              return "Half measures are as bad as nothing at all.".utf8Encoded
         }

@@ -1,7 +1,7 @@
-//  HomeCircleController.swift
+//  HomeCircleFocusTableCell.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/5/16.
+//  Created by SummerHF on 2019/5/17.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -26,44 +26,3 @@
 //
 
 import Foundation
-
-enum HomeCircleType {
-    case recommend
-    case focus
-    
-    var rawValue: Int {
-        switch self {
-        case .recommend:
-            return 0
-        case .focus:
-            return 1
-        }
-    }
-}
-
-class HomeCircleController: BaseViewControlle {
-    
-    lazy var topBar: HomeCircleTopBar = {
-        let frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
-        let topBar = HomeCircleTopBar(frame: frame)
-        return topBar
-    }()
-    
-    lazy var container: HomeCircleContainer = {
-        let y: CGFloat = topBar.frame.maxY
-        let frame = CGRect(x: 0, y: y, width: macro.screenWidth, height: macro.screenHeight - y)
-        let container = HomeCircleContainer(frame: frame)
-        return container
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = R.string.localizable.circle()
-        self.addSubviews()
-    }
-    
-    override func addSubviews() {
-        self.view.addSubview(topBar)
-        self.view.addSubview(container)
-    }
-}

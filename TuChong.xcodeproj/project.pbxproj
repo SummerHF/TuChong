@@ -41,6 +41,11 @@
 		C404365E2285516A00EE1742 /* ProfileEventsTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404365D2285516A00EE1742 /* ProfileEventsTableNode.swift */; };
 		C4043660228551AB00EE1742 /* ProfileCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404365F228551AB00EE1742 /* ProfileCollectionNode.swift */; };
 		C40F35EC228E614F00A8638B /* HomeCircleTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F35EB228E614F00A8638B /* HomeCircleTopBar.swift */; };
+		C40F35EE228E857B00A8638B /* HomeCircleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F35ED228E857B00A8638B /* HomeCircleContainer.swift */; };
+		C40F35F0228E87B000A8638B /* HomeCircleRecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F35EF228E87B000A8638B /* HomeCircleRecommendCell.swift */; };
+		C40F35F2228E87C000A8638B /* HomeCircleRecommendTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F35F1228E87C000A8638B /* HomeCircleRecommendTableNode.swift */; };
+		C40F35F4228E87D300A8638B /* HomeCircleFocusTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F35F3228E87D300A8638B /* HomeCircleFocusTableNode.swift */; };
+		C40F35F6228E87E400A8638B /* HomeCircleFocusTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F35F5228E87E400A8638B /* HomeCircleFocusTableCell.swift */; };
 		C41375F3228D6063003D4EF5 /* HomeTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41375F2228D6063003D4EF5 /* HomeTopBar.swift */; };
 		C41375F6228D608F003D4EF5 /* HomeCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41375F5228D608F003D4EF5 /* HomeCircleController.swift */; };
 		C41A32C422601E09009AF4CF /* RecommendCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A32C322601E09009AF4CF /* RecommendCellNode.swift */; };
@@ -150,6 +155,11 @@
 		C404365D2285516A00EE1742 /* ProfileEventsTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEventsTableNode.swift; sourceTree = "<group>"; };
 		C404365F228551AB00EE1742 /* ProfileCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionNode.swift; sourceTree = "<group>"; };
 		C40F35EB228E614F00A8638B /* HomeCircleTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleTopBar.swift; sourceTree = "<group>"; };
+		C40F35ED228E857B00A8638B /* HomeCircleContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleContainer.swift; sourceTree = "<group>"; };
+		C40F35EF228E87B000A8638B /* HomeCircleRecommendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleRecommendCell.swift; sourceTree = "<group>"; };
+		C40F35F1228E87C000A8638B /* HomeCircleRecommendTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleRecommendTableNode.swift; sourceTree = "<group>"; };
+		C40F35F3228E87D300A8638B /* HomeCircleFocusTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleFocusTableNode.swift; sourceTree = "<group>"; };
+		C40F35F5228E87E400A8638B /* HomeCircleFocusTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleFocusTableCell.swift; sourceTree = "<group>"; };
 		C41375F2228D6063003D4EF5 /* HomeTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopBar.swift; sourceTree = "<group>"; };
 		C41375F5228D608F003D4EF5 /* HomeCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleController.swift; sourceTree = "<group>"; };
 		C41A32C322601E09009AF4CF /* RecommendCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCellNode.swift; sourceTree = "<group>"; };
@@ -358,6 +368,11 @@
 			children = (
 				C41375F5228D608F003D4EF5 /* HomeCircleController.swift */,
 				C40F35EB228E614F00A8638B /* HomeCircleTopBar.swift */,
+				C40F35ED228E857B00A8638B /* HomeCircleContainer.swift */,
+				C40F35F1228E87C000A8638B /* HomeCircleRecommendTableNode.swift */,
+				C40F35F3228E87D300A8638B /* HomeCircleFocusTableNode.swift */,
+				C40F35EF228E87B000A8638B /* HomeCircleRecommendCell.swift */,
+				C40F35F5228E87E400A8638B /* HomeCircleFocusTableCell.swift */,
 			);
 			path = Circle;
 			sourceTree = "<group>";
@@ -787,6 +802,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C43B9A52225C2FFA00C15872 /* TabBar.swift in Sources */,
+				C40F35F0228E87B000A8638B /* HomeCircleRecommendCell.swift in Sources */,
 				C4DA8455227EB926007879EB /* LectureViewController.swift in Sources */,
 				C4827C3A2266BC1D009E94C5 /* UserManager.swift in Sources */,
 				C4DA8457227EBC69007879EB /* LectureModel.swift in Sources */,
@@ -834,6 +850,7 @@
 				C4650C3022840F0600215D85 /* ProfileDetailTopItemView.swift in Sources */,
 				53E29036228C407F008A0242 /* ProfileFeedListModel.swift in Sources */,
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
+				C40F35EE228E857B00A8638B /* HomeCircleContainer.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
 				C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */,
 				C479F2862272DF41002C7D53 /* TutorialDetailHeadView.swift in Sources */,
@@ -858,6 +875,7 @@
 				5304106E2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift in Sources */,
 				C41375F6228D608F003D4EF5 /* HomeCircleController.swift in Sources */,
 				C4F3A5FF227FE3AA006614D1 /* ProfileCoverCollectionNode.swift in Sources */,
+				C40F35F4228E87D300A8638B /* HomeCircleFocusTableNode.swift in Sources */,
 				53D7A77C2281B83C0008D6A6 /* ProfileNavBar.swift in Sources */,
 				5351BA6F228999300056677E /* ProfileEventsModel.swift in Sources */,
 				C4AC63CF2241BBD100324C23 /* HomeContainerViewController.swift in Sources */,
@@ -866,6 +884,7 @@
 				C437F354226EA2D80017445F /* RecommendTutorialCell.swift in Sources */,
 				C4DA845E227ED683007879EB /* PhotographyGroupCell.swift in Sources */,
 				C41375F3228D6063003D4EF5 /* HomeTopBar.swift in Sources */,
+				C40F35F6228E87E400A8638B /* HomeCircleFocusTableCell.swift in Sources */,
 				C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */,
 				C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */,
 				C402B23C22694C6D007746EB /* NavItemButton.swift in Sources */,
@@ -878,6 +897,7 @@
 				53295BCE2275EBE90019554D /* RecommendPhotographerModel.swift in Sources */,
 				C422D97C228278D5002530F6 /* ProfileScrollView.swift in Sources */,
 				C402B24722699C95007746EB /* RecommendWallpaperCell.swift in Sources */,
+				C40F35F2228E87C000A8638B /* HomeCircleRecommendTableNode.swift in Sources */,
 				C437F357226EE6FB0017445F /* TutorialDetailViewController.swift in Sources */,
 				53D1F5B52268A7340046F0FE /* RecommendBaseViewController.swift in Sources */,
 				5351010D2275DC2B0008B7AE /* RecommendPhotographerViewController.swift in Sources */,

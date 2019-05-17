@@ -1,7 +1,7 @@
-//  HomeCircleController.swift
+//  HomeCircleContainer.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/5/16.
+//  Created by SummerHF on 2019/5/17.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -25,45 +25,32 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-enum HomeCircleType {
-    case recommend
-    case focus
+class HomeCircleContainer: UIScrollView {
     
-    var rawValue: Int {
-        switch self {
-        case .recommend:
-            return 0
-        case .focus:
-            return 1
-        }
-    }
-}
+    private let recommendTableNode = HomeCircleRecommendTableNode()
+    private let focusTableNode = HomeCircleFocusTableNode()
 
-class HomeCircleController: BaseViewControlle {
-    
-    lazy var topBar: HomeCircleTopBar = {
-        let frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
-        let topBar = HomeCircleTopBar(frame: frame)
-        return topBar
-    }()
-    
-    lazy var container: HomeCircleContainer = {
-        let y: CGFloat = topBar.frame.maxY
-        let frame = CGRect(x: 0, y: y, width: macro.screenWidth, height: macro.screenHeight - y)
-        let container = HomeCircleContainer(frame: frame)
-        return container
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = R.string.localizable.circle()
-        self.addSubviews()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    override func addSubviews() {
-        self.view.addSubview(topBar)
-        self.view.addSubview(container)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = Color.backGroundColor
+        self.showsHorizontalScrollIndicator = false
+        self.isPagingEnabled = true
+        self.setPropertys()
+    }
+    
+    private func setPropertys() {
+        self.addSubnode(recommendTableNode)
+        self.addSubnode(focusTableNode)
+        /// set frame
+        self.recommendTableNode.frame = CGRect(x: 0, y: 0, width: self.width, height: self.height)
+        self.focusTableNode.frame = CGRect(x: self.width, y: 0, width: self.width, height: self.height)
+        /// set contentSize
+        self.contentSize = CGSize(width: self.width * 2.0, height: self.height)
     }
 }

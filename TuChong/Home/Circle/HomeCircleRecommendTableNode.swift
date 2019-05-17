@@ -1,7 +1,7 @@
-//  HomeCircleController.swift
+//  HomeCircleRecommendTableNode.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/5/16.
+//  Created by SummerHF on 2019/5/17.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -25,45 +25,37 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import AsyncDisplayKit
 
-enum HomeCircleType {
-    case recommend
-    case focus
+class HomeCircleRecommendTableNode: ASTableNode {
     
-    var rawValue: Int {
-        switch self {
-        case .recommend:
-            return 0
-        case .focus:
-            return 1
+    private var page: Int = 1
+    
+    private var parameters: [String: Any] {
+        return [
+            RequestparameterKey.page : page,
+            RequestparameterKey.category: RequestparameterKey.all,
+            RequestparameterKey.type: RequestparameterKey.recommend
+        ]
+    }
+    
+    init() {
+        super.init(style: .plain)
+        self.view.separatorStyle = .none
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        self.loadData()
+    }
+    
+    private func loadData() {
+        Network.request(target: TuChong.home_circle_more(parameters: parameters), success: { (responseData) in
+            printLog(responseData)
+        }, error: { (_) in
+            
+        }) { (_) in
+            
         }
-    }
-}
-
-class HomeCircleController: BaseViewControlle {
-    
-    lazy var topBar: HomeCircleTopBar = {
-        let frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
-        let topBar = HomeCircleTopBar(frame: frame)
-        return topBar
-    }()
-    
-    lazy var container: HomeCircleContainer = {
-        let y: CGFloat = topBar.frame.maxY
-        let frame = CGRect(x: 0, y: y, width: macro.screenWidth, height: macro.screenHeight - y)
-        let container = HomeCircleContainer(frame: frame)
-        return container
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = R.string.localizable.circle()
-        self.addSubviews()
-    }
-    
-    override func addSubviews() {
-        self.view.addSubview(topBar)
-        self.view.addSubview(container)
     }
 }
