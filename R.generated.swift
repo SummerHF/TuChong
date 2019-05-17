@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 69 images.
+  /// This `R.image` struct is generated, and contains static references to 71 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -98,6 +98,8 @@ struct R: Rswift.Validatable {
     static let iconNearbyHot_15x15_ = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconNearbyHot_15x15_")
     /// Image `icon_relation_followed`.
     static let icon_relation_followed = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_relation_followed")
+    /// Image `large_btn_background`.
+    static let large_btn_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "large_btn_background")
     /// Image `lauch_image_icon`.
     static let lauch_image_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "lauch_image_icon")
     /// Image `lecture`.
@@ -176,6 +178,8 @@ struct R: Rswift.Validatable {
     static let share_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "share_right")
     /// Image `share`.
     static let share = Rswift.ImageResource(bundle: R.hostingBundle, name: "share")
+    /// Image `small_btn_background`.
+    static let small_btn_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "small_btn_background")
     /// Image `third`.
     static let third = Rswift.ImageResource(bundle: R.hostingBundle, name: "third")
     /// Image `triangle_bottom`.
@@ -298,6 +302,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_relation_followed", bundle: ..., traitCollection: ...)`
     static func icon_relation_followed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_relation_followed, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "large_btn_background", bundle: ..., traitCollection: ...)`
+    static func large_btn_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.large_btn_background, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "lauch_image_icon", bundle: ..., traitCollection: ...)`
@@ -493,6 +502,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "share_right", bundle: ..., traitCollection: ...)`
     static func share_right(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.share_right, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "small_btn_background", bundle: ..., traitCollection: ...)`
+    static func small_btn_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.small_btn_background, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "third", bundle: ..., traitCollection: ...)`

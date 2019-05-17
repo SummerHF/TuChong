@@ -39,9 +39,7 @@ class FeedsViewController: BaseViewControlle {
     lazy var saleBtn: UIButton = {
         let saleBtn = UIButton(type: .custom)
         saleBtn.setAttributdWith(string: R.string.localizable.feeds_sell(), font: UIFont.normalFont_16(), color: Color.flatWhite, state: .normal)
-        saleBtn.backgroundColor = Color.lineColor
-        saleBtn.layer.cornerRadius = saleBtnHeight / 2.0
-        saleBtn.clipsToBounds = true 
+        saleBtn.setBackgroundImage(R.image.large_btn_background(), for: .normal)
         return saleBtn
     }()
     

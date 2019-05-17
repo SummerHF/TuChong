@@ -26,3 +26,11 @@
 //
 
 import Foundation
+
+class HomeCircleController: BaseViewControlle {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = R.string.localizable.circle()
+    }
+}

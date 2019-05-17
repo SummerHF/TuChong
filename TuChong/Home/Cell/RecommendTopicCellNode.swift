@@ -57,6 +57,9 @@ class RecommendTopicCellNode: RecommendBaseCellNode {
         self.collectionNode.showsHorizontalScrollIndicator = false
         self.collectionNode.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         self.collectionNode.reloadData()
+        
+        /// add tap event
+        self.moreTextNode.addTarget(self, action: #selector(moreTextNodeEvent), forControlEvents: .touchUpInside)
     }
     
     override func setPropertys() {
@@ -93,6 +96,12 @@ class RecommendTopicCellNode: RecommendBaseCellNode {
                 style.flexShrink = 1.0
             })
         }
+    }
+    
+    /// need to push to circle detail
+    @objc private func moreTextNodeEvent() {
+        let homeCircleVC = HomeCircleController()
+        macro.currentSelectedNavgationController?.pushViewController(homeCircleVC, animated: true)
     }
 }
 
