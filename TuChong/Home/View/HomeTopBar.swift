@@ -36,7 +36,7 @@ class HomeTopBar: UIView {
     /// 供稿页
     private let feedsViewController = FeedsViewController()
     
-    /// 输入框`1
+    /// 输入框
     lazy var textField: BaseTextField = {
         let textField = BaseTextField()
         textField.isEnabled = false
@@ -90,7 +90,9 @@ class HomeTopBar: UIView {
             make.right.equalTo(sellBtnNode.view.snp.left).offset(-margin)
         }
         searchBtn.snp.makeConstraints { (make) in
-            make.edges.equalTo(textField)
+            make.top.bottom.equalTo(textField)
+            make.left.equalTo(textField).offset(margin * 2.5)
+            make.right.equalTo(textField).offset(-margin * 0.5)
         }
     }
     

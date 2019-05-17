@@ -213,6 +213,10 @@ public extension UIFont {
         return UIFont.boldSystemFont(ofSize: 20)
     }
     
+    static func boldFont_25() -> UIFont {
+        return UIFont.boldSystemFont(ofSize: 25)
+    }
+    
     static func normalFont_10() -> UIFont {
         return UIFont.systemFont(ofSize: 10)
     }

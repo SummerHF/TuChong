@@ -558,7 +558,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 46 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 50 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -588,6 +588,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let join = Rswift.StringResource(key: "join", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 发照片 能挣钱
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let feeds_title = Rswift.StringResource(key: "feeds_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 取消
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -608,6 +612,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let circle = Rswift.StringResource(key: "circle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 在图虫分享照片, 同时赚钱收益
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let feeds_sub_title = Rswift.StringResource(key: "feeds_sub_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 展开
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -620,6 +628,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let user = Rswift.StringResource(key: "user", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 我要售图
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let feeds_sell = Rswift.StringResource(key: "feeds_sell", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 所有
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -652,6 +664,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let profile_less = Rswift.StringResource(key: "profile_less", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 放弃
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let feeds_give_up = Rswift.StringResource(key: "feeds_give_up", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 更多
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -794,6 +810,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("join", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 发照片 能挣钱
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func feeds_title(_: Void = ()) -> String {
+        return NSLocalizedString("feeds_title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 取消
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -829,6 +852,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("circle", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 在图虫分享照片, 同时赚钱收益
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func feeds_sub_title(_: Void = ()) -> String {
+        return NSLocalizedString("feeds_sub_title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 展开
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -848,6 +878,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func user(_: Void = ()) -> String {
         return NSLocalizedString("user", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 我要售图
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func feeds_sell(_: Void = ()) -> String {
+        return NSLocalizedString("feeds_sell", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 所有
@@ -904,6 +941,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func profile_less(_: Void = ()) -> String {
         return NSLocalizedString("profile_less", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 放弃
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func feeds_give_up(_: Void = ()) -> String {
+        return NSLocalizedString("feeds_give_up", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 更多
