@@ -27,10 +27,35 @@
 
 import Foundation
 
+enum HomeCircleType {
+    case recommend
+    case focus
+    
+    var rawValue: Int {
+        switch self {
+        case .recommend:
+            return 0
+        case .focus:
+            return 1
+        }
+    }
+}
+
 class HomeCircleController: BaseViewControlle {
+    
+    lazy var topBar: HomeCircleTopBar = {
+        let frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
+        let topBar = HomeCircleTopBar(frame: frame)
+        return topBar
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = R.string.localizable.circle()
+        self.addSubviews()
+    }
+    
+    override func addSubviews() {
+        self.view.addSubview(topBar)
     }
 }

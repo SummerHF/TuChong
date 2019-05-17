@@ -572,7 +572,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 50 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 51 localization keys.
     struct localizable {
       /// zh-Hans translation: + 关注
       /// 
@@ -658,6 +658,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans, en, zh-Hant
       static let shooting_skills = Rswift.StringResource(key: "shooting_skills", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
+      /// zh-Hans translation: 推荐
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static let circle_recommend = Rswift.StringResource(key: "circle_recommend", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans", "en", "zh-Hant"], comment: nil)
       /// zh-Hans translation: 推荐摄影师
       /// 
       /// Locales: zh-Hans, en, zh-Hant
@@ -920,6 +924,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans, en, zh-Hant
       static func shooting_skills(_: Void = ()) -> String {
         return NSLocalizedString("shooting_skills", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 推荐
+      /// 
+      /// Locales: zh-Hans, en, zh-Hant
+      static func circle_recommend(_: Void = ()) -> String {
+        return NSLocalizedString("circle_recommend", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 推荐摄影师

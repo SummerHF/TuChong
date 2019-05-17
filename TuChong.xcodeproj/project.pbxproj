@@ -40,6 +40,7 @@
 		C402B24722699C95007746EB /* RecommendWallpaperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B24622699C95007746EB /* RecommendWallpaperCell.swift */; };
 		C404365E2285516A00EE1742 /* ProfileEventsTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404365D2285516A00EE1742 /* ProfileEventsTableNode.swift */; };
 		C4043660228551AB00EE1742 /* ProfileCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404365F228551AB00EE1742 /* ProfileCollectionNode.swift */; };
+		C40F35EC228E614F00A8638B /* HomeCircleTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F35EB228E614F00A8638B /* HomeCircleTopBar.swift */; };
 		C41375F3228D6063003D4EF5 /* HomeTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41375F2228D6063003D4EF5 /* HomeTopBar.swift */; };
 		C41375F6228D608F003D4EF5 /* HomeCircleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41375F5228D608F003D4EF5 /* HomeCircleController.swift */; };
 		C41A32C422601E09009AF4CF /* RecommendCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A32C322601E09009AF4CF /* RecommendCellNode.swift */; };
@@ -148,6 +149,7 @@
 		C402B24622699C95007746EB /* RecommendWallpaperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendWallpaperCell.swift; sourceTree = "<group>"; };
 		C404365D2285516A00EE1742 /* ProfileEventsTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEventsTableNode.swift; sourceTree = "<group>"; };
 		C404365F228551AB00EE1742 /* ProfileCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionNode.swift; sourceTree = "<group>"; };
+		C40F35EB228E614F00A8638B /* HomeCircleTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleTopBar.swift; sourceTree = "<group>"; };
 		C41375F2228D6063003D4EF5 /* HomeTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopBar.swift; sourceTree = "<group>"; };
 		C41375F5228D608F003D4EF5 /* HomeCircleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleController.swift; sourceTree = "<group>"; };
 		C41A32C322601E09009AF4CF /* RecommendCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCellNode.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				C41375F5228D608F003D4EF5 /* HomeCircleController.swift */,
+				C40F35EB228E614F00A8638B /* HomeCircleTopBar.swift */,
 			);
 			path = Circle;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */,
 				C479F2862272DF41002C7D53 /* TutorialDetailHeadView.swift in Sources */,
 				C404365E2285516A00EE1742 /* ProfileEventsTableNode.swift in Sources */,
+				C40F35EC228E614F00A8638B /* HomeCircleTopBar.swift in Sources */,
 				5358B10E226F5C55006229CB /* TutorialDetailProfileCell.swift in Sources */,
 				53463CFC2289A2D000F6E581 /* ProfileEventsCellNode.swift in Sources */,
 				C402B24522699B3A007746EB /* WallpaperLayout.swift in Sources */,

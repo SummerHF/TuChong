@@ -148,6 +148,12 @@ extension UIButton {
         self.titleLabel?.font = font
         self.setTitle(title, for: .normal)
     }
+    
+    func set(title: String, font: UIFont, color: UIColor, state: UIControl.State) {
+        self.setTitle(title, for: state)
+        self.setTitleColor(color, for: state)
+        self.titleLabel?.font = font
+    }
 }
 
 // MARK: - UIView

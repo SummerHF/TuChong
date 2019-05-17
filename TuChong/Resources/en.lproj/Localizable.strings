@@ -21,7 +21,7 @@
 "login" = "Login";
 "register" = "Register";
 "login_prompt" = "Log in to see more highlights";
-"circle" = "圈子";
+"circle" = "Circle";
 "to_view_more" = "查看更多";
 "all" = "All";
 "portrait" = "Portrait";
@@ -48,3 +48,4 @@
 "feeds_sub_title" = "在图虫分享照片, 同时赚钱收益";
 "feeds_give_up" = "Give Up";
 "feeds_sell" = "Sale Pictures";
+"circle_recommend" = "Recommend";

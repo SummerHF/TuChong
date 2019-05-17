@@ -40,6 +40,22 @@ class NavItemButton: UIButton {
             return false
         }
     }
+    
+    var itemWidth: CGFloat {
+        guard let lable = self.titleLabel, let text = lable.text else { return 0}
+        let floatWidth: CGFloat = 10
+        return text.size(withAttributes: [NSAttributedString.Key.font: UIFont.normalFont_16()]).width + floatWidth
+    }
+    
+    var setSelected: Bool = false {
+        willSet {
+            if newValue {
+                self.titleLabel?.font = UIFont.normalFont_16()
+            } else {
+                self.titleLabel?.font = UIFont.normalFont_14()
+            }
+        }
+    }
 }
 
 // MARK: - HomeNavItemButton
