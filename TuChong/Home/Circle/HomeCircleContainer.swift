@@ -27,7 +27,15 @@
 
 import UIKit
 
+// MARK: - HomeCircleContainerProtocol
+
+@objc protocol HomeCircleContainerProtocol: class {
+    @objc optional func container(view: UIScrollView, selectedIndex: Int)
+}
+
 class HomeCircleContainer: UIScrollView {
+    
+    weak var containerDelegate: HomeCircleContainerProtocol?
     
     private let recommendTableNode = HomeCircleRecommendTableNode()
     private let focusTableNode = HomeCircleFocusTableNode()
@@ -42,6 +50,7 @@ class HomeCircleContainer: UIScrollView {
         self.showsHorizontalScrollIndicator = false
         self.isPagingEnabled = true
         self.setPropertys()
+        self.delegate = self
     }
     
     private func setPropertys() {
@@ -52,5 +61,17 @@ class HomeCircleContainer: UIScrollView {
         self.focusTableNode.frame = CGRect(x: self.width, y: 0, width: self.width, height: self.height)
         /// set contentSize
         self.contentSize = CGSize(width: self.width * 2.0, height: self.height)
+    }
+    
+    func scrollTo(index: Int) {
+        self.setContentOffset(CGPoint(x: self.width * CGFloat(index), y: 0), animated: true)
+    }
+}
+
+extension HomeCircleContainer: UIScrollViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let index = Int(scrollView.contentOffset.x / self.width)
+        self.containerDelegate?.container?(view: self, selectedIndex: index)
     }
 }

@@ -30,6 +30,7 @@ import AsyncDisplayKit
 class HomeCircleRecommendTableNode: ASTableNode {
     
     private var page: Int = 1
+    private var tagModels: [Home_Circle_Tag_Model] = []
     
     private var parameters: [String: Any] {
         return [
@@ -42,6 +43,8 @@ class HomeCircleRecommendTableNode: ASTableNode {
     init() {
         super.init(style: .plain)
         self.view.separatorStyle = .none
+        self.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        self.dataSource = self
     }
     
     override func didLoad() {
@@ -51,11 +54,23 @@ class HomeCircleRecommendTableNode: ASTableNode {
     
     private func loadData() {
         Network.request(target: TuChong.home_circle_more(parameters: parameters), success: { (responseData) in
-            printLog(responseData)
+            self.tagModels = Home_Circle_Model.buildWith(dict: responseData)
+            self.reloadData()
         }, error: { (_) in
             
         }) { (_) in
             
         }
+    }
+}
+
+extension HomeCircleRecommendTableNode: ASTableDataSource {
+    
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return self.tagModels.count
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+        return HomeCircleRecommendCell(tag_model: self.tagModels[indexPath.row], index: indexPath.row)
     }
 }

@@ -28,7 +28,15 @@
 import Foundation
 import SnapKit
 
+// MARK: - HomeCircleTopBarProtocol
+
+@objc protocol HomeCircleTopBarProtocol: class {
+    @objc optional func hasSelected(index: Int)
+}
+
 class HomeCircleTopBar: UIView {
+    
+    weak var delegate: HomeCircleTopBarProtocol?
     
     private let margin: CGFloat = 20
     private let indicatorSize = CGSize(width: 8, height: 3)
@@ -112,6 +120,7 @@ class HomeCircleTopBar: UIView {
                 self.centerXConstraint = make.centerX.equalTo(button).constraint
             }
             self.setNeedsUpdateConstraints()
+            self.delegate?.hasSelected?(index: button.tag)
             UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8, options: UIView.AnimationOptions.curveEaseInOut, animations: {
                 self.layoutIfNeeded()
             }, completion: nil)
@@ -123,6 +132,14 @@ class HomeCircleTopBar: UIView {
                 self.centerXConstraint = make.centerX.equalTo(button).constraint
                 make.size.equalTo(indicatorSize)
             }
+        }
+    }
+    
+    func selected(type: HomeCircleType) {
+        if type == .recommend {
+            self.btnEvent(button: recommendNavItem)
+        } else {
+            self.btnEvent(button: focusNavItem)
         }
     }
 }

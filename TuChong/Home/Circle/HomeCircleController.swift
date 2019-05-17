@@ -31,6 +31,14 @@ enum HomeCircleType {
     case recommend
     case focus
     
+    init(index: Int) {
+        if index == 0 {
+            self = .recommend
+        } else {
+            self = .focus
+        }
+    }
+    
     var rawValue: Int {
         switch self {
         case .recommend:
@@ -46,6 +54,7 @@ class HomeCircleController: BaseViewControlle {
     lazy var topBar: HomeCircleTopBar = {
         let frame = CGRect(x: 0, y: macro.topHeight, width: macro.screenWidth, height: macro.homenavHeight)
         let topBar = HomeCircleTopBar(frame: frame)
+        topBar.delegate = self
         return topBar
     }()
     
@@ -53,6 +62,7 @@ class HomeCircleController: BaseViewControlle {
         let y: CGFloat = topBar.frame.maxY
         let frame = CGRect(x: 0, y: y, width: macro.screenWidth, height: macro.screenHeight - y)
         let container = HomeCircleContainer(frame: frame)
+        container.containerDelegate = self
         return container
     }()
     
@@ -65,5 +75,16 @@ class HomeCircleController: BaseViewControlle {
     override func addSubviews() {
         self.view.addSubview(topBar)
         self.view.addSubview(container)
+    }
+}
+
+extension HomeCircleController: HomeCircleContainerProtocol, HomeCircleTopBarProtocol {
+    
+    func container(view: UIScrollView, selectedIndex: Int) {
+        self.topBar.selected(type: HomeCircleType(index: selectedIndex))
+    }
+    
+    func hasSelected(index: Int) {
+        self.container.scrollTo(index: index)
     }
 }
