@@ -30,7 +30,7 @@ import UIKit
 
 // MARK: - ActivityBannerCell
 
-class ActivityBannerCell: ASCellNode {
+class ActivityBannerCell: BaseCellNode {
     
     private let bannerModel: Activity_Top_Banner_Model
     private let imageNode: ASNetworkImageNode
@@ -40,7 +40,7 @@ class ActivityBannerCell: ASCellNode {
         imageNode = ASNetworkImageNode()
         imageNode.contentMode = .scaleAspectFill
         super.init()
-        automaticallyManagesSubnodes = true
+        imageNode.isLayerBacked = true
     }
     
     override func didLoad() {
@@ -53,15 +53,23 @@ class ActivityBannerCell: ASCellNode {
     }
 }
 
+// MARK: - ActivityBannerCollectionNodeProtocol
+
+@objc protocol ActivityBannerCollectionNodeProtocol: class {
+    @objc optional func collection(node: ASCollectionNode, index: Int)
+}
+
 // MARK: - ActivityBannerCollectionNode
 
 class ActivityBannerCollectionNode : ASCollectionNode {
     
-    var bannerModel: [Activity_Top_Banner_Model] = [] {
-        didSet {
-            self.reloadData()
-        }
-    }
+    weak var collectionNodeDelegate: ActivityBannerCollectionNodeProtocol?
+    
+    private let max_section: Int = 50
+
+    private var timer: Timer?
+
+    var bannerModel: [Activity_Top_Banner_Model] = []
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("failure")
@@ -73,11 +81,69 @@ class ActivityBannerCollectionNode : ASCollectionNode {
         self.dataSource = self
         self.showsHorizontalScrollIndicator = false 
     }
+    
+    func configureWith(bannerModel: [Activity_Top_Banner_Model]) {
+        self.bannerModel = bannerModel
+        self.reloadData()
+        /// scroll to center
+        self.scrollToItem(at: IndexPath(row: 0, section: max_section / 2), at: UICollectionView.ScrollPosition.left, animated: false)
+        /// enable timer
+        self.enableTimer()
+    }
+    
+    /// timer start work
+    private func enableTimer() {
+        let timer = Timer(timeInterval: 2.0, block: { [weak self] (_) in
+            guard let `self` = self else { return }
+            self.handleTimerEvent()
+        }, repeats: true)
+        RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
+        self.timer = timer
+    }
+    
+    /// disable timer
+    private func disableTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
+    private func handleTimerEvent() {
+        guard let indexPath = self.indexPathsForVisibleItems.first else { return }
+        var row = indexPath.row + 1
+        var section = indexPath.section
+        if row >= bannerModel.count {
+            row = 0
+            section += 1
+            if section >= max_section {
+                section = max_section / 2
+            }
+            self.scrollToItem(at: IndexPath(row: row, section: section), at: UICollectionView.ScrollPosition.left, animated: false)
+        }
+        self.scrollToItem(at: IndexPath(row: row, section: section), at: UICollectionView.ScrollPosition.left, animated: true)
+    }
 }
 
 // MARK: - ASCollectionDataSource, ASCollectionDelegate
 
 extension ActivityBannerCollectionNode: ASCollectionDataSource, ASCollectionDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let page = (Int)(scrollView.contentOffset.x / self.frame.width) % bannerModel.count
+        self.collectionNodeDelegate?.collection?(node: self, index: page)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.disableTimer()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        /// 用户交互完毕打开timer
+        self.enableTimer()
+    }
+    
+    func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
+        return max_section
+    }
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
         return bannerModel.count
@@ -226,25 +292,27 @@ protocol ActivityBannerViewProtocol: NSObjectProtocol {
 
 class ActivityBannerView: UIView {
     
+    weak var delegate: ActivityBannerViewProtocol?
+    private var pageControl: PageControlView?
+    
     var heights: CGFloat = 360
     
     var collectionNodeHeight: CGFloat {
-        return heights * 0.5
-    }
-    
-    var titleNodeHeight: CGFloat {
-        return heights * 0.2
+        return heights * 0.6
     }
     
     var categoryNodeHeight: CGFloat {
         return heights * 0.3
     }
     
+    var titleNodeHeight: CGFloat {
+        return heights * 0.1
+    }
+    
     private let layout: UICollectionViewFlowLayout
     private var collectionNode: ActivityBannerCollectionNode
     private var titleNode: ActivityTitileNode
     private var categoryNode: ActivityCategoryNode
-    weak var delegate: ActivityBannerViewProtocol?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -274,14 +342,24 @@ class ActivityBannerView: UIView {
     }
     
     func configureTopBanner(with data: [Activity_Top_Banner_Model]) {
-        collectionNode.bannerModel = data
+        /// 添加分页视图
+        let pageControl = PageControlView(count: data.count, frame: collectionNode.bounds)
+        self.addSubview(pageControl)
+        self.pageControl = pageControl
+        /// 配置`collectionNode`
+        collectionNode.collectionNodeDelegate = self
+        collectionNode.configureWith(bannerModel: data)
     }
 }
 
-extension ActivityBannerView: ActivityCategoryNodeProtocol {
+extension ActivityBannerView: ActivityCategoryNodeProtocol, ActivityBannerCollectionNodeProtocol {
     
     func category(node: ActivityCategoryNode, hasSelcted categoryType: ActivityCategoryType) {
         self.delegate?.banner(view: self, categoryNode: node, hasSelcted: categoryType)
+    }
+    
+    func collection(node: ASCollectionNode, index: Int) {
+        self.pageControl?.changeIndicatorWith(index: index)
     }
 }
 

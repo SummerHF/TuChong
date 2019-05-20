@@ -52,4 +52,5 @@ struct Color {
     static var simpleGray = RGBA(R: 239, G: 238, B: 243, A: 0.9)
     static var clearColor = UIColor.clear
     static var highlightedGray = RGBA(R: 194, G: 194, B: 194)
+    static var dotColor = RGBA(R: 213, G: 204, B: 204)
 }
