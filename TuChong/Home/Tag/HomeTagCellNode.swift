@@ -45,6 +45,9 @@ class HomeTagCellNode: BaseCellNode {
         titelNode = ASTextNode()
         coverImageNode = ASImageNode()
         super.init()
+        imageNode.isLayerBacked = true
+        coverImageNode.isLayerBacked = true
+        titelNode.isLayerBacked = true 
     }
     
     override func didLoad() {
@@ -74,7 +77,7 @@ class HomeTagCellNode: BaseCellNode {
 
 // MARK: - SectionHeaderNode &&  SectionHeaderView
 
-class CollectionSectionHeaderNode: ASCellNode {
+class CollectionSectionHeaderNode: BaseCellNode {
     
     private let insetForHeader = UIEdgeInsets(top: 15, left: 0, bottom: 10, right: 0)
     
@@ -86,11 +89,9 @@ class CollectionSectionHeaderNode: ASCellNode {
         headerTitle = sectionTitle
         titleNode = ASTextNode()
         separator = ASImageNode()
+        super.init()
         titleNode.isLayerBacked = true
         separator.isLayerBacked = true
-        super.init()
-        self.addSubnode(titleNode)
-        self.addSubnode(separator)
     }
     
     override func didLoad() {
