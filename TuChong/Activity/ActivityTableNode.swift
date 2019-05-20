@@ -128,7 +128,7 @@ class ActivityBannerCollectionNode : ASCollectionNode {
 extension ActivityBannerCollectionNode: ASCollectionDataSource, ASCollectionDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let page = (Int)(scrollView.contentOffset.x / self.frame.width) % bannerModel.count
+        let page = (Int)(scrollView.contentOffset.x / self.frame.width + 0.5) % bannerModel.count
         self.collectionNodeDelegate?.collection?(node: self, index: page)
     }
     
