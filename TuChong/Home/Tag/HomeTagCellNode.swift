@@ -30,33 +30,45 @@ import AsyncDisplayKit
 
 // MARK: - HomeTagCellNode
 
-class HomeTagCellNode: ASCellNode {
+class HomeTagCellNode: BaseCellNode {
     
     let imageNode: ASNetworkImageNode
+    let coverImageNode: ASImageNode
     let titelNode: ASTextNode
     let model: HomePage_More_Item_Model
     
+    private let insetForTitleNode = UIEdgeInsets(top: CGFloat.infinity, left: 0, bottom: 4, right: 0)
+    
     init(with itemModel: HomePage_More_Item_Model) {
+        model = itemModel
         imageNode = ASNetworkImageNode()
         titelNode = ASTextNode()
-        model = itemModel
+        coverImageNode = ASImageNode()
         super.init()
-        self.addSubnode(imageNode)
-        self.addSubnode(titelNode)
     }
     
     override func didLoad() {
+        coverImageNode.image = R.image.profile_cover()
         imageNode.contentMode = .scaleAspectFill
-        imageNode.url = URL(string: model.image.urlString)!
-        titelNode.attributedText = NSAttributedString(string: model.tag_name, attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.white
-            ])
+        imageNode.url = URL(string: model.image.urlString)
+        titelNode.setAttributdWith(string: model.tag_name, font: UIFont.normalFont_14(), color: Color.flatWhite, aligement: .center)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let insetLayoutSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: CGFloat.infinity, left: 0, bottom: 0, right: 0), child: titelNode)
-        let centerLayoutSpec = ASCenterLayoutSpec(centeringOptions: .X, sizingOptions: .minimumXY, child: insetLayoutSpec)
-        return ASOverlayLayoutSpec(child: imageNode, overlay: centerLayoutSpec)
+        let backgroundLayout = ASBackgroundLayoutSpec(child: self.createTitleLayoutSpec(), background: self.imageNode)
+        return ASOverlayLayoutSpec(child: backgroundLayout, overlay: ASInsetLayoutSpec(insets: insetForTitleNode, child: self.titelNode))
+    }
+    
+    private func createTitleLayoutSpec() -> ASLayoutSpec {
+        let stack = ASStackLayoutSpec(direction: .vertical, spacing: 10, justifyContent: .start, alignItems: .stretch, children: [
+            ASStackLayoutSpec().styled({ (style) in
+                style.flexGrow = 1.0
+            }),
+            self.coverImageNode.styled({ (style) in
+                style.maxHeight = ASDimensionMake(80)
+            })
+        ])
+        return stack
     }
 }
 
@@ -64,7 +76,7 @@ class HomeTagCellNode: ASCellNode {
 
 class CollectionSectionHeaderNode: ASCellNode {
     
-    static let headerHeight: CGFloat = 44
+    private let insetForHeader = UIEdgeInsets(top: 15, left: 0, bottom: 10, right: 0)
     
     let headerTitle: String
     let titleNode: ASTextNode
@@ -84,7 +96,7 @@ class CollectionSectionHeaderNode: ASCellNode {
     override func didLoad() {
         super.didLoad()
         self.backgroundColor = Color.backGroundColor
-        let color = RGBA(R: 239, G: 45, B: 88)
+        let color = Color.lineColor
         separator.image = UIImage.as_resizableRoundedImage(withCornerRadius: 8.0, cornerColor: color, fill: color)
         titleNode.attributedText = NSAttributedString(string: headerTitle, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
@@ -92,9 +104,11 @@ class CollectionSectionHeaderNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         separator.style.preferredSize = CGSize(width: 4, height: 12)
         let horizontal = ASStackLayoutSpec.init(direction: .horizontal, spacing: 8, justifyContent: .start, alignItems: .center, children: [separator, titleNode])
-        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), child: horizontal)
+        return ASInsetLayoutSpec(insets: insetForHeader, child: horizontal)
     }
 }
+
+// MARK: - TableSectionHeaderView
 
 class TableSectionHeaderView: UIView {
     

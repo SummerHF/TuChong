@@ -33,12 +33,15 @@ class HomeTagViewController: BaseViewControlle {
     let collectionNode: ASCollectionNode
     let collectionNodeLayout: HomeTagCollectionNodeLayout
     var modelArray: [HomePage_More_Model]?
-
+    
+    private let contentInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    
     override init() {
         collectionNodeLayout = HomeTagCollectionNodeLayout()
         collectionNode = ASCollectionNode(collectionViewLayout: collectionNodeLayout)
         super.init(node: collectionNode)
         collectionNode.backgroundColor = Color.backGroundColor
+        collectionNode.contentInset = self.contentInset
         collectionNode.dataSource = self
         collectionNode.delegate = self
         collectionNode.registerSupplementaryNode(ofKind: UICollectionView.elementKindSectionHeader)
@@ -98,7 +101,7 @@ extension HomeTagViewController: ASCollectionDataSource, ASCollectionDelegate, A
     func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
         let paddding: CGFloat = 10.0
         let column: CGFloat = 3
-        let oneItemWidth = (self.view.width - (column - 1.0) * paddding) / column
+        let oneItemWidth = (self.view.width - self.contentInset.left - self.contentInset.right - (column - 1.0) * paddding) / column
         let size = CGSize(width: oneItemWidth, height: oneItemWidth)
         return ASSizeRange(min: size, max: size)
     }
