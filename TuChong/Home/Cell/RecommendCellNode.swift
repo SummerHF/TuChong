@@ -96,6 +96,8 @@ class RecommendCellNode: RecommendBaseCellNode {
         /// tag Node
         self.tagNode.setAttributedWith(name: feenListItem.entry.site.name, title: feenListItem.entry.title, content: feenListItem.entry.content, tags: feenListItem.entry.tags, isFloding: feenListItem.isFolding)
         self.configureTagsArea()
+        /// add Events
+        self.avatorImageNode.addTarget(self, action: #selector(avatorImageNodeEvent), forControlEvents: .touchUpInside)
     }
     
     // MARK: - layoutSpecThatFits
@@ -152,6 +154,13 @@ class RecommendCellNode: RecommendBaseCellNode {
                   /// Reply Area
                 createReplyCommentsArea()
         ])
+    }
+    
+    // MARK: - Events
+    
+    @objc private func avatorImageNodeEvent() {
+        let profile = ProfileViewController(with: feenListItem.entry.author_id)
+        macro.currentSelectedNavgationController?.pushViewController(profile, animated: true)
     }
 }
 
