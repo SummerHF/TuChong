@@ -33,15 +33,14 @@ import AsyncDisplayKit
 class ProfileCoverNode: ASDisplayNode {
     
     private let site_id: String
+    private var profile: ProfileModel = ProfileModel()
     
-    var cover: Profile_Cover_Model = Profile_Cover_Model()
     var timer: Timer?
     var index: Int = 1
     
     /// only have one image
     lazy var imageNode: ASNetworkImageNode = {
         let imageNode = ASNetworkImageNode()
-        imageNode.frame = UIScreen.main.bounds
         return imageNode
     }()
     
@@ -63,7 +62,6 @@ class ProfileCoverNode: ASDisplayNode {
     /// shadowImage
     lazy var shadowImage: ASImageNode = {
         let shadowImage = ASImageNode()
-//        shadowImage.image = R.image.cover()
         return shadowImage
     }()
     
@@ -73,37 +71,45 @@ class ProfileCoverNode: ASDisplayNode {
         self.backgroundColor = Color.backGroundColor
     }
     
-    func configureWith(cover: Profile_Cover_Model) {
-        self.cover = cover
+    func configureWith(profile: ProfileModel) {
+        self.profile = profile
         self.reloadData()
     }
     
     private func reloadData() {
-        if self.cover.images.count == 0 {
-            /// do nothing
-            printLog("cover iamge cont == 0")
-        } else if self.cover.images.count == 1 {
-            /// only have one picture
-            /// 判断是否高大于宽, 是否有拉伸效果
-            /// add subnode and set frame
-            imageNode.url = URL(string: self.cover.images.first!)
+        switch profile.coverType {
+        case .none:
+            /// cover image count `Zero`, do nothing
+            break
+        case let .singleImage(showType):
+            imageNode.url = URL(string: self.profile.cover.images.first!)
+            if showType == .horizental {
+                
+            } else if showType == .vertical {
+                
+            }
             self.addSubnode(imageNode)
-        } else {
-            /// add collectionNode
-            self.collectionNode.configureWith(covers: self.cover.images)
-            self.collectionNode.frame = UIScreen.main.bounds
-            self.addSubnode(collectionNode)
-            /// add shadow
-//            self.shadowImage.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.shadowHeight)
-//            self.addSubnode(shadowImage)
-            /// add indicator
-            self.view.addSubview(indicator)
-            /// set timer
-            let timer = Timer(timeInterval: 1.5, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
-            /// add timer to runloop
-            RunLoop.current.add(timer, forMode: .common)
-            self.timer = timer
+        case .moreImage:
+            self.showFilmImages()
         }
+    }
+    
+    /// 展示幻灯片
+    private func showFilmImages() {
+        /// add collectionNode
+        self.collectionNode.configureWith(covers: self.profile.cover.images)
+        self.collectionNode.frame = UIScreen.main.bounds
+        self.addSubnode(collectionNode)
+        /// add shadow
+        //            self.shadowImage.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.shadowHeight)
+        //            self.addSubnode(shadowImage)
+        /// add indicator
+        self.view.addSubview(indicator)
+        /// set timer
+        let timer = Timer(timeInterval: 1.5, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
+        /// add timer to runloop
+        RunLoop.current.add(timer, forMode: .common)
+        self.timer = timer
     }
     
     /// Change cover image
@@ -111,7 +117,7 @@ class ProfileCoverNode: ASDisplayNode {
         self.collectionNode.triggerAnimation()
         /// indcator
         index += 1
-        let count = self.cover.images.count
+        let count = self.profile.cover.images.count
         if index <= count {
             let percent = CGFloat(index) / CGFloat(count)
             self.indicator.triggerAnimation(with: percent, animated: true)

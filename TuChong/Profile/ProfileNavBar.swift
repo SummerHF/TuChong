@@ -128,6 +128,9 @@ class ProfileNavBar: UIView {
         /// hidden
         self.profileAvatorImageNode.isHidden = true
         self.focusBtnNode.isHidden = true
+        self.shareBtnNode.isHidden = true
+        self.actionBtnNode.isHidden = true
+        self.messageBtnNode.isHidden = true
     }
     
     private func addEvents() {
@@ -140,6 +143,10 @@ class ProfileNavBar: UIView {
     
     func configure(with profile: ProfileModel) {
         self.profile = profile
+        /// show
+        self.shareBtnNode.isHidden = false
+        self.actionBtnNode.isHidden = false
+        self.messageBtnNode.isHidden = false
         /// user avator
         self.profileAvatorImageNode.url = URL(string: profile.site.icon)
         self.profileAvatorImageNode.imageModificationBlock = { image in
