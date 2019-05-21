@@ -129,8 +129,8 @@ class ProfileViewController: BaseViewControlle {
             self.barStyle = .dark
         case .moreImage, .singleVerticalImage, .singleHorizentalImage:
             self.barStyle = .light
+            self.setNeedsStatusBarAppearanceUpdate()
         }
-        self.setNeedsStatusBarAppearanceUpdate()
         self.profileCoverNode.configureWith(profile: self.profile)
         self.profileScrollView.configureWith(profile: self.profile)
         self.navBar.configure(with: self.profile, barStyle: self.barStyle!)
