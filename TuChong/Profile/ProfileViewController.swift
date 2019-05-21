@@ -111,18 +111,18 @@ class ProfileViewController: BaseViewControlle {
     }
     
     override func configuration() {
-//        self.profile.cover.images = [
-//            "https://photo.tuchong.com/5651394/f/110495284.jpg",
-//            "https://photo.tuchong.com/5651394/f/519964289.jpg",
-//            "https://photo.tuchong.com/5651394/f/92735104.jpg",
-//            "https://photo.tuchong.com/5651394/f/631899724.jpg",
-//            "https://photo.tuchong.com/5651394/f/382273140.jpg",
-//            "https://photo.tuchong.com/5651394/f/262801012.jpg",
-//            "https://photo.tuchong.com/5651394/f/326043254.jpg",
-//            "https://photo.tuchong.com/5651394/f/227542664.jpg",
-//            "https://photo.tuchong.com/5651394/f/443156084.jpg"
-//        ]
-        self.profile.cover.images = []
+        self.profile.cover.images = [
+            "https://photo.tuchong.com/5651394/f/110495284.jpg",
+            "https://photo.tuchong.com/5651394/f/519964289.jpg",
+            "https://photo.tuchong.com/5651394/f/92735104.jpg",
+            "https://photo.tuchong.com/5651394/f/631899724.jpg",
+            "https://photo.tuchong.com/5651394/f/382273140.jpg",
+            "https://photo.tuchong.com/5651394/f/262801012.jpg",
+            "https://photo.tuchong.com/5651394/f/326043254.jpg",
+            "https://photo.tuchong.com/5651394/f/227542664.jpg",
+            "https://photo.tuchong.com/5651394/f/443156084.jpg"
+        ]
+//        self.profile.cover.images = []
         /// 状态栏
         switch profile.coverType {
         case .none:
@@ -153,8 +153,10 @@ class ProfileViewController: BaseViewControlle {
 extension ProfileViewController: ProfileScrollViewProtocol {
     
     func scrollViewNeedToChange(_ barStyle: ProfileBarStyle) {
-        self.barStyle = barStyle
-        self.setNeedsStatusBarAppearanceUpdate()
+        if self.profile.coverType != .none {
+            self.barStyle = barStyle
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
         self.navBar.configureWith(statusBarStyle: barStyle)
     }
 }

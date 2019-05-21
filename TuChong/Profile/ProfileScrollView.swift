@@ -109,12 +109,13 @@ extension ProfileScrollView: UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self == scrollView {
+            self.needToChangeScrollStatusWith(contentOffSetY: scrollView.contentOffset.y)
             self.needToChangeBarStyleWith(contentOffSetY: scrollView.contentOffset.y)
         }
     }
     
     /// 改变状态栏样式
-    private func needToChangeBarStyleWith(contentOffSetY: CGFloat) {
+    private func needToChangeScrollStatusWith(contentOffSetY: CGFloat) {
         /// disable scroll
         if contentOffSetY >= self.deltaY {
             self.contentOffset.y = self.deltaY
@@ -127,15 +128,19 @@ extension ProfileScrollView: UIScrollViewDelegate, UIGestureRecognizerDelegate {
                 self.contentOffset.y = self.deltaY
             }
         }
+        
+    }
+    
+    private func needToChangeBarStyleWith(contentOffSetY: CGFloat) {
         /// change bar style
-//        if contentOffSetY >= self.deltaY {
-//            guard defaultBarStyle != .dark else { return }
-//            self.profileScrollViewDelegate?.scrollViewNeedToChange(.dark)
-//            self.defaultBarStyle = .dark
-//        } else {
-//            guard defaultBarStyle != .light else { return }
-//            self.profileScrollViewDelegate?.scrollViewNeedToChange(.light)
-//            self.defaultBarStyle = .light
-//        }
+        if contentOffSetY >= macro.topHeight {
+            guard defaultBarStyle != .dark else { return }
+            self.profileScrollViewDelegate?.scrollViewNeedToChange(.dark)
+            self.defaultBarStyle = .dark
+        } else {
+            guard defaultBarStyle != .light else { return }
+            self.profileScrollViewDelegate?.scrollViewNeedToChange(.light)
+            self.defaultBarStyle = .light
+        }
     }
 }

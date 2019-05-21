@@ -26,6 +26,7 @@
 //
 
 import AsyncDisplayKit
+import SnapKit
 
 // MARK: - ProfileNavBarProtocol
 
@@ -160,14 +161,44 @@ class ProfileNavBar: UIView {
         
         /// 特殊处理 没有图片的情形
         if profile.coverType == .none {
-            self.changeBarStyleToDark()
+            self.changeBarStyleToDark(isDark: true)
         }
     }
     
     func configureWith(statusBarStyle: ProfileBarStyle) {
-        self.style = statusBarStyle
-        if statusBarStyle == .dark {
-           self.changeBarStyleToDark()
+        guard let model = self.profile else { return }
+        if model.coverType == .none {
+            if statusBarStyle == .dark {
+                self.hiddenUserAvatorAndFocusBtn(isHidden: false)
+            } else {
+                self.hiddenUserAvatorAndFocusBtn(isHidden: true)
+            }
+        } else {
+            if statusBarStyle == .dark {
+                self.changeBarStyleToDark(isDark: true)
+                self.hiddenUserAvatorAndFocusBtn(isHidden: false)
+            } else {
+                self.changeBarStyleToDark(isDark: false)
+                self.hiddenUserAvatorAndFocusBtn(isHidden: true)
+            }
+        }
+    }
+    
+    func hiddenUserAvatorAndFocusBtn(isHidden: Bool) {
+        self.profileAvatorImageNode.isHidden = isHidden
+        self.focusBtnNode.isHidden = isHidden
+    }
+    
+    func changeBarStyleToDark(isDark: Bool) {
+        if isDark {
+            UIView.animate(withDuration: 0.5) {
+                self.backgroundColor = Color.backGroundColor
+            }
+            self.backBtnNode.backgroundColor = Color.clearColor
+            self.backBtnNode.setImage(R.image.profile_back_black(), for: .normal)
+            self.actionBtnNode.setImage(R.image.profile_dot_black(), for: .normal)
+            self.shareBtnNode.setImage(R.image.profile_share_black(), for: .normal)
+            self.messageBtnNode.setImage(R.image.profile_message_black(), for: .normal)
         } else {
             self.backgroundColor = Color.clearColor
             self.backBtnNode.backgroundColor = backBtnNodeBgColor
@@ -176,25 +207,5 @@ class ProfileNavBar: UIView {
             self.shareBtnNode.setImage(R.image.profile_share_white(), for: .normal)
             self.messageBtnNode.setImage(R.image.profile_message_white(), for: .normal)
         }
-        if self.profile != nil {
-            if statusBarStyle == .dark {
-                self.profileAvatorImageNode.isHidden = false
-                self.focusBtnNode.isHidden = false
-            } else {
-                self.profileAvatorImageNode.isHidden = true
-                self.focusBtnNode.isHidden = true
-            }
-        }
-    }
-    
-    func changeBarStyleToDark() {
-        UIView.animate(withDuration: 0.5) {
-            self.backgroundColor = Color.backGroundColor
-        }
-        self.backBtnNode.backgroundColor = Color.clearColor
-        self.backBtnNode.setImage(R.image.profile_back_black(), for: .normal)
-        self.actionBtnNode.setImage(R.image.profile_dot_black(), for: .normal)
-        self.shareBtnNode.setImage(R.image.profile_share_black(), for: .normal)
-        self.messageBtnNode.setImage(R.image.profile_message_black(), for: .normal)
     }
 }

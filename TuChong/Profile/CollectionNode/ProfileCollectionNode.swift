@@ -87,11 +87,12 @@ extension ProfileCollectionNode: ASCollectionDataSource, ASCollectionDelegate, A
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !self.canScroll {
             scrollView.contentOffset.y = 0
-        }
-        if scrollView.contentOffset.y <= 0 {
-            self.canScroll = false
-            scrollView.contentOffset.y = 0
-            NotificationCenter.default.post(name: NotificationName.detailViewHasScrollToTop, object: nil)
+        } else {
+            if scrollView.contentOffset.y <= 0 {
+                self.canScroll = false
+                scrollView.contentOffset.y = 0
+                NotificationCenter.default.post(name: NotificationName.detailViewHasScrollToTop, object: nil)
+            }
         }
     }
     
