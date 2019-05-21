@@ -181,10 +181,11 @@ struct RequestparameterKey {
     static let follow = "follow"
 }
 
-
 // MARK: - 通知集合
 
 struct NotificationName {
     /// 个人详情 scrollView联动
     static let detailViewHasScrollToTop = NSNotification.Name(rawValue:"detailViewHasScrollToTop")
+    static let detailViewHasBeginScroll = NSNotification.Name(rawValue:"detailViewHasBeginScroll")
+    static let detailViewHasEndScroll = NSNotification.Name(rawValue:"detailViewHasEndScroll")
 }

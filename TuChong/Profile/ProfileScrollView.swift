@@ -78,10 +78,24 @@ class ProfileScrollView: UIScrollView {
     
     private func addNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification), name: NotificationName.detailViewHasScrollToTop, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(disableScrollWhenDetailViewHasEndScrolled), name: NotificationName.detailViewHasBeginScroll, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enableScrollWhenDetailViewHasBenginScrolled), name: NotificationName.detailViewHasEndScroll, object: nil)
     }
     
     @objc private func handleNotification() {
         self.canScroll = true
+    }
+    
+    @objc private func enableScrollWhenDetailViewHasBenginScrolled() {
+        self.isScrollEnabled = true
+    }
+    
+    @objc private func disableScrollWhenDetailViewHasEndScrolled() {
+        self.isScrollEnabled = false
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

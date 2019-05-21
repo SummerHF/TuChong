@@ -104,6 +104,14 @@ class ProfileDetailScrollView: UIScrollView {
 
 extension ProfileDetailScrollView: UIScrollViewDelegate {
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        NotificationCenter.default.post(name: NotificationName.detailViewHasBeginScroll, object: nil)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        NotificationCenter.default.post(name: NotificationName.detailViewHasEndScroll, object: nil)
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = self.contentOffset.x / self.width
         if index >= 0 && index <= itemCount - 1.0 {
