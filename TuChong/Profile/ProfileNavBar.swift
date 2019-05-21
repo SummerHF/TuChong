@@ -141,7 +141,7 @@ class ProfileNavBar: UIView {
         self.delegate?.navBarBackEvent?(bar: self)
     }
     
-    func configure(with profile: ProfileModel) {
+    func configure(with profile: ProfileModel, barStyle: ProfileBarStyle) {
         self.profile = profile
         /// show
         self.shareBtnNode.isHidden = false
@@ -155,23 +155,19 @@ class ProfileNavBar: UIView {
         self.backBtnNode.setImage(R.image.profile_back_white(), for: .normal)
         self.backBtnNode.add(cornerRadius: backBtnNodeSize.width / 2.0, backgroundColor: backBtnNodeBgColor, cornerRoundingType: .defaultSlowCALayer)
         
-        if self.style == .dark {
-            self.profileAvatorImageNode.isHidden = false
-            self.focusBtnNode.isHidden = false
+        self.profileAvatorImageNode.isHidden = true
+        self.focusBtnNode.isHidden = true
+        
+        /// 特殊处理 没有图片的情形
+        if profile.coverType == .none {
+            self.changeBarStyleToDark()
         }
     }
     
     func configureWith(statusBarStyle: ProfileBarStyle) {
         self.style = statusBarStyle
         if statusBarStyle == .dark {
-            UIView.animate(withDuration: 0.5) {
-                self.backgroundColor = Color.backGroundColor
-            }
-            self.backBtnNode.backgroundColor = Color.clearColor
-            self.backBtnNode.setImage(R.image.profile_back_black(), for: .normal)
-            self.actionBtnNode.setImage(R.image.profile_dot_black(), for: .normal)
-            self.shareBtnNode.setImage(R.image.profile_share_black(), for: .normal)
-            self.messageBtnNode.setImage(R.image.profile_message_black(), for: .normal)
+           self.changeBarStyleToDark()
         } else {
             self.backgroundColor = Color.clearColor
             self.backBtnNode.backgroundColor = backBtnNodeBgColor
@@ -189,5 +185,16 @@ class ProfileNavBar: UIView {
                 self.focusBtnNode.isHidden = true
             }
         }
+    }
+    
+    func changeBarStyleToDark() {
+        UIView.animate(withDuration: 0.5) {
+            self.backgroundColor = Color.backGroundColor
+        }
+        self.backBtnNode.backgroundColor = Color.clearColor
+        self.backBtnNode.setImage(R.image.profile_back_black(), for: .normal)
+        self.actionBtnNode.setImage(R.image.profile_dot_black(), for: .normal)
+        self.shareBtnNode.setImage(R.image.profile_share_black(), for: .normal)
+        self.messageBtnNode.setImage(R.image.profile_message_black(), for: .normal)
     }
 }

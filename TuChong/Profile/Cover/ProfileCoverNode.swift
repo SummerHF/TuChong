@@ -81,14 +81,10 @@ class ProfileCoverNode: ASDisplayNode {
         case .none:
             /// cover image count `Zero`, do nothing
             break
-        case let .singleImage(showType):
-            imageNode.url = URL(string: self.profile.cover.images.first!)
-            if showType == .horizental {
-                
-            } else if showType == .vertical {
-                
-            }
-            self.addSubnode(imageNode)
+        case .singleVerticalImage:
+            self.showSingleImage()
+        case .singleHorizentalImage:
+            self.showSingleImage()
         case .moreImage:
             self.showFilmImages()
         }
@@ -110,6 +106,11 @@ class ProfileCoverNode: ASDisplayNode {
         /// add timer to runloop
         RunLoop.current.add(timer, forMode: .common)
         self.timer = timer
+    }
+    
+    private func showSingleImage() {
+        imageNode.url = URL(string: self.profile.cover.images.first!)
+        self.addSubnode(imageNode)
     }
     
     /// Change cover image

@@ -161,7 +161,8 @@ enum ProfileCoverSingleImageShowType {
 
 enum ProfileCoverType {
     case none
-    case singleImage(showType: ProfileCoverSingleImageShowType)
+    case singleVerticalImage
+    case singleHorizentalImage
     case moreImage
 }
 
@@ -179,9 +180,9 @@ struct ProfileModel: HandyJSON {
         } else if cover.images.count == 1 {
             let size = cover.sizes.first!
             if size.width >= size.height {
-                return .singleImage(showType: .horizental)
+                return .singleHorizentalImage
             } else {
-                return .singleImage(showType: .vertical)
+                return .singleVerticalImage
             }
         } else {
             return .moreImage

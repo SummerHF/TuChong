@@ -41,8 +41,6 @@ class ProfileViewController: BaseViewControlle {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if let barStyle = self.barStyle {
             return barStyle == .light ? .lightContent : .default
-        } else if self.isRequestFinished {
-            return .lightContent
         } else {
             return .default
         }
@@ -113,8 +111,6 @@ class ProfileViewController: BaseViewControlle {
     }
     
     override func configuration() {
-        self.isRequestFinished = true
-        self.setNeedsStatusBarAppearanceUpdate()
 //        self.profile.cover.images = [
 //            "https://photo.tuchong.com/5651394/f/110495284.jpg",
 //            "https://photo.tuchong.com/5651394/f/519964289.jpg",
@@ -127,9 +123,17 @@ class ProfileViewController: BaseViewControlle {
 //            "https://photo.tuchong.com/5651394/f/443156084.jpg"
 //        ]
         self.profile.cover.images = []
+        /// 状态栏
+        switch profile.coverType {
+        case .none:
+            self.barStyle = .dark
+        case .moreImage, .singleVerticalImage, .singleHorizentalImage:
+            self.barStyle = .light
+        }
+        self.setNeedsStatusBarAppearanceUpdate()
         self.profileCoverNode.configureWith(profile: self.profile)
         self.profileScrollView.configureWith(profile: self.profile)
-        self.navBar.configure(with: self.profile)
+        self.navBar.configure(with: self.profile, barStyle: self.barStyle!)
     }
     
     override func initialHidden() -> Bool {

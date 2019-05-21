@@ -67,6 +67,7 @@
 		C43B9A56225C617100C15872 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A55225C617100C15872 /* UserViewController.swift */; };
 		C43B9A58225C61E100C15872 /* PhotoFilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */; };
 		C43B9A5B225C62D600C15872 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B9A5A225C62D600C15872 /* AlbumViewController.swift */; };
+		C44C749222939AF7005F955F /* ProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44C749122939AF7005F955F /* ProfileContainer.swift */; };
 		C45496E22270434000D14FD8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45496E12270434000D14FD8 /* WebView.swift */; };
 		C462BFFC225EE64700AB91F1 /* HomeSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */; };
 		C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */; };
@@ -185,6 +186,7 @@
 		C43B9A55225C617100C15872 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilmViewController.swift; sourceTree = "<group>"; };
 		C43B9A5A225C62D600C15872 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		C44C749122939AF7005F955F /* ProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainer.swift; sourceTree = "<group>"; };
 		C45496E12270434000D14FD8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		C462BFFB225EE64700AB91F1 /* HomeSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSubViewController.swift; sourceTree = "<group>"; };
 		C462BFFD225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeContainerViewController+UIPageViewController.swift"; sourceTree = "<group>"; };
@@ -283,19 +285,16 @@
 		531051A0227F113D00DDF968 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				53DD615A227F128500FA969E /* ProfileViewController.swift */,
+				C44C749322939B80005F955F /* Cover */,
 				C404365C2285515100EE1742 /* TableNode */,
 				C404365B2285514C00EE1742 /* CollectionNode */,
+				C422D97B228278D5002530F6 /* ProfileScrollView.swift */,
+				C44C749122939AF7005F955F /* ProfileContainer.swift */,
 				C4650C2F22840F0600215D85 /* ProfileDetailTopItemView.swift */,
 				C421367E228545030081B532 /* ProfileDetailScrollView.swift */,
-				C422D97B228278D5002530F6 /* ProfileScrollView.swift */,
 				53D7A77B2281B83C0008D6A6 /* ProfileNavBar.swift */,
-				53DD615A227F128500FA969E /* ProfileViewController.swift */,
 				C4F3A5FC227FD6D6006614D1 /* ProfileModel.swift */,
-				C4D91A082281139A00D7D197 /* CoverIndicatorView.swift */,
-				C4C8FD332281716600BE55CF /* CoverShadowView.swift */,
-				53EF8E82228065BD00347ECA /* ProfileCoverNode.swift */,
-				C4F3A5FE227FE3AA006614D1 /* ProfileCoverCollectionNode.swift */,
-				C4B2714A2280070800EA9131 /* ProfileCoverCollectionNodeCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -449,6 +448,18 @@
 				C43B9A5A225C62D600C15872 /* AlbumViewController.swift */,
 			);
 			path = Plus;
+			sourceTree = "<group>";
+		};
+		C44C749322939B80005F955F /* Cover */ = {
+			isa = PBXGroup;
+			children = (
+				C4C8FD332281716600BE55CF /* CoverShadowView.swift */,
+				C4B2714A2280070800EA9131 /* ProfileCoverCollectionNodeCell.swift */,
+				C4F3A5FE227FE3AA006614D1 /* ProfileCoverCollectionNode.swift */,
+				53EF8E82228065BD00347ECA /* ProfileCoverNode.swift */,
+				C4D91A082281139A00D7D197 /* CoverIndicatorView.swift */,
+			);
+			path = Cover;
 			sourceTree = "<group>";
 		};
 		C462BFFF225F13DD00AB91F1 /* Tag */ = {
@@ -836,6 +847,7 @@
 				C43433CA2275362400255883 /* UserCommentCell.swift in Sources */,
 				53A00EFD2275EF02008916CE /* RecommendPhotographerCell.swift in Sources */,
 				C4043660228551AB00EE1742 /* ProfileCollectionNode.swift in Sources */,
+				C44C749222939AF7005F955F /* ProfileContainer.swift in Sources */,
 				C43B47982271A02100D2B970 /* TutoriaDetailInfoCell.swift in Sources */,
 				C4F3A5FD227FD6D6006614D1 /* ProfileModel.swift in Sources */,
 				C4A5024B2267035700867EBE /* RecommedTopicCollectionCellNode.swift in Sources */,

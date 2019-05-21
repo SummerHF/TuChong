@@ -92,6 +92,12 @@ class ProfileDetailScrollView: UIScrollView {
         self.likesCollectionNode.configureWith(site_id: site_id)
         self.eventsTableNode.configureWith(site_id: site_id)
     }
+    
+    func scroll(enabled: Bool) {
+        self.worksCollectionNode.view.isScrollEnabled = enabled
+        self.likesCollectionNode.view.isScrollEnabled = enabled
+        self.eventsTableNode.view.isScrollEnabled = enabled
+    }
 }
 
 // MARK: - UIScrollViewDelegate
