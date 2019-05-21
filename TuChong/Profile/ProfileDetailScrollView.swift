@@ -94,9 +94,9 @@ class ProfileDetailScrollView: UIScrollView {
     }
     
     func scroll(enabled: Bool) {
-        self.worksCollectionNode.view.isScrollEnabled = enabled
-        self.likesCollectionNode.view.isScrollEnabled = enabled
-        self.eventsTableNode.view.isScrollEnabled = enabled
+        self.worksCollectionNode.canScroll = enabled
+        self.likesCollectionNode.canScroll = enabled
+        self.eventsTableNode.canScroll = enabled
     }
 }
 

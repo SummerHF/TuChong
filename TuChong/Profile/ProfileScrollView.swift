@@ -42,14 +42,17 @@ class ProfileScrollView: UIScrollView {
     private var defaultBarStyle: ProfileBarStyle = .light
     private var profile: ProfileModel = ProfileModel()
     
+    /// 是否可以滚动, 默认false
+    private var canScroll: Bool = true
+    
     private lazy var container: ProfileContainer = {
         let container = ProfileContainer()
         return container
     }()
     
-    private lazy var scrollViewContentSize: CGSize = {
-        return CGSize(width: macro.screenWidth, height: macro.screenHeight + self.container.topOffSet)
-    }()
+    private var deltaY: CGFloat {
+        return self.container.contentSizeHeight - self.height
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -58,11 +61,13 @@ class ProfileScrollView: UIScrollView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.delegate = self
+        self.showsVerticalScrollIndicator = false 
         self.setPropertys()
     }
     
     private func setPropertys() {
         self.addSubview(container)
+        self.addNotification()
     }
     
     func configureWith(profile: ProfileModel) {
@@ -70,37 +75,53 @@ class ProfileScrollView: UIScrollView {
         self.container.configureWith(profile: profile)
         self.contentSize = self.container.contentSize
     }
+    
+    private func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification), name: NotificationName.detailViewHasScrollToTop, object: nil)
+    }
+    
+    @objc private func handleNotification() {
+        self.canScroll = true
+    }
 }
 
 // MARK: - Method UIScrollViewDelegate
 
-extension ProfileScrollView: UIScrollViewDelegate {
+extension ProfileScrollView: UIScrollViewDelegate, UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self == scrollView {
+            self.needToChangeBarStyleWith(contentOffSetY: scrollView.contentOffset.y)
+        }
+    }
     
     /// 改变状态栏样式
     private func needToChangeBarStyleWith(contentOffSetY: CGFloat) {
         /// disable scroll
-        if contentOffSetY <= self.container.topOffSet {
-            self.isScrollEnabled = true
+        if contentOffSetY >= self.deltaY {
+            self.contentOffset.y = self.deltaY
+            if self.canScroll {
+                self.canScroll = false
+                self.container.scroll(enabled: true)
+            }
         } else {
-            self.isScrollEnabled = false
+            if !self.canScroll {
+                self.contentOffset.y = self.deltaY
+            }
         }
         /// change bar style
-        if contentOffSetY >= self.container.topOffSet - self.container.topMargin {
-            guard defaultBarStyle != .dark else { return }
-            self.profileScrollViewDelegate?.scrollViewNeedToChange(.dark)
-            self.defaultBarStyle = .dark
-        } else {
-            guard defaultBarStyle != .light else { return }
-            self.profileScrollViewDelegate?.scrollViewNeedToChange(.light)
-            self.defaultBarStyle = .light
-        }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        printLog(scrollView.contentOffset.y)
-//        printLog(scrollView.contentSize)
-//        printLog(scrollView.frame)
-//        printLog(container.frame)
-//        self.needToChangeBarStyleWith(contentOffSetY: scrollView.contentOffset.y)
+//        if contentOffSetY >= self.deltaY {
+//            guard defaultBarStyle != .dark else { return }
+//            self.profileScrollViewDelegate?.scrollViewNeedToChange(.dark)
+//            self.defaultBarStyle = .dark
+//        } else {
+//            guard defaultBarStyle != .light else { return }
+//            self.profileScrollViewDelegate?.scrollViewNeedToChange(.light)
+//            self.defaultBarStyle = .light
+//        }
     }
 }

@@ -180,3 +180,11 @@ struct RequestparameterKey {
     static let recommend = "recommend"
     static let follow = "follow"
 }
+
+
+// MARK: - 通知集合
+
+struct NotificationName {
+    /// 个人详情 scrollView联动
+    static let detailViewHasScrollToTop = NSNotification.Name(rawValue:"detailViewHasScrollToTop")
+}

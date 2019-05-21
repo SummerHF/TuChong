@@ -323,19 +323,19 @@ class ProfileContainer: UIView {
         case .none:
             return topMargin
         case .singleVerticalImage:
-            return macro.screenHeight * 0.732
+            return macro.screenHeight * 0.8
         case .singleHorizentalImage:
             return macro.screenHeight * 0.4
         case .moreImage:
-            return macro.screenHeight * 0.732
+            return macro.screenHeight * 0.8
         }
     }
     
     var containerHeight: CGFloat {
-        return macro.screenHeight + topOffSet
+        return macro.screenHeight + topMargin
     }
     
-    private var contentSizeHeight: CGFloat {
+    var contentSizeHeight: CGFloat {
         return containerHeight + topOffSet
     }
     
@@ -389,6 +389,11 @@ class ProfileContainer: UIView {
             make.centerY.equalTo(nameLable)
             make.size.equalTo(focusBtnNodeSize)
         }
+    }
+    
+    /// Whether enabled scroll 
+    func scroll(enabled: Bool) {
+        self.detailView.scroll(enabled: enabled)
     }
     
     func configureWith(profile: ProfileModel) {

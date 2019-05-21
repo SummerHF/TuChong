@@ -30,7 +30,8 @@ import AsyncDisplayKit
 class ProfileCollectionNode: ASCollectionNode {
     
     let type: ProfileDetailType
-
+    /// 是否可以滚动, 默认false
+    var canScroll: Bool = false
     private var site_id: String = ""
     private var page: Int = 0
     private var work_model = Profile_Work_Model()
@@ -56,6 +57,7 @@ class ProfileCollectionNode: ASCollectionNode {
         self.backgroundColor = Color.backGroundColor
         self.dataSource = self
         self.delegate = self
+        self.view.showsVerticalScrollIndicator = false
         self.contentInset = UIEdgeInsets(top: 15, left: 15, bottom: 0, right: 15)
     }
     
@@ -81,6 +83,17 @@ class ProfileCollectionNode: ASCollectionNode {
 }
 
 extension ProfileCollectionNode: ASCollectionDataSource, ASCollectionDelegate, ASCollectionDelegateFlowLayout {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !self.canScroll {
+            scrollView.contentOffset.y = 0
+        }
+        if scrollView.contentOffset.y <= 0 {
+            self.canScroll = false
+            scrollView.contentOffset.y = 0
+            NotificationCenter.default.post(name: NotificationName.detailViewHasScrollToTop, object: nil)
+        }
+    }
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
         return self.work_model.work_list.count

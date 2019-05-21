@@ -31,7 +31,8 @@ class ProfileEventsTableNode: ASTableNode {
     
     let type: ProfileDetailType
     var feedList: [Profile_Events_List_Model] = []
-    
+    var canScroll: Bool = false
+
     private var site_id: String = ""
     private var page: Int = 1
 
@@ -41,6 +42,7 @@ class ProfileEventsTableNode: ASTableNode {
         self.dataSource = self
         self.delegate = self
         self.backgroundColor = Color.simpleGray
+        self.view.showsVerticalScrollIndicator = false
     }
     
     override func didLoad() {
@@ -66,6 +68,17 @@ class ProfileEventsTableNode: ASTableNode {
 }
 
 extension ProfileEventsTableNode: ASTableDataSource, ASTableDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !self.canScroll {
+            scrollView.contentOffset.y = 0
+        }
+        if scrollView.contentOffset.y <= 0 {
+            self.canScroll = false
+            scrollView.contentOffset.y = 0
+            NotificationCenter.default.post(name: NotificationName.detailViewHasScrollToTop, object: nil)
+        }
+    }
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
         return self.feedList.count
