@@ -54,7 +54,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 71 images.
+  /// This `R.image` struct is generated, and contains static references to 72 images.
   struct image {
     /// Image `activity_selcted`.
     static let activity_selcted = Rswift.ImageResource(bundle: R.hostingBundle, name: "activity_selcted")
@@ -146,6 +146,8 @@ struct R: Rswift.Validatable {
     static let profile_message_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_message_white")
     /// Image `profile_message`.
     static let profile_message = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_message")
+    /// Image `profile_shadow`.
+    static let profile_shadow = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_shadow")
     /// Image `profile_share_black`.
     static let profile_share_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_share_black")
     /// Image `profile_share_white`.
@@ -422,6 +424,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "profile_message_white", bundle: ..., traitCollection: ...)`
     static func profile_message_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_message_white, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "profile_shadow", bundle: ..., traitCollection: ...)`
+    static func profile_shadow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profile_shadow, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "profile_share_black", bundle: ..., traitCollection: ...)`

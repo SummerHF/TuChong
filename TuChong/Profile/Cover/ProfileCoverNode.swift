@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-import AsyncDisplayKit
+import AsyncDisplayKit 
 
 // MARK: - ProfileCoverNode
 
@@ -62,6 +62,7 @@ class ProfileCoverNode: ASDisplayNode {
     /// shadowImage
     lazy var shadowImage: ASImageNode = {
         let shadowImage = ASImageNode()
+        shadowImage.image = R.image.profile_shadow()
         return shadowImage
     }()
     
@@ -97,8 +98,7 @@ class ProfileCoverNode: ASDisplayNode {
         self.collectionNode.frame = UIScreen.main.bounds
         self.addSubnode(collectionNode)
         /// add shadow
-        //            self.shadowImage.frame = CGRect(x: 0, y: 0, width: macro.screenWidth, height: macro.shadowHeight)
-        //            self.addSubnode(shadowImage)
+        self.addShadow()
         /// add indicator
         self.view.addSubview(indicator)
         /// set timer
@@ -119,6 +119,12 @@ class ProfileCoverNode: ASDisplayNode {
         imageNode.url = URL(string: url)
         self.addSubnode(imageNode)
         imageNode.frame = CGRect(x: 0, y: 0, width: self.view.width, height: self.view.width * size.scale)
+    }
+    
+    /// 添加阴影图层
+    private func addShadow() {
+        self.shadowImage.frame = CGRect(x: 0, y: -macro.topHeight, width: macro.screenWidth, height: macro.topHeight * 2)
+        self.addSubnode(shadowImage)
     }
     
     /// 水平单图缩放

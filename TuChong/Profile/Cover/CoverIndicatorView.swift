@@ -36,7 +36,7 @@ class CoverIndicatorView: UIView {
     
     var bgColor: UIColor {
         get {
-            return RGBA(R: 133, G: 133, B: 135, A: 0.6)
+            return RGBA(R: 204, G: 204, B: 204, A: 0.5)
         }
         set {
             self.backgroundColor = newValue

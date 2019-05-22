@@ -85,7 +85,7 @@ struct Macro {
     
     /// shadow height
     var shadowHeight: CGFloat {
-        return 180
+        return 200
     }
     
     /// homenavHeight
