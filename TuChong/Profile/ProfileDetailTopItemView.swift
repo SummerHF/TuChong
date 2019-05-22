@@ -43,8 +43,13 @@ class ProfileDetailTopItemView: UIView {
     var type: ProfileDetailType = .none
     
     private let lableHeight: CGFloat = 24
+    private let lableWidth: CGFloat = 60
     private let countLable = UILabel()
     private let categoryNameLable = UILabel()
+    private let defaultFont = UIFont.boldFont_15()
+    private let selectedFont = UIFont.boldFont_17()
+    private let largetTitleFont = UIFont.boldFont_25()
+    private let margin: CGFloat = 14
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -54,10 +59,10 @@ class ProfileDetailTopItemView: UIView {
         didSet {
             if isSelected {
                 self.countLable.font = UIFont.boldFont_16()
-                self.categoryNameLable.font = UIFont.boldFont_17()
+                self.categoryNameLable.font = selectedFont
             } else {
                 self.countLable.font = UIFont.boldFont_14()
-                self.categoryNameLable.font = UIFont.boldFont_15()
+                self.categoryNameLable.font = defaultFont
             }
         }
     }
@@ -81,6 +86,16 @@ class ProfileDetailTopItemView: UIView {
             make.top.equalTo(self.snp.centerY)
             make.height.equalTo(lableHeight)
         }
+    }
+    
+    func enableLargeTitle(enabled: Bool) {
+//        if enabled {
+//            self.countLable.isHidden = true
+//            self.categoryNameLable.font = self.largetTitleFont
+//        } else {
+//            self.countLable.isHidden = false
+//            self.categoryNameLable.font = self.selectedFont
+//        }
     }
     
     func configureWith(title: String, count: Int, type: ProfileDetailType, delegate: ProfileDetailTopItemViewProtocol) {

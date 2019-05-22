@@ -111,6 +111,17 @@ extension String {
 
 extension UILabel {
     
+    func animateTo(font: UIFont, withDuration duration: TimeInterval) {
+        guard let oldFont = self.font else { return }
+        self.font = font
+        let scale = oldFont.pointSize / font.pointSize
+        setNeedsUpdateConstraints()
+        UIView.animate(withDuration: duration) {
+            self.transform = CGAffineTransform(scaleX: scale, y: scale)
+            self.layoutIfNeeded()
+        }
+    }
+    
     func setAttributdWith(string: String, font: UIFont, color: UIColor = UIColor.black, aligment: NSTextAlignment? = .center) {
         self.attributedText = NSAttributedString(string: string, attributes: [
             NSAttributedString.Key.font: font,
@@ -221,6 +232,10 @@ public extension UIFont {
     
     static func boldFont_25() -> UIFont {
         return UIFont.boldSystemFont(ofSize: 25)
+    }
+    
+    static func boldFont_30() -> UIFont {
+        return UIFont.boldSystemFont(ofSize: 30)
     }
     
     static func normalFont_10() -> UIFont {

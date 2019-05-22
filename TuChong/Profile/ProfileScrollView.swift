@@ -85,6 +85,7 @@ class ProfileScrollView: UIScrollView {
     
     @objc private func handleNotification() {
         self.canScroll = true
+        self.container.enableLargeTitle(enabled: false)
     }
     
     @objc private func enableScrollWhenDetailViewHasBenginScrolled() {
@@ -124,13 +125,13 @@ extension ProfileScrollView: UIScrollViewDelegate, UIGestureRecognizerDelegate {
             if self.canScroll {
                 self.canScroll = false
                 self.container.scroll(enabled: true)
+                self.container.enableLargeTitle(enabled: true)
             }
         } else {
             if !self.canScroll {
                 self.contentOffset.y = self.deltaY
             }
         }
-        
     }
     
     /// 改变状态栏样式

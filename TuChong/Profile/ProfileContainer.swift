@@ -138,6 +138,7 @@ class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
     private let indicatorView = UIView()
     private var itemArray: [ProfileDetailTopItemView] = []
     private var previousType: ProfileDetailType?
+    private var enableLargeTitle: Bool = false
     
     private var indicatorCenterYConstraint: Constraint?
     
@@ -187,6 +188,12 @@ class ProfileDetailTopView: UIView, ProfileDetailTopItemViewProtocol {
         self.activityItemView.configureWith(title: R.string.localizable.profile_activity(), count: statistics.events, type: .activity, delegate: self)
         self.separoterView.backgroundColor = Color.lineGray
         self.setSelectedWith(type: defaultType, animated: false)
+    }
+    
+    func enableLargeTitle(enabled: Bool) {
+        guard let defaultType = self.previousType else { return }
+        let previousItemView = self.itemArray[defaultType.rawValue]
+        previousItemView.enableLargeTitle(enabled: enabled)
     }
     
     func setSelectedWith(type: ProfileDetailType, animated: Bool) {
@@ -274,6 +281,10 @@ class ProfileDetailView: UIView {
     
     func scroll(enabled: Bool) {
         self.scrollView.scroll(enabled: enabled)
+    }
+    
+    func enableLargeTitle(enabled: Bool) {
+        self.topView.enableLargeTitle(enabled: enabled)
     }
 }
 
@@ -394,6 +405,10 @@ class ProfileContainer: UIView {
     /// Whether enabled scroll 
     func scroll(enabled: Bool) {
         self.detailView.scroll(enabled: enabled)
+    }
+    
+    func enableLargeTitle(enabled: Bool) {
+        self.detailView.enableLargeTitle(enabled: enabled)
     }
     
     func configureWith(profile: ProfileModel) {
