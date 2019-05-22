@@ -96,6 +96,8 @@
 		C4AD3C4B2240AEFE0095BC97 /* API in Resources */ = {isa = PBXBuildFile; fileRef = C4AD3C4A2240AEFE0095BC97 /* API */; };
 		C4B15B7D2248BD7C00D3DE12 /* HomeTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */; };
 		C4B2714B2280070800EA9131 /* ProfileCoverCollectionNodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2714A2280070800EA9131 /* ProfileCoverCollectionNodeCell.swift */; };
+		C4B486F62295472A00ECE987 /* PhotoFilmTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B486F52295472A00ECE987 /* PhotoFilmTableNode.swift */; };
+		C4B486F82295499800ECE987 /* PhotoFilmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B486F72295499800ECE987 /* PhotoFilmModel.swift */; };
 		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
 		C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavNode.swift */; };
 		C4C8F465226DA250000D1231 /* RecommendTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8F464226DA250000D1231 /* RecommendTutorialViewController.swift */; };
@@ -217,6 +219,8 @@
 		C4AD3C4A2240AEFE0095BC97 /* API */ = {isa = PBXFileReference; lastKnownFileType = text; path = API; sourceTree = "<group>"; };
 		C4B15B7C2248BD7C00D3DE12 /* HomeTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTagViewController.swift; sourceTree = "<group>"; };
 		C4B2714A2280070800EA9131 /* ProfileCoverCollectionNodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoverCollectionNodeCell.swift; sourceTree = "<group>"; };
+		C4B486F52295472A00ECE987 /* PhotoFilmTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilmTableNode.swift; sourceTree = "<group>"; };
+		C4B486F72295499800ECE987 /* PhotoFilmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilmModel.swift; sourceTree = "<group>"; };
 		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		C4B9825C2242172900F65C0E /* HomeNavNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavNode.swift; sourceTree = "<group>"; };
 		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -438,6 +442,8 @@
 			isa = PBXGroup;
 			children = (
 				C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */,
+				C4B486F52295472A00ECE987 /* PhotoFilmTableNode.swift */,
+				C4B486F72295499800ECE987 /* PhotoFilmModel.swift */,
 			);
 			path = Film;
 			sourceTree = "<group>";
@@ -892,6 +898,7 @@
 				C4AD3C40224098B40095BC97 /* Extension.swift in Sources */,
 				C462BFFE225F134300AB91F1 /* HomeContainerViewController+UIPageViewController.swift in Sources */,
 				C43AEA09225442BC00C2CFE7 /* SearchBar.swift in Sources */,
+				C4B486F82295499800ECE987 /* PhotoFilmModel.swift in Sources */,
 				5304106E2268A5DC00EB1AE5 /* RecommendVideoPlayerController.swift in Sources */,
 				C41375F6228D608F003D4EF5 /* HomeCircleController.swift in Sources */,
 				C4F3A5FF227FE3AA006614D1 /* ProfileCoverCollectionNode.swift in Sources */,
@@ -918,6 +925,7 @@
 				C422D97C228278D5002530F6 /* ProfileScrollView.swift in Sources */,
 				C402B24722699C95007746EB /* RecommendWallpaperCell.swift in Sources */,
 				C40F35F2228E87C000A8638B /* HomeCircleRecommendTableNode.swift in Sources */,
+				C4B486F62295472A00ECE987 /* PhotoFilmTableNode.swift in Sources */,
 				C437F357226EE6FB0017445F /* TutorialDetailViewController.swift in Sources */,
 				53D1F5B52268A7340046F0FE /* RecommendBaseViewController.swift in Sources */,
 				5351010D2275DC2B0008B7AE /* RecommendPhotographerViewController.swift in Sources */,

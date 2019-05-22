@@ -102,6 +102,13 @@ struct Recommend_Feedlist_CommensList_Model: HandyJSON {
     var sub_notes: [Recommend_Feedlist_Subnotes_Model] = []
 }
 
+struct Music_Beats_Item: HandyJSON {
+    var sec: String = ""
+    var icon_width: String = ""
+    var icon_height: String = ""
+    var url: String = ""
+}
+
 struct Recommend_Feedlist_Music_Model: HandyJSON {
     var music_id: String = ""
     var common_music_id: String = ""
@@ -111,8 +118,7 @@ struct Recommend_Feedlist_Music_Model: HandyJSON {
     var status: Int = 0
     var url: String = ""
     var cover_url: String = ""
-    /// wait to confirm
-    var music_beats: [String] = []
+    var music_beats: [Music_Beats_Item] = []
     var desc: String = ""
     var prefetch: Bool = false
     var prefetch_count: Int = 0

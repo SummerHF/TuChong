@@ -1,7 +1,7 @@
-//  PhotoFilmViewController.swift
+//  PhotoFilmModel.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/4/9.
+//  Created by SummerHF on 2019/5/22.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -25,46 +25,16 @@
 //  THE SOFTWARE.
 //
 
-import AsyncDisplayKit
+import Foundation
+import HandyJSON
 
-/// 照片电影
-
-class PhotoFilmViewController: BaseViewControlle {
+struct PhotoFilmModel: HandyJSON {
+    var more: Bool = false
+    var result: String = ""
+    var list: [Recommend_Feedlist_Eentry_Model] = []
     
-    private var page: Int = 1
-    private var feed_list: [Recommend_Feedlist_Eentry_Model] = []
-    
-    private lazy var tableNode: PhotoFilmTableNode = {
-        let tableNode = PhotoFilmTableNode()
-        return tableNode
-    }()
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.addSubNodes()
-        self.loadData()
-    }
-    
-    override func addSubNodes() {
-        self.node.addSubnode(tableNode)
-    }
-    
-    override func loadData() {
-        Network.request(target: TuChong.film(page: self.page), success: { (responseData) in
-            self.feed_list = PhotoFilmModel.buildWith(dict: responseData)
-            self.tableNode.reloadData()
-        }, error: { (_) in
-            
-        }) { (_) in
-            
-        }
-    }
-    
-    override func initialHidden() -> Bool {
-        return true
+    static func buildWith(dict: [String: Any]) -> [Recommend_Feedlist_Eentry_Model] {
+        guard let model = PhotoFilmModel.deserialize(from: dict) else { return [] }
+        return model.list
     }
 }

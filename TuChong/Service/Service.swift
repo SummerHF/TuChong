@@ -79,6 +79,8 @@ enum TuChong {
     case profile_event(site_id: String, page: Int)
     /// 用户 ---- Work and Favorites
     case profile_work(path: String)
+    /// 照片电影
+    case film(page: Int)
 }
 
 extension TuChong: TargetType {
@@ -166,6 +168,8 @@ extension TuChong: TargetType {
             return "/users/\(site_id)/events"
         case let .profile_work(path):
             return path
+        case .film:
+            return "/3/yt/collections"
         }
     }
     
@@ -190,6 +194,7 @@ extension TuChong: TargetType {
              .homepage_recommend,
              .profile_site,
              .profile_event,
+             .film,
              .profile_work:
             return .get
         }
@@ -205,6 +210,8 @@ extension TuChong: TargetType {
             } else {
                 return .requestPlain
             }
+        case let .film(page):
+            return .requestParameters(parameters: [RequestparameterKey.page: page], encoding: URLEncoding.default)
         case let .home_circle_more(parameters):
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case let .profile_event(_, page):
@@ -255,6 +262,7 @@ extension TuChong: TargetType {
              .profile_site,
              .profile_event,
              .home_circle_more,
+             .film,
              .profile_work:
              return "Half measures are as bad as nothing at all.".utf8Encoded
         }
