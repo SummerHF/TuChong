@@ -31,6 +31,7 @@ import UIKit
 
 protocol ProfileScrollViewProtocol: NSObjectProtocol {
     func scrollViewNeedToChange(_ barStyle: ProfileBarStyle)
+    func backgroundViewNeedToShrinkWith(offSet: CGFloat)
 }
 
 // MARK: - ProfileScrollView
@@ -111,10 +112,11 @@ extension ProfileScrollView: UIScrollViewDelegate, UIGestureRecognizerDelegate {
         if self == scrollView {
             self.needToChangeScrollStatusWith(contentOffSetY: scrollView.contentOffset.y)
             self.needToChangeBarStyleWith(contentOffSetY: scrollView.contentOffset.y)
+            self.needToShrinkImageWhenCoverNodeHasOneImageWith(contentOffSetY: scrollView.contentOffset.y)
         }
     }
     
-    /// 改变状态栏样式
+    /// 设置联动
     private func needToChangeScrollStatusWith(contentOffSetY: CGFloat) {
         /// disable scroll
         if contentOffSetY >= self.deltaY {
@@ -131,6 +133,7 @@ extension ProfileScrollView: UIScrollViewDelegate, UIGestureRecognizerDelegate {
         
     }
     
+    /// 改变状态栏样式
     private func needToChangeBarStyleWith(contentOffSetY: CGFloat) {
         /// change bar style
         if contentOffSetY >= macro.topHeight {
@@ -141,6 +144,14 @@ extension ProfileScrollView: UIScrollViewDelegate, UIGestureRecognizerDelegate {
             guard defaultBarStyle != .light else { return }
             self.profileScrollViewDelegate?.scrollViewNeedToChange(.light)
             self.defaultBarStyle = .light
+        }
+    }
+    
+    /// 缩放背景图片
+    private func needToShrinkImageWhenCoverNodeHasOneImageWith(contentOffSetY: CGFloat) {
+        guard profile.coverType == .singleHorizentalImage else { return }
+        if contentOffSetY <= 0 {
+            self.profileScrollViewDelegate?.backgroundViewNeedToShrinkWith(offSet: contentOffSetY)
         }
     }
 }

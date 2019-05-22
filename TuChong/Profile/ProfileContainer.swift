@@ -325,7 +325,7 @@ class ProfileContainer: UIView {
         case .singleVerticalImage:
             return macro.screenHeight * 0.8
         case .singleHorizentalImage:
-            return macro.screenHeight * 0.4
+            return macro.screenWidth * profile.cover.single_horizental_ratio - margin
         case .moreImage:
             return macro.screenHeight * 0.8
         }

@@ -129,12 +129,20 @@ struct Profile_Site_Model: HandyJSON {
 struct Profile_Cover_Size_Model: HandyJSON {
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
+    
+    var scale: CGFloat {
+        return height / width
+    }
 }
 
 struct Profile_Cover_Model: HandyJSON {
     var post_id: String = ""
     var images: [String] = []
     var sizes: [Profile_Cover_Size_Model] = []
+    
+    var single_horizental_ratio: CGFloat {
+        return sizes.first!.scale
+    }
 }
 
 // MARK: - Profile Statistics

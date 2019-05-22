@@ -111,18 +111,31 @@ class ProfileViewController: BaseViewControlle {
     }
     
     override func configuration() {
-        self.profile.cover.images = [
-            "https://photo.tuchong.com/5651394/f/110495284.jpg",
-            "https://photo.tuchong.com/5651394/f/519964289.jpg",
-            "https://photo.tuchong.com/5651394/f/92735104.jpg",
-            "https://photo.tuchong.com/5651394/f/631899724.jpg",
-            "https://photo.tuchong.com/5651394/f/382273140.jpg",
-            "https://photo.tuchong.com/5651394/f/262801012.jpg",
-            "https://photo.tuchong.com/5651394/f/326043254.jpg",
-            "https://photo.tuchong.com/5651394/f/227542664.jpg",
-            "https://photo.tuchong.com/5651394/f/443156084.jpg"
-        ]
-//        self.profile.cover.images = []
+        /// 多图
+//        self.profile.cover.images = [
+//            "https://photo.tuchong.com/5651394/f/110495284.jpg",
+//            "https://photo.tuchong.com/5651394/f/519964289.jpg",
+//            "https://photo.tuchong.com/5651394/f/92735104.jpg",
+//            "https://photo.tuchong.com/5651394/f/631899724.jpg",
+//            "https://photo.tuchong.com/5651394/f/382273140.jpg",
+//            "https://photo.tuchong.com/5651394/f/262801012.jpg",
+//            "https://photo.tuchong.com/5651394/f/326043254.jpg",
+//            "https://photo.tuchong.com/5651394/f/227542664.jpg",
+//            "https://photo.tuchong.com/5651394/f/443156084.jpg"
+//        ]
+        
+        /// 垂直单图
+//        self.profile.cover.images = ["https://photo.tuchong.com/1603652/f/205456104.jpg"]
+//        var size_model = Profile_Cover_Size_Model()
+//        size_model.width = 804.0
+//        size_model.height = 1200.0
+        /// 水平单图
+        self.profile.cover.images = ["https://photo.tuchong.com/395013/f/645137809.jpg"]
+        var size_model = Profile_Cover_Size_Model()
+        size_model.width = 1200.0
+        size_model.height = 800
+        self.profile.cover.sizes = [size_model]
+        
         /// 状态栏
         switch profile.coverType {
         case .none:
@@ -158,6 +171,10 @@ extension ProfileViewController: ProfileScrollViewProtocol {
             self.setNeedsStatusBarAppearanceUpdate()
         }
         self.navBar.configureWith(statusBarStyle: barStyle)
+    }
+    
+    func backgroundViewNeedToShrinkWith(offSet: CGFloat) {
+        self.profileCoverNode.shrinkCoverImageNodeWith(offSet: offSet)
     }
 }
 

@@ -82,9 +82,9 @@ class ProfileCoverNode: ASDisplayNode {
             /// cover image count `Zero`, do nothing
             break
         case .singleVerticalImage:
-            self.showSingleImage()
+            self.showVerticalSingleImage()
         case .singleHorizentalImage:
-            self.showSingleImage()
+            self.showHorizentalSingleImage()
         case .moreImage:
             self.showFilmImages()
         }
@@ -108,9 +108,26 @@ class ProfileCoverNode: ASDisplayNode {
         self.timer = timer
     }
     
-    private func showSingleImage() {
+    private func showVerticalSingleImage() {
         imageNode.url = URL(string: self.profile.cover.images.first!)
         self.addSubnode(imageNode)
+        imageNode.frame = self.bounds
+    }
+    
+    private func showHorizentalSingleImage() {
+        guard let size = self.profile.cover.sizes.first, let url = self.profile.cover.images.first else { return }
+        imageNode.url = URL(string: url)
+        self.addSubnode(imageNode)
+        imageNode.frame = CGRect(x: 0, y: 0, width: self.view.width, height: self.view.width * size.scale)
+    }
+    
+    /// 水平单图缩放
+    func shrinkCoverImageNodeWith(offSet: CGFloat) {
+        let x = offSet
+        let y = offSet
+        let height = macro.screenWidth * profile.cover.single_horizental_ratio + abs(offSet) * 2
+        let width = macro.screenWidth + abs(offSet) * 2
+        self.imageNode.frame = CGRect(x: x, y: y, width: width, height: height)
     }
     
     /// Change cover image
