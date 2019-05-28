@@ -36,6 +36,8 @@ class PhotoFilmViewController: BaseViewControlle {
     
     private lazy var tableNode: PhotoFilmTableNode = {
         let tableNode = PhotoFilmTableNode()
+        tableNode.dataSource = self
+        tableNode.delegate = self
         return tableNode
     }()
     
@@ -66,5 +68,20 @@ class PhotoFilmViewController: BaseViewControlle {
     
     override func initialHidden() -> Bool {
         return true
+    }
+}
+
+extension PhotoFilmViewController: ASTableDataSource, ASTableDelegate {
+    
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return self.feed_list.count
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+        return PhotoFilmTableCell(feed_list: self.feed_list[indexPath.row], index: indexPath.row)
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, constrainedSizeForRowAt indexPath: IndexPath) -> ASSizeRange {
+        return ASSizeRangeMake(UIScreen.main.bounds.size)
     }
 }

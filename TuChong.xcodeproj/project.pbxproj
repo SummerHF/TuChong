@@ -100,6 +100,8 @@
 		C4B486F82295499800ECE987 /* PhotoFilmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B486F72295499800ECE987 /* PhotoFilmModel.swift */; };
 		C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825A2241EE8400F65C0E /* Macro.swift */; };
 		C4B9825D2242172900F65C0E /* HomeNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9825C2242172900F65C0E /* HomeNavNode.swift */; };
+		C4C34CE5229D1C3500511D8A /* PhotoFilmTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C34CE4229D1C3500511D8A /* PhotoFilmTableCell.swift */; };
+		C4C34CE7229D20A200511D8A /* PhotoFilmCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C34CE6229D20A200511D8A /* PhotoFilmCollectionNode.swift */; };
 		C4C8F465226DA250000D1231 /* RecommendTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8F464226DA250000D1231 /* RecommendTutorialViewController.swift */; };
 		C4C8F467226DB07E000D1231 /* TutorialNavNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8F466226DB07E000D1231 /* TutorialNavNode.swift */; };
 		C4C8F469226DB170000D1231 /* TutorialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8F468226DB170000D1231 /* TutorialModel.swift */; };
@@ -224,6 +226,8 @@
 		C4B9825A2241EE8400F65C0E /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		C4B9825C2242172900F65C0E /* HomeNavNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavNode.swift; sourceTree = "<group>"; };
 		C4B9825E22421F5F00F65C0E /* TuChong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuChong-Bridging-Header.h"; sourceTree = "<group>"; };
+		C4C34CE4229D1C3500511D8A /* PhotoFilmTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilmTableCell.swift; sourceTree = "<group>"; };
+		C4C34CE6229D20A200511D8A /* PhotoFilmCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilmCollectionNode.swift; sourceTree = "<group>"; };
 		C4C8F464226DA250000D1231 /* RecommendTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTutorialViewController.swift; sourceTree = "<group>"; };
 		C4C8F466226DB07E000D1231 /* TutorialNavNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialNavNode.swift; sourceTree = "<group>"; };
 		C4C8F468226DB170000D1231 /* TutorialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialModel.swift; sourceTree = "<group>"; };
@@ -443,7 +447,9 @@
 			children = (
 				C43B9A57225C61E100C15872 /* PhotoFilmViewController.swift */,
 				C4B486F52295472A00ECE987 /* PhotoFilmTableNode.swift */,
+				C4C34CE6229D20A200511D8A /* PhotoFilmCollectionNode.swift */,
 				C4B486F72295499800ECE987 /* PhotoFilmModel.swift */,
+				C4C34CE4229D1C3500511D8A /* PhotoFilmTableCell.swift */,
 			);
 			path = Film;
 			sourceTree = "<group>";
@@ -850,6 +856,7 @@
 				C43B479A2271A32500D2B970 /* TutorialDetailInfoTagBtnNode.swift in Sources */,
 				C43B9A5B225C62D600C15872 /* AlbumViewController.swift in Sources */,
 				C4C8FD342281716600BE55CF /* CoverShadowView.swift in Sources */,
+				C4C34CE5229D1C3500511D8A /* PhotoFilmTableCell.swift in Sources */,
 				C43433CA2275362400255883 /* UserCommentCell.swift in Sources */,
 				53A00EFD2275EF02008916CE /* RecommendPhotographerCell.swift in Sources */,
 				C4043660228551AB00EE1742 /* ProfileCollectionNode.swift in Sources */,
@@ -887,6 +894,7 @@
 				C402B24522699B3A007746EB /* WallpaperLayout.swift in Sources */,
 				C4EB9FEF2266F074008747C7 /* RecommendTopicCellNode.swift in Sources */,
 				53CC8C66226DF5D1007EE8D3 /* LoadingNode.swift in Sources */,
+				C4C34CE7229D20A200511D8A /* PhotoFilmCollectionNode.swift in Sources */,
 				C4A502492266F49C00867EBE /* RecommendBaseCellNode.swift in Sources */,
 				C4CBE21E2255F3E10074F58A /* SearchCellNode.swift in Sources */,
 				C4AC63D32241D3CE00324C23 /* Logger.swift in Sources */,

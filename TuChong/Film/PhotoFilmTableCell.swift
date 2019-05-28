@@ -1,7 +1,7 @@
-//  File.swift
+//  PhotoFilmTableCell.swift
 //  TuChong
 //
-//  Created by SummerHF on 2019/5/22.
+//  Created by SummerHF on 2019/5/28.
 //
 //
 //  Copyright (c) 2019 SummerHF(https://github.com/summerhf)
@@ -27,12 +27,26 @@
 
 import AsyncDisplayKit
 
-class PhotoFilmTableNode: ASTableNode {
+class PhotoFilmTableCell: BaseCellNode {
     
-    init() {
-        super.init(style: .plain)
-        self.view.isPagingEnabled = true 
-        self.backgroundColor = Color.black
-        self.frame = UIScreen.main.bounds
+    private let feed_list: Recommend_Feedlist_Eentry_Model
+    private let collection: PhotoFilmCollectionNode
+    private let index: Int
+    
+    private let insetForNode: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: macro.tabBarHeight, right: 0)
+    
+    init(feed_list: Recommend_Feedlist_Eentry_Model, index: Int) {
+        self.feed_list = feed_list
+        self.index = index
+        self.collection = PhotoFilmCollectionNode(images: feed_list.images)
+        super.init()
+    }
+    
+    override func didLoad() {
+        self.collection.reloadData()
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASInsetLayoutSpec(insets: insetForNode, child: self.collection)
     }
 }
