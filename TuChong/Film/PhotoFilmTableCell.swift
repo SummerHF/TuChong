@@ -31,7 +31,20 @@ class PhotoFilmTableCell: BaseCellNode {
     
     private let feed_list: Recommend_Feedlist_Eentry_Model
     private let collection: PhotoFilmCollectionNode
+    private let profile: PhotoFilmProfileNode
     private let index: Int
+    private static let profile_width: CGFloat = 64
+    private static let profile_height: CGFloat = 400
+
+    private let profile_position: CGPoint = {
+        let profile_x: CGFloat = macro.screenWidth - profile_width
+        let profile_y: CGFloat = macro.screenHeight - macro.tabBarHeight - profile_height
+        return CGPoint(x: profile_x, y: profile_y)
+    }()
+    
+    private let profile_size: CGSize = {
+        return CGSize(width: profile_width, height: profile_height)
+    }()
     
     private let insetForNode: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: macro.tabBarHeight, right: 0)
     
@@ -39,6 +52,7 @@ class PhotoFilmTableCell: BaseCellNode {
         self.feed_list = feed_list
         self.index = index
         self.collection = PhotoFilmCollectionNode(images: feed_list.images)
+        self.profile = PhotoFilmProfileNode(entry_model: feed_list)
         super.init()
         self.backgroundColor = Color.black
     }
@@ -48,6 +62,10 @@ class PhotoFilmTableCell: BaseCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec(insets: insetForNode, child: self.collection)
+        let childLayoutSpec = ASInsetLayoutSpec(insets: insetForNode, child: self.collection)
+        profile.style.layoutPosition = profile_position
+        profile.style.preferredSize = profile_size
+        let overLayoutSpec = ASAbsoluteLayoutSpec(children: [profile])
+        return ASOverlayLayoutSpec(child: childLayoutSpec, overlay: overLayoutSpec)
     }
 }

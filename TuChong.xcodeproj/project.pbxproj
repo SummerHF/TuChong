@@ -118,6 +118,7 @@
 		C4E57B3D224DB46100F9D511 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */; };
 		C4E57B3F224DBB5E00F9D511 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */; };
 		C4E57B41224DC4DA00F9D511 /* ActivityTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */; };
+		C4E7949C229E233A000E0A43 /* PhotoFilmProfileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E7949B229E233A000E0A43 /* PhotoFilmProfileNode.swift */; };
 		C4EB9FEF2266F074008747C7 /* RecommendTopicCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB9FEE2266F074008747C7 /* RecommendTopicCellNode.swift */; };
 		C4F3A5FD227FD6D6006614D1 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F3A5FC227FD6D6006614D1 /* ProfileModel.swift */; };
 		C4F3A5FF227FE3AA006614D1 /* ProfileCoverCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F3A5FE227FE3AA006614D1 /* ProfileCoverCollectionNode.swift */; };
@@ -244,6 +245,7 @@
 		C4E57B3C224DB46100F9D511 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		C4E57B3E224DBB5E00F9D511 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		C4E57B40224DC4DA00F9D511 /* ActivityTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableNode.swift; sourceTree = "<group>"; };
+		C4E7949B229E233A000E0A43 /* PhotoFilmProfileNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilmProfileNode.swift; sourceTree = "<group>"; };
 		C4EB9FEE2266F074008747C7 /* RecommendTopicCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTopicCellNode.swift; sourceTree = "<group>"; };
 		C4F3A5FC227FD6D6006614D1 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		C4F3A5FE227FE3AA006614D1 /* ProfileCoverCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoverCollectionNode.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				C4C34CE6229D20A200511D8A /* PhotoFilmCollectionNode.swift */,
 				C4B486F72295499800ECE987 /* PhotoFilmModel.swift */,
 				C4C34CE4229D1C3500511D8A /* PhotoFilmTableCell.swift */,
+				C4E7949B229E233A000E0A43 /* PhotoFilmProfileNode.swift */,
 			);
 			path = Film;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				C4B9825B2241EE8400F65C0E /* Macro.swift in Sources */,
 				C4650C3022840F0600215D85 /* ProfileDetailTopItemView.swift in Sources */,
 				53E29036228C407F008A0242 /* ProfileFeedListModel.swift in Sources */,
+				C4E7949C229E233A000E0A43 /* PhotoFilmProfileNode.swift in Sources */,
 				53679355224132DE00C93C76 /* AppDelegate+Extension.swift in Sources */,
 				C40F35EE228E857B00A8638B /* HomeCircleContainer.swift in Sources */,
 				C4AC63D52241E53700324C23 /* ASDKNavigationBar.swift in Sources */,
