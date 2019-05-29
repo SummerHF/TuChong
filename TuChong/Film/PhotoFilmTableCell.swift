@@ -40,6 +40,7 @@ class PhotoFilmTableCell: BaseCellNode {
         self.index = index
         self.collection = PhotoFilmCollectionNode(images: feed_list.images)
         super.init()
+        self.backgroundColor = Color.black
     }
     
     override func didLoad() {

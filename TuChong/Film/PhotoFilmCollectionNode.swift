@@ -41,6 +41,7 @@ class PhotoFilmCollectionNodeCell: BaseCellNode {
         self.index = index
         self.imageNode = ASNetworkImageNode()
         super.init()
+        self.backgroundColor = Color.black
     }
     
     override func didLoad() {
@@ -67,7 +68,8 @@ class PhotoFilmCollectionNode: ASCollectionNode {
         layout.scrollDirection = .horizontal
         super.init(frame: CGRect.zero, collectionViewLayout: layout, layoutFacilitator: nil)
         self.dataSource = self
-        self.view.isPagingEnabled = true 
+        self.view.isPagingEnabled = true
+        self.view.bounces = false
     }
 }
 

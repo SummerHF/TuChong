@@ -41,6 +41,14 @@ class PhotoFilmViewController: BaseViewControlle {
         return tableNode
     }()
     
+    private lazy var searchBtnNode: ASButtonNode = {
+        let searchBtnNode = ASButtonNode()
+        let frame = CGRect(x: 20, y: macro.statusBarHeight, width: 36, height: 36)
+        searchBtnNode.setImage(R.image.film_search(), for: .normal)
+        searchBtnNode.frame = frame
+        return searchBtnNode
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -53,6 +61,7 @@ class PhotoFilmViewController: BaseViewControlle {
     
     override func addSubNodes() {
         self.node.addSubnode(tableNode)
+        self.node.addSubnode(searchBtnNode)
     }
     
     override func loadData() {

@@ -34,5 +34,7 @@ class PhotoFilmTableNode: ASTableNode {
         self.view.isPagingEnabled = true 
         self.backgroundColor = Color.black
         self.frame = UIScreen.main.bounds
+        self.view.separatorStyle = .none
+        self.view.showsVerticalScrollIndicator = false 
     }
 }
