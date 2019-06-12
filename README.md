@@ -13,9 +13,8 @@
 </p>
 
 
-
 ## 项目进展
 
 ## 参考
 
-[Texture Layout Specs布局](http://texturegroup.org/docs/resources.html)
+* [Texture Layout Specs布局](http://texturegroup.org/docs/resources.html)
