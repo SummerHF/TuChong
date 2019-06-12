@@ -8,10 +8,11 @@
   
 ## 实现功能预览(部分)
 
+因gif较大，所以加载时间比较长....
+
 <p align="center">
   <img src="Resource/gifhome_448x960_56s.gif" />
 </p>
-
 
 ## 项目进展
 
