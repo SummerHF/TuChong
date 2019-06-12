@@ -16,6 +16,24 @@
 
 ## 项目进展
 
+* 已完成(部分)
+    * 项目整体架构搭建完毕
+    * 首页动态显示标签功能完成, 未使用传统的`UIScrollView`包裹控制器方式, 而是使用`UIPageViewController`, 性能导向.
+    * 活动页构建完毕
+    * 个人主页构建完毕(图虫的个人主页逻辑非常复杂，目前仅完成大部分功能，仍待完善)
+    * 等
+    * 支持全球化
+    * 启动页支持随机播放广告页
+    
+* 待完成(主要)
+    * 评论模块
+    * 视频播放模块
+    * 图片浏览模块
+    * 搜索模块
+    * 等
+
 ## 参考
 
 * [Texture Layout Specs布局](http://texturegroup.org/docs/resources.html)
+* [字体, 颜色，本地化](https://medium.com/swift-india/the-clean-way-of-managing-assets-fonts-colors-string-literals-in-ios-xcode-project-1e06dcacf208)
+* [WkWebView相关](https://www.jianshu.com/p/bace03adb798)
