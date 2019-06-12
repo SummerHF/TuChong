@@ -697,6 +697,7 @@
 				Base,
 				en,
 				"zh-Hant",
+				"zh-Hans",
 			);
 			mainGroup = C4AD3C20224097CB0095BC97;
 			productRefGroup = C4AD3C2A224097CB0095BC97 /* Products */;
